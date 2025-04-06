@@ -754,7 +754,7 @@
       }
     },
     {
-      "name": "Fragment.__@toPrimitive@6160",
+      "name": "Fragment.__@toPrimitive@6264",
       "parameters": [
         {
           "name": "hint",
@@ -799,7 +799,7 @@
       }
     },
     {
-      "name": "StrictMode.__@toPrimitive@6160",
+      "name": "StrictMode.__@toPrimitive@6264",
       "parameters": [
         {
           "name": "hint",
@@ -844,7 +844,7 @@
       }
     },
     {
-      "name": "Suspense.__@toPrimitive@6160",
+      "name": "Suspense.__@toPrimitive@6264",
       "parameters": [
         {
           "name": "hint",
@@ -1674,7 +1674,7 @@
       }
     },
     {
-      "name": "__@iterator@6167",
+      "name": "__@iterator@6271",
       "parameters": [],
       "returnType": "StringIterator<string>",
       "jsdoc": {
@@ -2603,7 +2603,7 @@
       }
     },
     {
-      "name": "version.__@iterator@6167",
+      "name": "version.__@iterator@6271",
       "parameters": [],
       "returnType": "StringIterator<string>",
       "jsdoc": {
@@ -2654,7 +2654,7 @@
       }
     },
     {
-      "name": "Profiler.__@toPrimitive@6160",
+      "name": "Profiler.__@toPrimitive@6264",
       "parameters": [
         {
           "name": "hint",
@@ -4269,7 +4269,7 @@
       }
     },
     {
-      "name": "React.__@iterator@6167",
+      "name": "React.__@iterator@6271",
       "parameters": [],
       "returnType": "StringIterator<string>",
       "jsdoc": {
@@ -4316,6 +4316,1863 @@
         "params": [],
         "deprecated": false
       }
+    },
+    {
+      "name": "Component.setState",
+      "parameters": [
+        {
+          "name": "state",
+          "type": "S | ((prevState: Readonly<S>, props: Readonly<P>) => S | Pick<S, K>) | Pick<S, K>",
+          "optional": false
+        },
+        {
+          "name": "callback",
+          "type": "() => void",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": null
+    },
+    {
+      "name": "Component.forceUpdate",
+      "parameters": [
+        {
+          "name": "callback",
+          "type": "() => void",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": null
+    },
+    {
+      "name": "Component.render",
+      "parameters": [],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "PureComponent.setState",
+      "parameters": [
+        {
+          "name": "state",
+          "type": "S | ((prevState: Readonly<S>, props: Readonly<P>) => S | Pick<S, K>) | Pick<S, K>",
+          "optional": false
+        },
+        {
+          "name": "callback",
+          "type": "() => void",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": null
+    },
+    {
+      "name": "PureComponent.forceUpdate",
+      "parameters": [
+        {
+          "name": "callback",
+          "type": "() => void",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": null
+    },
+    {
+      "name": "PureComponent.render",
+      "parameters": [],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    }
+  ],
+  "enums": [],
+  "types": [
+    {
+      "name": "NativeAnimationEvent",
+      "type": "AnimationEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "NativeClipboardEvent",
+      "type": "ClipboardEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "NativeCompositionEvent",
+      "type": "CompositionEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "NativeDragEvent",
+      "type": "DragEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "NativeFocusEvent",
+      "type": "FocusEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "NativeKeyboardEvent",
+      "type": "KeyboardEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "NativeMouseEvent",
+      "type": "MouseEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "NativeTouchEvent",
+      "type": "TouchEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "NativePointerEvent",
+      "type": "PointerEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "NativeToggleEvent",
+      "type": "ToggleEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "NativeTransitionEvent",
+      "type": "TransitionEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "NativeUIEvent",
+      "type": "UIEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "NativeWheelEvent",
+      "type": "WheelEvent",
+      "jsdoc": null
+    },
+    {
+      "name": "Booleanish",
+      "type": "Booleanish",
+      "jsdoc": {
+        "description": "Used to represent DOM API's where users can either pass\ntrue or false as a boolean or as its equivalent strings.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "CrossOrigin",
+      "type": "CrossOrigin",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "AwaitedReactNode",
+      "type": "AwaitedReactNode",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Destructor",
+      "type": "Destructor",
+      "jsdoc": {
+        "description": "The function returned from an effect passed to  useEffect ,\nwhich can be used to clean up the effect when the component unmounts.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "VoidOrUndefinedOnly",
+      "type": "VoidOrUndefinedOnly",
+      "jsdoc": null
+    },
+    {
+      "name": "createElement",
+      "type": "{ (type: \"input\", props?: InputHTMLAttributes<HTMLInputElement> & ClassAttributes<HTMLInputElement>, ...children: ReactNode[]): DetailedReactHTMLElement<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>; <P extends HTMLAttributes<T>, T extends HTMLElement>(type: HTMLElementType, props?: ClassAttributes<T> & P, ...children: ReactNode[]): DetailedReactHTMLElement<P, T>; <P extends SVGAttributes<T>, T extends SVGElement>(type: SVGElementType, props?: ClassAttributes<T> & P, ...children: ReactNode[]): ReactSVGElement; <P extends DOMAttributes<T>, T extends Element>(type: string, props?: ClassAttributes<T> & P, ...children: ReactNode[]): DOMElement<P, T>; <P extends {}>(type: FunctionComponent<P>, props?: Attributes & P, ...children: ReactNode[]): FunctionComponentElement<P>; <P extends {}, T extends Component<P, ComponentState>, C extends ComponentClass<P>>(type: ClassType<P, T, C>, props?: ClassAttributes<T> & P, ...children: ReactNode[]): CElement<P, T>; <P extends {}>(type: string | FunctionComponent<P> | ComponentClass<P, any>, props?: Attributes & P, ...children: ReactNode[]): ReactElement<P, string | JSXElementConstructor<any>>; }",
+      "jsdoc": null
+    },
+    {
+      "name": "cloneElement",
+      "type": "{ <P extends HTMLAttributes<T>, T extends HTMLElement>(element: DetailedReactHTMLElement<P, T>, props?: P, ...children: ReactNode[]): DetailedReactHTMLElement<P, T>; <P extends HTMLAttributes<T>, T extends HTMLElement>(element: ReactHTMLElement<T>, props?: P, ...children: ReactNode[]): ReactHTMLElement<T>; <P extends SVGAttributes<T>, T extends SVGElement>(element: ReactSVGElement, props?: P, ...children: ReactNode[]): ReactSVGElement; <P extends DOMAttributes<T>, T extends Element>(element: DOMElement<P, T>, props?: DOMAttributes<T> & P, ...children: ReactNode[]): DOMElement<P, T>; <P>(element: FunctionComponentElement<P>, props?: Partial<P> & Attributes, ...children: ReactNode[]): FunctionComponentElement<P>; <P, T extends Component<P, ComponentState>>(element: CElement<P, T>, props?: Partial<P> & ClassAttributes<T>, ...children: ReactNode[]): CElement<P, T>; <P>(element: ReactElement<P, string | JSXElementConstructor<any>>, props?: Partial<P> & Attributes, ...children: ReactNode[]): ReactElement<P, string | JSXElementConstructor<any>>; }",
+      "jsdoc": null
+    },
+    {
+      "name": "createContext",
+      "type": "<T>(defaultValue: T) => Context<T>",
+      "jsdoc": {
+        "description": "Lets you create a    that components can provide or read.",
+        "params": [
+          {
+            "name": "defaultValue",
+            "description": "The value you want the context to have when there is no matching\n   in the tree above the component reading the context. This is meant\nas a \"last resort\" fallback."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "isValidElement",
+      "type": "<P>(object: {}) => object is ReactElement<P, string | JSXElementConstructor<any>>",
+      "jsdoc": null
+    },
+    {
+      "name": "createRef",
+      "type": "<T>() => RefObject<T>",
+      "jsdoc": null
+    },
+    {
+      "name": "forwardRef",
+      "type": "<T, P = {}>(render: ForwardRefRenderFunction<T, PropsWithoutRef<P>>) => ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>>",
+      "jsdoc": {
+        "description": "Lets your component expose a DOM node to a parent component\nusing a ref.",
+        "params": [
+          {
+            "name": "render",
+            "description": "See the   ."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "memo",
+      "type": "{ <P extends object>(Component: FunctionComponent<P>, propsAreEqual?: (prevProps: Readonly<P>, nextProps: Readonly<P>) => boolean): NamedExoticComponent<P>; <T extends ComponentType<any>>(Component: T, propsAreEqual?: (prevProps: Readonly<ComponentProps<T>>, nextProps: Readonly<ComponentProps<T>>) => boolean): MemoExoticComponent<T>; }",
+      "jsdoc": {
+        "description": "Lets you skip re-rendering a component when its props are unchanged.",
+        "params": [
+          {
+            "name": "Component",
+            "description": "The component to memoize."
+          },
+          {
+            "name": "propsAreEqual",
+            "description": "A function that will be used to determine if the props have changed."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "lazy",
+      "type": "<T extends ComponentType<any>>(load: () => Promise<{ default: T; }>) => LazyExoticComponent<T>",
+      "jsdoc": {
+        "description": "Lets you defer loading a component’s code until it is rendered for the first time.",
+        "params": [
+          {
+            "name": "load",
+            "description": "A function that returns a `Promise` or another thenable (a `Promise`-like object with a\nthen method). React will not call `load` until the first time you attempt to render the returned\ncomponent. After React first calls load, it will wait for it to resolve, and then render the\nresolved value’s `.default` as a React component. Both the returned `Promise` and the `Promise`’s\nresolved value will be cached, so React will not call load more than once. If the `Promise` rejects,\nReact will throw the rejection reason for the nearest Error Boundary to handle."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useContext",
+      "type": "<T>(context: Context<T>) => T",
+      "jsdoc": {
+        "description": "Accepts a context object (the value returned from `React.createContext`) and returns the current\ncontext value, as given by the nearest context provider for the given context.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useState",
+      "type": "{ <S>(initialState: S | (() => S)): [S, Dispatch<SetStateAction<S>>]; <S = undefined>(): [S, Dispatch<SetStateAction<S>>]; }",
+      "jsdoc": {
+        "description": "Returns a stateful value, and a function to update it.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useReducer",
+      "type": "{ <S, A extends AnyActionArg>(reducer: (prevState: S, ...args: A) => S, initialState: S): [S, ActionDispatch<A>]; <S, A extends AnyActionArg>(reducer: (prevState: S, ...args: A) => S, initialState: S): [S, ActionDispatch<A>]; <S, I, A extends AnyActionArg>(reducer: (prevState: S, ...args: A) => S, initialArg: I, init: (i: I) => S): [S, ActionDispatch<A>]; }",
+      "jsdoc": {
+        "description": "An alternative to `useState`.\n\n`useReducer` is usually preferable to `useState` when you have complex state logic that involves\nmultiple sub-values. It also lets you optimize performance for components that trigger deep\nupdates because you can pass `dispatch` down instead of callbacks.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useRef",
+      "type": "{ <T>(initialValue: T): RefObject<T>; <T>(initialValue: T): RefObject<T>; <T>(initialValue: T): RefObject<T>; }",
+      "jsdoc": {
+        "description": "`useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument\n(`initialValue`). The returned object will persist for the full lifetime of the component.\n\nNote that `useRef()` is useful for more than the `ref` attribute. It’s handy for keeping any mutable\nvalue around similar to how you’d use instance fields in classes.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useLayoutEffect",
+      "type": "(effect: EffectCallback, deps?: DependencyList) => void",
+      "jsdoc": {
+        "description": "The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations.\nUse this to read layout from the DOM and synchronously re-render. Updates scheduled inside\n`useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.\n\nPrefer the standard `useEffect` when possible to avoid blocking visual updates.\n\nIf you’re migrating code from a class component, `useLayoutEffect` fires in the same phase as\n`componentDidMount` and `componentDidUpdate`.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useEffect",
+      "type": "(effect: EffectCallback, deps?: DependencyList) => void",
+      "jsdoc": {
+        "description": "Accepts a function that contains imperative, possibly effectful code.",
+        "params": [
+          {
+            "name": "effect",
+            "description": "Imperative function that can return a cleanup function"
+          },
+          {
+            "name": "deps",
+            "description": "If present, effect will only activate if the values in the list change."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useImperativeHandle",
+      "type": "<T, R extends T>(ref: Ref<T>, init: () => R, deps?: DependencyList) => void",
+      "jsdoc": {
+        "description": "`useImperativeHandle` customizes the instance value that is exposed to parent components when using\n`ref`. As always, imperative code using refs should be avoided in most cases.\n\n`useImperativeHandle` should be used with `React.forwardRef`.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useCallback",
+      "type": "<T extends Function>(callback: T, deps: DependencyList) => T",
+      "jsdoc": {
+        "description": "`useCallback` will return a memoized version of the callback that only changes if one of the `inputs`\nhas changed.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useMemo",
+      "type": "<T>(factory: () => T, deps: DependencyList) => T",
+      "jsdoc": {
+        "description": "`useMemo` will only recompute the memoized value when one of the `deps` has changed.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useDebugValue",
+      "type": "<T>(value: T, format?: (value: T) => any) => void",
+      "jsdoc": {
+        "description": "`useDebugValue` can be used to display a label for custom hooks in React DevTools.\n\nNOTE: We don’t recommend adding debug values to every custom hook.\nIt’s most valuable for custom hooks that are part of shared libraries.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useDeferredValue",
+      "type": "<T>(value: T, initialValue?: T) => T",
+      "jsdoc": {
+        "description": "Returns a deferred version of the value that may “lag behind” it.\n\nThis is commonly used to keep the interface responsive when you have something that renders immediately\nbased on user input and something that needs to wait for a data fetch.\n\nA good example of this is a text input.",
+        "params": [
+          {
+            "name": "value",
+            "description": "The value that is going to be deferred"
+          },
+          {
+            "name": "initialValue",
+            "description": "A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there’s no previous version of `value` that it can render instead."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useTransition",
+      "type": "() => [boolean, TransitionStartFunction]",
+      "jsdoc": {
+        "description": "Allows components to avoid undesirable loading states by waiting for content to load\nbefore transitioning to the next screen. It also allows components to defer slower,\ndata fetching updates until subsequent renders so that more crucial updates can be\nrendered immediately.\n\nThe `useTransition` hook returns two values in an array.\n\nThe first is a boolean, React’s way of informing us whether we’re waiting for the transition to finish.\nThe second is a function that takes a callback. We can use it to tell React which state we want to defer.\n\n**If some state update causes a component to suspend, that state update should be wrapped in a transition.**",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "startTransition",
+      "type": "(scope: TransitionFunction) => void",
+      "jsdoc": {
+        "description": "Similar to `useTransition` but allows uses where hooks are not available.",
+        "params": [
+          {
+            "name": "callback",
+            "description": "A function which causes state updates that can be deferred."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "act",
+      "type": "{ (callback: () => VoidOrUndefinedOnly): void; <T>(callback: () => T | Promise<T>): Promise<T>; }",
+      "jsdoc": {
+        "description": "Wrap any code rendering and triggering updates to your components into `act()` calls.\n\nEnsures that the behavior in your tests matches what happens in the browser\nmore closely by executing pending `useEffect`s before returning. This also\nreduces the amount of re-renders done.",
+        "params": [
+          {
+            "name": "callback",
+            "description": "A synchronous, void callback that will execute as a single, complete React commit."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useId",
+      "type": "() => string",
+      "jsdoc": null
+    },
+    {
+      "name": "useInsertionEffect",
+      "type": "(effect: EffectCallback, deps?: DependencyList) => void",
+      "jsdoc": {
+        "description": "",
+        "params": [
+          {
+            "name": "effect",
+            "description": "Imperative function that can return a cleanup function"
+          },
+          {
+            "name": "deps",
+            "description": "If present, effect will only activate if the values in the list change."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useSyncExternalStore",
+      "type": "<Snapshot>(subscribe: (onStoreChange: () => void) => () => void, getSnapshot: () => Snapshot, getServerSnapshot?: () => Snapshot) => Snapshot",
+      "jsdoc": {
+        "description": "",
+        "params": [
+          {
+            "name": "subscribe"
+          },
+          {
+            "name": "getSnapshot"
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useOptimistic",
+      "type": "{ <State>(passthrough: State): [State, (action: State | ((pendingState: State) => State)) => void]; <State, Action>(passthrough: State, reducer: (state: State, action: Action) => State): [State, (action: Action) => void]; }",
+      "jsdoc": null
+    },
+    {
+      "name": "use",
+      "type": "<T>(usable: Usable<T>) => T",
+      "jsdoc": null
+    },
+    {
+      "name": "useActionState",
+      "type": "{ <State>(action: (state: Awaited<State>) => State | Promise<State>, initialState: Awaited<State>, permalink?: string): [state: Awaited<State>, dispatch: () => void, isPending: boolean]; <State, Payload>(action: (state: Awaited<State>, payload: Payload) => State | Promise<State>, initialState: Awaited<State>, permalink?: string): [state: Awaited<State>, dispatch: (payload: Payload) => void, isPending: boolean]; }",
+      "jsdoc": null
+    },
+    {
+      "name": "cache",
+      "type": "<CachedFunction extends Function>(fn: CachedFunction) => CachedFunction",
+      "jsdoc": null
+    },
+    {
+      "name": "captureOwnerStack",
+      "type": "() => string",
+      "jsdoc": {
+        "description": "Warning: Only available in development builds.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ElementType",
+      "type": "any",
+      "jsdoc": {
+        "description": "Used to retrieve the possible components which accept a given set of props.\n\nCan be passed no type parameters to get a union of all possible components\nand tags.\n\nIs a superset of   .",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ComponentType",
+      "type": "any",
+      "jsdoc": {
+        "description": "Represents any user-defined component, either as a function or a class.\n\nSimilar to   , but with extra properties like\n defaultProps  .",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "JSXElementConstructor",
+      "type": "any",
+      "jsdoc": {
+        "description": "Represents any user-defined component, either as a function or a class.\n\nSimilar to   , but without extra properties like\n defaultProps  .",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "RefObject",
+      "type": "any",
+      "jsdoc": {
+        "description": "Created by   , or    when passed `null`.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "RefCallback",
+      "type": "any",
+      "jsdoc": {
+        "description": "A callback fired whenever the ref's value changes.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Ref",
+      "type": "any",
+      "jsdoc": {
+        "description": "A union type of all possible shapes for React refs.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "LegacyRef",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "ElementRef",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "ComponentState",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Key",
+      "type": "any",
+      "jsdoc": {
+        "description": "A value which uniquely identifies a node among items in an array.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Attributes",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "RefAttributes",
+      "type": "any",
+      "jsdoc": {
+        "description": "The props any component accepting refs can receive.\nClass components, built-in browser components (e.g. `div`) and forwardRef components can receive refs and automatically accept these props.\n```tsx\nconst Component = forwardRef(() => <div />);\n<Component ref={(current) => console.log(current)} />\n```\n\nYou only need this type if you manually author the types of props that need to be compatible with legacy refs.\n```tsx\ninterface Props extends React.RefAttributes<HTMLDivElement> {}\ndeclare const Component: React.FunctionComponent<Props>;\n```\n\nOtherwise it's simpler to directly use    since you can safely use the\nprops type to describe to props that a consumer can pass to the component\nas well as describing the props the implementation of a component \"sees\".\n   is generally not safe to describe both consumer and seen props.\n\n```tsx\ninterface Props extends {\n  ref?: React.Ref<HTMLDivElement> | undefined;\n}\ndeclare const Component: React.FunctionComponent<Props>;\n```\n\nWARNING: The implementation of a component will not have access to the same type in versions of React supporting string refs.\nThe following example would be incorrect usage because    would never have access to a `ref` with type `string`\n```tsx\nconst Component = (props: React.RefAttributes) => props.ref;\n```",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ClassAttributes",
+      "type": "any",
+      "jsdoc": {
+        "description": "Represents the built-in attributes available to class components.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ReactElement",
+      "type": "any",
+      "jsdoc": {
+        "description": "Represents a JSX element.\n\nWhere    represents everything that can be rendered, `ReactElement`\nonly represents JSX.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ReactComponentElement",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "FunctionComponentElement",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "CElement",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "ComponentElement",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "ClassicElement",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "DOMElement",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "ReactHTMLElement",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DetailedReactHTMLElement",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ReactSVGElement",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ReactPortal",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_REACT_NODES",
+      "type": "any",
+      "jsdoc": {
+        "description": "Different release channels declare additional types of ReactNode this particular release channel accepts.\nApp or library types should never augment this interface.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ReactNode",
+      "type": "any",
+      "jsdoc": {
+        "description": "Represents all of the things React can render.\n\nWhere    only represents JSX, `ReactNode` represents everything that can be rendered.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ProviderProps",
+      "type": "any",
+      "jsdoc": {
+        "description": "Describes the props accepted by a Context   .",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ConsumerProps",
+      "type": "any",
+      "jsdoc": {
+        "description": "Describes the props accepted by a Context   .",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ExoticComponent",
+      "type": "any",
+      "jsdoc": {
+        "description": "An object masquerading as a component. These are created by functions\nlike   ,   , and   .\n\nIn order to make TypeScript work, we pretend that they are normal\ncomponents.\n\nBut they are, in fact, not callable - instead, they are objects which\nare treated specially by the renderer.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "NamedExoticComponent",
+      "type": "any",
+      "jsdoc": {
+        "description": "An    with a `displayName` property applied to it.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ProviderExoticComponent",
+      "type": "any",
+      "jsdoc": {
+        "description": "An    with a `propTypes` property applied to it.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ContextType",
+      "type": "any",
+      "jsdoc": {
+        "description": "Used to retrieve the type of a context object from a   .",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Provider",
+      "type": "any",
+      "jsdoc": {
+        "description": "Wraps your components to specify the value of this context for all components inside.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Consumer",
+      "type": "any",
+      "jsdoc": {
+        "description": "The old way to read context, before    existed.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Context",
+      "type": "any",
+      "jsdoc": {
+        "description": "Context lets components pass information deep down without explicitly\npassing props.\n\nCreated from  ",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "FragmentProps",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "SuspenseProps",
+      "type": "any",
+      "jsdoc": {
+        "description": "The props accepted by   .",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ProfilerOnRenderCallback",
+      "type": "any",
+      "jsdoc": {
+        "description": "The callback passed to   .",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ProfilerProps",
+      "type": "any",
+      "jsdoc": {
+        "description": "The props accepted by   .",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ReactInstance",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ClassicComponent",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "FC",
+      "type": "any",
+      "jsdoc": {
+        "description": "Represents the type of a function component. Can optionally\nreceive a type argument that represents the props the component\nreceives.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "FunctionComponent",
+      "type": "any",
+      "jsdoc": {
+        "description": "Represents the type of a function component. Can optionally\nreceive a type argument that represents the props the component\naccepts.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ForwardedRef",
+      "type": "any",
+      "jsdoc": {
+        "description": "The type of the ref received by a   .",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ForwardRefRenderFunction",
+      "type": "any",
+      "jsdoc": {
+        "description": "The type of the function passed to   . This is considered different\nto a normal    because it receives an additional argument,",
+        "params": [
+          {
+            "name": "props",
+            "description": "Props passed to the component, if any."
+          },
+          {
+            "name": "ref",
+            "description": "A ref forwarded to the component of type   ."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ComponentClass",
+      "type": "any",
+      "jsdoc": {
+        "description": "Represents a component class in React.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ClassicComponentClass",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "ClassType",
+      "type": "any",
+      "jsdoc": {
+        "description": "Used in    and    to represent\na class.\n\nAn intersection type is used to infer multiple type parameters from\na single argument, which is useful for many top-level API defs.\nSee  ://github.com/Microsoft/TypeScript/issues/7234 this GitHub issue \nfor more info.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ComponentLifecycle",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "StaticLifecycle",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "GetDerivedStateFromProps",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "GetDerivedStateFromError",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "NewLifecycle",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DeprecatedLifecycle",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ForwardRefExoticComponent",
+      "type": "any",
+      "jsdoc": {
+        "description": "The type of the component returned from   .",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "PropsWithoutRef",
+      "type": "any",
+      "jsdoc": {
+        "description": "Omits the 'ref' attribute from the given props object.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "PropsWithRef",
+      "type": "any",
+      "jsdoc": {
+        "description": "Ensures that the props do not include string ref, which cannot be forwarded",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "PropsWithChildren",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ComponentProps",
+      "type": "any",
+      "jsdoc": {
+        "description": "Used to retrieve the props a component accepts. Can either be passed a string,\nindicating a DOM element (e.g. 'div', 'span', etc.) or the type of a React\ncomponent.\n\nIt's usually better to use    or   \ninstead of this type, as they let you be explicit about whether or not to include\nthe `ref` prop.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ComponentPropsWithRef",
+      "type": "any",
+      "jsdoc": {
+        "description": "Used to retrieve the props a component accepts with its ref. Can either be\npassed a string, indicating a DOM element (e.g. 'div', 'span', etc.) or the\ntype of a React component.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "CustomComponentPropsWithRef",
+      "type": "any",
+      "jsdoc": {
+        "description": "Used to retrieve the props a custom component accepts with its ref.\n\nUnlike   , this only works with custom\ncomponents, i.e. components you define yourself. This is to improve\ntype-checking performance.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ComponentPropsWithoutRef",
+      "type": "any",
+      "jsdoc": {
+        "description": "Used to retrieve the props a component accepts without its ref. Can either be\npassed a string, indicating a DOM element (e.g. 'div', 'span', etc.) or the\ntype of a React component.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ComponentRef",
+      "type": "any",
+      "jsdoc": {
+        "description": "Retrieves the type of the 'ref' prop for a given component type or tag name.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "MemoExoticComponent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LazyExoticComponent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "SetStateAction",
+      "type": "any",
+      "jsdoc": {
+        "description": "The instruction passed to a    function in   \nto tell React what the next value of the    should be.\n\nOften found wrapped in   .",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Dispatch",
+      "type": "any",
+      "jsdoc": {
+        "description": "A function that can be used to update the state of a   \nor    hook.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "DispatchWithoutAction",
+      "type": "any",
+      "jsdoc": {
+        "description": "A    function can sometimes be called without any arguments.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "AnyActionArg",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ActionDispatch",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Reducer",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ReducerWithoutAction",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ReducerState",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DependencyList",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "EffectCallback",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MutableRefObject",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "TransitionFunction",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TransitionStartFunction",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Usable",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "BaseSyntheticEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "SyntheticEvent",
+      "type": "any",
+      "jsdoc": {
+        "description": "currentTarget - a reference to the element on which the event listener is registered.\n\ntarget - a reference to the element from which the event was originally dispatched.\nThis might be a child element to the element on which the event listener is registered.\nIf you thought this should be `EventTarget & T`, see https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "ClipboardEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CompositionEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DragEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "PointerEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "FocusEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "FormEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "InvalidEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ChangeEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ModifierKey",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "KeyboardEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MouseEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TouchEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "UIEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "WheelEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AnimationEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ToggleEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TransitionEvent",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "EventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ReactEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ClipboardEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CompositionEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DragEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "FocusEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "FormEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ChangeEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "KeyboardEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MouseEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TouchEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "PointerEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "UIEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "WheelEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AnimationEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ToggleEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TransitionEventHandler",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "HTMLProps",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DetailedHTMLProps",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "SVGProps",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "SVGLineElementAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "SVGTextElementAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DOMAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CSSProperties",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AriaAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AriaRole",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "HTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_FORM_ACTIONS",
+      "type": "any",
+      "jsdoc": {
+        "description": "For internal usage only.\nDifferent release channels declare additional types of ReactNode this particular release channel accepts.\nApp or library types should never augment this interface.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "AllHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "HTMLAttributeReferrerPolicy",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "HTMLAttributeAnchorTarget",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AnchorHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AudioHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AreaHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "BaseHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "BlockquoteHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ButtonHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CanvasHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ColHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ColgroupHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DataHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DetailsHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DelHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DialogHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "EmbedHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "FieldsetHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "FormHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "HtmlHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "IframeHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ImgHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "InsHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "HTMLInputTypeAttribute",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AutoFillAddressKind",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AutoFillBase",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AutoFillContactField",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AutoFillContactKind",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AutoFillCredentialField",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AutoFillNormalField",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "OptionalPrefixToken",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "OptionalPostfixToken",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AutoFillField",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AutoFillSection",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AutoFill",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "HTMLInputAutoCompleteAttribute",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "InputHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "KeygenHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LabelHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LiHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LinkHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MapHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MenuHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MediaHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MetaHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MeterHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "QuoteHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ObjectHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "OlHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "OptgroupHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "OptionHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "OutputHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ParamHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ProgressHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "SlotHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ScriptHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "SelectHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "SourceHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "StyleHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TableHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TextareaHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TdHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ThHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TimeHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TrackHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "VideoHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "SVGAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "WebViewHTMLAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "HTMLElementType",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "SVGElementType",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AbstractView",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Touch",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TouchList",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ErrorInfo",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "JSX",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Component",
+      "type": "Component<P, S, SS>",
+      "jsdoc": null
+    },
+    {
+      "name": "Element",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ElementClass",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ElementAttributesProperty",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ElementChildrenAttribute",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LibraryManagedAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "IntrinsicAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "IntrinsicClassAttributes",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "IntrinsicElements",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "InexactPartial",
+      "type": "InexactPartial<T>",
+      "jsdoc": null
+    },
+    {
+      "name": "Defaultize",
+      "type": "Defaultize<P, D>",
+      "jsdoc": null
+    },
+    {
+      "name": "ReactManagedAttributes",
+      "type": "ReactManagedAttributes<C, P>",
+      "jsdoc": null
+    }
+  ],
+  "classes": [
+    {
+      "name": "Component",
+      "constructors": [],
+      "methods": [
+        {
+          "name": "Component.setState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "S | ((prevState: Readonly<S>, props: Readonly<P>) => S | Pick<S, K>) | Pick<S, K>",
+              "optional": false
+            },
+            {
+              "name": "callback",
+              "type": "() => void",
+              "optional": true
+            }
+          ],
+          "returnType": "void",
+          "jsdoc": null
+        },
+        {
+          "name": "Component.forceUpdate",
+          "parameters": [
+            {
+              "name": "callback",
+              "type": "() => void",
+              "optional": true
+            }
+          ],
+          "returnType": "void",
+          "jsdoc": null
+        },
+        {
+          "name": "Component.render",
+          "parameters": [],
+          "returnType": "ReactNode",
+          "jsdoc": null
+        }
+      ],
+      "jsdoc": null
+    },
+    {
+      "name": "PureComponent",
+      "constructors": [],
+      "methods": [
+        {
+          "name": "PureComponent.setState",
+          "parameters": [
+            {
+              "name": "state",
+              "type": "S | ((prevState: Readonly<S>, props: Readonly<P>) => S | Pick<S, K>) | Pick<S, K>",
+              "optional": false
+            },
+            {
+              "name": "callback",
+              "type": "() => void",
+              "optional": true
+            }
+          ],
+          "returnType": "void",
+          "jsdoc": null
+        },
+        {
+          "name": "PureComponent.forceUpdate",
+          "parameters": [
+            {
+              "name": "callback",
+              "type": "() => void",
+              "optional": true
+            }
+          ],
+          "returnType": "void",
+          "jsdoc": null
+        },
+        {
+          "name": "PureComponent.render",
+          "parameters": [],
+          "returnType": "ReactNode",
+          "jsdoc": null
+        }
+      ],
+      "jsdoc": null
     }
   ],
   "version": "18.2.0"

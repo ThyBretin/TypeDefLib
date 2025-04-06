@@ -9313,7 +9313,7 @@
       }
     },
     {
-      "name": "_.__@iterator@1967",
+      "name": "_.__@iterator@2071",
       "parameters": [],
       "returnType": "StringIterator<string>",
       "jsdoc": {
@@ -17263,5 +17263,747 @@
       }
     }
   ],
+  "enums": [],
+  "types": [
+    {
+      "name": "LoDashStatic",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Omit",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "PartialObject",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Many",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ImpChain",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ExpChain",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TemplateSettings",
+      "type": "any",
+      "jsdoc": {
+        "description": "By default, the template delimiters used by Lo-Dash are similar to those in embedded Ruby\n(ERB). Change the following template settings to use alternative delimiters.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "MapCache",
+      "type": "any",
+      "jsdoc": {
+        "description": "Creates a cache object to store key/value pairs.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "MapCacheConstructor",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Collection",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CollectionChain",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Function",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "String",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Object",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Primitive",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "FunctionChain",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "StringChain",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "StringNullableChain",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ObjectChain",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "PrimitiveChain",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "NotVoid",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "IterateeShorthand",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ArrayIterator",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TupleIterator",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ListIterator",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ListIteratee",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ListIterateeCustom",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ListIteratorTypeGuard",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ObjectIterator",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ObjectIteratee",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ObjectIterateeCustom",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ObjectIteratorTypeGuard",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "StringIterator",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MemoVoidIterator",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "MemoIterator",
+      "type": "any",
+      "jsdoc": {
+        "description": "",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "MemoListIterator",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MemoObjectIterator",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MemoIteratorCapped",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MemoIteratorCappedRight",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MemoVoidArrayIterator",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MemoVoidDictionaryIterator",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MemoVoidIteratorCapped",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ValueIteratee",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ValueIterateeCustom",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ValueIteratorTypeGuard",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ValueKeyIteratee",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ValueKeyIterateeTypeGuard",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Comparator",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Comparator2",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "PropertyName",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "PropertyPath",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "List",
+      "type": "any",
+      "jsdoc": {
+        "description": "Common interface between Arrays and jQuery objects",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Dictionary",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "NumericDictionary",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AnyKindOfDictionary",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "PartialShallow",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "StringToNumber",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashImplicitArrayWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashImplicitNillableArrayWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashImplicitObjectWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashImplicitNillableObjectWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashImplicitNumberArrayWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashImplicitStringWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashExplicitArrayWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashExplicitNillableArrayWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashExplicitObjectWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashExplicitNillableObjectWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashExplicitNumberArrayWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashExplicitStringWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DictionaryIterator",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DictionaryIteratee",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DictionaryIteratorTypeGuard",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "NumericDictionaryIterator",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "NumericDictionaryIteratee",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "NumericDictionaryIterateeCustom",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Falsey",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Truthy",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "RecursiveArray",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ListOfRecursiveArraysOrValues",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Flat",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashImplicitWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashExplicitWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "FunctionBind",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "FunctionBindKey",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Curry",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CurriedFunction1",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CurriedFunction2",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CurriedFunction3",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CurriedFunction4",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CurriedFunction5",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "RightCurriedFunction1",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "RightCurriedFunction2",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "RightCurriedFunction3",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "RightCurriedFunction4",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "RightCurriedFunction5",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CurryRight",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DebounceSettings",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DebounceSettingsLeading",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DebouncedFunc",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "DebouncedFuncLeading",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MemoizedFunction",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "__",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Function0",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Function1",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Function2",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Function3",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Function4",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "Partial",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "PartialRight",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ThrottleSettings",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ThrottleSettingsLeading",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "FunctionBase",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CloneDeepWithCustomizer",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CloneWithCustomizer",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CondPairNullary",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "CondPairUnary",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "EmptyObject",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "EmptyObjectOf",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "IsEqualCustomizer",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "isMatchWithCustomizer",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "AssignCustomizer",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "GetFieldTypeOfArrayLikeByKey",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "GetFieldTypeOfStringByKey",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "GetFieldTypeOfNarrowedByKey",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "GetFieldTypeOfNarrowedByDotPath",
+      "type": "any",
+      "jsdoc": {
+        "description": "Internal. Assumes P is a dot-delimited path.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "GetFieldTypeOfNarrowedByLcKR",
+      "type": "any",
+      "jsdoc": {
+        "description": "Internal. This is a piece of GetFieldTypeOfNarrowedByLKR logic,\nassuming that Lc isn't to be ignored, and does not end with dot.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "GetFieldTypeOfNarrowedByLKR",
+      "type": "any",
+      "jsdoc": {
+        "description": "Internal. Assumes T has been narrowed; L is a dot-delimited path,\nand should be ignored if an empty string; K is a key name; and R is\na dot-delimetered path, to be ignored if an empty string. Also if\nL has a tail dot, or R has a front dot, these dots should be discarded,\nhowever when L or R is just a dot, they should be interpreted as empty\nkey name (rather than ignored).",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "GetFieldTypeOfNarrowed",
+      "type": "any",
+      "jsdoc": {
+        "description": "Internal. Assumes T has been narrowed.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "GetFieldTypeOfObject",
+      "type": "any",
+      "jsdoc": {
+        "description": "Internal. Assumes T has been narrowed to an object type.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "GetFieldTypeOfPrimitive",
+      "type": "any",
+      "jsdoc": {
+        "description": "Internal. Assumes T has been narrowed to a primitive type.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "GetFieldType",
+      "type": "any",
+      "jsdoc": {
+        "description": "Deduces the type of value at the path P of type T,\nso that _.get<T, P>(t: T, p: P): GetFieldType<T, P>.\nXT specifies the exact meaning of X:\n- 'Path' (default) - X is a path type to be fully parsed;\n- 'DotPath - X is a dot-delimitered path, without square (indexing) brackets;\n- 'Key' - X is a simple key, and needs no parsing.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "MergeWithCustomizer",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "SetWithCustomizer",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "LoDashWrapper",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ReplaceFunction",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TemplateOptions",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TemplateExecutor",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "TruncateOptions",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "ConformsPredicateObject",
+      "type": "any",
+      "jsdoc": null
+    },
+    {
+      "name": "MixinOptions",
+      "type": "any",
+      "jsdoc": null
+    }
+  ],
+  "classes": [],
   "version": "4.14.191"
 }
