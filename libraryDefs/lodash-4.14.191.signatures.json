@@ -9313,7 +9313,7 @@
       }
     },
     {
-      "name": "_.__@iterator@2071",
+      "name": "_.__@iterator@5312",
       "parameters": [],
       "returnType": "StringIterator<string>",
       "jsdoc": {
@@ -17267,743 +17267,3128 @@
   "types": [
     {
       "name": "LoDashStatic",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Omit",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "PartialObject",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Many",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ImpChain",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ExpChain",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "TemplateSettings",
-      "type": "any",
-      "jsdoc": {
-        "description": "By default, the template delimiters used by Lo-Dash are similar to those in embedded Ruby\n(ERB). Change the following template settings to use alternative delimiters.",
-        "deprecated": false
-      }
-    },
-    {
-      "name": "MapCache",
-      "type": "any",
-      "jsdoc": {
-        "description": "Creates a cache object to store key/value pairs.",
-        "deprecated": false
-      }
-    },
-    {
-      "name": "MapCacheConstructor",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Collection",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "CollectionChain",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Function",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "String",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Object",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Primitive",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "FunctionChain",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "StringChain",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "StringNullableChain",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ObjectChain",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "PrimitiveChain",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "NotVoid",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "IterateeShorthand",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ArrayIterator",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "TupleIterator",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ListIterator",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ListIteratee",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ListIterateeCustom",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ListIteratorTypeGuard",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ObjectIterator",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ObjectIteratee",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ObjectIterateeCustom",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ObjectIteratorTypeGuard",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "StringIterator",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "MemoVoidIterator",
-      "type": "any",
-      "jsdoc": {
-        "description": "",
-        "params": [],
-        "deprecated": true
-      }
-    },
-    {
-      "name": "MemoIterator",
-      "type": "any",
-      "jsdoc": {
-        "description": "",
-        "params": [],
-        "deprecated": true
-      }
-    },
-    {
-      "name": "MemoListIterator",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "MemoObjectIterator",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "MemoIteratorCapped",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "MemoIteratorCappedRight",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "MemoVoidArrayIterator",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "MemoVoidDictionaryIterator",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "MemoVoidIteratorCapped",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ValueIteratee",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ValueIterateeCustom",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ValueIteratorTypeGuard",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ValueKeyIteratee",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ValueKeyIterateeTypeGuard",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Comparator",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Comparator2",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "PropertyName",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "PropertyPath",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "List",
-      "type": "any",
-      "jsdoc": {
-        "description": "Common interface between Arrays and jQuery objects",
-        "deprecated": false
-      }
-    },
-    {
-      "name": "Dictionary",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "NumericDictionary",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "AnyKindOfDictionary",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "PartialShallow",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "StringToNumber",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashImplicitArrayWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashImplicitNillableArrayWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashImplicitObjectWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashImplicitNillableObjectWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashImplicitNumberArrayWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashImplicitStringWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashExplicitArrayWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashExplicitNillableArrayWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashExplicitObjectWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashExplicitNillableObjectWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashExplicitNumberArrayWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashExplicitStringWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "DictionaryIterator",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "DictionaryIteratee",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "DictionaryIteratorTypeGuard",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "NumericDictionaryIterator",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "NumericDictionaryIteratee",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "NumericDictionaryIterateeCustom",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Falsey",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Truthy",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "RecursiveArray",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ListOfRecursiveArraysOrValues",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Flat",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashImplicitWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashExplicitWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "FunctionBind",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "FunctionBindKey",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Curry",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "CurriedFunction1",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "CurriedFunction2",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "CurriedFunction3",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "CurriedFunction4",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "CurriedFunction5",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "RightCurriedFunction1",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "RightCurriedFunction2",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "RightCurriedFunction3",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "RightCurriedFunction4",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "RightCurriedFunction5",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "CurryRight",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "DebounceSettings",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "DebounceSettingsLeading",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "DebouncedFunc",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "DebouncedFuncLeading",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "MemoizedFunction",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "__",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Function0",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Function1",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Function2",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Function3",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Function4",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "Partial",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "PartialRight",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ThrottleSettings",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ThrottleSettingsLeading",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "FunctionBase",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "CloneDeepWithCustomizer",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "CloneWithCustomizer",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "CondPairNullary",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "CondPairUnary",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "EmptyObject",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "EmptyObjectOf",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "IsEqualCustomizer",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "isMatchWithCustomizer",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "AssignCustomizer",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "GetFieldTypeOfArrayLikeByKey",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "GetFieldTypeOfStringByKey",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "GetFieldTypeOfNarrowedByKey",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "GetFieldTypeOfNarrowedByDotPath",
-      "type": "any",
-      "jsdoc": {
-        "description": "Internal. Assumes P is a dot-delimited path.",
-        "deprecated": false
-      }
-    },
-    {
-      "name": "GetFieldTypeOfNarrowedByLcKR",
-      "type": "any",
-      "jsdoc": {
-        "description": "Internal. This is a piece of GetFieldTypeOfNarrowedByLKR logic,\nassuming that Lc isn't to be ignored, and does not end with dot.",
-        "deprecated": false
-      }
-    },
-    {
-      "name": "GetFieldTypeOfNarrowedByLKR",
-      "type": "any",
-      "jsdoc": {
-        "description": "Internal. Assumes T has been narrowed; L is a dot-delimited path,\nand should be ignored if an empty string; K is a key name; and R is\na dot-delimetered path, to be ignored if an empty string. Also if\nL has a tail dot, or R has a front dot, these dots should be discarded,\nhowever when L or R is just a dot, they should be interpreted as empty\nkey name (rather than ignored).",
-        "deprecated": false
-      }
-    },
-    {
-      "name": "GetFieldTypeOfNarrowed",
-      "type": "any",
-      "jsdoc": {
-        "description": "Internal. Assumes T has been narrowed.",
-        "deprecated": false
-      }
-    },
-    {
-      "name": "GetFieldTypeOfObject",
-      "type": "any",
-      "jsdoc": {
-        "description": "Internal. Assumes T has been narrowed to an object type.",
-        "deprecated": false
-      }
-    },
-    {
-      "name": "GetFieldTypeOfPrimitive",
-      "type": "any",
-      "jsdoc": {
-        "description": "Internal. Assumes T has been narrowed to a primitive type.",
-        "deprecated": false
-      }
-    },
-    {
-      "name": "GetFieldType",
-      "type": "any",
-      "jsdoc": {
-        "description": "Deduces the type of value at the path P of type T,\nso that _.get<T, P>(t: T, p: P): GetFieldType<T, P>.\nXT specifies the exact meaning of X:\n- 'Path' (default) - X is a path type to be fully parsed;\n- 'DotPath - X is a dot-delimitered path, without square (indexing) brackets;\n- 'Key' - X is a simple key, and needs no parsing.",
-        "deprecated": false
-      }
-    },
-    {
-      "name": "MergeWithCustomizer",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "SetWithCustomizer",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "LoDashWrapper",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ReplaceFunction",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "TemplateOptions",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "TemplateExecutor",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "TruncateOptions",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "ConformsPredicateObject",
-      "type": "any",
-      "jsdoc": null
-    },
-    {
-      "name": "MixinOptions",
-      "type": "any",
-      "jsdoc": null
+      "type": "LoDashStatic",
+      "properties": [
+        {
+          "name": "VERSION",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "templateSettings",
+          "type": "TemplateSettings",
+          "optional": false
+        },
+        {
+          "name": "chunk",
+          "type": "<T>(array: List<T>, size?: number) => T[][]",
+          "optional": false
+        },
+        {
+          "name": "compact",
+          "type": "<T>(array: List<T | Falsey>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "concat",
+          "type": "<T>(...values: Many<T>[]) => T[]",
+          "optional": false
+        },
+        {
+          "name": "difference",
+          "type": "<T>(array: List<T>, ...values: List<T>[]) => T[]",
+          "optional": false
+        },
+        {
+          "name": "differenceBy",
+          "type": "{ <T1, T2>(array: List<T1>, values: List<T2>, iteratee: ValueIteratee<T1 | T2>): T1[]; <T1, T2, T3>(array: List<T1>, values1: List<T2>, values2: List<...>, iteratee: ValueIteratee<...>): T1[]; <T1, T2, T3, T4>(array: List<...>, values1: List<...>, values2: List<...>, values3: List<...>, iteratee: ValueIteratee<...>)...",
+          "optional": false
+        },
+        {
+          "name": "differenceWith",
+          "type": "{ <T1, T2>(array: List<T1>, values: List<T2>, comparator: Comparator2<T1, T2>): T1[]; <T1, T2, T3>(array: List<T1>, values1: List<T2>, values2: List<...>, comparator: Comparator2<...>): T1[]; <T1, T2, T3, T4>(array: List<...>, values1: List<...>, values2: List<...>, ...values: (List<...> | Comparator2<...>)[]): T1[]...",
+          "optional": false
+        },
+        {
+          "name": "drop",
+          "type": "<T>(array: List<T>, n?: number) => T[]",
+          "optional": false
+        },
+        {
+          "name": "dropRight",
+          "type": "<T>(array: List<T>, n?: number) => T[]",
+          "optional": false
+        },
+        {
+          "name": "dropRightWhile",
+          "type": "<T>(array: List<T>, predicate?: ListIteratee<T>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "dropWhile",
+          "type": "<T>(array: List<T>, predicate?: ListIteratee<T>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "fill",
+          "type": "{ <T>(array: any[], value: T): T[]; <T>(array: List<any>, value: T): List<T>; <T, U>(array: U[], value: T, start?: number, end?: number): (T | U)[]; <T, U>(array: List<U>, value: T, start?: number, end?: number): List<...>; }",
+          "optional": false
+        },
+        {
+          "name": "findIndex",
+          "type": "<T>(array: List<T>, predicate?: ListIterateeCustom<T, boolean>, fromIndex?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "findLastIndex",
+          "type": "<T>(array: List<T>, predicate?: ListIterateeCustom<T, boolean>, fromIndex?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "first",
+          "type": "{ <T>(array: readonly [T, ...unknown[]]): T; <T>(array: List<T>): T; }",
+          "optional": false
+        },
+        {
+          "name": "flatten",
+          "type": "<T>(array: List<Many<T>>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "flattenDeep",
+          "type": "<T>(array: ListOfRecursiveArraysOrValues<T>) => Flat<T>[]",
+          "optional": false
+        },
+        {
+          "name": "flattenDepth",
+          "type": "<T>(array: ListOfRecursiveArraysOrValues<T>, depth?: number) => T[]",
+          "optional": false
+        },
+        {
+          "name": "fromPairs",
+          "type": "{ <T>(pairs: List<[PropertyName, T]>): Dictionary<T>; (pairs: List<any[]>): Dictionary<any>; }",
+          "optional": false
+        },
+        {
+          "name": "head",
+          "type": "{ <T>(array: readonly [T, ...unknown[]]): T; <T>(array: List<T>): T; }",
+          "optional": false
+        },
+        {
+          "name": "indexOf",
+          "type": "<T>(array: List<T>, value: T, fromIndex?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "initial",
+          "type": "<T>(array: List<T>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "intersection",
+          "type": "<T>(...arrays: List<T>[]) => T[]",
+          "optional": false
+        },
+        {
+          "name": "intersectionBy",
+          "type": "{ <T1, T2>(array: List<T1>, values: List<T2>, iteratee: ValueIteratee<T1 | T2>): T1[]; <T1, T2, T3>(array: List<T1>, values1: List<T2>, values2: List<...>, iteratee: ValueIteratee<...>): T1[]; <T1, T2, T3, T4>(array: List<...>, values1: List<...>, values2: List<...>, ...values: (List<...> | ValueIteratee<...>)[]): T...",
+          "optional": false
+        },
+        {
+          "name": "intersectionWith",
+          "type": "{ <T1, T2>(array: List<T1>, values: List<T2>, comparator: Comparator2<T1, T2>): T1[]; <T1, T2, T3>(array: List<T1>, values1: List<T2>, values2: List<...>, comparator: Comparator2<...>): T1[]; <T1, T2, T3, T4>(array: List<...>, values1: List<...>, values2: List<...>, ...values: (List<...> | Comparator2<...>)[]): T1[]...",
+          "optional": false
+        },
+        {
+          "name": "join",
+          "type": "(array: List<any>, separator?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "last",
+          "type": "<T>(array: List<T>) => T",
+          "optional": false
+        },
+        {
+          "name": "lastIndexOf",
+          "type": "<T>(array: List<T>, value: T, fromIndex?: number | true) => number",
+          "optional": false
+        },
+        {
+          "name": "nth",
+          "type": "<T>(array: List<T>, n?: number) => T",
+          "optional": false
+        },
+        {
+          "name": "pull",
+          "type": "{ <T>(array: T[], ...values: T[]): T[]; <T>(array: List<T>, ...values: T[]): List<T>; }",
+          "optional": false
+        },
+        {
+          "name": "pullAll",
+          "type": "{ <T>(array: T[], values?: List<T>): T[]; <T>(array: List<T>, values?: List<T>): List<T>; }",
+          "optional": false
+        },
+        {
+          "name": "pullAllBy",
+          "type": "{ <T>(array: T[], values?: List<T>, iteratee?: ValueIteratee<T>): T[]; <T>(array: List<T>, values?: List<T>, iteratee?: ValueIteratee<T>): List<...>; <T1, T2>(array: T1[], values: List<...>, iteratee: ValueIteratee<...>): T1[]; <T1, T2>(array: List<...>, values: List<...>, iteratee: ValueIteratee<...>): List<...>; }",
+          "optional": false
+        },
+        {
+          "name": "pullAllWith",
+          "type": "{ <T>(array: T[], values?: List<T>, comparator?: Comparator<T>): T[]; <T>(array: List<T>, values?: List<T>, comparator?: Comparator<T>): List<...>; <T1, T2>(array: T1[], values: List<...>, comparator: Comparator2<...>): T1[]; <T1, T2>(array: List<...>, values: List<...>, comparator: Comparator2<...>): List<...>; }",
+          "optional": false
+        },
+        {
+          "name": "pullAt",
+          "type": "{ <T>(array: T[], ...indexes: Many<number>[]): T[]; <T>(array: List<T>, ...indexes: Many<number>[]): List<T>; }",
+          "optional": false
+        },
+        {
+          "name": "remove",
+          "type": "<T>(array: List<T>, predicate?: ListIteratee<T>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "reverse",
+          "type": "<TList extends List<any>>(array: TList) => TList",
+          "optional": false
+        },
+        {
+          "name": "slice",
+          "type": "<T>(array: List<T>, start?: number, end?: number) => T[]",
+          "optional": false
+        },
+        {
+          "name": "sortedIndex",
+          "type": "{ <T>(array: List<T>, value: T): number; <T>(array: List<T>, value: T): number; }",
+          "optional": false
+        },
+        {
+          "name": "sortedIndexBy",
+          "type": "<T>(array: List<T>, value: T, iteratee?: ValueIteratee<T>) => number",
+          "optional": false
+        },
+        {
+          "name": "sortedIndexOf",
+          "type": "<T>(array: List<T>, value: T) => number",
+          "optional": false
+        },
+        {
+          "name": "sortedLastIndex",
+          "type": "<T>(array: List<T>, value: T) => number",
+          "optional": false
+        },
+        {
+          "name": "sortedLastIndexBy",
+          "type": "<T>(array: List<T>, value: T, iteratee: ValueIteratee<T>) => number",
+          "optional": false
+        },
+        {
+          "name": "sortedLastIndexOf",
+          "type": "<T>(array: List<T>, value: T) => number",
+          "optional": false
+        },
+        {
+          "name": "sortedUniq",
+          "type": "<T>(array: List<T>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "sortedUniqBy",
+          "type": "<T>(array: List<T>, iteratee: ValueIteratee<T>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "tail",
+          "type": "{ <T extends unknown[]>(array: readonly [unknown, ...T]): T; <T>(array: List<T>): T[]; }",
+          "optional": false
+        },
+        {
+          "name": "take",
+          "type": "<T>(array: List<T>, n?: number) => T[]",
+          "optional": false
+        },
+        {
+          "name": "takeRight",
+          "type": "<T>(array: List<T>, n?: number) => T[]",
+          "optional": false
+        },
+        {
+          "name": "takeRightWhile",
+          "type": "<T>(array: List<T>, predicate?: ListIteratee<T>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "takeWhile",
+          "type": "<T>(array: List<T>, predicate?: ListIteratee<T>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "union",
+          "type": "<T>(...arrays: List<T>[]) => T[]",
+          "optional": false
+        },
+        {
+          "name": "unionBy",
+          "type": "{ <T>(arrays: List<T>, iteratee?: ValueIteratee<T>): T[]; <T>(arrays1: List<T>, arrays2: List<T>, iteratee?: ValueIteratee<T>): T[]; <T>(arrays1: List<...>, arrays2: List<...>, arrays3: List<...>, iteratee?: ValueIteratee<...>): T[]; <T>(arrays1: List<...>, arrays2: List<...>, arrays3: List<...>, arrays4: List<...>,...",
+          "optional": false
+        },
+        {
+          "name": "unionWith",
+          "type": "{ <T>(arrays: List<T>, comparator?: Comparator<T>): T[]; <T>(arrays: List<T>, arrays2: List<T>, comparator?: Comparator<T>): T[]; <T>(arrays: List<...>, arrays2: List<...>, arrays3: List<...>, ...comparator: (Comparator<...> | List<...>)[]): T[]; }",
+          "optional": false
+        },
+        {
+          "name": "uniq",
+          "type": "<T>(array: List<T>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "uniqBy",
+          "type": "<T>(array: List<T>, iteratee: ValueIteratee<T>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "uniqWith",
+          "type": "<T>(array: List<T>, comparator?: Comparator<T>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "unzip",
+          "type": "<T>(array: T[][] | List<List<T>>) => T[][]",
+          "optional": false
+        },
+        {
+          "name": "unzipWith",
+          "type": "{ <T, TResult>(array: List<List<T>>, iteratee: (...values: T[]) => TResult): TResult[]; <T>(array: List<List<T>>): T[][]; }",
+          "optional": false
+        },
+        {
+          "name": "without",
+          "type": "<T>(array: List<T>, ...values: T[]) => T[]",
+          "optional": false
+        },
+        {
+          "name": "xor",
+          "type": "<T>(...arrays: List<T>[]) => T[]",
+          "optional": false
+        },
+        {
+          "name": "xorBy",
+          "type": "{ <T>(arrays: List<T>, iteratee?: ValueIteratee<T>): T[]; <T>(arrays: List<T>, arrays2: List<T>, iteratee?: ValueIteratee<T>): T[]; <T>(arrays: List<...>, arrays2: List<...>, arrays3: List<...>, ...iteratee: (ValueIteratee<...> | List<...>)[]): T[]; }",
+          "optional": false
+        },
+        {
+          "name": "xorWith",
+          "type": "{ <T>(arrays: List<T>, comparator?: Comparator<T>): T[]; <T>(arrays: List<T>, arrays2: List<T>, comparator?: Comparator<T>): T[]; <T>(arrays: List<...>, arrays2: List<...>, arrays3: List<...>, ...comparator: (Comparator<...> | List<...>)[]): T[]; }",
+          "optional": false
+        },
+        {
+          "name": "zip",
+          "type": "{ <T1, T2>(arrays1: List<T1>, arrays2: List<T2>): [T1, T2][]; <T1, T2, T3>(arrays1: List<T1>, arrays2: List<T2>, arrays3: List<T3>): [...][]; <T1, T2, T3, T4>(arrays1: List<...>, arrays2: List<...>, arrays3: List<...>, arrays4: List<...>): [...][]; <T1, T2, T3, T4, T5>(arrays1: List<...>, arrays2: List<...>, arrays3...",
+          "optional": false
+        },
+        {
+          "name": "zipObject",
+          "type": "{ <T>(props: List<PropertyName>, values: List<T>): Dictionary<T>; (props?: List<PropertyName>): Dictionary<undefined>; }",
+          "optional": false
+        },
+        {
+          "name": "zipObjectDeep",
+          "type": "(paths?: List<PropertyPath>, values?: List<any>) => object",
+          "optional": false
+        },
+        {
+          "name": "zipWith",
+          "type": "{ <T, TResult>(arrays: List<T>, iteratee: (value1: T) => TResult): TResult[]; <T1, T2, TResult>(arrays1: List<T1>, arrays2: List<T2>, iteratee: (value1: T1, value2: T2) => TResult): TResult[]; <T1, T2, T3, TResult>(arrays1: List<...>, arrays2: List<...>, arrays3: List<...>, iteratee: (value1: T1, value2: T2, value3:...",
+          "optional": false
+        },
+        {
+          "name": "countBy",
+          "type": "{ <T>(collection: List<T>, iteratee?: ValueIteratee<T>): Dictionary<number>; <T extends object>(collection: T, iteratee?: ValueIteratee<T[keyof T]>): Dictionary<...>; }",
+          "optional": false
+        },
+        {
+          "name": "each",
+          "type": "{ <T>(collection: T[], iteratee?: ArrayIterator<T, any>): T[]; (collection: string, iteratee?: StringIterator<any>): string; <T>(collection: List<T>, iteratee?: ListIterator<...>): List<...>; <T extends object>(collection: T, iteratee?: ObjectIterator<...>): T; <T, TArray extends T[] | null | undefined>(collection: ...",
+          "optional": false
+        },
+        {
+          "name": "eachRight",
+          "type": "{ <T>(collection: T[], iteratee?: ArrayIterator<T, any>): T[]; (collection: string, iteratee?: StringIterator<any>): string; <T>(collection: List<T>, iteratee?: ListIterator<...>): List<...>; <T extends object>(collection: T, iteratee?: ObjectIterator<...>): T; <T, TArray extends T[] | null | undefined>(collection: ...",
+          "optional": false
+        },
+        {
+          "name": "every",
+          "type": "{ <T>(collection: List<T>, predicate?: ListIterateeCustom<T, boolean>): boolean; <T extends object>(collection: T, predicate?: ObjectIterateeCustom<T, boolean>): boolean; }",
+          "optional": false
+        },
+        {
+          "name": "filter",
+          "type": "{ (collection: string, predicate?: StringIterator<boolean>): string[]; <T, S extends T>(collection: List<T>, predicate: ListIteratorTypeGuard<T, S>): S[]; <T>(collection: List<...>, predicate?: ListIterateeCustom<...>): T[]; <T extends object, S extends T[keyof T]>(collection: T, predicate: ObjectIteratorTypeGuard<....",
+          "optional": false
+        },
+        {
+          "name": "find",
+          "type": "{ <T, S extends T>(collection: List<T>, predicate: ListIteratorTypeGuard<T, S>, fromIndex?: number): S; <T>(collection: List<T>, predicate?: ListIterateeCustom<T, boolean>, fromIndex?: number): T; <T extends object, S extends T[keyof T]>(collection: T, predicate: ObjectIteratorTypeGuard<...>, fromIndex?: number): S;...",
+          "optional": false
+        },
+        {
+          "name": "findLast",
+          "type": "{ <T, S extends T>(collection: List<T>, predicate: ListIteratorTypeGuard<T, S>, fromIndex?: number): S; <T>(collection: List<T>, predicate?: ListIterateeCustom<T, boolean>, fromIndex?: number): T; <T extends object, S extends T[keyof T]>(collection: T, predicate: ObjectIteratorTypeGuard<...>, fromIndex?: number): S;...",
+          "optional": false
+        },
+        {
+          "name": "flatMap",
+          "type": "{ <T>(collection: Dictionary<Many<T>> | NumericDictionary<Many<T>>): T[]; (collection: object): any[]; <T, TResult>(collection: List<T>, iteratee: ListIterator<...>): TResult[]; <T extends object, TResult>(collection: T, iteratee: ObjectIterator<...>): TResult[]; (collection: object, iteratee: string): any[]; (colle...",
+          "optional": false
+        },
+        {
+          "name": "flatMapDeep",
+          "type": "{ <T>(collection: Dictionary<T | ListOfRecursiveArraysOrValues<T>> | NumericDictionary<T | ListOfRecursiveArraysOrValues<T>>): T[]; <T, TResult>(collection: List<...>, iteratee: ListIterator<...>): TResult[]; <T extends object, TResult>(collection: T, iteratee: ObjectIterator<...>): TResult[]; (collection: object, i...",
+          "optional": false
+        },
+        {
+          "name": "flatMapDepth",
+          "type": "{ <T>(collection: Dictionary<T | ListOfRecursiveArraysOrValues<T>> | NumericDictionary<T | ListOfRecursiveArraysOrValues<T>>): T[]; <T, TResult>(collection: List<...>, iteratee: ListIterator<...>, depth?: number): TResult[]; <T extends object, TResult>(collection: T, iteratee: ObjectIterator<...>, depth?: number): T...",
+          "optional": false
+        },
+        {
+          "name": "forEach",
+          "type": "{ <T>(collection: T[], iteratee?: ArrayIterator<T, any>): T[]; (collection: string, iteratee?: StringIterator<any>): string; <T>(collection: List<T>, iteratee?: ListIterator<...>): List<...>; <T extends object>(collection: T, iteratee?: ObjectIterator<...>): T; <T, TArray extends T[] | null | undefined>(collection: ...",
+          "optional": false
+        },
+        {
+          "name": "forEachRight",
+          "type": "{ <T>(collection: T[], iteratee?: ArrayIterator<T, any>): T[]; (collection: string, iteratee?: StringIterator<any>): string; <T>(collection: List<T>, iteratee?: ListIterator<...>): List<...>; <T extends object>(collection: T, iteratee?: ObjectIterator<...>): T; <T, TArray extends T[] | null | undefined>(collection: ...",
+          "optional": false
+        },
+        {
+          "name": "groupBy",
+          "type": "{ <T>(collection: List<T>, iteratee?: ValueIteratee<T>): Dictionary<T[]>; <T extends object>(collection: T, iteratee?: ValueIteratee<T[keyof T]>): Dictionary<...>; }",
+          "optional": false
+        },
+        {
+          "name": "includes",
+          "type": "<T>(collection: Dictionary<T> | NumericDictionary<T>, target: T, fromIndex?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "invokeMap",
+          "type": "{ (collection: object, methodName: string, ...args: any[]): any[]; <TResult>(collection: object, method: (...args: any[]) => TResult, ...args: any[]): TResult[]; }",
+          "optional": false
+        },
+        {
+          "name": "keyBy",
+          "type": "{ <T>(collection: List<T>, iteratee?: ValueIterateeCustom<T, PropertyName>): Dictionary<T>; <T extends object>(collection: T, iteratee?: ValueIterateeCustom<...>): Dictionary<...>; }",
+          "optional": false
+        },
+        {
+          "name": "map",
+          "type": "{ <T extends readonly [unknown, ...unknown[]], TResult>(collection: T, iteratee: TupleIterator<T, TResult>): { [K in keyof T]: TResult; }; <T, TResult>(collection: T[], iteratee: ArrayIterator<...>): TResult[]; <T, TResult>(collection: List<...>, iteratee: ListIterator<...>): TResult[]; <T>(collection: Dictionary<.....",
+          "optional": false
+        },
+        {
+          "name": "orderBy",
+          "type": "{ <T>(collection: List<T>, iteratees?: Many<ListIterator<T, unknown>>, orders?: Many<boolean | \"asc\" | \"desc\">): T[]; <T>(collection: List<T>, iteratees?: Many<...>, orders?: Many<...>): T[]; <T extends object>(collection: T, iteratees?: Many<...>, orders?: Many<...>): T[keyof T][]; <T extends object>(collection: T,...",
+          "optional": false
+        },
+        {
+          "name": "partition",
+          "type": "{ <T, U extends T>(collection: List<T>, callback: ValueIteratorTypeGuard<T, U>): [U[], Exclude<T, U>[]]; <T>(collection: List<T>, callback: ValueIteratee<...>): [...]; <T extends object>(collection: T, callback: ValueIteratee<...>): [...]; }",
+          "optional": false
+        },
+        {
+          "name": "reduce",
+          "type": "{ <T, TResult>(collection: T[], callback: MemoListIterator<T, TResult, T[]>, accumulator: TResult): TResult; <T, TResult>(collection: List<T>, callback: MemoListIterator<...>, accumulator: TResult): TResult; <T extends object, TResult>(collection: T, callback: MemoObjectIterator<...>, accumulator: TResult): TResult;...",
+          "optional": false
+        },
+        {
+          "name": "reduceRight",
+          "type": "{ <T, TResult>(collection: T[], callback: MemoListIterator<T, TResult, T[]>, accumulator: TResult): TResult; <T, TResult>(collection: List<T>, callback: MemoListIterator<...>, accumulator: TResult): TResult; <T extends object, TResult>(collection: T, callback: MemoObjectIterator<...>, accumulator: TResult): TResult;...",
+          "optional": false
+        },
+        {
+          "name": "reject",
+          "type": "{ (collection: string, predicate?: StringIterator<boolean>): string[]; <T>(collection: List<T>, predicate?: ListIterateeCustom<T, boolean>): T[]; <T extends object>(collection: T, predicate?: ObjectIterateeCustom<...>): T[keyof T][]; }",
+          "optional": false
+        },
+        {
+          "name": "sample",
+          "type": "{ <T>(collection: readonly [T, ...T[]]): T; <T>(collection: Dictionary<T> | NumericDictionary<T>): T; <T extends object>(collection: T): T[keyof T]; }",
+          "optional": false
+        },
+        {
+          "name": "sampleSize",
+          "type": "{ <T>(collection: Dictionary<T> | NumericDictionary<T>, n?: number): T[]; <T extends object>(collection: T, n?: number): T[keyof T][]; }",
+          "optional": false
+        },
+        {
+          "name": "shuffle",
+          "type": "{ <T>(collection: List<T>): T[]; <T extends object>(collection: T): T[keyof T][]; }",
+          "optional": false
+        },
+        {
+          "name": "size",
+          "type": "(collection: string | object) => number",
+          "optional": false
+        },
+        {
+          "name": "some",
+          "type": "{ <T>(collection: List<T>, predicate?: ListIterateeCustom<T, boolean>): boolean; <T extends object>(collection: T, predicate?: ObjectIterateeCustom<T, boolean>): boolean; }",
+          "optional": false
+        },
+        {
+          "name": "sortBy",
+          "type": "{ <T>(collection: List<T>, ...iteratees: Many<ListIteratee<T>>[]): T[]; <T extends object>(collection: T, ...iteratees: Many<ObjectIteratee<T>>[]): T[keyof T][]; }",
+          "optional": false
+        },
+        {
+          "name": "now",
+          "type": "() => number",
+          "optional": false
+        },
+        {
+          "name": "after",
+          "type": "<TFunc extends (...args: any[]) => any>(n: number, func: TFunc) => TFunc",
+          "optional": false
+        },
+        {
+          "name": "ary",
+          "type": "(func: (...args: any[]) => any, n?: number) => (...args: any[]) => any",
+          "optional": false
+        },
+        {
+          "name": "before",
+          "type": "<TFunc extends (...args: any[]) => any>(n: number, func: TFunc) => TFunc",
+          "optional": false
+        },
+        {
+          "name": "bind",
+          "type": "FunctionBind",
+          "optional": false
+        },
+        {
+          "name": "bindKey",
+          "type": "FunctionBindKey",
+          "optional": false
+        },
+        {
+          "name": "curry",
+          "type": "Curry",
+          "optional": false
+        },
+        {
+          "name": "curryRight",
+          "type": "CurryRight",
+          "optional": false
+        },
+        {
+          "name": "debounce",
+          "type": "{ <T extends (...args: any) => any>(func: T, wait: number, options: DebounceSettingsLeading): DebouncedFuncLeading<T>; <T extends (...args: any) => any>(func: T, wait?: number, options?: DebounceSettings): DebouncedFunc<...>; }",
+          "optional": false
+        },
+        {
+          "name": "defer",
+          "type": "(func: (...args: any[]) => any, ...args: any[]) => number",
+          "optional": false
+        },
+        {
+          "name": "delay",
+          "type": "(func: (...args: any[]) => any, wait: number, ...args: any[]) => number",
+          "optional": false
+        },
+        {
+          "name": "flip",
+          "type": "<T extends (...args: any) => any>(func: T) => T",
+          "optional": false
+        },
+        {
+          "name": "memoize",
+          "type": "{ <T extends (...args: any) => any>(func: T, resolver?: (...args: Parameters<T>) => any): T & MemoizedFunction; Cache: MapCacheConstructor; }",
+          "optional": false
+        },
+        {
+          "name": "negate",
+          "type": "<T extends any[]>(predicate: (...args: T) => boolean) => (...args: T) => boolean",
+          "optional": false
+        },
+        {
+          "name": "once",
+          "type": "<T extends (...args: any) => any>(func: T) => T",
+          "optional": false
+        },
+        {
+          "name": "overArgs",
+          "type": "(func: (...args: any[]) => any, ...transforms: Many<(...args: any[]) => any>[]) => (...args: any[]) => any",
+          "optional": false
+        },
+        {
+          "name": "partial",
+          "type": "Partial",
+          "optional": false
+        },
+        {
+          "name": "partialRight",
+          "type": "PartialRight",
+          "optional": false
+        },
+        {
+          "name": "rearg",
+          "type": "(func: (...args: any[]) => any, ...indexes: Many<number>[]) => (...args: any[]) => any",
+          "optional": false
+        },
+        {
+          "name": "rest",
+          "type": "(func: (...args: any[]) => any, start?: number) => (...args: any[]) => any",
+          "optional": false
+        },
+        {
+          "name": "spread",
+          "type": "<TResult>(func: (...args: any[]) => TResult, start?: number) => (...args: any[]) => TResult",
+          "optional": false
+        },
+        {
+          "name": "throttle",
+          "type": "{ <T extends (...args: any) => any>(func: T, wait?: number, options?: ThrottleSettingsLeading): DebouncedFuncLeading<T>; <T extends (...args: any) => any>(func: T, wait?: number, options?: ThrottleSettings): DebouncedFunc<...>; }",
+          "optional": false
+        },
+        {
+          "name": "unary",
+          "type": "<T, TResult>(func: (arg1: T, ...args: any[]) => TResult) => (arg1: T) => TResult",
+          "optional": false
+        },
+        {
+          "name": "wrap",
+          "type": "<T, TArgs, TResult>(value: T, wrapper: (value: T, ...args: TArgs[]) => TResult) => (...args: TArgs[]) => TResult",
+          "optional": false
+        },
+        {
+          "name": "castArray",
+          "type": "<T>(value?: Many<T>) => T[]",
+          "optional": false
+        },
+        {
+          "name": "clone",
+          "type": "<T>(value: T) => T",
+          "optional": false
+        },
+        {
+          "name": "cloneDeep",
+          "type": "<T>(value: T) => T",
+          "optional": false
+        },
+        {
+          "name": "cloneDeepWith",
+          "type": "{ <T>(value: T, customizer: CloneDeepWithCustomizer<T>): any; <T>(value: T): T; }",
+          "optional": false
+        },
+        {
+          "name": "cloneWith",
+          "type": "{ <T, TResult extends object | string | number | boolean | null>(value: T, customizer: CloneWithCustomizer<T, TResult>): TResult; <T, TResult>(value: T, customizer: CloneWithCustomizer<...>): T | TResult; <T>(value: T): T; }",
+          "optional": false
+        },
+        {
+          "name": "conformsTo",
+          "type": "<T>(object: T, source: ConformsPredicateObject<T>) => boolean",
+          "optional": false
+        },
+        {
+          "name": "eq",
+          "type": "(value: any, other: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "gt",
+          "type": "(value: any, other: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "gte",
+          "type": "(value: any, other: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isArguments",
+          "type": "(value?: any) => value is IArguments",
+          "optional": false
+        },
+        {
+          "name": "isArray",
+          "type": "{ (value?: any): value is any[]; <T>(value?: any): value is any[]; }",
+          "optional": false
+        },
+        {
+          "name": "isArrayBuffer",
+          "type": "(value?: any) => value is ArrayBuffer",
+          "optional": false
+        },
+        {
+          "name": "isArrayLike",
+          "type": "{ <T extends { __lodashAnyHack: any; }>(t: T): boolean; (value: (...args: any[]) => any): value is never; (value: any): value is { length: number; }; }",
+          "optional": false
+        },
+        {
+          "name": "isArrayLikeObject",
+          "type": "{ <T extends { __lodashAnyHack: any; }>(value: T): boolean; (value: string | number | boolean | Function | ((...args: any[]) => any)): value is never; (value: any): value is object & { length: number; }; }",
+          "optional": false
+        },
+        {
+          "name": "isBoolean",
+          "type": "(value?: any) => value is boolean",
+          "optional": false
+        },
+        {
+          "name": "isBuffer",
+          "type": "(value?: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isDate",
+          "type": "(value?: any) => value is Date",
+          "optional": false
+        },
+        {
+          "name": "isElement",
+          "type": "(value?: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isEmpty",
+          "type": "{ <T extends { __trapAny: any; }>(value?: T): boolean; (value: string): value is \"\"; (value: List<any> | Map<any, any> | Set<any>): boolean; (value: object): boolean; <T extends object>(value: T): value is EmptyObjectOf<...>; (value?: any): boolean; }",
+          "optional": false
+        },
+        {
+          "name": "isEqual",
+          "type": "(value: any, other: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isEqualWith",
+          "type": "(value: any, other: any, customizer?: IsEqualCustomizer) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isError",
+          "type": "(value: any) => value is Error",
+          "optional": false
+        },
+        {
+          "name": "isFinite",
+          "type": "(value?: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isFunction",
+          "type": "(value: any) => value is (...args: any[]) => any",
+          "optional": false
+        },
+        {
+          "name": "isInteger",
+          "type": "(value?: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isLength",
+          "type": "(value?: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isMap",
+          "type": "(value?: any) => value is Map<any, any>",
+          "optional": false
+        },
+        {
+          "name": "isMatch",
+          "type": "(object: object, source: object) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isMatchWith",
+          "type": "(object: object, source: object, customizer: isMatchWithCustomizer) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isNaN",
+          "type": "(value?: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isNative",
+          "type": "(value: any) => value is (...args: any[]) => any",
+          "optional": false
+        },
+        {
+          "name": "isNil",
+          "type": "(value: any) => value is null",
+          "optional": false
+        },
+        {
+          "name": "isNull",
+          "type": "(value: any) => value is null",
+          "optional": false
+        },
+        {
+          "name": "isNumber",
+          "type": "(value?: any) => value is number",
+          "optional": false
+        },
+        {
+          "name": "isObject",
+          "type": "(value?: any) => value is object",
+          "optional": false
+        },
+        {
+          "name": "isObjectLike",
+          "type": "(value?: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isPlainObject",
+          "type": "(value?: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isRegExp",
+          "type": "(value?: any) => value is RegExp",
+          "optional": false
+        },
+        {
+          "name": "isSafeInteger",
+          "type": "(value: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isSet",
+          "type": "(value?: any) => value is Set<any>",
+          "optional": false
+        },
+        {
+          "name": "isString",
+          "type": "(value?: any) => value is string",
+          "optional": false
+        },
+        {
+          "name": "isSymbol",
+          "type": "(value: any) => value is symbol",
+          "optional": false
+        },
+        {
+          "name": "isTypedArray",
+          "type": "(value: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "isUndefined",
+          "type": "(value: any) => value is undefined",
+          "optional": false
+        },
+        {
+          "name": "isWeakMap",
+          "type": "(value?: any) => value is WeakMap<object, any>",
+          "optional": false
+        },
+        {
+          "name": "isWeakSet",
+          "type": "(value?: any) => value is WeakSet<object>",
+          "optional": false
+        },
+        {
+          "name": "lt",
+          "type": "(value: any, other: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "lte",
+          "type": "(value: any, other: any) => boolean",
+          "optional": false
+        },
+        {
+          "name": "toArray",
+          "type": "{ <T>(value: Dictionary<T> | NumericDictionary<T>): T[]; <T>(value: T): T[keyof T][]; (): any[]; }",
+          "optional": false
+        },
+        {
+          "name": "toFinite",
+          "type": "(value: any) => number",
+          "optional": false
+        },
+        {
+          "name": "toInteger",
+          "type": "(value: any) => number",
+          "optional": false
+        },
+        {
+          "name": "toLength",
+          "type": "(value: any) => number",
+          "optional": false
+        },
+        {
+          "name": "toNumber",
+          "type": "(value: any) => number",
+          "optional": false
+        },
+        {
+          "name": "toPlainObject",
+          "type": "(value?: any) => any",
+          "optional": false
+        },
+        {
+          "name": "toSafeInteger",
+          "type": "(value: any) => number",
+          "optional": false
+        },
+        {
+          "name": "toString",
+          "type": "(value: any) => string",
+          "optional": false
+        },
+        {
+          "name": "add",
+          "type": "(augend: number, addend: number) => number",
+          "optional": false
+        },
+        {
+          "name": "ceil",
+          "type": "(n: number, precision?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "divide",
+          "type": "(dividend: number, divisor: number) => number",
+          "optional": false
+        },
+        {
+          "name": "floor",
+          "type": "(n: number, precision?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "max",
+          "type": "<T>(collection: List<T>) => T",
+          "optional": false
+        },
+        {
+          "name": "maxBy",
+          "type": "<T>(collection: List<T>, iteratee?: ValueIteratee<T>) => T",
+          "optional": false
+        },
+        {
+          "name": "mean",
+          "type": "(collection: List<any>) => number",
+          "optional": false
+        },
+        {
+          "name": "meanBy",
+          "type": "<T>(collection: List<T>, iteratee?: ValueIteratee<T>) => number",
+          "optional": false
+        },
+        {
+          "name": "min",
+          "type": "<T>(collection: List<T>) => T",
+          "optional": false
+        },
+        {
+          "name": "minBy",
+          "type": "<T>(collection: List<T>, iteratee?: ValueIteratee<T>) => T",
+          "optional": false
+        },
+        {
+          "name": "multiply",
+          "type": "(multiplier: number, multiplicand: number) => number",
+          "optional": false
+        },
+        {
+          "name": "round",
+          "type": "(n: number, precision?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "subtract",
+          "type": "(minuend: number, subtrahend: number) => number",
+          "optional": false
+        },
+        {
+          "name": "sum",
+          "type": "(collection: List<any>) => number",
+          "optional": false
+        },
+        {
+          "name": "sumBy",
+          "type": "<T>(collection: List<T>, iteratee?: string | ((value: T) => number)) => number",
+          "optional": false
+        },
+        {
+          "name": "clamp",
+          "type": "{ (number: number, lower: number, upper: number): number; (number: number, upper: number): number; }",
+          "optional": false
+        },
+        {
+          "name": "inRange",
+          "type": "(n: number, start: number, end?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "random",
+          "type": "{ (floating?: boolean): number; (max: number, floating?: boolean): number; (min: number, max: number, floating?: boolean): number; (min: number, index: string | number, guard: object): number; }",
+          "optional": false
+        },
+        {
+          "name": "assign",
+          "type": "{ <TObject, TSource>(object: TObject, source: TSource): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, source1: TSource1, source2: TSource2, source3: TSource3): TObj...",
+          "optional": false
+        },
+        {
+          "name": "assignIn",
+          "type": "{ <TObject, TSource>(object: TObject, source: TSource): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, source1: TSource1, source2: TSource2, source3: TSource3): TObj...",
+          "optional": false
+        },
+        {
+          "name": "assignInWith",
+          "type": "{ <TObject, TSource>(object: TObject, source: TSource, customizer: AssignCustomizer): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2, customizer: AssignCustomizer): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, so...",
+          "optional": false
+        },
+        {
+          "name": "assignWith",
+          "type": "{ <TObject, TSource>(object: TObject, source: TSource, customizer: AssignCustomizer): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2, customizer: AssignCustomizer): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, so...",
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "{ <T>(object: Dictionary<T> | NumericDictionary<T>, ...props: PropertyPath[]): T[]; <T extends object>(object: T, ...props: Many<keyof T>[]): T[keyof T][]; }",
+          "optional": false
+        },
+        {
+          "name": "create",
+          "type": "<T extends object, U extends object>(prototype: T, properties?: U) => T & U",
+          "optional": false
+        },
+        {
+          "name": "defaults",
+          "type": "{ <TObject, TSource>(object: TObject, source: TSource): NonNullable<TSource & TObject>; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): NonNullable<...>; <TObject, TSource1, TSource2, TSource3>(object: TObject, source1: TSource1, source2: TSource2, source3: TSource3): NonNullabl...",
+          "optional": false
+        },
+        {
+          "name": "defaultsDeep",
+          "type": "(object: any, ...sources: any[]) => any",
+          "optional": false
+        },
+        {
+          "name": "entries",
+          "type": "{ <T>(object?: Dictionary<T> | NumericDictionary<T>): [string, T][]; (object?: object): [string, any][]; }",
+          "optional": false
+        },
+        {
+          "name": "entriesIn",
+          "type": "{ <T>(object?: Dictionary<T> | NumericDictionary<T>): [string, T][]; (object?: object): [string, any][]; }",
+          "optional": false
+        },
+        {
+          "name": "extend",
+          "type": "{ <TObject, TSource>(object: TObject, source: TSource): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, source1: TSource1, source2: TSource2, source3: TSource3): TObj...",
+          "optional": false
+        },
+        {
+          "name": "extendWith",
+          "type": "{ <TObject, TSource>(object: TObject, source: TSource, customizer: AssignCustomizer): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2, customizer: AssignCustomizer): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, so...",
+          "optional": false
+        },
+        {
+          "name": "findKey",
+          "type": "<T>(object: T, predicate?: ObjectIteratee<T>) => string",
+          "optional": false
+        },
+        {
+          "name": "findLastKey",
+          "type": "<T>(object: T, predicate?: ObjectIteratee<T>) => string",
+          "optional": false
+        },
+        {
+          "name": "forIn",
+          "type": "{ <T>(object: T, iteratee?: ObjectIterator<T, any>): T; <T>(object: T, iteratee?: ObjectIterator<T, any>): T; }",
+          "optional": false
+        },
+        {
+          "name": "forInRight",
+          "type": "{ <T>(object: T, iteratee?: ObjectIterator<T, any>): T; <T>(object: T, iteratee?: ObjectIterator<T, any>): T; }",
+          "optional": false
+        },
+        {
+          "name": "forOwn",
+          "type": "{ <T>(object: T, iteratee?: ObjectIterator<T, any>): T; <T>(object: T, iteratee?: ObjectIterator<T, any>): T; }",
+          "optional": false
+        },
+        {
+          "name": "forOwnRight",
+          "type": "{ <T>(object: T, iteratee?: ObjectIterator<T, any>): T; <T>(object: T, iteratee?: ObjectIterator<T, any>): T; }",
+          "optional": false
+        },
+        {
+          "name": "functions",
+          "type": "(object: any) => string[]",
+          "optional": false
+        },
+        {
+          "name": "functionsIn",
+          "type": "<T extends {}>(object: any) => string[]",
+          "optional": false
+        },
+        {
+          "name": "get",
+          "type": "{ <TObject extends object, TKey extends keyof TObject>(object: TObject, path: TKey | [TKey]): TObject[TKey]; <TObject extends object, TKey extends keyof TObject>(object: TObject, path: TKey | [...]): TObject[TKey]; <TObject extends object, TKey extends keyof TObject, TDefault>(object: TObject, path: TKey | [...], de...",
+          "optional": false
+        },
+        {
+          "name": "has",
+          "type": "{ <T, K extends PropertyName>(object: T, path: K): object is T & { [P in K]: P extends keyof T ? T[P] : Record<string, unknown> extends T ? T[keyof T] : unknown; } & { ...; }; <T>(object: T, path: PropertyPath): boolean; }",
+          "optional": false
+        },
+        {
+          "name": "hasIn",
+          "type": "<T>(object: T, path: PropertyPath) => boolean",
+          "optional": false
+        },
+        {
+          "name": "invert",
+          "type": "(object: object) => Dictionary<string>",
+          "optional": false
+        },
+        {
+          "name": "invertBy",
+          "type": "{ <T>(object: Dictionary<T> | NumericDictionary<T>, interatee?: ValueIteratee<T>): Dictionary<string[]>; <T extends object>(object: T, interatee?: ValueIteratee<...>): Dictionary<...>; }",
+          "optional": false
+        },
+        {
+          "name": "invoke",
+          "type": "(object: any, path: PropertyPath, ...args: any[]) => any",
+          "optional": false
+        },
+        {
+          "name": "keys",
+          "type": "(object?: any) => string[]",
+          "optional": false
+        },
+        {
+          "name": "keysIn",
+          "type": "(object?: any) => string[]",
+          "optional": false
+        },
+        {
+          "name": "mapKeys",
+          "type": "{ <T>(object: List<T>, iteratee?: ListIteratee<T>): Dictionary<T>; <T extends object>(object: T, iteratee?: ObjectIteratee<T>): Dictionary<...>; }",
+          "optional": false
+        },
+        {
+          "name": "mapValues",
+          "type": "{ <TResult>(obj: string, callback: StringIterator<TResult>): NumericDictionary<TResult>; <T, TResult>(array: T[], callback: ArrayIterator<T, TResult>): NumericDictionary<...>; <T extends object, TResult>(obj: T, callback: ObjectIterator<...>): { [P in keyof T]: TResult; }; <T>(obj: Dictionary<...> | NumericDictionar...",
+          "optional": false
+        },
+        {
+          "name": "merge",
+          "type": "{ <TObject, TSource>(object: TObject, source: TSource): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, source1: TSource1, source2: TSource2, source3: TSource3): TObj...",
+          "optional": false
+        },
+        {
+          "name": "mergeWith",
+          "type": "{ <TObject, TSource>(object: TObject, source: TSource, customizer: (value: any, srcValue: any, key: string, object: any, source: any, stack: any) => any): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2, customizer: (value: any, srcValue: any, key: string, objec...",
+          "optional": false
+        },
+        {
+          "name": "omit",
+          "type": "{ <T extends object, K extends PropertyName[]>(object: T, ...paths: K): Pick<T, Exclude<keyof T, K[number]>>; <T extends object, K extends keyof T>(object: T, ...paths: Many<K>[]): Omit<...>; <T extends object>(object: T, ...paths: Many<...>[]): Partial<...>; }",
+          "optional": false
+        },
+        {
+          "name": "omitBy",
+          "type": "{ <T>(object: Dictionary<T>, predicate?: ValueKeyIteratee<T>): Dictionary<T>; <T>(object: NumericDictionary<T>, predicate?: ValueKeyIteratee<...>): NumericDictionary<...>; <T extends object>(object: T, predicate: ValueKeyIteratee<...>): Partial<...>; }",
+          "optional": false
+        },
+        {
+          "name": "pick",
+          "type": "{ <T extends object, U extends keyof T>(object: T, ...props: Many<U>[]): Pick<T, U>; <T>(object: T, ...props: Many<PropertyPath>[]): Partial<T>; }",
+          "optional": false
+        },
+        {
+          "name": "pickBy",
+          "type": "{ <T, S extends T>(object: Dictionary<T>, predicate: ValueKeyIterateeTypeGuard<T, S>): Dictionary<S>; <T, S extends T>(object: NumericDictionary<T>, predicate: ValueKeyIterateeTypeGuard<...>): NumericDictionary<...>; <T>(object: Dictionary<...>, predicate?: ValueKeyIteratee<...>): Dictionary<...>; <T>(object: Numeri...",
+          "optional": false
+        },
+        {
+          "name": "result",
+          "type": "<TResult>(object: any, path: PropertyPath, defaultValue?: TResult | ((...args: any[]) => TResult)) => TResult",
+          "optional": false
+        },
+        {
+          "name": "set",
+          "type": "{ <T extends object>(object: T, path: PropertyPath, value: any): T; <TResult>(object: object, path: PropertyPath, value: any): TResult; }",
+          "optional": false
+        },
+        {
+          "name": "setWith",
+          "type": "{ <T extends object>(object: T, path: PropertyPath, value: any, customizer?: SetWithCustomizer<T>): T; <T extends object, TResult>(object: T, path: PropertyPath, value: any, customizer?: SetWithCustomizer<...>): TResult; }",
+          "optional": false
+        },
+        {
+          "name": "toPairs",
+          "type": "{ <T>(object?: Dictionary<T> | NumericDictionary<T>): [string, T][]; (object?: object): [string, any][]; }",
+          "optional": false
+        },
+        {
+          "name": "toPairsIn",
+          "type": "{ <T>(object?: Dictionary<T> | NumericDictionary<T>): [string, T][]; (object?: object): [string, any][]; }",
+          "optional": false
+        },
+        {
+          "name": "transform",
+          "type": "{ <T, TResult>(object: readonly T[], iteratee: MemoVoidArrayIterator<T, TResult>, accumulator?: TResult): TResult; <T, TResult>(object: Dictionary<T>, iteratee: MemoVoidDictionaryIterator<...>, accumulator?: TResult): TResult; <T extends object, TResult>(object: T, iteratee: MemoVoidDictionaryIterator<...>, accumula...",
+          "optional": false
+        },
+        {
+          "name": "unset",
+          "type": "(object: any, path: PropertyPath) => boolean",
+          "optional": false
+        },
+        {
+          "name": "update",
+          "type": "(object: object, path: PropertyPath, updater: (value: any) => any) => any",
+          "optional": false
+        },
+        {
+          "name": "updateWith",
+          "type": "{ <T extends object>(object: T, path: PropertyPath, updater: (oldValue: any) => any, customizer?: SetWithCustomizer<T>): T; <T extends object, TResult>(object: T, path: PropertyPath, updater: (oldValue: any) => any, customizer?: SetWithCustomizer<...>): TResult; }",
+          "optional": false
+        },
+        {
+          "name": "values",
+          "type": "{ <T>(object: Dictionary<T> | NumericDictionary<T> | List<T>): T[]; <T extends object>(object: T): T[keyof T][]; (object: any): any[]; }",
+          "optional": false
+        },
+        {
+          "name": "valuesIn",
+          "type": "{ <T>(object: Dictionary<T> | NumericDictionary<T> | List<T>): T[]; <T extends object>(object: T): T[keyof T][]; }",
+          "optional": false
+        },
+        {
+          "name": "chain",
+          "type": "{ <TrapAny extends { __lodashAnyHack: any; }>(value: TrapAny): CollectionChain<any> & FunctionChain<any> & ObjectChain<any> & PrimitiveChain<any> & StringChain<...>; <T extends null | undefined>(value: T): PrimitiveChain<...>; <T extends string>(value: T): StringChain<...>; (value: string): StringNullableChain; <T e...",
+          "optional": false
+        },
+        {
+          "name": "tap",
+          "type": "<T>(value: T, interceptor: (value: T) => void) => T",
+          "optional": false
+        },
+        {
+          "name": "thru",
+          "type": "<T, TResult>(value: T, interceptor: (value: T) => TResult) => TResult",
+          "optional": false
+        },
+        {
+          "name": "camelCase",
+          "type": "(string?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "capitalize",
+          "type": "<T extends string>(string?: T) => string extends T ? string : Capitalize<Lowercase<T>>",
+          "optional": false
+        },
+        {
+          "name": "deburr",
+          "type": "(string?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "endsWith",
+          "type": "(string?: string, target?: string, position?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "escape",
+          "type": "(string?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "escapeRegExp",
+          "type": "(string?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "kebabCase",
+          "type": "(string?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "lowerCase",
+          "type": "(string?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "lowerFirst",
+          "type": "<T extends string = string>(string?: T) => Uncapitalize<T>",
+          "optional": false
+        },
+        {
+          "name": "pad",
+          "type": "(string?: string, length?: number, chars?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "padEnd",
+          "type": "(string?: string, length?: number, chars?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "padStart",
+          "type": "(string?: string, length?: number, chars?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "parseInt",
+          "type": "(string: string, radix?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "repeat",
+          "type": "(string?: string, n?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "replace",
+          "type": "{ (string: string, pattern: string | RegExp, replacement: string | ReplaceFunction): string; (pattern: string | RegExp, replacement: string | ReplaceFunction): string; }",
+          "optional": false
+        },
+        {
+          "name": "snakeCase",
+          "type": "(string?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "split",
+          "type": "{ (string: string, separator?: string | RegExp, limit?: number): string[]; (string: string, index: string | number, guard: object): string[]; }",
+          "optional": false
+        },
+        {
+          "name": "startCase",
+          "type": "(string?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "startsWith",
+          "type": "(string?: string, target?: string, position?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "template",
+          "type": "(string?: string, options?: TemplateOptions) => TemplateExecutor",
+          "optional": false
+        },
+        {
+          "name": "toLower",
+          "type": "<T extends string = string>(string?: T) => Lowercase<T>",
+          "optional": false
+        },
+        {
+          "name": "toUpper",
+          "type": "<T extends string = string>(string?: T) => Uppercase<T>",
+          "optional": false
+        },
+        {
+          "name": "trim",
+          "type": "{ (string?: string, chars?: string): string; (string: string, index: string | number, guard: object): string; }",
+          "optional": false
+        },
+        {
+          "name": "trimEnd",
+          "type": "{ (string?: string, chars?: string): string; (string: string, index: string | number, guard: object): string; }",
+          "optional": false
+        },
+        {
+          "name": "trimStart",
+          "type": "{ (string?: string, chars?: string): string; (string: string, index: string | number, guard: object): string; }",
+          "optional": false
+        },
+        {
+          "name": "truncate",
+          "type": "(string?: string, options?: TruncateOptions) => string",
+          "optional": false
+        },
+        {
+          "name": "unescape",
+          "type": "(string?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "upperCase",
+          "type": "(string?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "upperFirst",
+          "type": "<T extends string = string>(string?: T) => Capitalize<T>",
+          "optional": false
+        },
+        {
+          "name": "words",
+          "type": "{ (string?: string, pattern?: string | RegExp): string[]; (string: string, index: string | number, guard: object): string[]; }",
+          "optional": false
+        },
+        {
+          "name": "attempt",
+          "type": "<TResult>(func: (...args: any[]) => TResult, ...args: any[]) => TResult | Error",
+          "optional": false
+        },
+        {
+          "name": "bindAll",
+          "type": "<T>(object: T, ...methodNames: Many<string>[]) => T",
+          "optional": false
+        },
+        {
+          "name": "cond",
+          "type": "{ <R>(pairs: CondPairNullary<R>[]): () => R; <T, R>(pairs: CondPairUnary<T, R>[]): (Target: T) => R; }",
+          "optional": false
+        },
+        {
+          "name": "conforms",
+          "type": "<T>(source: ConformsPredicateObject<T>) => (value: T) => boolean",
+          "optional": false
+        },
+        {
+          "name": "constant",
+          "type": "<T>(value: T) => () => T",
+          "optional": false
+        },
+        {
+          "name": "defaultTo",
+          "type": "{ <T>(value: T, defaultValue: T): T; <T, TDefault>(value: T, defaultValue: TDefault): T | TDefault; }",
+          "optional": false
+        },
+        {
+          "name": "flow",
+          "type": "{ <A extends any[], R1, R2, R3, R4, R5, R6, R7>(f1: (...args: A) => R1, f2: (a: R1) => R2, f3: (a: R2) => R3, f4: (a: R3) => R4, f5: (a: R4) => R5, f6: (a: R5) => R6, f7: (a: R6) => R7): (...args: A) => R7; <A extends any[], R1, R2, R3, R4, R5, R6, R7>(f1: (...args: A) => R1, f2: (a: R1) => R2, f3: (a: R2) => R3, f4...",
+          "optional": false
+        },
+        {
+          "name": "flowRight",
+          "type": "{ <A extends any[], R1, R2, R3, R4, R5, R6, R7>(f7: (a: R6) => R7, f6: (a: R5) => R6, f5: (a: R4) => R5, f4: (a: R3) => R4, f3: (a: R2) => R3, f2: (a: R1) => R2, f1: (...args: A) => R1): (...args: A) => R7; <A extends any[], R1, R2, R3, R4, R5, R6>(f6: (a: R5) => R6, f5: (a: R4) => R5, f4: (a: R3) => R4, f3: (a: R2)...",
+          "optional": false
+        },
+        {
+          "name": "identity",
+          "type": "{ <T>(value: T): T; (): undefined; }",
+          "optional": false
+        },
+        {
+          "name": "iteratee",
+          "type": "{ <TFunction extends (...args: any[]) => any>(func: TFunction): TFunction; (func: string | number | symbol | object): (...args: any[]) => any; }",
+          "optional": false
+        },
+        {
+          "name": "matches",
+          "type": "{ <T>(source: T): (value: any) => boolean; <T, V>(source: T): (value: V) => boolean; }",
+          "optional": false
+        },
+        {
+          "name": "matchesProperty",
+          "type": "{ <T>(path: PropertyPath, srcValue: T): (value: any) => boolean; <T, V>(path: PropertyPath, srcValue: T): (value: V) => boolean; }",
+          "optional": false
+        },
+        {
+          "name": "method",
+          "type": "(path: PropertyPath, ...args: any[]) => (object: any) => any",
+          "optional": false
+        },
+        {
+          "name": "methodOf",
+          "type": "(object: object, ...args: any[]) => (path: PropertyPath) => any",
+          "optional": false
+        },
+        {
+          "name": "mixin",
+          "type": "{ <TObject>(object: TObject, source: Dictionary<(...args: any[]) => any>, options?: MixinOptions): TObject; <TResult>(source: Dictionary<(...args: any[]) => any>, options?: MixinOptions): LoDashStatic; }",
+          "optional": false
+        },
+        {
+          "name": "noConflict",
+          "type": "() => LoDashStatic",
+          "optional": false
+        },
+        {
+          "name": "noop",
+          "type": "(...args: any[]) => void",
+          "optional": false
+        },
+        {
+          "name": "nthArg",
+          "type": "(n?: number) => (...args: any[]) => any",
+          "optional": false
+        },
+        {
+          "name": "over",
+          "type": "<TResult>(...iteratees: Many<(...args: any[]) => TResult>[]) => (...args: any[]) => TResult[]",
+          "optional": false
+        },
+        {
+          "name": "overEvery",
+          "type": "{ <T, Result1 extends T, Result2 extends T>(predicates_0: (arg: T) => arg is Result1, predicates_1: (arg: T) => arg is Result2): (arg: T) => arg is Result1 & Result2; <T>(...predicates: Many<(...args: T[]) => boolean>[]): (...args: T[]) => boolean; }",
+          "optional": false
+        },
+        {
+          "name": "overSome",
+          "type": "{ <T, Result1 extends T, Result2 extends T>(predicates_0: (arg: T) => arg is Result1, predicates_1: (arg: T) => arg is Result2): (arg: T) => arg is Result1 | Result2; <T>(...predicates: Many<(...args: T[]) => boolean>[]): (...args: T[]) => boolean; }",
+          "optional": false
+        },
+        {
+          "name": "property",
+          "type": "<TObj, TResult>(path: PropertyPath) => (obj: TObj) => TResult",
+          "optional": false
+        },
+        {
+          "name": "propertyOf",
+          "type": "<T extends {}>(object: T) => (path: PropertyPath) => any",
+          "optional": false
+        },
+        {
+          "name": "range",
+          "type": "{ (start: number, end?: number, step?: number): number[]; (end: number, index: string | number, guard: object): number[]; }",
+          "optional": false
+        },
+        {
+          "name": "rangeRight",
+          "type": "{ (start: number, end?: number, step?: number): number[]; (end: number, index: string | number, guard: object): number[]; }",
+          "optional": false
+        },
+        {
+          "name": "runInContext",
+          "type": "(context?: object) => LoDashStatic",
+          "optional": false
+        },
+        {
+          "name": "stubArray",
+          "type": "() => any[]",
+          "optional": false
+        },
+        {
+          "name": "stubFalse",
+          "type": "{ (): false; (): false; }",
+          "optional": false
+        },
+        {
+          "name": "stubObject",
+          "type": "() => any",
+          "optional": false
+        },
+        {
+          "name": "stubString",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "stubTrue",
+          "type": "{ (): true; (): true; }",
+          "optional": false
+        },
+        {
+          "name": "times",
+          "type": "{ <TResult>(n: number, iteratee: (num: number) => TResult): TResult[]; (n: number): number[]; }",
+          "optional": false
+        },
+        {
+          "name": "toPath",
+          "type": "(value: any) => string[]",
+          "optional": false
+        },
+        {
+          "name": "uniqueId",
+          "type": "(prefix?: string) => string",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false
     }
   ],
   "classes": [],
+  "constants": [
+    {
+      "name": "_",
+      "type": "LoDashStatic",
+      "jsdoc": null,
+      "isExported": false
+    }
+  ],
+  "namespaces": [
+    {
+      "name": "lodash",
+      "contents": {
+        "functions": [],
+        "enums": [],
+        "types": [],
+        "classes": [],
+        "constants": []
+      },
+      "jsdoc": null,
+      "isExported": true
+    },
+    {
+      "name": "_",
+      "contents": {
+        "functions": [],
+        "enums": [],
+        "types": [
+          {
+            "name": "LoDashStatic",
+            "type": "LoDashStatic",
+            "properties": [
+              {
+                "name": "VERSION",
+                "type": "string",
+                "optional": false
+              },
+              {
+                "name": "templateSettings",
+                "type": "TemplateSettings",
+                "optional": false
+              },
+              {
+                "name": "chunk",
+                "type": "<T>(array: List<T>, size?: number) => T[][]",
+                "optional": false
+              },
+              {
+                "name": "compact",
+                "type": "<T>(array: List<T | Falsey>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "concat",
+                "type": "<T>(...values: Many<T>[]) => T[]",
+                "optional": false
+              },
+              {
+                "name": "difference",
+                "type": "<T>(array: List<T>, ...values: List<T>[]) => T[]",
+                "optional": false
+              },
+              {
+                "name": "differenceBy",
+                "type": "{ <T1, T2>(array: List<T1>, values: List<T2>, iteratee: ValueIteratee<T1 | T2>): T1[]; <T1, T2, T3>(array: List<T1>, values1: List<T2>, values2: List<...>, iteratee: ValueIteratee<...>): T1[]; <T1, T2, T3, T4>(array: List<...>, values1: List<...>, values2: List<...>, values3: List<...>, iteratee: ValueIteratee<...>)...",
+                "optional": false
+              },
+              {
+                "name": "differenceWith",
+                "type": "{ <T1, T2>(array: List<T1>, values: List<T2>, comparator: Comparator2<T1, T2>): T1[]; <T1, T2, T3>(array: List<T1>, values1: List<T2>, values2: List<...>, comparator: Comparator2<...>): T1[]; <T1, T2, T3, T4>(array: List<...>, values1: List<...>, values2: List<...>, ...values: (List<...> | Comparator2<...>)[]): T1[]...",
+                "optional": false
+              },
+              {
+                "name": "drop",
+                "type": "<T>(array: List<T>, n?: number) => T[]",
+                "optional": false
+              },
+              {
+                "name": "dropRight",
+                "type": "<T>(array: List<T>, n?: number) => T[]",
+                "optional": false
+              },
+              {
+                "name": "dropRightWhile",
+                "type": "<T>(array: List<T>, predicate?: ListIteratee<T>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "dropWhile",
+                "type": "<T>(array: List<T>, predicate?: ListIteratee<T>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "fill",
+                "type": "{ <T>(array: any[], value: T): T[]; <T>(array: List<any>, value: T): List<T>; <T, U>(array: U[], value: T, start?: number, end?: number): (T | U)[]; <T, U>(array: List<U>, value: T, start?: number, end?: number): List<...>; }",
+                "optional": false
+              },
+              {
+                "name": "findIndex",
+                "type": "<T>(array: List<T>, predicate?: ListIterateeCustom<T, boolean>, fromIndex?: number) => number",
+                "optional": false
+              },
+              {
+                "name": "findLastIndex",
+                "type": "<T>(array: List<T>, predicate?: ListIterateeCustom<T, boolean>, fromIndex?: number) => number",
+                "optional": false
+              },
+              {
+                "name": "first",
+                "type": "{ <T>(array: readonly [T, ...unknown[]]): T; <T>(array: List<T>): T; }",
+                "optional": false
+              },
+              {
+                "name": "flatten",
+                "type": "<T>(array: List<Many<T>>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "flattenDeep",
+                "type": "<T>(array: ListOfRecursiveArraysOrValues<T>) => Flat<T>[]",
+                "optional": false
+              },
+              {
+                "name": "flattenDepth",
+                "type": "<T>(array: ListOfRecursiveArraysOrValues<T>, depth?: number) => T[]",
+                "optional": false
+              },
+              {
+                "name": "fromPairs",
+                "type": "{ <T>(pairs: List<[PropertyName, T]>): Dictionary<T>; (pairs: List<any[]>): Dictionary<any>; }",
+                "optional": false
+              },
+              {
+                "name": "head",
+                "type": "{ <T>(array: readonly [T, ...unknown[]]): T; <T>(array: List<T>): T; }",
+                "optional": false
+              },
+              {
+                "name": "indexOf",
+                "type": "<T>(array: List<T>, value: T, fromIndex?: number) => number",
+                "optional": false
+              },
+              {
+                "name": "initial",
+                "type": "<T>(array: List<T>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "intersection",
+                "type": "<T>(...arrays: List<T>[]) => T[]",
+                "optional": false
+              },
+              {
+                "name": "intersectionBy",
+                "type": "{ <T1, T2>(array: List<T1>, values: List<T2>, iteratee: ValueIteratee<T1 | T2>): T1[]; <T1, T2, T3>(array: List<T1>, values1: List<T2>, values2: List<...>, iteratee: ValueIteratee<...>): T1[]; <T1, T2, T3, T4>(array: List<...>, values1: List<...>, values2: List<...>, ...values: (List<...> | ValueIteratee<...>)[]): T...",
+                "optional": false
+              },
+              {
+                "name": "intersectionWith",
+                "type": "{ <T1, T2>(array: List<T1>, values: List<T2>, comparator: Comparator2<T1, T2>): T1[]; <T1, T2, T3>(array: List<T1>, values1: List<T2>, values2: List<...>, comparator: Comparator2<...>): T1[]; <T1, T2, T3, T4>(array: List<...>, values1: List<...>, values2: List<...>, ...values: (List<...> | Comparator2<...>)[]): T1[]...",
+                "optional": false
+              },
+              {
+                "name": "join",
+                "type": "(array: List<any>, separator?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "last",
+                "type": "<T>(array: List<T>) => T",
+                "optional": false
+              },
+              {
+                "name": "lastIndexOf",
+                "type": "<T>(array: List<T>, value: T, fromIndex?: number | true) => number",
+                "optional": false
+              },
+              {
+                "name": "nth",
+                "type": "<T>(array: List<T>, n?: number) => T",
+                "optional": false
+              },
+              {
+                "name": "pull",
+                "type": "{ <T>(array: T[], ...values: T[]): T[]; <T>(array: List<T>, ...values: T[]): List<T>; }",
+                "optional": false
+              },
+              {
+                "name": "pullAll",
+                "type": "{ <T>(array: T[], values?: List<T>): T[]; <T>(array: List<T>, values?: List<T>): List<T>; }",
+                "optional": false
+              },
+              {
+                "name": "pullAllBy",
+                "type": "{ <T>(array: T[], values?: List<T>, iteratee?: ValueIteratee<T>): T[]; <T>(array: List<T>, values?: List<T>, iteratee?: ValueIteratee<T>): List<...>; <T1, T2>(array: T1[], values: List<...>, iteratee: ValueIteratee<...>): T1[]; <T1, T2>(array: List<...>, values: List<...>, iteratee: ValueIteratee<...>): List<...>; }",
+                "optional": false
+              },
+              {
+                "name": "pullAllWith",
+                "type": "{ <T>(array: T[], values?: List<T>, comparator?: Comparator<T>): T[]; <T>(array: List<T>, values?: List<T>, comparator?: Comparator<T>): List<...>; <T1, T2>(array: T1[], values: List<...>, comparator: Comparator2<...>): T1[]; <T1, T2>(array: List<...>, values: List<...>, comparator: Comparator2<...>): List<...>; }",
+                "optional": false
+              },
+              {
+                "name": "pullAt",
+                "type": "{ <T>(array: T[], ...indexes: Many<number>[]): T[]; <T>(array: List<T>, ...indexes: Many<number>[]): List<T>; }",
+                "optional": false
+              },
+              {
+                "name": "remove",
+                "type": "<T>(array: List<T>, predicate?: ListIteratee<T>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "reverse",
+                "type": "<TList extends List<any>>(array: TList) => TList",
+                "optional": false
+              },
+              {
+                "name": "slice",
+                "type": "<T>(array: List<T>, start?: number, end?: number) => T[]",
+                "optional": false
+              },
+              {
+                "name": "sortedIndex",
+                "type": "{ <T>(array: List<T>, value: T): number; <T>(array: List<T>, value: T): number; }",
+                "optional": false
+              },
+              {
+                "name": "sortedIndexBy",
+                "type": "<T>(array: List<T>, value: T, iteratee?: ValueIteratee<T>) => number",
+                "optional": false
+              },
+              {
+                "name": "sortedIndexOf",
+                "type": "<T>(array: List<T>, value: T) => number",
+                "optional": false
+              },
+              {
+                "name": "sortedLastIndex",
+                "type": "<T>(array: List<T>, value: T) => number",
+                "optional": false
+              },
+              {
+                "name": "sortedLastIndexBy",
+                "type": "<T>(array: List<T>, value: T, iteratee: ValueIteratee<T>) => number",
+                "optional": false
+              },
+              {
+                "name": "sortedLastIndexOf",
+                "type": "<T>(array: List<T>, value: T) => number",
+                "optional": false
+              },
+              {
+                "name": "sortedUniq",
+                "type": "<T>(array: List<T>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "sortedUniqBy",
+                "type": "<T>(array: List<T>, iteratee: ValueIteratee<T>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "tail",
+                "type": "{ <T extends unknown[]>(array: readonly [unknown, ...T]): T; <T>(array: List<T>): T[]; }",
+                "optional": false
+              },
+              {
+                "name": "take",
+                "type": "<T>(array: List<T>, n?: number) => T[]",
+                "optional": false
+              },
+              {
+                "name": "takeRight",
+                "type": "<T>(array: List<T>, n?: number) => T[]",
+                "optional": false
+              },
+              {
+                "name": "takeRightWhile",
+                "type": "<T>(array: List<T>, predicate?: ListIteratee<T>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "takeWhile",
+                "type": "<T>(array: List<T>, predicate?: ListIteratee<T>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "union",
+                "type": "<T>(...arrays: List<T>[]) => T[]",
+                "optional": false
+              },
+              {
+                "name": "unionBy",
+                "type": "{ <T>(arrays: List<T>, iteratee?: ValueIteratee<T>): T[]; <T>(arrays1: List<T>, arrays2: List<T>, iteratee?: ValueIteratee<T>): T[]; <T>(arrays1: List<...>, arrays2: List<...>, arrays3: List<...>, iteratee?: ValueIteratee<...>): T[]; <T>(arrays1: List<...>, arrays2: List<...>, arrays3: List<...>, arrays4: List<...>,...",
+                "optional": false
+              },
+              {
+                "name": "unionWith",
+                "type": "{ <T>(arrays: List<T>, comparator?: Comparator<T>): T[]; <T>(arrays: List<T>, arrays2: List<T>, comparator?: Comparator<T>): T[]; <T>(arrays: List<...>, arrays2: List<...>, arrays3: List<...>, ...comparator: (Comparator<...> | List<...>)[]): T[]; }",
+                "optional": false
+              },
+              {
+                "name": "uniq",
+                "type": "<T>(array: List<T>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "uniqBy",
+                "type": "<T>(array: List<T>, iteratee: ValueIteratee<T>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "uniqWith",
+                "type": "<T>(array: List<T>, comparator?: Comparator<T>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "unzip",
+                "type": "<T>(array: T[][] | List<List<T>>) => T[][]",
+                "optional": false
+              },
+              {
+                "name": "unzipWith",
+                "type": "{ <T, TResult>(array: List<List<T>>, iteratee: (...values: T[]) => TResult): TResult[]; <T>(array: List<List<T>>): T[][]; }",
+                "optional": false
+              },
+              {
+                "name": "without",
+                "type": "<T>(array: List<T>, ...values: T[]) => T[]",
+                "optional": false
+              },
+              {
+                "name": "xor",
+                "type": "<T>(...arrays: List<T>[]) => T[]",
+                "optional": false
+              },
+              {
+                "name": "xorBy",
+                "type": "{ <T>(arrays: List<T>, iteratee?: ValueIteratee<T>): T[]; <T>(arrays: List<T>, arrays2: List<T>, iteratee?: ValueIteratee<T>): T[]; <T>(arrays: List<...>, arrays2: List<...>, arrays3: List<...>, ...iteratee: (ValueIteratee<...> | List<...>)[]): T[]; }",
+                "optional": false
+              },
+              {
+                "name": "xorWith",
+                "type": "{ <T>(arrays: List<T>, comparator?: Comparator<T>): T[]; <T>(arrays: List<T>, arrays2: List<T>, comparator?: Comparator<T>): T[]; <T>(arrays: List<...>, arrays2: List<...>, arrays3: List<...>, ...comparator: (Comparator<...> | List<...>)[]): T[]; }",
+                "optional": false
+              },
+              {
+                "name": "zip",
+                "type": "{ <T1, T2>(arrays1: List<T1>, arrays2: List<T2>): [T1, T2][]; <T1, T2, T3>(arrays1: List<T1>, arrays2: List<T2>, arrays3: List<T3>): [...][]; <T1, T2, T3, T4>(arrays1: List<...>, arrays2: List<...>, arrays3: List<...>, arrays4: List<...>): [...][]; <T1, T2, T3, T4, T5>(arrays1: List<...>, arrays2: List<...>, arrays3...",
+                "optional": false
+              },
+              {
+                "name": "zipObject",
+                "type": "{ <T>(props: List<PropertyName>, values: List<T>): Dictionary<T>; (props?: List<PropertyName>): Dictionary<undefined>; }",
+                "optional": false
+              },
+              {
+                "name": "zipObjectDeep",
+                "type": "(paths?: List<PropertyPath>, values?: List<any>) => object",
+                "optional": false
+              },
+              {
+                "name": "zipWith",
+                "type": "{ <T, TResult>(arrays: List<T>, iteratee: (value1: T) => TResult): TResult[]; <T1, T2, TResult>(arrays1: List<T1>, arrays2: List<T2>, iteratee: (value1: T1, value2: T2) => TResult): TResult[]; <T1, T2, T3, TResult>(arrays1: List<...>, arrays2: List<...>, arrays3: List<...>, iteratee: (value1: T1, value2: T2, value3:...",
+                "optional": false
+              },
+              {
+                "name": "countBy",
+                "type": "{ <T>(collection: List<T>, iteratee?: ValueIteratee<T>): Dictionary<number>; <T extends object>(collection: T, iteratee?: ValueIteratee<T[keyof T]>): Dictionary<...>; }",
+                "optional": false
+              },
+              {
+                "name": "each",
+                "type": "{ <T>(collection: T[], iteratee?: ArrayIterator<T, any>): T[]; (collection: string, iteratee?: StringIterator<any>): string; <T>(collection: List<T>, iteratee?: ListIterator<...>): List<...>; <T extends object>(collection: T, iteratee?: ObjectIterator<...>): T; <T, TArray extends T[] | null | undefined>(collection: ...",
+                "optional": false
+              },
+              {
+                "name": "eachRight",
+                "type": "{ <T>(collection: T[], iteratee?: ArrayIterator<T, any>): T[]; (collection: string, iteratee?: StringIterator<any>): string; <T>(collection: List<T>, iteratee?: ListIterator<...>): List<...>; <T extends object>(collection: T, iteratee?: ObjectIterator<...>): T; <T, TArray extends T[] | null | undefined>(collection: ...",
+                "optional": false
+              },
+              {
+                "name": "every",
+                "type": "{ <T>(collection: List<T>, predicate?: ListIterateeCustom<T, boolean>): boolean; <T extends object>(collection: T, predicate?: ObjectIterateeCustom<T, boolean>): boolean; }",
+                "optional": false
+              },
+              {
+                "name": "filter",
+                "type": "{ (collection: string, predicate?: StringIterator<boolean>): string[]; <T, S extends T>(collection: List<T>, predicate: ListIteratorTypeGuard<T, S>): S[]; <T>(collection: List<...>, predicate?: ListIterateeCustom<...>): T[]; <T extends object, S extends T[keyof T]>(collection: T, predicate: ObjectIteratorTypeGuard<....",
+                "optional": false
+              },
+              {
+                "name": "find",
+                "type": "{ <T, S extends T>(collection: List<T>, predicate: ListIteratorTypeGuard<T, S>, fromIndex?: number): S; <T>(collection: List<T>, predicate?: ListIterateeCustom<T, boolean>, fromIndex?: number): T; <T extends object, S extends T[keyof T]>(collection: T, predicate: ObjectIteratorTypeGuard<...>, fromIndex?: number): S;...",
+                "optional": false
+              },
+              {
+                "name": "findLast",
+                "type": "{ <T, S extends T>(collection: List<T>, predicate: ListIteratorTypeGuard<T, S>, fromIndex?: number): S; <T>(collection: List<T>, predicate?: ListIterateeCustom<T, boolean>, fromIndex?: number): T; <T extends object, S extends T[keyof T]>(collection: T, predicate: ObjectIteratorTypeGuard<...>, fromIndex?: number): S;...",
+                "optional": false
+              },
+              {
+                "name": "flatMap",
+                "type": "{ <T>(collection: Dictionary<Many<T>> | NumericDictionary<Many<T>>): T[]; (collection: object): any[]; <T, TResult>(collection: List<T>, iteratee: ListIterator<...>): TResult[]; <T extends object, TResult>(collection: T, iteratee: ObjectIterator<...>): TResult[]; (collection: object, iteratee: string): any[]; (colle...",
+                "optional": false
+              },
+              {
+                "name": "flatMapDeep",
+                "type": "{ <T>(collection: Dictionary<T | ListOfRecursiveArraysOrValues<T>> | NumericDictionary<T | ListOfRecursiveArraysOrValues<T>>): T[]; <T, TResult>(collection: List<...>, iteratee: ListIterator<...>): TResult[]; <T extends object, TResult>(collection: T, iteratee: ObjectIterator<...>): TResult[]; (collection: object, i...",
+                "optional": false
+              },
+              {
+                "name": "flatMapDepth",
+                "type": "{ <T>(collection: Dictionary<T | ListOfRecursiveArraysOrValues<T>> | NumericDictionary<T | ListOfRecursiveArraysOrValues<T>>): T[]; <T, TResult>(collection: List<...>, iteratee: ListIterator<...>, depth?: number): TResult[]; <T extends object, TResult>(collection: T, iteratee: ObjectIterator<...>, depth?: number): T...",
+                "optional": false
+              },
+              {
+                "name": "forEach",
+                "type": "{ <T>(collection: T[], iteratee?: ArrayIterator<T, any>): T[]; (collection: string, iteratee?: StringIterator<any>): string; <T>(collection: List<T>, iteratee?: ListIterator<...>): List<...>; <T extends object>(collection: T, iteratee?: ObjectIterator<...>): T; <T, TArray extends T[] | null | undefined>(collection: ...",
+                "optional": false
+              },
+              {
+                "name": "forEachRight",
+                "type": "{ <T>(collection: T[], iteratee?: ArrayIterator<T, any>): T[]; (collection: string, iteratee?: StringIterator<any>): string; <T>(collection: List<T>, iteratee?: ListIterator<...>): List<...>; <T extends object>(collection: T, iteratee?: ObjectIterator<...>): T; <T, TArray extends T[] | null | undefined>(collection: ...",
+                "optional": false
+              },
+              {
+                "name": "groupBy",
+                "type": "{ <T>(collection: List<T>, iteratee?: ValueIteratee<T>): Dictionary<T[]>; <T extends object>(collection: T, iteratee?: ValueIteratee<T[keyof T]>): Dictionary<...>; }",
+                "optional": false
+              },
+              {
+                "name": "includes",
+                "type": "<T>(collection: Dictionary<T> | NumericDictionary<T>, target: T, fromIndex?: number) => boolean",
+                "optional": false
+              },
+              {
+                "name": "invokeMap",
+                "type": "{ (collection: object, methodName: string, ...args: any[]): any[]; <TResult>(collection: object, method: (...args: any[]) => TResult, ...args: any[]): TResult[]; }",
+                "optional": false
+              },
+              {
+                "name": "keyBy",
+                "type": "{ <T>(collection: List<T>, iteratee?: ValueIterateeCustom<T, PropertyName>): Dictionary<T>; <T extends object>(collection: T, iteratee?: ValueIterateeCustom<...>): Dictionary<...>; }",
+                "optional": false
+              },
+              {
+                "name": "map",
+                "type": "{ <T extends readonly [unknown, ...unknown[]], TResult>(collection: T, iteratee: TupleIterator<T, TResult>): { [K in keyof T]: TResult; }; <T, TResult>(collection: T[], iteratee: ArrayIterator<...>): TResult[]; <T, TResult>(collection: List<...>, iteratee: ListIterator<...>): TResult[]; <T>(collection: Dictionary<.....",
+                "optional": false
+              },
+              {
+                "name": "orderBy",
+                "type": "{ <T>(collection: List<T>, iteratees?: Many<ListIterator<T, unknown>>, orders?: Many<boolean | \"asc\" | \"desc\">): T[]; <T>(collection: List<T>, iteratees?: Many<...>, orders?: Many<...>): T[]; <T extends object>(collection: T, iteratees?: Many<...>, orders?: Many<...>): T[keyof T][]; <T extends object>(collection: T,...",
+                "optional": false
+              },
+              {
+                "name": "partition",
+                "type": "{ <T, U extends T>(collection: List<T>, callback: ValueIteratorTypeGuard<T, U>): [U[], Exclude<T, U>[]]; <T>(collection: List<T>, callback: ValueIteratee<...>): [...]; <T extends object>(collection: T, callback: ValueIteratee<...>): [...]; }",
+                "optional": false
+              },
+              {
+                "name": "reduce",
+                "type": "{ <T, TResult>(collection: T[], callback: MemoListIterator<T, TResult, T[]>, accumulator: TResult): TResult; <T, TResult>(collection: List<T>, callback: MemoListIterator<...>, accumulator: TResult): TResult; <T extends object, TResult>(collection: T, callback: MemoObjectIterator<...>, accumulator: TResult): TResult;...",
+                "optional": false
+              },
+              {
+                "name": "reduceRight",
+                "type": "{ <T, TResult>(collection: T[], callback: MemoListIterator<T, TResult, T[]>, accumulator: TResult): TResult; <T, TResult>(collection: List<T>, callback: MemoListIterator<...>, accumulator: TResult): TResult; <T extends object, TResult>(collection: T, callback: MemoObjectIterator<...>, accumulator: TResult): TResult;...",
+                "optional": false
+              },
+              {
+                "name": "reject",
+                "type": "{ (collection: string, predicate?: StringIterator<boolean>): string[]; <T>(collection: List<T>, predicate?: ListIterateeCustom<T, boolean>): T[]; <T extends object>(collection: T, predicate?: ObjectIterateeCustom<...>): T[keyof T][]; }",
+                "optional": false
+              },
+              {
+                "name": "sample",
+                "type": "{ <T>(collection: readonly [T, ...T[]]): T; <T>(collection: Dictionary<T> | NumericDictionary<T>): T; <T extends object>(collection: T): T[keyof T]; }",
+                "optional": false
+              },
+              {
+                "name": "sampleSize",
+                "type": "{ <T>(collection: Dictionary<T> | NumericDictionary<T>, n?: number): T[]; <T extends object>(collection: T, n?: number): T[keyof T][]; }",
+                "optional": false
+              },
+              {
+                "name": "shuffle",
+                "type": "{ <T>(collection: List<T>): T[]; <T extends object>(collection: T): T[keyof T][]; }",
+                "optional": false
+              },
+              {
+                "name": "size",
+                "type": "(collection: string | object) => number",
+                "optional": false
+              },
+              {
+                "name": "some",
+                "type": "{ <T>(collection: List<T>, predicate?: ListIterateeCustom<T, boolean>): boolean; <T extends object>(collection: T, predicate?: ObjectIterateeCustom<T, boolean>): boolean; }",
+                "optional": false
+              },
+              {
+                "name": "sortBy",
+                "type": "{ <T>(collection: List<T>, ...iteratees: Many<ListIteratee<T>>[]): T[]; <T extends object>(collection: T, ...iteratees: Many<ObjectIteratee<T>>[]): T[keyof T][]; }",
+                "optional": false
+              },
+              {
+                "name": "now",
+                "type": "() => number",
+                "optional": false
+              },
+              {
+                "name": "after",
+                "type": "<TFunc extends (...args: any[]) => any>(n: number, func: TFunc) => TFunc",
+                "optional": false
+              },
+              {
+                "name": "ary",
+                "type": "(func: (...args: any[]) => any, n?: number) => (...args: any[]) => any",
+                "optional": false
+              },
+              {
+                "name": "before",
+                "type": "<TFunc extends (...args: any[]) => any>(n: number, func: TFunc) => TFunc",
+                "optional": false
+              },
+              {
+                "name": "bind",
+                "type": "FunctionBind",
+                "optional": false
+              },
+              {
+                "name": "bindKey",
+                "type": "FunctionBindKey",
+                "optional": false
+              },
+              {
+                "name": "curry",
+                "type": "Curry",
+                "optional": false
+              },
+              {
+                "name": "curryRight",
+                "type": "CurryRight",
+                "optional": false
+              },
+              {
+                "name": "debounce",
+                "type": "{ <T extends (...args: any) => any>(func: T, wait: number, options: DebounceSettingsLeading): DebouncedFuncLeading<T>; <T extends (...args: any) => any>(func: T, wait?: number, options?: DebounceSettings): DebouncedFunc<...>; }",
+                "optional": false
+              },
+              {
+                "name": "defer",
+                "type": "(func: (...args: any[]) => any, ...args: any[]) => number",
+                "optional": false
+              },
+              {
+                "name": "delay",
+                "type": "(func: (...args: any[]) => any, wait: number, ...args: any[]) => number",
+                "optional": false
+              },
+              {
+                "name": "flip",
+                "type": "<T extends (...args: any) => any>(func: T) => T",
+                "optional": false
+              },
+              {
+                "name": "memoize",
+                "type": "{ <T extends (...args: any) => any>(func: T, resolver?: (...args: Parameters<T>) => any): T & MemoizedFunction; Cache: MapCacheConstructor; }",
+                "optional": false
+              },
+              {
+                "name": "negate",
+                "type": "<T extends any[]>(predicate: (...args: T) => boolean) => (...args: T) => boolean",
+                "optional": false
+              },
+              {
+                "name": "once",
+                "type": "<T extends (...args: any) => any>(func: T) => T",
+                "optional": false
+              },
+              {
+                "name": "overArgs",
+                "type": "(func: (...args: any[]) => any, ...transforms: Many<(...args: any[]) => any>[]) => (...args: any[]) => any",
+                "optional": false
+              },
+              {
+                "name": "partial",
+                "type": "Partial",
+                "optional": false
+              },
+              {
+                "name": "partialRight",
+                "type": "PartialRight",
+                "optional": false
+              },
+              {
+                "name": "rearg",
+                "type": "(func: (...args: any[]) => any, ...indexes: Many<number>[]) => (...args: any[]) => any",
+                "optional": false
+              },
+              {
+                "name": "rest",
+                "type": "(func: (...args: any[]) => any, start?: number) => (...args: any[]) => any",
+                "optional": false
+              },
+              {
+                "name": "spread",
+                "type": "<TResult>(func: (...args: any[]) => TResult, start?: number) => (...args: any[]) => TResult",
+                "optional": false
+              },
+              {
+                "name": "throttle",
+                "type": "{ <T extends (...args: any) => any>(func: T, wait?: number, options?: ThrottleSettingsLeading): DebouncedFuncLeading<T>; <T extends (...args: any) => any>(func: T, wait?: number, options?: ThrottleSettings): DebouncedFunc<...>; }",
+                "optional": false
+              },
+              {
+                "name": "unary",
+                "type": "<T, TResult>(func: (arg1: T, ...args: any[]) => TResult) => (arg1: T) => TResult",
+                "optional": false
+              },
+              {
+                "name": "wrap",
+                "type": "<T, TArgs, TResult>(value: T, wrapper: (value: T, ...args: TArgs[]) => TResult) => (...args: TArgs[]) => TResult",
+                "optional": false
+              },
+              {
+                "name": "castArray",
+                "type": "<T>(value?: Many<T>) => T[]",
+                "optional": false
+              },
+              {
+                "name": "clone",
+                "type": "<T>(value: T) => T",
+                "optional": false
+              },
+              {
+                "name": "cloneDeep",
+                "type": "<T>(value: T) => T",
+                "optional": false
+              },
+              {
+                "name": "cloneDeepWith",
+                "type": "{ <T>(value: T, customizer: CloneDeepWithCustomizer<T>): any; <T>(value: T): T; }",
+                "optional": false
+              },
+              {
+                "name": "cloneWith",
+                "type": "{ <T, TResult extends object | string | number | boolean | null>(value: T, customizer: CloneWithCustomizer<T, TResult>): TResult; <T, TResult>(value: T, customizer: CloneWithCustomizer<...>): T | TResult; <T>(value: T): T; }",
+                "optional": false
+              },
+              {
+                "name": "conformsTo",
+                "type": "<T>(object: T, source: ConformsPredicateObject<T>) => boolean",
+                "optional": false
+              },
+              {
+                "name": "eq",
+                "type": "(value: any, other: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "gt",
+                "type": "(value: any, other: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "gte",
+                "type": "(value: any, other: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isArguments",
+                "type": "(value?: any) => value is IArguments",
+                "optional": false
+              },
+              {
+                "name": "isArray",
+                "type": "{ (value?: any): value is any[]; <T>(value?: any): value is any[]; }",
+                "optional": false
+              },
+              {
+                "name": "isArrayBuffer",
+                "type": "(value?: any) => value is ArrayBuffer",
+                "optional": false
+              },
+              {
+                "name": "isArrayLike",
+                "type": "{ <T extends { __lodashAnyHack: any; }>(t: T): boolean; (value: (...args: any[]) => any): value is never; (value: any): value is { length: number; }; }",
+                "optional": false
+              },
+              {
+                "name": "isArrayLikeObject",
+                "type": "{ <T extends { __lodashAnyHack: any; }>(value: T): boolean; (value: string | number | boolean | Function | ((...args: any[]) => any)): value is never; (value: any): value is object & { length: number; }; }",
+                "optional": false
+              },
+              {
+                "name": "isBoolean",
+                "type": "(value?: any) => value is boolean",
+                "optional": false
+              },
+              {
+                "name": "isBuffer",
+                "type": "(value?: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isDate",
+                "type": "(value?: any) => value is Date",
+                "optional": false
+              },
+              {
+                "name": "isElement",
+                "type": "(value?: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isEmpty",
+                "type": "{ <T extends { __trapAny: any; }>(value?: T): boolean; (value: string): value is \"\"; (value: List<any> | Map<any, any> | Set<any>): boolean; (value: object): boolean; <T extends object>(value: T): value is EmptyObjectOf<...>; (value?: any): boolean; }",
+                "optional": false
+              },
+              {
+                "name": "isEqual",
+                "type": "(value: any, other: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isEqualWith",
+                "type": "(value: any, other: any, customizer?: IsEqualCustomizer) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isError",
+                "type": "(value: any) => value is Error",
+                "optional": false
+              },
+              {
+                "name": "isFinite",
+                "type": "(value?: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isFunction",
+                "type": "(value: any) => value is (...args: any[]) => any",
+                "optional": false
+              },
+              {
+                "name": "isInteger",
+                "type": "(value?: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isLength",
+                "type": "(value?: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isMap",
+                "type": "(value?: any) => value is Map<any, any>",
+                "optional": false
+              },
+              {
+                "name": "isMatch",
+                "type": "(object: object, source: object) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isMatchWith",
+                "type": "(object: object, source: object, customizer: isMatchWithCustomizer) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isNaN",
+                "type": "(value?: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isNative",
+                "type": "(value: any) => value is (...args: any[]) => any",
+                "optional": false
+              },
+              {
+                "name": "isNil",
+                "type": "(value: any) => value is null",
+                "optional": false
+              },
+              {
+                "name": "isNull",
+                "type": "(value: any) => value is null",
+                "optional": false
+              },
+              {
+                "name": "isNumber",
+                "type": "(value?: any) => value is number",
+                "optional": false
+              },
+              {
+                "name": "isObject",
+                "type": "(value?: any) => value is object",
+                "optional": false
+              },
+              {
+                "name": "isObjectLike",
+                "type": "(value?: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isPlainObject",
+                "type": "(value?: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isRegExp",
+                "type": "(value?: any) => value is RegExp",
+                "optional": false
+              },
+              {
+                "name": "isSafeInteger",
+                "type": "(value: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isSet",
+                "type": "(value?: any) => value is Set<any>",
+                "optional": false
+              },
+              {
+                "name": "isString",
+                "type": "(value?: any) => value is string",
+                "optional": false
+              },
+              {
+                "name": "isSymbol",
+                "type": "(value: any) => value is symbol",
+                "optional": false
+              },
+              {
+                "name": "isTypedArray",
+                "type": "(value: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "isUndefined",
+                "type": "(value: any) => value is undefined",
+                "optional": false
+              },
+              {
+                "name": "isWeakMap",
+                "type": "(value?: any) => value is WeakMap<object, any>",
+                "optional": false
+              },
+              {
+                "name": "isWeakSet",
+                "type": "(value?: any) => value is WeakSet<object>",
+                "optional": false
+              },
+              {
+                "name": "lt",
+                "type": "(value: any, other: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "lte",
+                "type": "(value: any, other: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "toArray",
+                "type": "{ <T>(value: Dictionary<T> | NumericDictionary<T>): T[]; <T>(value: T): T[keyof T][]; (): any[]; }",
+                "optional": false
+              },
+              {
+                "name": "toFinite",
+                "type": "(value: any) => number",
+                "optional": false
+              },
+              {
+                "name": "toInteger",
+                "type": "(value: any) => number",
+                "optional": false
+              },
+              {
+                "name": "toLength",
+                "type": "(value: any) => number",
+                "optional": false
+              },
+              {
+                "name": "toNumber",
+                "type": "(value: any) => number",
+                "optional": false
+              },
+              {
+                "name": "toPlainObject",
+                "type": "(value?: any) => any",
+                "optional": false
+              },
+              {
+                "name": "toSafeInteger",
+                "type": "(value: any) => number",
+                "optional": false
+              },
+              {
+                "name": "toString",
+                "type": "(value: any) => string",
+                "optional": false
+              },
+              {
+                "name": "add",
+                "type": "(augend: number, addend: number) => number",
+                "optional": false
+              },
+              {
+                "name": "ceil",
+                "type": "(n: number, precision?: number) => number",
+                "optional": false
+              },
+              {
+                "name": "divide",
+                "type": "(dividend: number, divisor: number) => number",
+                "optional": false
+              },
+              {
+                "name": "floor",
+                "type": "(n: number, precision?: number) => number",
+                "optional": false
+              },
+              {
+                "name": "max",
+                "type": "<T>(collection: List<T>) => T",
+                "optional": false
+              },
+              {
+                "name": "maxBy",
+                "type": "<T>(collection: List<T>, iteratee?: ValueIteratee<T>) => T",
+                "optional": false
+              },
+              {
+                "name": "mean",
+                "type": "(collection: List<any>) => number",
+                "optional": false
+              },
+              {
+                "name": "meanBy",
+                "type": "<T>(collection: List<T>, iteratee?: ValueIteratee<T>) => number",
+                "optional": false
+              },
+              {
+                "name": "min",
+                "type": "<T>(collection: List<T>) => T",
+                "optional": false
+              },
+              {
+                "name": "minBy",
+                "type": "<T>(collection: List<T>, iteratee?: ValueIteratee<T>) => T",
+                "optional": false
+              },
+              {
+                "name": "multiply",
+                "type": "(multiplier: number, multiplicand: number) => number",
+                "optional": false
+              },
+              {
+                "name": "round",
+                "type": "(n: number, precision?: number) => number",
+                "optional": false
+              },
+              {
+                "name": "subtract",
+                "type": "(minuend: number, subtrahend: number) => number",
+                "optional": false
+              },
+              {
+                "name": "sum",
+                "type": "(collection: List<any>) => number",
+                "optional": false
+              },
+              {
+                "name": "sumBy",
+                "type": "<T>(collection: List<T>, iteratee?: string | ((value: T) => number)) => number",
+                "optional": false
+              },
+              {
+                "name": "clamp",
+                "type": "{ (number: number, lower: number, upper: number): number; (number: number, upper: number): number; }",
+                "optional": false
+              },
+              {
+                "name": "inRange",
+                "type": "(n: number, start: number, end?: number) => boolean",
+                "optional": false
+              },
+              {
+                "name": "random",
+                "type": "{ (floating?: boolean): number; (max: number, floating?: boolean): number; (min: number, max: number, floating?: boolean): number; (min: number, index: string | number, guard: object): number; }",
+                "optional": false
+              },
+              {
+                "name": "assign",
+                "type": "{ <TObject, TSource>(object: TObject, source: TSource): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, source1: TSource1, source2: TSource2, source3: TSource3): TObj...",
+                "optional": false
+              },
+              {
+                "name": "assignIn",
+                "type": "{ <TObject, TSource>(object: TObject, source: TSource): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, source1: TSource1, source2: TSource2, source3: TSource3): TObj...",
+                "optional": false
+              },
+              {
+                "name": "assignInWith",
+                "type": "{ <TObject, TSource>(object: TObject, source: TSource, customizer: AssignCustomizer): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2, customizer: AssignCustomizer): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, so...",
+                "optional": false
+              },
+              {
+                "name": "assignWith",
+                "type": "{ <TObject, TSource>(object: TObject, source: TSource, customizer: AssignCustomizer): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2, customizer: AssignCustomizer): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, so...",
+                "optional": false
+              },
+              {
+                "name": "at",
+                "type": "{ <T>(object: Dictionary<T> | NumericDictionary<T>, ...props: PropertyPath[]): T[]; <T extends object>(object: T, ...props: Many<keyof T>[]): T[keyof T][]; }",
+                "optional": false
+              },
+              {
+                "name": "create",
+                "type": "<T extends object, U extends object>(prototype: T, properties?: U) => T & U",
+                "optional": false
+              },
+              {
+                "name": "defaults",
+                "type": "{ <TObject, TSource>(object: TObject, source: TSource): NonNullable<TSource & TObject>; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): NonNullable<...>; <TObject, TSource1, TSource2, TSource3>(object: TObject, source1: TSource1, source2: TSource2, source3: TSource3): NonNullabl...",
+                "optional": false
+              },
+              {
+                "name": "defaultsDeep",
+                "type": "(object: any, ...sources: any[]) => any",
+                "optional": false
+              },
+              {
+                "name": "entries",
+                "type": "{ <T>(object?: Dictionary<T> | NumericDictionary<T>): [string, T][]; (object?: object): [string, any][]; }",
+                "optional": false
+              },
+              {
+                "name": "entriesIn",
+                "type": "{ <T>(object?: Dictionary<T> | NumericDictionary<T>): [string, T][]; (object?: object): [string, any][]; }",
+                "optional": false
+              },
+              {
+                "name": "extend",
+                "type": "{ <TObject, TSource>(object: TObject, source: TSource): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, source1: TSource1, source2: TSource2, source3: TSource3): TObj...",
+                "optional": false
+              },
+              {
+                "name": "extendWith",
+                "type": "{ <TObject, TSource>(object: TObject, source: TSource, customizer: AssignCustomizer): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2, customizer: AssignCustomizer): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, so...",
+                "optional": false
+              },
+              {
+                "name": "findKey",
+                "type": "<T>(object: T, predicate?: ObjectIteratee<T>) => string",
+                "optional": false
+              },
+              {
+                "name": "findLastKey",
+                "type": "<T>(object: T, predicate?: ObjectIteratee<T>) => string",
+                "optional": false
+              },
+              {
+                "name": "forIn",
+                "type": "{ <T>(object: T, iteratee?: ObjectIterator<T, any>): T; <T>(object: T, iteratee?: ObjectIterator<T, any>): T; }",
+                "optional": false
+              },
+              {
+                "name": "forInRight",
+                "type": "{ <T>(object: T, iteratee?: ObjectIterator<T, any>): T; <T>(object: T, iteratee?: ObjectIterator<T, any>): T; }",
+                "optional": false
+              },
+              {
+                "name": "forOwn",
+                "type": "{ <T>(object: T, iteratee?: ObjectIterator<T, any>): T; <T>(object: T, iteratee?: ObjectIterator<T, any>): T; }",
+                "optional": false
+              },
+              {
+                "name": "forOwnRight",
+                "type": "{ <T>(object: T, iteratee?: ObjectIterator<T, any>): T; <T>(object: T, iteratee?: ObjectIterator<T, any>): T; }",
+                "optional": false
+              },
+              {
+                "name": "functions",
+                "type": "(object: any) => string[]",
+                "optional": false
+              },
+              {
+                "name": "functionsIn",
+                "type": "<T extends {}>(object: any) => string[]",
+                "optional": false
+              },
+              {
+                "name": "get",
+                "type": "{ <TObject extends object, TKey extends keyof TObject>(object: TObject, path: TKey | [TKey]): TObject[TKey]; <TObject extends object, TKey extends keyof TObject>(object: TObject, path: TKey | [...]): TObject[TKey]; <TObject extends object, TKey extends keyof TObject, TDefault>(object: TObject, path: TKey | [...], de...",
+                "optional": false
+              },
+              {
+                "name": "has",
+                "type": "{ <T, K extends PropertyName>(object: T, path: K): object is T & { [P in K]: P extends keyof T ? T[P] : Record<string, unknown> extends T ? T[keyof T] : unknown; } & { ...; }; <T>(object: T, path: PropertyPath): boolean; }",
+                "optional": false
+              },
+              {
+                "name": "hasIn",
+                "type": "<T>(object: T, path: PropertyPath) => boolean",
+                "optional": false
+              },
+              {
+                "name": "invert",
+                "type": "(object: object) => Dictionary<string>",
+                "optional": false
+              },
+              {
+                "name": "invertBy",
+                "type": "{ <T>(object: Dictionary<T> | NumericDictionary<T>, interatee?: ValueIteratee<T>): Dictionary<string[]>; <T extends object>(object: T, interatee?: ValueIteratee<...>): Dictionary<...>; }",
+                "optional": false
+              },
+              {
+                "name": "invoke",
+                "type": "(object: any, path: PropertyPath, ...args: any[]) => any",
+                "optional": false
+              },
+              {
+                "name": "keys",
+                "type": "(object?: any) => string[]",
+                "optional": false
+              },
+              {
+                "name": "keysIn",
+                "type": "(object?: any) => string[]",
+                "optional": false
+              },
+              {
+                "name": "mapKeys",
+                "type": "{ <T>(object: List<T>, iteratee?: ListIteratee<T>): Dictionary<T>; <T extends object>(object: T, iteratee?: ObjectIteratee<T>): Dictionary<...>; }",
+                "optional": false
+              },
+              {
+                "name": "mapValues",
+                "type": "{ <TResult>(obj: string, callback: StringIterator<TResult>): NumericDictionary<TResult>; <T, TResult>(array: T[], callback: ArrayIterator<T, TResult>): NumericDictionary<...>; <T extends object, TResult>(obj: T, callback: ObjectIterator<...>): { [P in keyof T]: TResult; }; <T>(obj: Dictionary<...> | NumericDictionar...",
+                "optional": false
+              },
+              {
+                "name": "merge",
+                "type": "{ <TObject, TSource>(object: TObject, source: TSource): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2): TObject & ... 1 more ... & TSource2; <TObject, TSource1, TSource2, TSource3>(object: TObject, source1: TSource1, source2: TSource2, source3: TSource3): TObj...",
+                "optional": false
+              },
+              {
+                "name": "mergeWith",
+                "type": "{ <TObject, TSource>(object: TObject, source: TSource, customizer: (value: any, srcValue: any, key: string, object: any, source: any, stack: any) => any): TObject & TSource; <TObject, TSource1, TSource2>(object: TObject, source1: TSource1, source2: TSource2, customizer: (value: any, srcValue: any, key: string, objec...",
+                "optional": false
+              },
+              {
+                "name": "omit",
+                "type": "{ <T extends object, K extends PropertyName[]>(object: T, ...paths: K): Pick<T, Exclude<keyof T, K[number]>>; <T extends object, K extends keyof T>(object: T, ...paths: Many<K>[]): Omit<...>; <T extends object>(object: T, ...paths: Many<...>[]): Partial<...>; }",
+                "optional": false
+              },
+              {
+                "name": "omitBy",
+                "type": "{ <T>(object: Dictionary<T>, predicate?: ValueKeyIteratee<T>): Dictionary<T>; <T>(object: NumericDictionary<T>, predicate?: ValueKeyIteratee<...>): NumericDictionary<...>; <T extends object>(object: T, predicate: ValueKeyIteratee<...>): Partial<...>; }",
+                "optional": false
+              },
+              {
+                "name": "pick",
+                "type": "{ <T extends object, U extends keyof T>(object: T, ...props: Many<U>[]): Pick<T, U>; <T>(object: T, ...props: Many<PropertyPath>[]): Partial<T>; }",
+                "optional": false
+              },
+              {
+                "name": "pickBy",
+                "type": "{ <T, S extends T>(object: Dictionary<T>, predicate: ValueKeyIterateeTypeGuard<T, S>): Dictionary<S>; <T, S extends T>(object: NumericDictionary<T>, predicate: ValueKeyIterateeTypeGuard<...>): NumericDictionary<...>; <T>(object: Dictionary<...>, predicate?: ValueKeyIteratee<...>): Dictionary<...>; <T>(object: Numeri...",
+                "optional": false
+              },
+              {
+                "name": "result",
+                "type": "<TResult>(object: any, path: PropertyPath, defaultValue?: TResult | ((...args: any[]) => TResult)) => TResult",
+                "optional": false
+              },
+              {
+                "name": "set",
+                "type": "{ <T extends object>(object: T, path: PropertyPath, value: any): T; <TResult>(object: object, path: PropertyPath, value: any): TResult; }",
+                "optional": false
+              },
+              {
+                "name": "setWith",
+                "type": "{ <T extends object>(object: T, path: PropertyPath, value: any, customizer?: SetWithCustomizer<T>): T; <T extends object, TResult>(object: T, path: PropertyPath, value: any, customizer?: SetWithCustomizer<...>): TResult; }",
+                "optional": false
+              },
+              {
+                "name": "toPairs",
+                "type": "{ <T>(object?: Dictionary<T> | NumericDictionary<T>): [string, T][]; (object?: object): [string, any][]; }",
+                "optional": false
+              },
+              {
+                "name": "toPairsIn",
+                "type": "{ <T>(object?: Dictionary<T> | NumericDictionary<T>): [string, T][]; (object?: object): [string, any][]; }",
+                "optional": false
+              },
+              {
+                "name": "transform",
+                "type": "{ <T, TResult>(object: readonly T[], iteratee: MemoVoidArrayIterator<T, TResult>, accumulator?: TResult): TResult; <T, TResult>(object: Dictionary<T>, iteratee: MemoVoidDictionaryIterator<...>, accumulator?: TResult): TResult; <T extends object, TResult>(object: T, iteratee: MemoVoidDictionaryIterator<...>, accumula...",
+                "optional": false
+              },
+              {
+                "name": "unset",
+                "type": "(object: any, path: PropertyPath) => boolean",
+                "optional": false
+              },
+              {
+                "name": "update",
+                "type": "(object: object, path: PropertyPath, updater: (value: any) => any) => any",
+                "optional": false
+              },
+              {
+                "name": "updateWith",
+                "type": "{ <T extends object>(object: T, path: PropertyPath, updater: (oldValue: any) => any, customizer?: SetWithCustomizer<T>): T; <T extends object, TResult>(object: T, path: PropertyPath, updater: (oldValue: any) => any, customizer?: SetWithCustomizer<...>): TResult; }",
+                "optional": false
+              },
+              {
+                "name": "values",
+                "type": "{ <T>(object: Dictionary<T> | NumericDictionary<T> | List<T>): T[]; <T extends object>(object: T): T[keyof T][]; (object: any): any[]; }",
+                "optional": false
+              },
+              {
+                "name": "valuesIn",
+                "type": "{ <T>(object: Dictionary<T> | NumericDictionary<T> | List<T>): T[]; <T extends object>(object: T): T[keyof T][]; }",
+                "optional": false
+              },
+              {
+                "name": "chain",
+                "type": "{ <TrapAny extends { __lodashAnyHack: any; }>(value: TrapAny): CollectionChain<any> & FunctionChain<any> & ObjectChain<any> & PrimitiveChain<any> & StringChain<...>; <T extends null | undefined>(value: T): PrimitiveChain<...>; <T extends string>(value: T): StringChain<...>; (value: string): StringNullableChain; <T e...",
+                "optional": false
+              },
+              {
+                "name": "tap",
+                "type": "<T>(value: T, interceptor: (value: T) => void) => T",
+                "optional": false
+              },
+              {
+                "name": "thru",
+                "type": "<T, TResult>(value: T, interceptor: (value: T) => TResult) => TResult",
+                "optional": false
+              },
+              {
+                "name": "camelCase",
+                "type": "(string?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "capitalize",
+                "type": "<T extends string>(string?: T) => string extends T ? string : Capitalize<Lowercase<T>>",
+                "optional": false
+              },
+              {
+                "name": "deburr",
+                "type": "(string?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "endsWith",
+                "type": "(string?: string, target?: string, position?: number) => boolean",
+                "optional": false
+              },
+              {
+                "name": "escape",
+                "type": "(string?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "escapeRegExp",
+                "type": "(string?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "kebabCase",
+                "type": "(string?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "lowerCase",
+                "type": "(string?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "lowerFirst",
+                "type": "<T extends string = string>(string?: T) => Uncapitalize<T>",
+                "optional": false
+              },
+              {
+                "name": "pad",
+                "type": "(string?: string, length?: number, chars?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "padEnd",
+                "type": "(string?: string, length?: number, chars?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "padStart",
+                "type": "(string?: string, length?: number, chars?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "parseInt",
+                "type": "(string: string, radix?: number) => number",
+                "optional": false
+              },
+              {
+                "name": "repeat",
+                "type": "(string?: string, n?: number) => string",
+                "optional": false
+              },
+              {
+                "name": "replace",
+                "type": "{ (string: string, pattern: string | RegExp, replacement: string | ReplaceFunction): string; (pattern: string | RegExp, replacement: string | ReplaceFunction): string; }",
+                "optional": false
+              },
+              {
+                "name": "snakeCase",
+                "type": "(string?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "split",
+                "type": "{ (string: string, separator?: string | RegExp, limit?: number): string[]; (string: string, index: string | number, guard: object): string[]; }",
+                "optional": false
+              },
+              {
+                "name": "startCase",
+                "type": "(string?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "startsWith",
+                "type": "(string?: string, target?: string, position?: number) => boolean",
+                "optional": false
+              },
+              {
+                "name": "template",
+                "type": "(string?: string, options?: TemplateOptions) => TemplateExecutor",
+                "optional": false
+              },
+              {
+                "name": "toLower",
+                "type": "<T extends string = string>(string?: T) => Lowercase<T>",
+                "optional": false
+              },
+              {
+                "name": "toUpper",
+                "type": "<T extends string = string>(string?: T) => Uppercase<T>",
+                "optional": false
+              },
+              {
+                "name": "trim",
+                "type": "{ (string?: string, chars?: string): string; (string: string, index: string | number, guard: object): string; }",
+                "optional": false
+              },
+              {
+                "name": "trimEnd",
+                "type": "{ (string?: string, chars?: string): string; (string: string, index: string | number, guard: object): string; }",
+                "optional": false
+              },
+              {
+                "name": "trimStart",
+                "type": "{ (string?: string, chars?: string): string; (string: string, index: string | number, guard: object): string; }",
+                "optional": false
+              },
+              {
+                "name": "truncate",
+                "type": "(string?: string, options?: TruncateOptions) => string",
+                "optional": false
+              },
+              {
+                "name": "unescape",
+                "type": "(string?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "upperCase",
+                "type": "(string?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "upperFirst",
+                "type": "<T extends string = string>(string?: T) => Capitalize<T>",
+                "optional": false
+              },
+              {
+                "name": "words",
+                "type": "{ (string?: string, pattern?: string | RegExp): string[]; (string: string, index: string | number, guard: object): string[]; }",
+                "optional": false
+              },
+              {
+                "name": "attempt",
+                "type": "<TResult>(func: (...args: any[]) => TResult, ...args: any[]) => TResult | Error",
+                "optional": false
+              },
+              {
+                "name": "bindAll",
+                "type": "<T>(object: T, ...methodNames: Many<string>[]) => T",
+                "optional": false
+              },
+              {
+                "name": "cond",
+                "type": "{ <R>(pairs: CondPairNullary<R>[]): () => R; <T, R>(pairs: CondPairUnary<T, R>[]): (Target: T) => R; }",
+                "optional": false
+              },
+              {
+                "name": "conforms",
+                "type": "<T>(source: ConformsPredicateObject<T>) => (value: T) => boolean",
+                "optional": false
+              },
+              {
+                "name": "constant",
+                "type": "<T>(value: T) => () => T",
+                "optional": false
+              },
+              {
+                "name": "defaultTo",
+                "type": "{ <T>(value: T, defaultValue: T): T; <T, TDefault>(value: T, defaultValue: TDefault): T | TDefault; }",
+                "optional": false
+              },
+              {
+                "name": "flow",
+                "type": "{ <A extends any[], R1, R2, R3, R4, R5, R6, R7>(f1: (...args: A) => R1, f2: (a: R1) => R2, f3: (a: R2) => R3, f4: (a: R3) => R4, f5: (a: R4) => R5, f6: (a: R5) => R6, f7: (a: R6) => R7): (...args: A) => R7; <A extends any[], R1, R2, R3, R4, R5, R6, R7>(f1: (...args: A) => R1, f2: (a: R1) => R2, f3: (a: R2) => R3, f4...",
+                "optional": false
+              },
+              {
+                "name": "flowRight",
+                "type": "{ <A extends any[], R1, R2, R3, R4, R5, R6, R7>(f7: (a: R6) => R7, f6: (a: R5) => R6, f5: (a: R4) => R5, f4: (a: R3) => R4, f3: (a: R2) => R3, f2: (a: R1) => R2, f1: (...args: A) => R1): (...args: A) => R7; <A extends any[], R1, R2, R3, R4, R5, R6>(f6: (a: R5) => R6, f5: (a: R4) => R5, f4: (a: R3) => R4, f3: (a: R2)...",
+                "optional": false
+              },
+              {
+                "name": "identity",
+                "type": "{ <T>(value: T): T; (): undefined; }",
+                "optional": false
+              },
+              {
+                "name": "iteratee",
+                "type": "{ <TFunction extends (...args: any[]) => any>(func: TFunction): TFunction; (func: string | number | symbol | object): (...args: any[]) => any; }",
+                "optional": false
+              },
+              {
+                "name": "matches",
+                "type": "{ <T>(source: T): (value: any) => boolean; <T, V>(source: T): (value: V) => boolean; }",
+                "optional": false
+              },
+              {
+                "name": "matchesProperty",
+                "type": "{ <T>(path: PropertyPath, srcValue: T): (value: any) => boolean; <T, V>(path: PropertyPath, srcValue: T): (value: V) => boolean; }",
+                "optional": false
+              },
+              {
+                "name": "method",
+                "type": "(path: PropertyPath, ...args: any[]) => (object: any) => any",
+                "optional": false
+              },
+              {
+                "name": "methodOf",
+                "type": "(object: object, ...args: any[]) => (path: PropertyPath) => any",
+                "optional": false
+              },
+              {
+                "name": "mixin",
+                "type": "{ <TObject>(object: TObject, source: Dictionary<(...args: any[]) => any>, options?: MixinOptions): TObject; <TResult>(source: Dictionary<(...args: any[]) => any>, options?: MixinOptions): LoDashStatic; }",
+                "optional": false
+              },
+              {
+                "name": "noConflict",
+                "type": "() => LoDashStatic",
+                "optional": false
+              },
+              {
+                "name": "noop",
+                "type": "(...args: any[]) => void",
+                "optional": false
+              },
+              {
+                "name": "nthArg",
+                "type": "(n?: number) => (...args: any[]) => any",
+                "optional": false
+              },
+              {
+                "name": "over",
+                "type": "<TResult>(...iteratees: Many<(...args: any[]) => TResult>[]) => (...args: any[]) => TResult[]",
+                "optional": false
+              },
+              {
+                "name": "overEvery",
+                "type": "{ <T, Result1 extends T, Result2 extends T>(predicates_0: (arg: T) => arg is Result1, predicates_1: (arg: T) => arg is Result2): (arg: T) => arg is Result1 & Result2; <T>(...predicates: Many<(...args: T[]) => boolean>[]): (...args: T[]) => boolean; }",
+                "optional": false
+              },
+              {
+                "name": "overSome",
+                "type": "{ <T, Result1 extends T, Result2 extends T>(predicates_0: (arg: T) => arg is Result1, predicates_1: (arg: T) => arg is Result2): (arg: T) => arg is Result1 | Result2; <T>(...predicates: Many<(...args: T[]) => boolean>[]): (...args: T[]) => boolean; }",
+                "optional": false
+              },
+              {
+                "name": "property",
+                "type": "<TObj, TResult>(path: PropertyPath) => (obj: TObj) => TResult",
+                "optional": false
+              },
+              {
+                "name": "propertyOf",
+                "type": "<T extends {}>(object: T) => (path: PropertyPath) => any",
+                "optional": false
+              },
+              {
+                "name": "range",
+                "type": "{ (start: number, end?: number, step?: number): number[]; (end: number, index: string | number, guard: object): number[]; }",
+                "optional": false
+              },
+              {
+                "name": "rangeRight",
+                "type": "{ (start: number, end?: number, step?: number): number[]; (end: number, index: string | number, guard: object): number[]; }",
+                "optional": false
+              },
+              {
+                "name": "runInContext",
+                "type": "(context?: object) => LoDashStatic",
+                "optional": false
+              },
+              {
+                "name": "stubArray",
+                "type": "() => any[]",
+                "optional": false
+              },
+              {
+                "name": "stubFalse",
+                "type": "{ (): false; (): false; }",
+                "optional": false
+              },
+              {
+                "name": "stubObject",
+                "type": "() => any",
+                "optional": false
+              },
+              {
+                "name": "stubString",
+                "type": "() => string",
+                "optional": false
+              },
+              {
+                "name": "stubTrue",
+                "type": "{ (): true; (): true; }",
+                "optional": false
+              },
+              {
+                "name": "times",
+                "type": "{ <TResult>(n: number, iteratee: (num: number) => TResult): TResult[]; (n: number): number[]; }",
+                "optional": false
+              },
+              {
+                "name": "toPath",
+                "type": "(value: any) => string[]",
+                "optional": false
+              },
+              {
+                "name": "uniqueId",
+                "type": "(prefix?: string) => string",
+                "optional": false
+              }
+            ],
+            "extends": [],
+            "jsdoc": null,
+            "isExported": false
+          }
+        ],
+        "classes": [],
+        "constants": []
+      },
+      "jsdoc": null,
+      "isExported": false
+    }
+  ],
   "version": "4.14.191"
 }

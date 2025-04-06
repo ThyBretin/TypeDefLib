@@ -6,6 +6,9 @@ console.log("Step 1: Reading libraries...");
 const libraries = JSON.parse(fs.readFileSync("./libraries.json", "utf8"));
 
 console.log("Step 2: Starting extraction...");
+if (!fs.existsSync("./libraryDefs")) {
+  fs.mkdirSync("./libraryDefs"); // Create dir if missing
+}
 libraries.forEach(lib => {
   const { name, dtsPath, version } = lib;
   if (!fs.existsSync(dtsPath)) {

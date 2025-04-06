@@ -1,13 +1,25 @@
 const ts = require("typescript");
-const { extractFunctions, extractEnums, extractTypes, extractClasses, extractJSDoc } = require("./core_extraction");
-
-console.log("Imported extractJSDoc:", typeof extractJSDoc); // Debug
+const { extractFunctions } = require("./extract_functions");
+const { extractEnums } = require("./extract_enums");
+const { extractTypes } = require("./extract_types");
+const { extractClasses } = require("./extract_classes");
+const { extractConstants } = require("./extract_constants");
+const { extractNamespaces } = require("./extract_namespaces");
+const { extractJSDoc } = require("./extract_jsdoc");
 
 function extractSignatures(dtsPath, libName, version) {
   const program = ts.createProgram([dtsPath], { allowJs: false });
   const checker = program.getTypeChecker();
   const sourceFile = program.getSourceFile(dtsPath);
-  const defs = { functions: [], enums: [], types: [], classes: [], version: version || "unknown" };
+  const defs = { 
+    functions: [], 
+    enums: [], 
+    types: [], 
+    classes: [], 
+    constants: [], 
+    namespaces: [], 
+    version: version || "unknown" 
+  };
   const seenFunctions = new Set();
   const visitedTypes = new Set();
 
@@ -27,39 +39,15 @@ function extractSignatures(dtsPath, libName, version) {
         defs.functions.push(...classDef.methods);
       }
     }
-    if (ts.isModuleDeclaration(node) && node.body) {
-      const symbol = checker.getSymbolAtLocation(node.name);
-      if (symbol) {
-        console.log(`Module "${node.name.text}"`);
-        if (ts.isModuleBlock(node.body)) {
-          const exports = checker.getExportsOfModule(symbol);
-          console.log(`Module "${node.name.text}" has ${exports.length} exports`);
-          exports.forEach(exp => {
-            console.log(`Module export: ${exp.name}`);
-            defs.functions.push(...extractFunctions(checker, exp, sourceFile, "", seenFunctions));
-            const expType = checker.getTypeOfSymbolAtLocation(exp, sourceFile);
-            const expProps = expType.getProperties();
-            console.log(`  ${exp.name} has ${expProps.length} properties`);
-            expProps.forEach(prop => {
-              defs.functions.push(...extractFunctions(checker, prop, sourceFile, exp.name, seenFunctions));
-            });
-          });
-          exports.forEach(exp => {
-            const expType = checker.getTypeOfSymbolAtLocation(exp, sourceFile);
-            if (expType.aliasSymbol || expType.getProperties().length === 0) {
-              const typeDef = {
-                name: exp.name,
-                type: checker.typeToString(expType, undefined, ts.TypeFormatFlags.NoTruncation),
-                jsdoc: extractJSDoc(exp.valueDeclaration || exp.declarations?.[0])
-              };
-              if (!visitedTypes.has(typeDef.name)) {
-                visitedTypes.add(typeDef.name);
-                defs.types.push(typeDef);
-              }
-            }
-          });
-        }
-        ts.forEachChild(node.body, processNode);
+    if (ts.isModuleDeclaration(node)) {
+      const namespaceDef = extractNamespaces(checker, node, sourceFile, seenFunctions, visitedTypes);
+      if (namespaceDef) {
+        defs.namespaces.push(namespaceDef);
+        defs.functions.push(...namespaceDef.contents.functions);
+        defs.enums.push(...namespaceDef.contents.enums);
+        defs.types.push(...namespaceDef.contents.types);
+        defs.classes.push(...namespaceDef.contents.classes);
+        defs.constants.push(...namespaceDef.contents.constants);
       }
     }
     if (ts.isVariableStatement(node) && node.parent?.kind === ts.SyntaxKind.ModuleBlock) {
@@ -77,6 +65,9 @@ function extractSignatures(dtsPath, libName, version) {
         }
       });
     }
+    if (ts.isVariableStatement(node) && node.parent?.kind === ts.SyntaxKind.SourceFile) {
+      defs.constants.push(...extractConstants(checker, node));
+    }
     if (ts.isExportAssignment(node) && node.expression) {
       const symbol = checker.getSymbolAtLocation(node.expression);
       if (symbol) {
@@ -88,6 +79,8 @@ function extractSignatures(dtsPath, libName, version) {
         expProps.forEach(prop => {
           defs.functions.push(...extractFunctions(checker, prop, sourceFile, symbol.name, seenFunctions));
         });
+        const decl = symbol.valueDeclaration || symbol.declarations?.[0];
+        if (decl) defs.constants.push(...extractConstants(checker, decl, symbol));
       }
     }
   }
@@ -107,7 +100,24 @@ function extractSignatures(dtsPath, libName, version) {
         expProps.forEach(prop => {
           defs.functions.push(...extractFunctions(checker, prop, sourceFile, exp.name, seenFunctions));
         });
+        const decl = exp.valueDeclaration || exp.declarations?.[0];
+        if (decl) defs.constants.push(...extractConstants(checker, decl, exp));
       });
+
+      // Treat file as a namespace if it’s the lib root
+      const namespaceDef = {
+        name: libName,
+        contents: {
+          functions: defs.functions.slice(),
+          enums: defs.enums.slice(),
+          types: defs.types.slice(),
+          classes: defs.classes.slice(),
+          constants: defs.constants.slice()
+        },
+        jsdoc: null,
+        isExported: true
+      };
+      defs.namespaces.push(namespaceDef);
     }
 
     ts.forEachChild(sourceFile, processNode);
