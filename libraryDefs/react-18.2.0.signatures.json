@@ -1,0 +1,4322 @@
+{
+  "functions": [
+    {
+      "name": "createElement",
+      "parameters": [
+        {
+          "name": "type",
+          "type": "\"input\"",
+          "optional": false
+        },
+        {
+          "name": "props",
+          "type": "InputHTMLAttributes<HTMLInputElement> & ClassAttributes<HTMLInputElement>",
+          "optional": true
+        },
+        {
+          "name": "children",
+          "type": "ReactNode[]",
+          "optional": false
+        }
+      ],
+      "returnType": "DetailedReactHTMLElement<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>",
+      "jsdoc": null
+    },
+    {
+      "name": "cloneElement",
+      "parameters": [
+        {
+          "name": "element",
+          "type": "DetailedReactHTMLElement<P, T>",
+          "optional": false
+        },
+        {
+          "name": "props",
+          "type": "P",
+          "optional": true
+        },
+        {
+          "name": "children",
+          "type": "ReactNode[]",
+          "optional": false
+        }
+      ],
+      "returnType": "DetailedReactHTMLElement<P, T>",
+      "jsdoc": null
+    },
+    {
+      "name": "createContext",
+      "parameters": [
+        {
+          "name": "defaultValue",
+          "type": "T",
+          "optional": false
+        }
+      ],
+      "returnType": "Context<T>",
+      "jsdoc": {
+        "description": "Lets you create a    that components can provide or read.",
+        "params": [
+          {
+            "name": "defaultValue",
+            "description": "The value you want the context to have when there is no matching\n   in the tree above the component reading the context. This is meant\nas a \"last resort\" fallback."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "isValidElement",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "{}",
+          "optional": false
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": null
+    },
+    {
+      "name": "createRef",
+      "parameters": [],
+      "returnType": "RefObject<T>",
+      "jsdoc": null
+    },
+    {
+      "name": "forwardRef",
+      "parameters": [
+        {
+          "name": "render",
+          "type": "ForwardRefRenderFunction<T, PropsWithoutRef<P>>",
+          "optional": false
+        }
+      ],
+      "returnType": "ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>>",
+      "jsdoc": {
+        "description": "Lets your component expose a DOM node to a parent component\nusing a ref.",
+        "params": [
+          {
+            "name": "render",
+            "description": "See the   ."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "memo",
+      "parameters": [
+        {
+          "name": "Component",
+          "type": "FunctionComponent<P>",
+          "optional": false
+        },
+        {
+          "name": "propsAreEqual",
+          "type": "(prevProps: Readonly<P>, nextProps: Readonly<P>) => boolean",
+          "optional": true
+        }
+      ],
+      "returnType": "NamedExoticComponent<P>",
+      "jsdoc": {
+        "description": "Lets you skip re-rendering a component when its props are unchanged.",
+        "params": [
+          {
+            "name": "Component",
+            "description": "The component to memoize."
+          },
+          {
+            "name": "propsAreEqual",
+            "description": "A function that will be used to determine if the props have changed."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "lazy",
+      "parameters": [
+        {
+          "name": "load",
+          "type": "() => Promise<{ default: T; }>",
+          "optional": false
+        }
+      ],
+      "returnType": "LazyExoticComponent<T>",
+      "jsdoc": {
+        "description": "Lets you defer loading a component’s code until it is rendered for the first time.",
+        "params": [
+          {
+            "name": "load",
+            "description": "A function that returns a `Promise` or another thenable (a `Promise`-like object with a\nthen method). React will not call `load` until the first time you attempt to render the returned\ncomponent. After React first calls load, it will wait for it to resolve, and then render the\nresolved value’s `.default` as a React component. Both the returned `Promise` and the `Promise`’s\nresolved value will be cached, so React will not call load more than once. If the `Promise` rejects,\nReact will throw the rejection reason for the nearest Error Boundary to handle."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useContext",
+      "parameters": [
+        {
+          "name": "context",
+          "type": "Context<T>",
+          "optional": false
+        }
+      ],
+      "returnType": "T",
+      "jsdoc": {
+        "description": "Accepts a context object (the value returned from `React.createContext`) and returns the current\ncontext value, as given by the nearest context provider for the given context.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useState",
+      "parameters": [
+        {
+          "name": "initialState",
+          "type": "S | (() => S)",
+          "optional": false
+        }
+      ],
+      "returnType": "[S, Dispatch<SetStateAction<S>>]",
+      "jsdoc": {
+        "description": "Returns a stateful value, and a function to update it.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useReducer",
+      "parameters": [
+        {
+          "name": "reducer",
+          "type": "(prevState: S, ...args: A) => S",
+          "optional": false
+        },
+        {
+          "name": "initialState",
+          "type": "S",
+          "optional": false
+        }
+      ],
+      "returnType": "[S, ActionDispatch<A>]",
+      "jsdoc": {
+        "description": "An alternative to `useState`.\n\n`useReducer` is usually preferable to `useState` when you have complex state logic that involves\nmultiple sub-values. It also lets you optimize performance for components that trigger deep\nupdates because you can pass `dispatch` down instead of callbacks.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useRef",
+      "parameters": [
+        {
+          "name": "initialValue",
+          "type": "T",
+          "optional": false
+        }
+      ],
+      "returnType": "RefObject<T>",
+      "jsdoc": {
+        "description": "`useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument\n(`initialValue`). The returned object will persist for the full lifetime of the component.\n\nNote that `useRef()` is useful for more than the `ref` attribute. It’s handy for keeping any mutable\nvalue around similar to how you’d use instance fields in classes.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useLayoutEffect",
+      "parameters": [
+        {
+          "name": "effect",
+          "type": "EffectCallback",
+          "optional": false
+        },
+        {
+          "name": "deps",
+          "type": "DependencyList",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations.\nUse this to read layout from the DOM and synchronously re-render. Updates scheduled inside\n`useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.\n\nPrefer the standard `useEffect` when possible to avoid blocking visual updates.\n\nIf you’re migrating code from a class component, `useLayoutEffect` fires in the same phase as\n`componentDidMount` and `componentDidUpdate`.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useEffect",
+      "parameters": [
+        {
+          "name": "effect",
+          "type": "EffectCallback",
+          "optional": false
+        },
+        {
+          "name": "deps",
+          "type": "DependencyList",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "Accepts a function that contains imperative, possibly effectful code.",
+        "params": [
+          {
+            "name": "effect",
+            "description": "Imperative function that can return a cleanup function"
+          },
+          {
+            "name": "deps",
+            "description": "If present, effect will only activate if the values in the list change."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useImperativeHandle",
+      "parameters": [
+        {
+          "name": "ref",
+          "type": "Ref<T>",
+          "optional": false
+        },
+        {
+          "name": "init",
+          "type": "() => R",
+          "optional": false
+        },
+        {
+          "name": "deps",
+          "type": "DependencyList",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "`useImperativeHandle` customizes the instance value that is exposed to parent components when using\n`ref`. As always, imperative code using refs should be avoided in most cases.\n\n`useImperativeHandle` should be used with `React.forwardRef`.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useCallback",
+      "parameters": [
+        {
+          "name": "callback",
+          "type": "T",
+          "optional": false
+        },
+        {
+          "name": "deps",
+          "type": "DependencyList",
+          "optional": false
+        }
+      ],
+      "returnType": "T",
+      "jsdoc": {
+        "description": "`useCallback` will return a memoized version of the callback that only changes if one of the `inputs`\nhas changed.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useMemo",
+      "parameters": [
+        {
+          "name": "factory",
+          "type": "() => T",
+          "optional": false
+        },
+        {
+          "name": "deps",
+          "type": "DependencyList",
+          "optional": false
+        }
+      ],
+      "returnType": "T",
+      "jsdoc": {
+        "description": "`useMemo` will only recompute the memoized value when one of the `deps` has changed.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useDebugValue",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "T",
+          "optional": false
+        },
+        {
+          "name": "format",
+          "type": "(value: T) => any",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "`useDebugValue` can be used to display a label for custom hooks in React DevTools.\n\nNOTE: We don’t recommend adding debug values to every custom hook.\nIt’s most valuable for custom hooks that are part of shared libraries.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useDeferredValue",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "T",
+          "optional": false
+        },
+        {
+          "name": "initialValue",
+          "type": "T",
+          "optional": true
+        }
+      ],
+      "returnType": "T",
+      "jsdoc": {
+        "description": "Returns a deferred version of the value that may “lag behind” it.\n\nThis is commonly used to keep the interface responsive when you have something that renders immediately\nbased on user input and something that needs to wait for a data fetch.\n\nA good example of this is a text input.",
+        "params": [
+          {
+            "name": "value",
+            "description": "The value that is going to be deferred"
+          },
+          {
+            "name": "initialValue",
+            "description": "A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there’s no previous version of `value` that it can render instead."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useTransition",
+      "parameters": [],
+      "returnType": "[boolean, TransitionStartFunction]",
+      "jsdoc": {
+        "description": "Allows components to avoid undesirable loading states by waiting for content to load\nbefore transitioning to the next screen. It also allows components to defer slower,\ndata fetching updates until subsequent renders so that more crucial updates can be\nrendered immediately.\n\nThe `useTransition` hook returns two values in an array.\n\nThe first is a boolean, React’s way of informing us whether we’re waiting for the transition to finish.\nThe second is a function that takes a callback. We can use it to tell React which state we want to defer.\n\n**If some state update causes a component to suspend, that state update should be wrapped in a transition.**",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "startTransition",
+      "parameters": [
+        {
+          "name": "scope",
+          "type": "TransitionFunction",
+          "optional": false
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "Similar to `useTransition` but allows uses where hooks are not available.",
+        "params": [
+          {
+            "name": "callback",
+            "description": "A function which causes state updates that can be deferred."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "act",
+      "parameters": [
+        {
+          "name": "callback",
+          "type": "() => VoidOrUndefinedOnly",
+          "optional": false
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "Wrap any code rendering and triggering updates to your components into `act()` calls.\n\nEnsures that the behavior in your tests matches what happens in the browser\nmore closely by executing pending `useEffect`s before returning. This also\nreduces the amount of re-renders done.",
+        "params": [
+          {
+            "name": "callback",
+            "description": "A synchronous, void callback that will execute as a single, complete React commit."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useId",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": null
+    },
+    {
+      "name": "useInsertionEffect",
+      "parameters": [
+        {
+          "name": "effect",
+          "type": "EffectCallback",
+          "optional": false
+        },
+        {
+          "name": "deps",
+          "type": "DependencyList",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "",
+        "params": [
+          {
+            "name": "effect",
+            "description": "Imperative function that can return a cleanup function"
+          },
+          {
+            "name": "deps",
+            "description": "If present, effect will only activate if the values in the list change."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useSyncExternalStore",
+      "parameters": [
+        {
+          "name": "subscribe",
+          "type": "(onStoreChange: () => void) => () => void",
+          "optional": false
+        },
+        {
+          "name": "getSnapshot",
+          "type": "() => Snapshot",
+          "optional": false
+        },
+        {
+          "name": "getServerSnapshot",
+          "type": "() => Snapshot",
+          "optional": true
+        }
+      ],
+      "returnType": "Snapshot",
+      "jsdoc": {
+        "description": "",
+        "params": [
+          {
+            "name": "subscribe"
+          },
+          {
+            "name": "getSnapshot"
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "useOptimistic",
+      "parameters": [
+        {
+          "name": "passthrough",
+          "type": "State",
+          "optional": false
+        }
+      ],
+      "returnType": "[State, (action: State | ((pendingState: State) => State)) => void]",
+      "jsdoc": null
+    },
+    {
+      "name": "use",
+      "parameters": [
+        {
+          "name": "usable",
+          "type": "Usable<T>",
+          "optional": false
+        }
+      ],
+      "returnType": "T",
+      "jsdoc": null
+    },
+    {
+      "name": "useActionState",
+      "parameters": [
+        {
+          "name": "action",
+          "type": "(state: Awaited<State>) => State | Promise<State>",
+          "optional": false
+        },
+        {
+          "name": "initialState",
+          "type": "Awaited<State>",
+          "optional": false
+        },
+        {
+          "name": "permalink",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "returnType": "[state: Awaited<State>, dispatch: () => void, isPending: boolean]",
+      "jsdoc": null
+    },
+    {
+      "name": "cache",
+      "parameters": [
+        {
+          "name": "fn",
+          "type": "CachedFunction",
+          "optional": false
+        }
+      ],
+      "returnType": "CachedFunction",
+      "jsdoc": null
+    },
+    {
+      "name": "captureOwnerStack",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Warning: Only available in development builds.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "map",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "C | readonly C[]",
+          "optional": false
+        },
+        {
+          "name": "fn",
+          "type": "(child: C, index: number) => T",
+          "optional": false
+        }
+      ],
+      "returnType": "C extends null ? C : Exclude<T, boolean>[]",
+      "jsdoc": null
+    },
+    {
+      "name": "forEach",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "C | readonly C[]",
+          "optional": false
+        },
+        {
+          "name": "fn",
+          "type": "(child: C, index: number) => void",
+          "optional": false
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": null
+    },
+    {
+      "name": "count",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "any",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": null
+    },
+    {
+      "name": "only",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "C",
+          "optional": false
+        }
+      ],
+      "returnType": "C extends any[] ? never : C",
+      "jsdoc": null
+    },
+    {
+      "name": "toArray",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "ReactNode | ReactNode[]",
+          "optional": false
+        }
+      ],
+      "returnType": "(string | number | bigint | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>)[]",
+      "jsdoc": null
+    },
+    {
+      "name": "Children.map",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "C | readonly C[]",
+          "optional": false
+        },
+        {
+          "name": "fn",
+          "type": "(child: C, index: number) => T",
+          "optional": false
+        }
+      ],
+      "returnType": "C extends null ? C : Exclude<T, boolean>[]",
+      "jsdoc": null
+    },
+    {
+      "name": "Children.forEach",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "C | readonly C[]",
+          "optional": false
+        },
+        {
+          "name": "fn",
+          "type": "(child: C, index: number) => void",
+          "optional": false
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": null
+    },
+    {
+      "name": "Children.count",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "any",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": null
+    },
+    {
+      "name": "Children.only",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "C",
+          "optional": false
+        }
+      ],
+      "returnType": "C extends any[] ? never : C",
+      "jsdoc": null
+    },
+    {
+      "name": "Children.toArray",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "ReactNode | ReactNode[]",
+          "optional": false
+        }
+      ],
+      "returnType": "(string | number | bigint | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>)[]",
+      "jsdoc": null
+    },
+    {
+      "name": "Fragment",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "FragmentProps",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "Fragment.toString",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string representation of an object.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Fragment.valueOf",
+      "parameters": [],
+      "returnType": "symbol",
+      "jsdoc": {
+        "description": "Returns the primitive value of the specified object.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Fragment.__@toPrimitive@6160",
+      "parameters": [
+        {
+          "name": "hint",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "symbol",
+      "jsdoc": {
+        "description": "Converts a Symbol object to a symbol.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "StrictMode",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "{ children?: ReactNode; }",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "StrictMode.toString",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string representation of an object.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "StrictMode.valueOf",
+      "parameters": [],
+      "returnType": "symbol",
+      "jsdoc": {
+        "description": "Returns the primitive value of the specified object.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "StrictMode.__@toPrimitive@6160",
+      "parameters": [
+        {
+          "name": "hint",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "symbol",
+      "jsdoc": {
+        "description": "Converts a Symbol object to a symbol.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Suspense",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "SuspenseProps",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "Suspense.toString",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string representation of an object.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Suspense.valueOf",
+      "parameters": [],
+      "returnType": "symbol",
+      "jsdoc": {
+        "description": "Returns the primitive value of the specified object.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Suspense.__@toPrimitive@6160",
+      "parameters": [
+        {
+          "name": "hint",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "symbol",
+      "jsdoc": {
+        "description": "Converts a Symbol object to a symbol.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "toString",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string representation of a string.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "charAt",
+      "parameters": [
+        {
+          "name": "pos",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns the character at the specified index.",
+        "params": [
+          {
+            "name": "pos",
+            "description": "The zero-based index of the desired character."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "charCodeAt",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns the Unicode value of the character at the specified location.",
+        "params": [
+          {
+            "name": "index",
+            "description": "The zero-based index of the desired character. If there is no character at the specified index, NaN is returned."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "concat",
+      "parameters": [
+        {
+          "name": "strings",
+          "type": "string[]",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string that contains the concatenation of two or more strings.",
+        "params": [
+          {
+            "name": "strings",
+            "description": "The strings to append to the end of the string."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "indexOf",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "position",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns the position of the first occurrence of a substring.",
+        "params": [
+          {
+            "name": "searchString",
+            "description": "The substring to search for in the string"
+          },
+          {
+            "name": "position",
+            "description": "The index at which to begin searching the String object. If omitted, search starts at the beginning of the string."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "lastIndexOf",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "position",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns the last occurrence of a substring in the string.",
+        "params": [
+          {
+            "name": "searchString",
+            "description": "The substring to search for."
+          },
+          {
+            "name": "position",
+            "description": "The index at which to begin searching. If omitted, the search begins at the end of the string."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "localeCompare",
+      "parameters": [
+        {
+          "name": "that",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Determines whether two strings are equivalent in the current locale.",
+        "params": [
+          {
+            "name": "that",
+            "description": "String to compare to target string"
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "match",
+      "parameters": [
+        {
+          "name": "regexp",
+          "type": "string | RegExp",
+          "optional": false
+        }
+      ],
+      "returnType": "RegExpMatchArray",
+      "jsdoc": {
+        "description": "Matches a string with a regular expression, and returns an array containing the results of that search.",
+        "params": [
+          {
+            "name": "regexp",
+            "description": "A variable name or string literal containing the regular expression pattern and flags."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "replace",
+      "parameters": [
+        {
+          "name": "searchValue",
+          "type": "string | RegExp",
+          "optional": false
+        },
+        {
+          "name": "replaceValue",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Replaces text in a string, using a regular expression or search string.",
+        "params": [
+          {
+            "name": "searchValue",
+            "description": "A string or regular expression to search for."
+          },
+          {
+            "name": "replaceValue",
+            "description": "A string containing the text to replace. When the    is a `RegExp`, all matches are replaced if the `g` flag is set (or only those matches at the beginning, if the `y` flag is also present). Otherwise, only the first match of    is replaced."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "search",
+      "parameters": [
+        {
+          "name": "regexp",
+          "type": "string | RegExp",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Finds the first substring match in a regular expression search.",
+        "params": [
+          {
+            "name": "regexp",
+            "description": "The regular expression pattern and applicable flags."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "slice",
+      "parameters": [
+        {
+          "name": "start",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "end",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a section of a string.",
+        "params": [
+          {
+            "name": "start",
+            "description": "The index to the beginning of the specified portion of stringObj."
+          },
+          {
+            "name": "end",
+            "description": "The index to the end of the specified portion of stringObj. The substring includes the characters up to, but not including, the character indicated by end.\nIf this value is not specified, the substring continues to the end of stringObj."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "split",
+      "parameters": [
+        {
+          "name": "separator",
+          "type": "string | RegExp",
+          "optional": false
+        },
+        {
+          "name": "limit",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string[]",
+      "jsdoc": {
+        "description": "Split a string into substrings using the specified separator and return them as an array.",
+        "params": [
+          {
+            "name": "separator",
+            "description": "A string that identifies character or characters to use in separating the string. If omitted, a single-element array containing the entire string is returned."
+          },
+          {
+            "name": "limit",
+            "description": "A value used to limit the number of elements returned in the array."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "substring",
+      "parameters": [
+        {
+          "name": "start",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "end",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns the substring at the specified location within a String object.",
+        "params": [
+          {
+            "name": "start",
+            "description": "The zero-based index number indicating the beginning of the substring."
+          },
+          {
+            "name": "end",
+            "description": "Zero-based index number indicating the end of the substring. The substring includes the characters up to, but not including, the character indicated by end.\nIf end is omitted, the characters from start through the end of the original string are returned."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "toLowerCase",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Converts all the alphabetic characters in a string to lowercase.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "toLocaleLowerCase",
+      "parameters": [
+        {
+          "name": "locales",
+          "type": "string | string[]",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Converts all alphabetic characters to lowercase, taking into account the host environment's current locale.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "toUpperCase",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Converts all the alphabetic characters in a string to uppercase.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "toLocaleUpperCase",
+      "parameters": [
+        {
+          "name": "locales",
+          "type": "string | string[]",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string where all alphabetic characters have been converted to uppercase, taking into account the host environment's current locale.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "trim",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the leading and trailing white space and line terminator characters from a string.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "substr",
+      "parameters": [
+        {
+          "name": "from",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "length",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Gets a substring beginning at the specified location and having the specified length.",
+        "params": [
+          {
+            "name": "from",
+            "description": "The starting position of the desired substring. The index of the first character in the string is zero."
+          },
+          {
+            "name": "length",
+            "description": "The number of characters to include in the returned substring."
+          }
+        ],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "valueOf",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns the primitive value of the specified object.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "codePointAt",
+      "parameters": [
+        {
+          "name": "pos",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns a nonnegative integer Number less than 1114112 (0x110000) that is the code point\nvalue of the UTF-16 encoded code point starting at the string element at position pos in\nthe String resulting from converting this object to a String.\nIf there is no element at that position, the result is undefined.\nIf a valid UTF-16 surrogate pair does not begin at pos, the result is the code unit at pos.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "includes",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "position",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": {
+        "description": "Returns true if searchString appears as a substring of the result of converting this\nobject to a String, at one or more positions that are\ngreater than or equal to position; otherwise, returns false.",
+        "params": [
+          {
+            "name": "searchString",
+            "description": "search string"
+          },
+          {
+            "name": "position",
+            "description": "If position is undefined, 0 is assumed, so as to search all of the String."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "endsWith",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "endPosition",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": {
+        "description": "Returns true if the sequence of elements of searchString converted to a String is the\nsame as the corresponding elements of this object (converted to a String) starting at\nendPosition – length(this). Otherwise returns false.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "normalize",
+      "parameters": [
+        {
+          "name": "form",
+          "type": "\"NFC\" | \"NFD\" | \"NFKC\" | \"NFKD\"",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns the String value result of normalizing the string into the normalization form\nnamed by form as specified in Unicode Standard Annex #15, Unicode Normalization Forms.",
+        "params": [
+          {
+            "name": "form",
+            "description": "Applicable values: \"NFC\", \"NFD\", \"NFKC\", or \"NFKD\", If not specified default\nis \"NFC\""
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "repeat",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a String value that is made from count copies appended together. If count is 0,\nthe empty string is returned.",
+        "params": [
+          {
+            "name": "count",
+            "description": "number of copies to append"
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "startsWith",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "position",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": {
+        "description": "Returns true if the sequence of elements of searchString converted to a String is the\nsame as the corresponding elements of this object (converted to a String) starting at\nposition. Otherwise returns false.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "anchor",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns an `<a>` HTML anchor element and sets the name attribute to the text value",
+        "params": [
+          {
+            "name": "name"
+          }
+        ],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "big",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<big>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "blink",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<blink>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "bold",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<b>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "fixed",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<tt>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "fontcolor",
+      "parameters": [
+        {
+          "name": "color",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<font>` HTML element and sets the color attribute value",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "fontsize",
+      "parameters": [
+        {
+          "name": "size",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<font>` HTML element and sets the size attribute value",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "italics",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns an `<i>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "link",
+      "parameters": [
+        {
+          "name": "url",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns an `<a>` HTML element and sets the href attribute value",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "small",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<small>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "strike",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<strike>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "sub",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<sub>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "sup",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<sup>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "padStart",
+      "parameters": [
+        {
+          "name": "maxLength",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "fillString",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Pads the current string with a given string (possibly repeated) so that the resulting string reaches a given length.\nThe padding is applied from the start (left) of the current string.",
+        "params": [
+          {
+            "name": "maxLength",
+            "description": "The length of the resulting string once the current string has been padded.\nIf this parameter is smaller than the current string's length, the current string will be returned as it is."
+          },
+          {
+            "name": "fillString",
+            "description": "The string to pad the current string with.\nIf this string is too long, it will be truncated and the left-most part will be applied.\nThe default value for this parameter is \" \" (U+0020)."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "padEnd",
+      "parameters": [
+        {
+          "name": "maxLength",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "fillString",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Pads the current string with a given string (possibly repeated) so that the resulting string reaches a given length.\nThe padding is applied from the end (right) of the current string.",
+        "params": [
+          {
+            "name": "maxLength",
+            "description": "The length of the resulting string once the current string has been padded.\nIf this parameter is smaller than the current string's length, the current string will be returned as it is."
+          },
+          {
+            "name": "fillString",
+            "description": "The string to pad the current string with.\nIf this string is too long, it will be truncated and the left-most part will be applied.\nThe default value for this parameter is \" \" (U+0020)."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "trimEnd",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the trailing white space and line terminator characters from a string.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "trimStart",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the leading white space and line terminator characters from a string.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "trimLeft",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the leading white space and line terminator characters from a string.",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "trimRight",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the trailing white space and line terminator characters from a string.",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "matchAll",
+      "parameters": [
+        {
+          "name": "regexp",
+          "type": "RegExp",
+          "optional": false
+        }
+      ],
+      "returnType": "RegExpStringIterator<RegExpExecArray>",
+      "jsdoc": {
+        "description": "Matches a string with a regular expression, and returns an iterable of matches\ncontaining the results of that search.",
+        "params": [
+          {
+            "name": "regexp",
+            "description": "A variable name or string literal containing the regular expression pattern and flags."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "__@iterator@6167",
+      "parameters": [],
+      "returnType": "StringIterator<string>",
+      "jsdoc": {
+        "description": "Iterator",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "at",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": null
+    },
+    {
+      "name": "version.toString",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string representation of a string.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.charAt",
+      "parameters": [
+        {
+          "name": "pos",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns the character at the specified index.",
+        "params": [
+          {
+            "name": "pos",
+            "description": "The zero-based index of the desired character."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.charCodeAt",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns the Unicode value of the character at the specified location.",
+        "params": [
+          {
+            "name": "index",
+            "description": "The zero-based index of the desired character. If there is no character at the specified index, NaN is returned."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.concat",
+      "parameters": [
+        {
+          "name": "strings",
+          "type": "string[]",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string that contains the concatenation of two or more strings.",
+        "params": [
+          {
+            "name": "strings",
+            "description": "The strings to append to the end of the string."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.indexOf",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "position",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns the position of the first occurrence of a substring.",
+        "params": [
+          {
+            "name": "searchString",
+            "description": "The substring to search for in the string"
+          },
+          {
+            "name": "position",
+            "description": "The index at which to begin searching the String object. If omitted, search starts at the beginning of the string."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.lastIndexOf",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "position",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns the last occurrence of a substring in the string.",
+        "params": [
+          {
+            "name": "searchString",
+            "description": "The substring to search for."
+          },
+          {
+            "name": "position",
+            "description": "The index at which to begin searching. If omitted, the search begins at the end of the string."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.localeCompare",
+      "parameters": [
+        {
+          "name": "that",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Determines whether two strings are equivalent in the current locale.",
+        "params": [
+          {
+            "name": "that",
+            "description": "String to compare to target string"
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.match",
+      "parameters": [
+        {
+          "name": "regexp",
+          "type": "string | RegExp",
+          "optional": false
+        }
+      ],
+      "returnType": "RegExpMatchArray",
+      "jsdoc": {
+        "description": "Matches a string with a regular expression, and returns an array containing the results of that search.",
+        "params": [
+          {
+            "name": "regexp",
+            "description": "A variable name or string literal containing the regular expression pattern and flags."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.replace",
+      "parameters": [
+        {
+          "name": "searchValue",
+          "type": "string | RegExp",
+          "optional": false
+        },
+        {
+          "name": "replaceValue",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Replaces text in a string, using a regular expression or search string.",
+        "params": [
+          {
+            "name": "searchValue",
+            "description": "A string or regular expression to search for."
+          },
+          {
+            "name": "replaceValue",
+            "description": "A string containing the text to replace. When the    is a `RegExp`, all matches are replaced if the `g` flag is set (or only those matches at the beginning, if the `y` flag is also present). Otherwise, only the first match of    is replaced."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.search",
+      "parameters": [
+        {
+          "name": "regexp",
+          "type": "string | RegExp",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Finds the first substring match in a regular expression search.",
+        "params": [
+          {
+            "name": "regexp",
+            "description": "The regular expression pattern and applicable flags."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.slice",
+      "parameters": [
+        {
+          "name": "start",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "end",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a section of a string.",
+        "params": [
+          {
+            "name": "start",
+            "description": "The index to the beginning of the specified portion of stringObj."
+          },
+          {
+            "name": "end",
+            "description": "The index to the end of the specified portion of stringObj. The substring includes the characters up to, but not including, the character indicated by end.\nIf this value is not specified, the substring continues to the end of stringObj."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.split",
+      "parameters": [
+        {
+          "name": "separator",
+          "type": "string | RegExp",
+          "optional": false
+        },
+        {
+          "name": "limit",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string[]",
+      "jsdoc": {
+        "description": "Split a string into substrings using the specified separator and return them as an array.",
+        "params": [
+          {
+            "name": "separator",
+            "description": "A string that identifies character or characters to use in separating the string. If omitted, a single-element array containing the entire string is returned."
+          },
+          {
+            "name": "limit",
+            "description": "A value used to limit the number of elements returned in the array."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.substring",
+      "parameters": [
+        {
+          "name": "start",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "end",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns the substring at the specified location within a String object.",
+        "params": [
+          {
+            "name": "start",
+            "description": "The zero-based index number indicating the beginning of the substring."
+          },
+          {
+            "name": "end",
+            "description": "Zero-based index number indicating the end of the substring. The substring includes the characters up to, but not including, the character indicated by end.\nIf end is omitted, the characters from start through the end of the original string are returned."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.toLowerCase",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Converts all the alphabetic characters in a string to lowercase.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.toLocaleLowerCase",
+      "parameters": [
+        {
+          "name": "locales",
+          "type": "string | string[]",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Converts all alphabetic characters to lowercase, taking into account the host environment's current locale.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.toUpperCase",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Converts all the alphabetic characters in a string to uppercase.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.toLocaleUpperCase",
+      "parameters": [
+        {
+          "name": "locales",
+          "type": "string | string[]",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string where all alphabetic characters have been converted to uppercase, taking into account the host environment's current locale.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.trim",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the leading and trailing white space and line terminator characters from a string.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.toFixed",
+      "parameters": [
+        {
+          "name": "fractionDigits",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string representing a number in fixed-point notation.",
+        "params": [
+          {
+            "name": "fractionDigits",
+            "description": "Number of digits after the decimal point. Must be in the range 0 - 20, inclusive."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.toExponential",
+      "parameters": [
+        {
+          "name": "fractionDigits",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string containing a number represented in exponential notation.",
+        "params": [
+          {
+            "name": "fractionDigits",
+            "description": "Number of digits after the decimal point. Must be in the range 0 - 20, inclusive."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.toPrecision",
+      "parameters": [
+        {
+          "name": "precision",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string containing a number represented either in exponential or fixed-point notation with a specified number of digits.",
+        "params": [
+          {
+            "name": "precision",
+            "description": "Number of significant digits. Must be in the range 1 - 21, inclusive."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.valueOf",
+      "parameters": [],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns the primitive value of the specified object.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.toLocaleString",
+      "parameters": [
+        {
+          "name": "locales",
+          "type": "string | string[]",
+          "optional": true
+        },
+        {
+          "name": "options",
+          "type": "NumberFormatOptions",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Converts a number to a string by using the current or specified locale.",
+        "params": [
+          {
+            "name": "locales",
+            "description": "A locale string or array of locale strings that contain one or more language or locale tags. If you include more than one locale string, list them in descending order of priority so that the first entry is the preferred locale. If you omit this parameter, the default locale of the JavaScript runtime is used."
+          },
+          {
+            "name": "options",
+            "description": "An object that contains one or more properties that specify comparison options."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.substr",
+      "parameters": [
+        {
+          "name": "from",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "length",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Gets a substring beginning at the specified location and having the specified length.",
+        "params": [
+          {
+            "name": "from",
+            "description": "The starting position of the desired substring. The index of the first character in the string is zero."
+          },
+          {
+            "name": "length",
+            "description": "The number of characters to include in the returned substring."
+          }
+        ],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.codePointAt",
+      "parameters": [
+        {
+          "name": "pos",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns a nonnegative integer Number less than 1114112 (0x110000) that is the code point\nvalue of the UTF-16 encoded code point starting at the string element at position pos in\nthe String resulting from converting this object to a String.\nIf there is no element at that position, the result is undefined.\nIf a valid UTF-16 surrogate pair does not begin at pos, the result is the code unit at pos.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.includes",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "position",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": {
+        "description": "Returns true if searchString appears as a substring of the result of converting this\nobject to a String, at one or more positions that are\ngreater than or equal to position; otherwise, returns false.",
+        "params": [
+          {
+            "name": "searchString",
+            "description": "search string"
+          },
+          {
+            "name": "position",
+            "description": "If position is undefined, 0 is assumed, so as to search all of the String."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.endsWith",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "endPosition",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": {
+        "description": "Returns true if the sequence of elements of searchString converted to a String is the\nsame as the corresponding elements of this object (converted to a String) starting at\nendPosition – length(this). Otherwise returns false.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.normalize",
+      "parameters": [
+        {
+          "name": "form",
+          "type": "\"NFC\" | \"NFD\" | \"NFKC\" | \"NFKD\"",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns the String value result of normalizing the string into the normalization form\nnamed by form as specified in Unicode Standard Annex #15, Unicode Normalization Forms.",
+        "params": [
+          {
+            "name": "form",
+            "description": "Applicable values: \"NFC\", \"NFD\", \"NFKC\", or \"NFKD\", If not specified default\nis \"NFC\""
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.repeat",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a String value that is made from count copies appended together. If count is 0,\nthe empty string is returned.",
+        "params": [
+          {
+            "name": "count",
+            "description": "number of copies to append"
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.startsWith",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "position",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": {
+        "description": "Returns true if the sequence of elements of searchString converted to a String is the\nsame as the corresponding elements of this object (converted to a String) starting at\nposition. Otherwise returns false.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.anchor",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns an `<a>` HTML anchor element and sets the name attribute to the text value",
+        "params": [
+          {
+            "name": "name"
+          }
+        ],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.big",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<big>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.blink",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<blink>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.bold",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<b>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.fixed",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<tt>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.fontcolor",
+      "parameters": [
+        {
+          "name": "color",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<font>` HTML element and sets the color attribute value",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.fontsize",
+      "parameters": [
+        {
+          "name": "size",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<font>` HTML element and sets the size attribute value",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.italics",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns an `<i>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.link",
+      "parameters": [
+        {
+          "name": "url",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns an `<a>` HTML element and sets the href attribute value",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.small",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<small>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.strike",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<strike>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.sub",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<sub>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.sup",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<sup>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.padStart",
+      "parameters": [
+        {
+          "name": "maxLength",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "fillString",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Pads the current string with a given string (possibly repeated) so that the resulting string reaches a given length.\nThe padding is applied from the start (left) of the current string.",
+        "params": [
+          {
+            "name": "maxLength",
+            "description": "The length of the resulting string once the current string has been padded.\nIf this parameter is smaller than the current string's length, the current string will be returned as it is."
+          },
+          {
+            "name": "fillString",
+            "description": "The string to pad the current string with.\nIf this string is too long, it will be truncated and the left-most part will be applied.\nThe default value for this parameter is \" \" (U+0020)."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.padEnd",
+      "parameters": [
+        {
+          "name": "maxLength",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "fillString",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Pads the current string with a given string (possibly repeated) so that the resulting string reaches a given length.\nThe padding is applied from the end (right) of the current string.",
+        "params": [
+          {
+            "name": "maxLength",
+            "description": "The length of the resulting string once the current string has been padded.\nIf this parameter is smaller than the current string's length, the current string will be returned as it is."
+          },
+          {
+            "name": "fillString",
+            "description": "The string to pad the current string with.\nIf this string is too long, it will be truncated and the left-most part will be applied.\nThe default value for this parameter is \" \" (U+0020)."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.trimEnd",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the trailing white space and line terminator characters from a string.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.trimStart",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the leading white space and line terminator characters from a string.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.trimLeft",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the leading white space and line terminator characters from a string.",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.trimRight",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the trailing white space and line terminator characters from a string.",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "version.matchAll",
+      "parameters": [
+        {
+          "name": "regexp",
+          "type": "RegExp",
+          "optional": false
+        }
+      ],
+      "returnType": "RegExpStringIterator<RegExpExecArray>",
+      "jsdoc": {
+        "description": "Matches a string with a regular expression, and returns an iterable of matches\ncontaining the results of that search.",
+        "params": [
+          {
+            "name": "regexp",
+            "description": "A variable name or string literal containing the regular expression pattern and flags."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.__@iterator@6167",
+      "parameters": [],
+      "returnType": "StringIterator<string>",
+      "jsdoc": {
+        "description": "Iterator",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "version.at",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": null
+    },
+    {
+      "name": "Profiler",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "ProfilerProps",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "Profiler.toString",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string representation of an object.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Profiler.valueOf",
+      "parameters": [],
+      "returnType": "symbol",
+      "jsdoc": {
+        "description": "Returns the primitive value of the specified object.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Profiler.__@toPrimitive@6160",
+      "parameters": [
+        {
+          "name": "hint",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "symbol",
+      "jsdoc": {
+        "description": "Converts a Symbol object to a symbol.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "contextType",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "ProviderProps<any>",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": {
+        "description": "If set, `this.context` will be set at runtime to the current value of the given Context.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Component.contextType",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "ProviderProps<any>",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": {
+        "description": "If set, `this.context` will be set at runtime to the current value of the given Context.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "Component.Provider",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "ProviderProps<any>",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "Component.Consumer",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "ConsumerProps<any>",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "PureComponent.contextType",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "ProviderProps<any>",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": {
+        "description": "If set, `this.context` will be set at runtime to the current value of the given Context.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "PureComponent.Provider",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "ProviderProps<any>",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "PureComponent.Consumer",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "ConsumerProps<any>",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "React.createElement",
+      "parameters": [
+        {
+          "name": "type",
+          "type": "\"input\"",
+          "optional": false
+        },
+        {
+          "name": "props",
+          "type": "InputHTMLAttributes<HTMLInputElement> & ClassAttributes<HTMLInputElement>",
+          "optional": true
+        },
+        {
+          "name": "children",
+          "type": "ReactNode[]",
+          "optional": false
+        }
+      ],
+      "returnType": "DetailedReactHTMLElement<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>",
+      "jsdoc": null
+    },
+    {
+      "name": "React.cloneElement",
+      "parameters": [
+        {
+          "name": "element",
+          "type": "DetailedReactHTMLElement<P, T>",
+          "optional": false
+        },
+        {
+          "name": "props",
+          "type": "P",
+          "optional": true
+        },
+        {
+          "name": "children",
+          "type": "ReactNode[]",
+          "optional": false
+        }
+      ],
+      "returnType": "DetailedReactHTMLElement<P, T>",
+      "jsdoc": null
+    },
+    {
+      "name": "React.createContext",
+      "parameters": [
+        {
+          "name": "defaultValue",
+          "type": "T",
+          "optional": false
+        }
+      ],
+      "returnType": "Context<T>",
+      "jsdoc": {
+        "description": "Lets you create a    that components can provide or read.",
+        "params": [
+          {
+            "name": "defaultValue",
+            "description": "The value you want the context to have when there is no matching\n   in the tree above the component reading the context. This is meant\nas a \"last resort\" fallback."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.isValidElement",
+      "parameters": [
+        {
+          "name": "object",
+          "type": "{}",
+          "optional": false
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": null
+    },
+    {
+      "name": "React.createRef",
+      "parameters": [],
+      "returnType": "RefObject<T>",
+      "jsdoc": null
+    },
+    {
+      "name": "React.forwardRef",
+      "parameters": [
+        {
+          "name": "render",
+          "type": "ForwardRefRenderFunction<T, PropsWithoutRef<P>>",
+          "optional": false
+        }
+      ],
+      "returnType": "ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>>",
+      "jsdoc": {
+        "description": "Lets your component expose a DOM node to a parent component\nusing a ref.",
+        "params": [
+          {
+            "name": "render",
+            "description": "See the   ."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.memo",
+      "parameters": [
+        {
+          "name": "Component",
+          "type": "FunctionComponent<P>",
+          "optional": false
+        },
+        {
+          "name": "propsAreEqual",
+          "type": "(prevProps: Readonly<P>, nextProps: Readonly<P>) => boolean",
+          "optional": true
+        }
+      ],
+      "returnType": "NamedExoticComponent<P>",
+      "jsdoc": {
+        "description": "Lets you skip re-rendering a component when its props are unchanged.",
+        "params": [
+          {
+            "name": "Component",
+            "description": "The component to memoize."
+          },
+          {
+            "name": "propsAreEqual",
+            "description": "A function that will be used to determine if the props have changed."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.lazy",
+      "parameters": [
+        {
+          "name": "load",
+          "type": "() => Promise<{ default: T; }>",
+          "optional": false
+        }
+      ],
+      "returnType": "LazyExoticComponent<T>",
+      "jsdoc": {
+        "description": "Lets you defer loading a component’s code until it is rendered for the first time.",
+        "params": [
+          {
+            "name": "load",
+            "description": "A function that returns a `Promise` or another thenable (a `Promise`-like object with a\nthen method). React will not call `load` until the first time you attempt to render the returned\ncomponent. After React first calls load, it will wait for it to resolve, and then render the\nresolved value’s `.default` as a React component. Both the returned `Promise` and the `Promise`’s\nresolved value will be cached, so React will not call load more than once. If the `Promise` rejects,\nReact will throw the rejection reason for the nearest Error Boundary to handle."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useContext",
+      "parameters": [
+        {
+          "name": "context",
+          "type": "Context<T>",
+          "optional": false
+        }
+      ],
+      "returnType": "T",
+      "jsdoc": {
+        "description": "Accepts a context object (the value returned from `React.createContext`) and returns the current\ncontext value, as given by the nearest context provider for the given context.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useState",
+      "parameters": [
+        {
+          "name": "initialState",
+          "type": "S | (() => S)",
+          "optional": false
+        }
+      ],
+      "returnType": "[S, Dispatch<SetStateAction<S>>]",
+      "jsdoc": {
+        "description": "Returns a stateful value, and a function to update it.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useReducer",
+      "parameters": [
+        {
+          "name": "reducer",
+          "type": "(prevState: S, ...args: A) => S",
+          "optional": false
+        },
+        {
+          "name": "initialState",
+          "type": "S",
+          "optional": false
+        }
+      ],
+      "returnType": "[S, ActionDispatch<A>]",
+      "jsdoc": {
+        "description": "An alternative to `useState`.\n\n`useReducer` is usually preferable to `useState` when you have complex state logic that involves\nmultiple sub-values. It also lets you optimize performance for components that trigger deep\nupdates because you can pass `dispatch` down instead of callbacks.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useRef",
+      "parameters": [
+        {
+          "name": "initialValue",
+          "type": "T",
+          "optional": false
+        }
+      ],
+      "returnType": "RefObject<T>",
+      "jsdoc": {
+        "description": "`useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument\n(`initialValue`). The returned object will persist for the full lifetime of the component.\n\nNote that `useRef()` is useful for more than the `ref` attribute. It’s handy for keeping any mutable\nvalue around similar to how you’d use instance fields in classes.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useLayoutEffect",
+      "parameters": [
+        {
+          "name": "effect",
+          "type": "EffectCallback",
+          "optional": false
+        },
+        {
+          "name": "deps",
+          "type": "DependencyList",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations.\nUse this to read layout from the DOM and synchronously re-render. Updates scheduled inside\n`useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.\n\nPrefer the standard `useEffect` when possible to avoid blocking visual updates.\n\nIf you’re migrating code from a class component, `useLayoutEffect` fires in the same phase as\n`componentDidMount` and `componentDidUpdate`.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useEffect",
+      "parameters": [
+        {
+          "name": "effect",
+          "type": "EffectCallback",
+          "optional": false
+        },
+        {
+          "name": "deps",
+          "type": "DependencyList",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "Accepts a function that contains imperative, possibly effectful code.",
+        "params": [
+          {
+            "name": "effect",
+            "description": "Imperative function that can return a cleanup function"
+          },
+          {
+            "name": "deps",
+            "description": "If present, effect will only activate if the values in the list change."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useImperativeHandle",
+      "parameters": [
+        {
+          "name": "ref",
+          "type": "Ref<T>",
+          "optional": false
+        },
+        {
+          "name": "init",
+          "type": "() => R",
+          "optional": false
+        },
+        {
+          "name": "deps",
+          "type": "DependencyList",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "`useImperativeHandle` customizes the instance value that is exposed to parent components when using\n`ref`. As always, imperative code using refs should be avoided in most cases.\n\n`useImperativeHandle` should be used with `React.forwardRef`.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useCallback",
+      "parameters": [
+        {
+          "name": "callback",
+          "type": "T",
+          "optional": false
+        },
+        {
+          "name": "deps",
+          "type": "DependencyList",
+          "optional": false
+        }
+      ],
+      "returnType": "T",
+      "jsdoc": {
+        "description": "`useCallback` will return a memoized version of the callback that only changes if one of the `inputs`\nhas changed.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useMemo",
+      "parameters": [
+        {
+          "name": "factory",
+          "type": "() => T",
+          "optional": false
+        },
+        {
+          "name": "deps",
+          "type": "DependencyList",
+          "optional": false
+        }
+      ],
+      "returnType": "T",
+      "jsdoc": {
+        "description": "`useMemo` will only recompute the memoized value when one of the `deps` has changed.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useDebugValue",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "T",
+          "optional": false
+        },
+        {
+          "name": "format",
+          "type": "(value: T) => any",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "`useDebugValue` can be used to display a label for custom hooks in React DevTools.\n\nNOTE: We don’t recommend adding debug values to every custom hook.\nIt’s most valuable for custom hooks that are part of shared libraries.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useDeferredValue",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "T",
+          "optional": false
+        },
+        {
+          "name": "initialValue",
+          "type": "T",
+          "optional": true
+        }
+      ],
+      "returnType": "T",
+      "jsdoc": {
+        "description": "Returns a deferred version of the value that may “lag behind” it.\n\nThis is commonly used to keep the interface responsive when you have something that renders immediately\nbased on user input and something that needs to wait for a data fetch.\n\nA good example of this is a text input.",
+        "params": [
+          {
+            "name": "value",
+            "description": "The value that is going to be deferred"
+          },
+          {
+            "name": "initialValue",
+            "description": "A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there’s no previous version of `value` that it can render instead."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useTransition",
+      "parameters": [],
+      "returnType": "[boolean, TransitionStartFunction]",
+      "jsdoc": {
+        "description": "Allows components to avoid undesirable loading states by waiting for content to load\nbefore transitioning to the next screen. It also allows components to defer slower,\ndata fetching updates until subsequent renders so that more crucial updates can be\nrendered immediately.\n\nThe `useTransition` hook returns two values in an array.\n\nThe first is a boolean, React’s way of informing us whether we’re waiting for the transition to finish.\nThe second is a function that takes a callback. We can use it to tell React which state we want to defer.\n\n**If some state update causes a component to suspend, that state update should be wrapped in a transition.**",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.startTransition",
+      "parameters": [
+        {
+          "name": "scope",
+          "type": "TransitionFunction",
+          "optional": false
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "Similar to `useTransition` but allows uses where hooks are not available.",
+        "params": [
+          {
+            "name": "callback",
+            "description": "A function which causes state updates that can be deferred."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.act",
+      "parameters": [
+        {
+          "name": "callback",
+          "type": "() => VoidOrUndefinedOnly",
+          "optional": false
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "Wrap any code rendering and triggering updates to your components into `act()` calls.\n\nEnsures that the behavior in your tests matches what happens in the browser\nmore closely by executing pending `useEffect`s before returning. This also\nreduces the amount of re-renders done.",
+        "params": [
+          {
+            "name": "callback",
+            "description": "A synchronous, void callback that will execute as a single, complete React commit."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useId",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": null
+    },
+    {
+      "name": "React.useInsertionEffect",
+      "parameters": [
+        {
+          "name": "effect",
+          "type": "EffectCallback",
+          "optional": false
+        },
+        {
+          "name": "deps",
+          "type": "DependencyList",
+          "optional": true
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": {
+        "description": "",
+        "params": [
+          {
+            "name": "effect",
+            "description": "Imperative function that can return a cleanup function"
+          },
+          {
+            "name": "deps",
+            "description": "If present, effect will only activate if the values in the list change."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useSyncExternalStore",
+      "parameters": [
+        {
+          "name": "subscribe",
+          "type": "(onStoreChange: () => void) => () => void",
+          "optional": false
+        },
+        {
+          "name": "getSnapshot",
+          "type": "() => Snapshot",
+          "optional": false
+        },
+        {
+          "name": "getServerSnapshot",
+          "type": "() => Snapshot",
+          "optional": true
+        }
+      ],
+      "returnType": "Snapshot",
+      "jsdoc": {
+        "description": "",
+        "params": [
+          {
+            "name": "subscribe"
+          },
+          {
+            "name": "getSnapshot"
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.useOptimistic",
+      "parameters": [
+        {
+          "name": "passthrough",
+          "type": "State",
+          "optional": false
+        }
+      ],
+      "returnType": "[State, (action: State | ((pendingState: State) => State)) => void]",
+      "jsdoc": null
+    },
+    {
+      "name": "React.use",
+      "parameters": [
+        {
+          "name": "usable",
+          "type": "Usable<T>",
+          "optional": false
+        }
+      ],
+      "returnType": "T",
+      "jsdoc": null
+    },
+    {
+      "name": "React.useActionState",
+      "parameters": [
+        {
+          "name": "action",
+          "type": "(state: Awaited<State>) => State | Promise<State>",
+          "optional": false
+        },
+        {
+          "name": "initialState",
+          "type": "Awaited<State>",
+          "optional": false
+        },
+        {
+          "name": "permalink",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "returnType": "[state: Awaited<State>, dispatch: () => void, isPending: boolean]",
+      "jsdoc": null
+    },
+    {
+      "name": "React.cache",
+      "parameters": [
+        {
+          "name": "fn",
+          "type": "CachedFunction",
+          "optional": false
+        }
+      ],
+      "returnType": "CachedFunction",
+      "jsdoc": null
+    },
+    {
+      "name": "React.captureOwnerStack",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Warning: Only available in development builds.",
+        "params": [],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.map",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "C | readonly C[]",
+          "optional": false
+        },
+        {
+          "name": "fn",
+          "type": "(child: C, index: number) => T",
+          "optional": false
+        }
+      ],
+      "returnType": "C extends null ? C : Exclude<T, boolean>[]",
+      "jsdoc": null
+    },
+    {
+      "name": "React.forEach",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "C | readonly C[]",
+          "optional": false
+        },
+        {
+          "name": "fn",
+          "type": "(child: C, index: number) => void",
+          "optional": false
+        }
+      ],
+      "returnType": "void",
+      "jsdoc": null
+    },
+    {
+      "name": "React.count",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "any",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": null
+    },
+    {
+      "name": "React.only",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "C",
+          "optional": false
+        }
+      ],
+      "returnType": "C extends any[] ? never : C",
+      "jsdoc": null
+    },
+    {
+      "name": "React.toArray",
+      "parameters": [
+        {
+          "name": "children",
+          "type": "ReactNode | ReactNode[]",
+          "optional": false
+        }
+      ],
+      "returnType": "(string | number | bigint | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<...>)[]",
+      "jsdoc": null
+    },
+    {
+      "name": "React.Fragment",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "FragmentProps",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "React.StrictMode",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "{ children?: ReactNode; }",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "React.Suspense",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "SuspenseProps",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "React.toString",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string representation of a string.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.charAt",
+      "parameters": [
+        {
+          "name": "pos",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns the character at the specified index.",
+        "params": [
+          {
+            "name": "pos",
+            "description": "The zero-based index of the desired character."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.charCodeAt",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns the Unicode value of the character at the specified location.",
+        "params": [
+          {
+            "name": "index",
+            "description": "The zero-based index of the desired character. If there is no character at the specified index, NaN is returned."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.concat",
+      "parameters": [
+        {
+          "name": "strings",
+          "type": "string[]",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string that contains the concatenation of two or more strings.",
+        "params": [
+          {
+            "name": "strings",
+            "description": "The strings to append to the end of the string."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.indexOf",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "position",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns the position of the first occurrence of a substring.",
+        "params": [
+          {
+            "name": "searchString",
+            "description": "The substring to search for in the string"
+          },
+          {
+            "name": "position",
+            "description": "The index at which to begin searching the String object. If omitted, search starts at the beginning of the string."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.lastIndexOf",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "position",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns the last occurrence of a substring in the string.",
+        "params": [
+          {
+            "name": "searchString",
+            "description": "The substring to search for."
+          },
+          {
+            "name": "position",
+            "description": "The index at which to begin searching. If omitted, the search begins at the end of the string."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.localeCompare",
+      "parameters": [
+        {
+          "name": "that",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Determines whether two strings are equivalent in the current locale.",
+        "params": [
+          {
+            "name": "that",
+            "description": "String to compare to target string"
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.match",
+      "parameters": [
+        {
+          "name": "regexp",
+          "type": "string | RegExp",
+          "optional": false
+        }
+      ],
+      "returnType": "RegExpMatchArray",
+      "jsdoc": {
+        "description": "Matches a string with a regular expression, and returns an array containing the results of that search.",
+        "params": [
+          {
+            "name": "regexp",
+            "description": "A variable name or string literal containing the regular expression pattern and flags."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.replace",
+      "parameters": [
+        {
+          "name": "searchValue",
+          "type": "string | RegExp",
+          "optional": false
+        },
+        {
+          "name": "replaceValue",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Replaces text in a string, using a regular expression or search string.",
+        "params": [
+          {
+            "name": "searchValue",
+            "description": "A string or regular expression to search for."
+          },
+          {
+            "name": "replaceValue",
+            "description": "A string containing the text to replace. When the    is a `RegExp`, all matches are replaced if the `g` flag is set (or only those matches at the beginning, if the `y` flag is also present). Otherwise, only the first match of    is replaced."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.search",
+      "parameters": [
+        {
+          "name": "regexp",
+          "type": "string | RegExp",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Finds the first substring match in a regular expression search.",
+        "params": [
+          {
+            "name": "regexp",
+            "description": "The regular expression pattern and applicable flags."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.slice",
+      "parameters": [
+        {
+          "name": "start",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "end",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a section of a string.",
+        "params": [
+          {
+            "name": "start",
+            "description": "The index to the beginning of the specified portion of stringObj."
+          },
+          {
+            "name": "end",
+            "description": "The index to the end of the specified portion of stringObj. The substring includes the characters up to, but not including, the character indicated by end.\nIf this value is not specified, the substring continues to the end of stringObj."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.split",
+      "parameters": [
+        {
+          "name": "separator",
+          "type": "string | RegExp",
+          "optional": false
+        },
+        {
+          "name": "limit",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string[]",
+      "jsdoc": {
+        "description": "Split a string into substrings using the specified separator and return them as an array.",
+        "params": [
+          {
+            "name": "separator",
+            "description": "A string that identifies character or characters to use in separating the string. If omitted, a single-element array containing the entire string is returned."
+          },
+          {
+            "name": "limit",
+            "description": "A value used to limit the number of elements returned in the array."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.substring",
+      "parameters": [
+        {
+          "name": "start",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "end",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns the substring at the specified location within a String object.",
+        "params": [
+          {
+            "name": "start",
+            "description": "The zero-based index number indicating the beginning of the substring."
+          },
+          {
+            "name": "end",
+            "description": "Zero-based index number indicating the end of the substring. The substring includes the characters up to, but not including, the character indicated by end.\nIf end is omitted, the characters from start through the end of the original string are returned."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.toLowerCase",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Converts all the alphabetic characters in a string to lowercase.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.toLocaleLowerCase",
+      "parameters": [
+        {
+          "name": "locales",
+          "type": "string | string[]",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Converts all alphabetic characters to lowercase, taking into account the host environment's current locale.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.toUpperCase",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Converts all the alphabetic characters in a string to uppercase.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.toLocaleUpperCase",
+      "parameters": [
+        {
+          "name": "locales",
+          "type": "string | string[]",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a string where all alphabetic characters have been converted to uppercase, taking into account the host environment's current locale.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.trim",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the leading and trailing white space and line terminator characters from a string.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.substr",
+      "parameters": [
+        {
+          "name": "from",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "length",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Gets a substring beginning at the specified location and having the specified length.",
+        "params": [
+          {
+            "name": "from",
+            "description": "The starting position of the desired substring. The index of the first character in the string is zero."
+          },
+          {
+            "name": "length",
+            "description": "The number of characters to include in the returned substring."
+          }
+        ],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.valueOf",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns the primitive value of the specified object.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.codePointAt",
+      "parameters": [
+        {
+          "name": "pos",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "number",
+      "jsdoc": {
+        "description": "Returns a nonnegative integer Number less than 1114112 (0x110000) that is the code point\nvalue of the UTF-16 encoded code point starting at the string element at position pos in\nthe String resulting from converting this object to a String.\nIf there is no element at that position, the result is undefined.\nIf a valid UTF-16 surrogate pair does not begin at pos, the result is the code unit at pos.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.includes",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "position",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": {
+        "description": "Returns true if searchString appears as a substring of the result of converting this\nobject to a String, at one or more positions that are\ngreater than or equal to position; otherwise, returns false.",
+        "params": [
+          {
+            "name": "searchString",
+            "description": "search string"
+          },
+          {
+            "name": "position",
+            "description": "If position is undefined, 0 is assumed, so as to search all of the String."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.endsWith",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "endPosition",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": {
+        "description": "Returns true if the sequence of elements of searchString converted to a String is the\nsame as the corresponding elements of this object (converted to a String) starting at\nendPosition – length(this). Otherwise returns false.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.normalize",
+      "parameters": [
+        {
+          "name": "form",
+          "type": "\"NFC\" | \"NFD\" | \"NFKC\" | \"NFKD\"",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns the String value result of normalizing the string into the normalization form\nnamed by form as specified in Unicode Standard Annex #15, Unicode Normalization Forms.",
+        "params": [
+          {
+            "name": "form",
+            "description": "Applicable values: \"NFC\", \"NFD\", \"NFKC\", or \"NFKD\", If not specified default\nis \"NFC\""
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.repeat",
+      "parameters": [
+        {
+          "name": "count",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a String value that is made from count copies appended together. If count is 0,\nthe empty string is returned.",
+        "params": [
+          {
+            "name": "count",
+            "description": "number of copies to append"
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.startsWith",
+      "parameters": [
+        {
+          "name": "searchString",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "position",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": {
+        "description": "Returns true if the sequence of elements of searchString converted to a String is the\nsame as the corresponding elements of this object (converted to a String) starting at\nposition. Otherwise returns false.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.anchor",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns an `<a>` HTML anchor element and sets the name attribute to the text value",
+        "params": [
+          {
+            "name": "name"
+          }
+        ],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.big",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<big>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.blink",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<blink>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.bold",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<b>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.fixed",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<tt>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.fontcolor",
+      "parameters": [
+        {
+          "name": "color",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<font>` HTML element and sets the color attribute value",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.fontsize",
+      "parameters": [
+        {
+          "name": "size",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<font>` HTML element and sets the size attribute value",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.italics",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns an `<i>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.link",
+      "parameters": [
+        {
+          "name": "url",
+          "type": "string",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns an `<a>` HTML element and sets the href attribute value",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.small",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<small>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.strike",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<strike>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.sub",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<sub>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.sup",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Returns a `<sup>` HTML element",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.padStart",
+      "parameters": [
+        {
+          "name": "maxLength",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "fillString",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Pads the current string with a given string (possibly repeated) so that the resulting string reaches a given length.\nThe padding is applied from the start (left) of the current string.",
+        "params": [
+          {
+            "name": "maxLength",
+            "description": "The length of the resulting string once the current string has been padded.\nIf this parameter is smaller than the current string's length, the current string will be returned as it is."
+          },
+          {
+            "name": "fillString",
+            "description": "The string to pad the current string with.\nIf this string is too long, it will be truncated and the left-most part will be applied.\nThe default value for this parameter is \" \" (U+0020)."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.padEnd",
+      "parameters": [
+        {
+          "name": "maxLength",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "fillString",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Pads the current string with a given string (possibly repeated) so that the resulting string reaches a given length.\nThe padding is applied from the end (right) of the current string.",
+        "params": [
+          {
+            "name": "maxLength",
+            "description": "The length of the resulting string once the current string has been padded.\nIf this parameter is smaller than the current string's length, the current string will be returned as it is."
+          },
+          {
+            "name": "fillString",
+            "description": "The string to pad the current string with.\nIf this string is too long, it will be truncated and the left-most part will be applied.\nThe default value for this parameter is \" \" (U+0020)."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.trimEnd",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the trailing white space and line terminator characters from a string.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.trimStart",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the leading white space and line terminator characters from a string.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.trimLeft",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the leading white space and line terminator characters from a string.",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.trimRight",
+      "parameters": [],
+      "returnType": "string",
+      "jsdoc": {
+        "description": "Removes the trailing white space and line terminator characters from a string.",
+        "params": [],
+        "deprecated": true
+      }
+    },
+    {
+      "name": "React.matchAll",
+      "parameters": [
+        {
+          "name": "regexp",
+          "type": "RegExp",
+          "optional": false
+        }
+      ],
+      "returnType": "RegExpStringIterator<RegExpExecArray>",
+      "jsdoc": {
+        "description": "Matches a string with a regular expression, and returns an iterable of matches\ncontaining the results of that search.",
+        "params": [
+          {
+            "name": "regexp",
+            "description": "A variable name or string literal containing the regular expression pattern and flags."
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.__@iterator@6167",
+      "parameters": [],
+      "returnType": "StringIterator<string>",
+      "jsdoc": {
+        "description": "Iterator",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "React.at",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "returnType": "string",
+      "jsdoc": null
+    },
+    {
+      "name": "React.Profiler",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "ProfilerProps",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": null
+    },
+    {
+      "name": "React.contextType",
+      "parameters": [
+        {
+          "name": "props",
+          "type": "ProviderProps<any>",
+          "optional": false
+        }
+      ],
+      "returnType": "ReactNode",
+      "jsdoc": {
+        "description": "If set, `this.context` will be set at runtime to the current value of the given Context.",
+        "params": [],
+        "deprecated": false
+      }
+    }
+  ],
+  "version": "18.2.0"
+}

@@ -1,7 +1,5 @@
 [
-    {
-      "name": "@types/lodash",
-      "docSource": "https://lodash.com/docs/4.17.15",
-      "crawler": "puppeteer"
-    }
-  ]
+  { "name": "axios", "dtsPath": "./node_modules/axios/index.d.ts", "version": "1.7.2" },
+  { "name": "lodash", "dtsPath": "./node_modules/@types/lodash/index.d.ts", "version": "4.14.191" },
+  { "name": "react", "dtsPath": "./node_modules/@types/react/index.d.ts", "version": "18.2.0" }
+]
