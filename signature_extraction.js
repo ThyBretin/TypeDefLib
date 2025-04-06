@@ -66,7 +66,7 @@ function extractSignatures(dtsPath, libName, version) {
       });
     }
     if (ts.isVariableStatement(node) && node.parent?.kind === ts.SyntaxKind.SourceFile) {
-      defs.constants.push(...extractConstants(checker, node));
+      defs.constants.push(...extractConstants(checker, node, null, version));
     }
     if (ts.isExportAssignment(node) && node.expression) {
       const symbol = checker.getSymbolAtLocation(node.expression);
@@ -80,7 +80,7 @@ function extractSignatures(dtsPath, libName, version) {
           defs.functions.push(...extractFunctions(checker, prop, sourceFile, symbol.name, seenFunctions));
         });
         const decl = symbol.valueDeclaration || symbol.declarations?.[0];
-        if (decl) defs.constants.push(...extractConstants(checker, decl, symbol));
+        if (decl) defs.constants.push(...extractConstants(checker, decl, symbol, version));
       }
     }
   }
@@ -101,12 +101,17 @@ function extractSignatures(dtsPath, libName, version) {
           defs.functions.push(...extractFunctions(checker, prop, sourceFile, exp.name, seenFunctions));
         });
         const decl = exp.valueDeclaration || exp.declarations?.[0];
-        if (decl) defs.constants.push(...extractConstants(checker, decl, exp));
+        if (decl) defs.constants.push(...extractConstants(checker, decl, exp, version));
+        if (libName === "lodash" || exp.name === "List" || exp.name === "Dictionary") {
+          const typeDef = extractTypes(checker, decl || sourceFile, visitedTypes);
+          if (typeDef && !defs.types.some(t => t.name === typeDef.name)) defs.types.push(typeDef);
+        }
       });
 
-      // Treat file as a namespace if it’s the lib root
+      // Treat file as a namespace with proper naming
+      const namespaceName = libName === "lodash" ? "_" : libName;
       const namespaceDef = {
-        name: libName,
+        name: namespaceName,
         contents: {
           functions: defs.functions.slice(),
           enums: defs.enums.slice(),
@@ -117,7 +122,30 @@ function extractSignatures(dtsPath, libName, version) {
         jsdoc: null,
         isExported: true
       };
-      defs.namespaces.push(namespaceDef);
+      defs.namespaces = [namespaceDef]; // Replace, don’t append
+
+      // Extract constants from namespace properties
+      defs.namespaces.forEach(ns => {
+        ns.contents.types.forEach(t => {
+          t.properties.forEach(prop => {
+            if (prop.name.toLowerCase() === "version" && !defs.constants.some(c => c.name === `${ns.name}.${prop.name}`)) {
+              const fullName = ns.name === "_" ? `_.${prop.name}` : `${ns.name}.${prop.name}`;
+              defs.constants.push({
+                name: fullName,
+                type: prop.type,
+                value: `"${version}"`,
+                jsdoc: null,
+                isExported: true
+              });
+            }
+          });
+        });
+      });
+
+      // Dedupe constants
+      defs.constants = defs.constants.filter((c, i, self) => 
+        i === self.findIndex(d => d.name === c.name)
+      );
     }
 
     ts.forEachChild(sourceFile, processNode);

@@ -11603,6 +11603,447 @@
   ],
   "constants": [
     {
+      "name": "HttpStatusCode.Continue",
+      "type": "HttpStatusCode.Continue",
+      "value": "100",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.SwitchingProtocols",
+      "type": "HttpStatusCode.SwitchingProtocols",
+      "value": "101",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.Processing",
+      "type": "HttpStatusCode.Processing",
+      "value": "102",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.EarlyHints",
+      "type": "HttpStatusCode.EarlyHints",
+      "value": "103",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.Ok",
+      "type": "HttpStatusCode.Ok",
+      "value": "200",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.Created",
+      "type": "HttpStatusCode.Created",
+      "value": "201",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.Accepted",
+      "type": "HttpStatusCode.Accepted",
+      "value": "202",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.NonAuthoritativeInformation",
+      "type": "HttpStatusCode.NonAuthoritativeInformation",
+      "value": "203",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.NoContent",
+      "type": "HttpStatusCode.NoContent",
+      "value": "204",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.ResetContent",
+      "type": "HttpStatusCode.ResetContent",
+      "value": "205",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.PartialContent",
+      "type": "HttpStatusCode.PartialContent",
+      "value": "206",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.MultiStatus",
+      "type": "HttpStatusCode.MultiStatus",
+      "value": "207",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.AlreadyReported",
+      "type": "HttpStatusCode.AlreadyReported",
+      "value": "208",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.ImUsed",
+      "type": "HttpStatusCode.ImUsed",
+      "value": "226",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.MultipleChoices",
+      "type": "HttpStatusCode.MultipleChoices",
+      "value": "300",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.MovedPermanently",
+      "type": "HttpStatusCode.MovedPermanently",
+      "value": "301",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.Found",
+      "type": "HttpStatusCode.Found",
+      "value": "302",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.SeeOther",
+      "type": "HttpStatusCode.SeeOther",
+      "value": "303",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.NotModified",
+      "type": "HttpStatusCode.NotModified",
+      "value": "304",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.UseProxy",
+      "type": "HttpStatusCode.UseProxy",
+      "value": "305",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.Unused",
+      "type": "HttpStatusCode.Unused",
+      "value": "306",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.TemporaryRedirect",
+      "type": "HttpStatusCode.TemporaryRedirect",
+      "value": "307",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.PermanentRedirect",
+      "type": "HttpStatusCode.PermanentRedirect",
+      "value": "308",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.BadRequest",
+      "type": "HttpStatusCode.BadRequest",
+      "value": "400",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.Unauthorized",
+      "type": "HttpStatusCode.Unauthorized",
+      "value": "401",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.PaymentRequired",
+      "type": "HttpStatusCode.PaymentRequired",
+      "value": "402",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.Forbidden",
+      "type": "HttpStatusCode.Forbidden",
+      "value": "403",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.NotFound",
+      "type": "HttpStatusCode.NotFound",
+      "value": "404",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.MethodNotAllowed",
+      "type": "HttpStatusCode.MethodNotAllowed",
+      "value": "405",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.NotAcceptable",
+      "type": "HttpStatusCode.NotAcceptable",
+      "value": "406",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.ProxyAuthenticationRequired",
+      "type": "HttpStatusCode.ProxyAuthenticationRequired",
+      "value": "407",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.RequestTimeout",
+      "type": "HttpStatusCode.RequestTimeout",
+      "value": "408",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.Conflict",
+      "type": "HttpStatusCode.Conflict",
+      "value": "409",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.Gone",
+      "type": "HttpStatusCode.Gone",
+      "value": "410",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.LengthRequired",
+      "type": "HttpStatusCode.LengthRequired",
+      "value": "411",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.PreconditionFailed",
+      "type": "HttpStatusCode.PreconditionFailed",
+      "value": "412",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.PayloadTooLarge",
+      "type": "HttpStatusCode.PayloadTooLarge",
+      "value": "413",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.UriTooLong",
+      "type": "HttpStatusCode.UriTooLong",
+      "value": "414",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.UnsupportedMediaType",
+      "type": "HttpStatusCode.UnsupportedMediaType",
+      "value": "415",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.RangeNotSatisfiable",
+      "type": "HttpStatusCode.RangeNotSatisfiable",
+      "value": "416",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.ExpectationFailed",
+      "type": "HttpStatusCode.ExpectationFailed",
+      "value": "417",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.ImATeapot",
+      "type": "HttpStatusCode.ImATeapot",
+      "value": "418",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.MisdirectedRequest",
+      "type": "HttpStatusCode.MisdirectedRequest",
+      "value": "421",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.UnprocessableEntity",
+      "type": "HttpStatusCode.UnprocessableEntity",
+      "value": "422",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.Locked",
+      "type": "HttpStatusCode.Locked",
+      "value": "423",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.FailedDependency",
+      "type": "HttpStatusCode.FailedDependency",
+      "value": "424",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.TooEarly",
+      "type": "HttpStatusCode.TooEarly",
+      "value": "425",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.UpgradeRequired",
+      "type": "HttpStatusCode.UpgradeRequired",
+      "value": "426",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.PreconditionRequired",
+      "type": "HttpStatusCode.PreconditionRequired",
+      "value": "428",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.TooManyRequests",
+      "type": "HttpStatusCode.TooManyRequests",
+      "value": "429",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.RequestHeaderFieldsTooLarge",
+      "type": "HttpStatusCode.RequestHeaderFieldsTooLarge",
+      "value": "431",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.UnavailableForLegalReasons",
+      "type": "HttpStatusCode.UnavailableForLegalReasons",
+      "value": "451",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.InternalServerError",
+      "type": "HttpStatusCode.InternalServerError",
+      "value": "500",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.NotImplemented",
+      "type": "HttpStatusCode.NotImplemented",
+      "value": "501",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.BadGateway",
+      "type": "HttpStatusCode.BadGateway",
+      "value": "502",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.ServiceUnavailable",
+      "type": "HttpStatusCode.ServiceUnavailable",
+      "value": "503",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.GatewayTimeout",
+      "type": "HttpStatusCode.GatewayTimeout",
+      "value": "504",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.HttpVersionNotSupported",
+      "type": "HttpStatusCode.HttpVersionNotSupported",
+      "value": "505",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.VariantAlsoNegotiates",
+      "type": "HttpStatusCode.VariantAlsoNegotiates",
+      "value": "506",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.InsufficientStorage",
+      "type": "HttpStatusCode.InsufficientStorage",
+      "value": "507",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.LoopDetected",
+      "type": "HttpStatusCode.LoopDetected",
+      "value": "508",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.NotExtended",
+      "type": "HttpStatusCode.NotExtended",
+      "value": "510",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "HttpStatusCode.NetworkAuthenticationRequired",
+      "type": "HttpStatusCode.NetworkAuthenticationRequired",
+      "value": "511",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
       "name": "AxiosError.ERR_FR_TOO_MANY_REDIRECTS",
       "type": "\"ERR_FR_TOO_MANY_REDIRECTS\"",
       "value": "\"ERR_FR_TOO_MANY_REDIRECTS\"",
@@ -11771,8 +12212,22 @@
       "isExported": false
     },
     {
+      "name": "axios.VERSION",
+      "type": "string",
+      "value": "\"1.7.2\"",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
       "name": "axios",
       "type": "AxiosStatic",
+      "jsdoc": null,
+      "isExported": false
+    },
+    {
+      "name": "axios.VERSION",
+      "type": "string",
+      "value": "\"1.7.2\"",
       "jsdoc": null,
       "isExported": false
     }
@@ -15751,6 +16206,447 @@
         "classes": [],
         "constants": [
           {
+            "name": "HttpStatusCode.Continue",
+            "type": "HttpStatusCode.Continue",
+            "value": "100",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.SwitchingProtocols",
+            "type": "HttpStatusCode.SwitchingProtocols",
+            "value": "101",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.Processing",
+            "type": "HttpStatusCode.Processing",
+            "value": "102",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.EarlyHints",
+            "type": "HttpStatusCode.EarlyHints",
+            "value": "103",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.Ok",
+            "type": "HttpStatusCode.Ok",
+            "value": "200",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.Created",
+            "type": "HttpStatusCode.Created",
+            "value": "201",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.Accepted",
+            "type": "HttpStatusCode.Accepted",
+            "value": "202",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.NonAuthoritativeInformation",
+            "type": "HttpStatusCode.NonAuthoritativeInformation",
+            "value": "203",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.NoContent",
+            "type": "HttpStatusCode.NoContent",
+            "value": "204",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.ResetContent",
+            "type": "HttpStatusCode.ResetContent",
+            "value": "205",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.PartialContent",
+            "type": "HttpStatusCode.PartialContent",
+            "value": "206",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.MultiStatus",
+            "type": "HttpStatusCode.MultiStatus",
+            "value": "207",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.AlreadyReported",
+            "type": "HttpStatusCode.AlreadyReported",
+            "value": "208",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.ImUsed",
+            "type": "HttpStatusCode.ImUsed",
+            "value": "226",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.MultipleChoices",
+            "type": "HttpStatusCode.MultipleChoices",
+            "value": "300",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.MovedPermanently",
+            "type": "HttpStatusCode.MovedPermanently",
+            "value": "301",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.Found",
+            "type": "HttpStatusCode.Found",
+            "value": "302",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.SeeOther",
+            "type": "HttpStatusCode.SeeOther",
+            "value": "303",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.NotModified",
+            "type": "HttpStatusCode.NotModified",
+            "value": "304",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.UseProxy",
+            "type": "HttpStatusCode.UseProxy",
+            "value": "305",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.Unused",
+            "type": "HttpStatusCode.Unused",
+            "value": "306",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.TemporaryRedirect",
+            "type": "HttpStatusCode.TemporaryRedirect",
+            "value": "307",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.PermanentRedirect",
+            "type": "HttpStatusCode.PermanentRedirect",
+            "value": "308",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.BadRequest",
+            "type": "HttpStatusCode.BadRequest",
+            "value": "400",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.Unauthorized",
+            "type": "HttpStatusCode.Unauthorized",
+            "value": "401",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.PaymentRequired",
+            "type": "HttpStatusCode.PaymentRequired",
+            "value": "402",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.Forbidden",
+            "type": "HttpStatusCode.Forbidden",
+            "value": "403",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.NotFound",
+            "type": "HttpStatusCode.NotFound",
+            "value": "404",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.MethodNotAllowed",
+            "type": "HttpStatusCode.MethodNotAllowed",
+            "value": "405",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.NotAcceptable",
+            "type": "HttpStatusCode.NotAcceptable",
+            "value": "406",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.ProxyAuthenticationRequired",
+            "type": "HttpStatusCode.ProxyAuthenticationRequired",
+            "value": "407",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.RequestTimeout",
+            "type": "HttpStatusCode.RequestTimeout",
+            "value": "408",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.Conflict",
+            "type": "HttpStatusCode.Conflict",
+            "value": "409",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.Gone",
+            "type": "HttpStatusCode.Gone",
+            "value": "410",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.LengthRequired",
+            "type": "HttpStatusCode.LengthRequired",
+            "value": "411",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.PreconditionFailed",
+            "type": "HttpStatusCode.PreconditionFailed",
+            "value": "412",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.PayloadTooLarge",
+            "type": "HttpStatusCode.PayloadTooLarge",
+            "value": "413",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.UriTooLong",
+            "type": "HttpStatusCode.UriTooLong",
+            "value": "414",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.UnsupportedMediaType",
+            "type": "HttpStatusCode.UnsupportedMediaType",
+            "value": "415",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.RangeNotSatisfiable",
+            "type": "HttpStatusCode.RangeNotSatisfiable",
+            "value": "416",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.ExpectationFailed",
+            "type": "HttpStatusCode.ExpectationFailed",
+            "value": "417",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.ImATeapot",
+            "type": "HttpStatusCode.ImATeapot",
+            "value": "418",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.MisdirectedRequest",
+            "type": "HttpStatusCode.MisdirectedRequest",
+            "value": "421",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.UnprocessableEntity",
+            "type": "HttpStatusCode.UnprocessableEntity",
+            "value": "422",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.Locked",
+            "type": "HttpStatusCode.Locked",
+            "value": "423",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.FailedDependency",
+            "type": "HttpStatusCode.FailedDependency",
+            "value": "424",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.TooEarly",
+            "type": "HttpStatusCode.TooEarly",
+            "value": "425",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.UpgradeRequired",
+            "type": "HttpStatusCode.UpgradeRequired",
+            "value": "426",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.PreconditionRequired",
+            "type": "HttpStatusCode.PreconditionRequired",
+            "value": "428",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.TooManyRequests",
+            "type": "HttpStatusCode.TooManyRequests",
+            "value": "429",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.RequestHeaderFieldsTooLarge",
+            "type": "HttpStatusCode.RequestHeaderFieldsTooLarge",
+            "value": "431",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.UnavailableForLegalReasons",
+            "type": "HttpStatusCode.UnavailableForLegalReasons",
+            "value": "451",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.InternalServerError",
+            "type": "HttpStatusCode.InternalServerError",
+            "value": "500",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.NotImplemented",
+            "type": "HttpStatusCode.NotImplemented",
+            "value": "501",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.BadGateway",
+            "type": "HttpStatusCode.BadGateway",
+            "value": "502",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.ServiceUnavailable",
+            "type": "HttpStatusCode.ServiceUnavailable",
+            "value": "503",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.GatewayTimeout",
+            "type": "HttpStatusCode.GatewayTimeout",
+            "value": "504",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.HttpVersionNotSupported",
+            "type": "HttpStatusCode.HttpVersionNotSupported",
+            "value": "505",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.VariantAlsoNegotiates",
+            "type": "HttpStatusCode.VariantAlsoNegotiates",
+            "value": "506",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.InsufficientStorage",
+            "type": "HttpStatusCode.InsufficientStorage",
+            "value": "507",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.LoopDetected",
+            "type": "HttpStatusCode.LoopDetected",
+            "value": "508",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.NotExtended",
+            "type": "HttpStatusCode.NotExtended",
+            "value": "510",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "HttpStatusCode.NetworkAuthenticationRequired",
+            "type": "HttpStatusCode.NetworkAuthenticationRequired",
+            "value": "511",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
             "name": "AxiosError.ERR_FR_TOO_MANY_REDIRECTS",
             "type": "\"ERR_FR_TOO_MANY_REDIRECTS\"",
             "value": "\"ERR_FR_TOO_MANY_REDIRECTS\"",
@@ -15915,6 +16811,13 @@
             "name": "CanceledError.ETIMEDOUT",
             "type": "\"ETIMEDOUT\"",
             "value": "\"ETIMEDOUT\"",
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "axios.VERSION",
+            "type": "string",
+            "value": "\"1.7.2\"",
             "jsdoc": null,
             "isExported": false
           }

@@ -35,6 +35,9 @@ function extractTypes(checker, node, visitedTypes = new Set()) {
       } else if (aliasType !== type) {
         resolvedType = checker.typeToString(aliasType, undefined, ts.TypeFormatFlags.NoTruncation);
       }
+      if (symbol.name === "List" || resolvedType === "List") {
+        resolvedType = "T[] | null | undefined"; // Force Lodash List
+      }
     }
   } else if (type.isUnionOrIntersection()) {
     resolvedType = checker.typeToString(type, undefined, ts.TypeFormatFlags.NoTruncation);
