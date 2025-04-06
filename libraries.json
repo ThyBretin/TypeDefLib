@@ -1,0 +1,7 @@
+[
+    {
+      "name": "@types/lodash",
+      "docSource": "https://lodash.com/docs/4.17.15",
+      "crawler": "puppeteer"
+    }
+  ]
