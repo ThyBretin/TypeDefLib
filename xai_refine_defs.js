@@ -15,14 +15,13 @@ You’re Grok from xAI. Here’s JSON signatures from ${json.version || "a libra
 
 Refine it—add JSDoc for functions, methods, types, etc. Use existing jsdoc (as "originalDescription") or craft concise ones (as "xaiDescription"). Link to types/enums/classes (e.g., "Uses List<T>"). Keep the structure intact—same keys, just enhanced with JSDoc.
 
-Output:
-- Refined JSON with added JSDoc fields.
+Output *only* the refined JSON—no extra text, no "Here's the..."—just the raw JSON object.
 `;
   try {
     const response = await axios.post("https://api.x.ai/v1/chat/completions", {
-      model: "grok-2-1212", // Grok 2 API model—stable and available
+      model: "grok-2-1212",
       messages: [
-        { role: "system", content: "You are Grok from xAI." },
+        { role: "system", content: "You are Grok from xAI. Return only JSON, no commentary." },
         { role: "user", content: prompt + JSON.stringify(json) }
       ]
     }, {
@@ -38,15 +37,18 @@ Output:
 
     const refinedJson = JSON.parse(response.data.choices[0].message.content);
 
-    // Circular Check
+    // Validation
     const missing = validateRefinement(json, refinedJson);
     if (missing.length > 0) {
       console.warn(`xAI missed stuff in ${filePath}: ${missing.join(", ")}. Retrying...`);
-      const retryPrompt = `${prompt}\n\nLast time, you missed JSDoc for: ${missing.join(", ")}. Fix it.`;
+      const retryPrompt = `
+${prompt}
+Last time, you missed JSDoc for: ${missing.join(", ")}. Fix it. Output *only* the refined JSON—no extra text.
+`;
       const retryResponse = await axios.post("https://api.x.ai/v1/chat/completions", {
         model: "grok-2-1212",
         messages: [
-          { role: "system", content: "You are Grok from xAI." },
+          { role: "system", content: "You are Grok from xAI. Return only JSON, no commentary." },
           { role: "user", content: retryPrompt + JSON.stringify(json) }
         ],
         headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" }
@@ -60,7 +62,7 @@ Output:
     }
 
     await fs.mkdir("./libraryDefs/refined", { recursive: true });
-    const outputPath = `./libraryDefs/refined/${filePath.split("/").pop().replace(".cleaned.json", ".refined.json")}`;
+    const outputPath = `./libraryDefs/refined/${filePath.split("/").pop().replace(".sanitize.json", ".refined.json")}`;
     await fs.writeFile(outputPath, JSON.stringify(refinedJson, null, 2));
     console.log(`Refined ${filePath} → ${outputPath}`);
     return refinedJson;

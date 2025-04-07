@@ -54,14 +54,14 @@ function dedupeConstants(defs) {
 }
 
 async function cleanupAll() {
-  console.log("Step 3: Cleaning signatures...");
+  console.log("Step 3: Sanitizing signatures...");
   const libraries = JSON.parse(await fs.readFile("./libraries.json", "utf8"));
-  await fs.mkdir("./libraryDefs/clean", { recursive: true });
+  await fs.mkdir("./libraryDefs/sanitize", { recursive: true });
   for (const lib of libraries) {
     const { name, version } = lib;
     const baseName = name.split("/").pop();
     const inputFile = `./libraryDefs/signatures/${baseName}-${version}.signatures.json`;
-    const outputFile = `./libraryDefs/clean/${baseName}-${version}.cleaned.json`;
+    const outputFile = `./libraryDefs/sanitize/${baseName}-${version}.sanitize.json`;
     
     if (!await fs.stat(inputFile).catch(() => false)) {
       console.error(`File not found: ${inputFile}`);
@@ -76,7 +76,7 @@ async function cleanupAll() {
     const deduped = dedupeConstants(json);
     const cleaned = cleanObject(deduped);
     await fs.writeFile(outputFile, JSON.stringify(cleaned, null, 2));
-    console.log(`Cleaned ${inputFile} → ${outputFile}`);
+    console.log(`Sanitized ${inputFile} → ${outputFile}`);
   }
 }
 
