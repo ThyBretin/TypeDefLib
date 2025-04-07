@@ -4,5 +4,5 @@ dist/
 .DS_Store
 package-lock.json
 
-/libraryDefs/sanitize
-/libraryDefs/signatures
+/libraryDefs/sanitized
+/libraryDefs/extraction

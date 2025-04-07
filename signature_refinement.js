@@ -62,7 +62,7 @@ Last time, you missed JSDoc for: ${missing.join(", ")}. Fix it. Output *only* th
     }
 
     await fs.mkdir("./libraryDefs/refined", { recursive: true });
-    const outputPath = `./libraryDefs/refined/${filePath.split("/").pop().replace(".sanitize.json", ".refined.json")}`;
+    const outputPath = `./libraryDefs/refined/${filePath.split("/").pop().replace(".sanitized.json", ".refined.json")}`;
     await fs.writeFile(outputPath, JSON.stringify(refinedJson, null, 2));
     console.log(`Refined ${filePath} → ${outputPath}`);
     return refinedJson;
@@ -119,7 +119,7 @@ async function main() {
     return;
   }
 
-  const testFile = "./libraryDefs/clean/axios-1.8.4.cleaned.json";
+  const testFile = "./libraryDefs/sanitized/axios-1.8.4.sanitized.json";
   if (!await fs.stat(testFile).catch(() => false)) {
     console.error(`Test file not found: ${testFile}`);
     return;
