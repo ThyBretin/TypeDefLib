@@ -1,10 +1,11 @@
+require("dotenv").config();
 const axios = require("axios");
 const fs = require("fs").promises;
 
 async function refineWithXAI(filePath, apiKey) {
   const json = JSON.parse(await fs.readFile(filePath, "utf-8"));
   const prompt = `
-You’re Grok 3 from xAI. I’ve got JSON signatures from ${json.version ? json.version : "a library"}:
+You’re Grok from xAI. Here’s JSON signatures from ${json.version || "a library"}:
 - "functions": [{name, parameters[{name, type, optional}], returnType, jsdoc}]
 - "enums": [{name, members[{name, value}], jsdoc}]
 - "types": [{name, type, properties[{name, type, optional}], extends, jsdoc}]
@@ -12,44 +13,119 @@ You’re Grok 3 from xAI. I’ve got JSON signatures from ${json.version ? json.
 - "constants": [{name, type, value, jsdoc}]
 - "namespaces": [{name, contents{functions, enums, types, classes, constants}, jsdoc}]
 
-For this:
-1. Generate JSDoc for functions, methods—use existing jsdoc (as "originalDescription") or craft concise ones (as "xaiDescription"). Link to types/enums/classes (e.g., "Uses List<T>").
-2. Build ParticleGraph nodes (e.g., "useState:Function", "AxiosError:Class") and edges (e.g., "map -> List").
+Refine it—add JSDoc for functions, methods, types, etc. Use existing jsdoc (as "originalDescription") or craft concise ones (as "xaiDescription"). Link to types/enums/classes (e.g., "Uses List<T>"). Keep the structure intact—same keys, just enhanced with JSDoc.
 
 Output:
-- JSDoc text (\`refined/${filePath.split("/").pop().replace(".cleaned.json", ".jsdoc.txt")}\`).
-- Graph JSON (\`refined/${filePath.split("/").pop().replace(".cleaned.json", ".graph.json")}\`) with { nodes: [{ id, label, type }], edges: [{ from, to }] }.
+- Refined JSON with added JSDoc fields.
 `;
-  const response = await axios.post("https://api.xai.com/grok", { // Replace with real endpoint
-    prompt,
-    data: json
-  }, {
-    headers: { "Authorization": `Bearer ${apiKey}` }
-  });
+  try {
+    const response = await axios.post("https://api.x.ai/v1/chat/completions", {
+      model: "grok-2-1212", // Grok 2 API model—stable and available
+      messages: [
+        { role: "system", content: "You are Grok from xAI." },
+        { role: "user", content: prompt + JSON.stringify(json) }
+      ]
+    }, {
+      headers: { 
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json"
+      }
+    });
 
-  const { jsdoc, graph } = response.data;
-  if (!fs.existsSync("./libraryDefs/refined")) {
-    fs.mkdirSync("./libraryDefs/refined", { recursive: true });
+    if (!response.data?.choices?.[0]?.message?.content) {
+      throw new Error("Invalid response from xAI: no refined JSON");
+    }
+
+    const refinedJson = JSON.parse(response.data.choices[0].message.content);
+
+    // Circular Check
+    const missing = validateRefinement(json, refinedJson);
+    if (missing.length > 0) {
+      console.warn(`xAI missed stuff in ${filePath}: ${missing.join(", ")}. Retrying...`);
+      const retryPrompt = `${prompt}\n\nLast time, you missed JSDoc for: ${missing.join(", ")}. Fix it.`;
+      const retryResponse = await axios.post("https://api.x.ai/v1/chat/completions", {
+        model: "grok-2-1212",
+        messages: [
+          { role: "system", content: "You are Grok from xAI." },
+          { role: "user", content: retryPrompt + JSON.stringify(json) }
+        ],
+        headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" }
+      });
+      const retryJson = JSON.parse(retryResponse.data.choices[0].message.content);
+      const retryMissing = validateRefinement(json, retryJson);
+      if (retryMissing.length > 0) {
+        throw new Error(`Retry failed—still missing: ${retryMissing.join(", ")}`);
+      }
+      return retryJson;
+    }
+
+    await fs.mkdir("./libraryDefs/refined", { recursive: true });
+    const outputPath = `./libraryDefs/refined/${filePath.split("/").pop().replace(".cleaned.json", ".refined.json")}`;
+    await fs.writeFile(outputPath, JSON.stringify(refinedJson, null, 2));
+    console.log(`Refined ${filePath} → ${outputPath}`);
+    return refinedJson;
+  } catch (error) {
+    console.error(`Failed to refine ${filePath}: ${error.message}`);
+    if (error.response) {
+      console.error("Status:", error.response.status);
+      console.error("Body:", error.response.data);
+    }
+    throw error;
   }
-  await fs.writeFile(`./libraryDefs/refined/${filePath.split("/").pop().replace(".cleaned.json", ".jsdoc.txt")}`, jsdoc);
-  await fs.writeFile(`./libraryDefs/refined/${filePath.split("/").pop().replace(".cleaned.json", ".graph.json")}`, JSON.stringify(graph, null, 2));
-  console.log(`Refined ${filePath}`);
+}
+
+function validateRefinement(original, refined) {
+  const missing = [];
+  const checkSection = (orig, ref, section, parent = "") => {
+    if (!orig[section] || !Array.isArray(orig[section])) return;
+    orig[section].forEach((item, i) => {
+      const refItem = ref[section]?.[i];
+      const name = item.name || `${section}[${i}]`;
+      if (!refItem) {
+        missing.push(`${parent}${name}`);
+      } else if (!refItem.jsdoc || (!refItem.jsdoc.originalDescription && !refItem.jsdoc.xaiDescription)) {
+        missing.push(`${parent}${name}.jsdoc`);
+      }
+    });
+  };
+
+  checkSection(original, refined, "functions");
+  checkSection(original, refined, "enums");
+  checkSection(original, refined, "types");
+  checkSection(original, refined, "classes");
+  checkSection(original, refined, "constants");
+  if (original.namespaces) {
+    original.namespaces.forEach((ns, i) => {
+      const refNs = refined.namespaces?.[i];
+      if (refNs && ns.contents) {
+        checkSection(ns.contents, refNs.contents, "functions", `${ns.name}.`);
+        checkSection(ns.contents, refNs.contents, "enums", `${ns.name}.`);
+        checkSection(ns.contents, refNs.contents, "types", `${ns.name}.`);
+        checkSection(ns.contents, refNs.contents, "classes", `${ns.name}.`);
+        checkSection(ns.contents, refNs.contents, "constants", `${ns.name}.`);
+      }
+    });
+  }
+  return missing;
 }
 
 async function main() {
   console.log("Step 4: Refining with xAI...");
-  const apiKey = "your-xai-api-key-here";
-  const libraries = JSON.parse(await fs.readFile("./libraries.json", "utf8"));
-  for (const lib of libraries) {
-    const { name, version } = lib;
-    const baseName = name.split("/").pop();
-    const filePath = `./libraryDefs/clean/${baseName}-${version}.cleaned.json`;
-    if (!await fs.stat(filePath).catch(() => false)) {
-      console.error(`File not found: ${filePath}`);
-      continue;
-    }
-    await refineWithXAI(filePath, apiKey);
+  const apiKey = process.env.xAIKey;
+  if (!apiKey) {
+    console.error("Please set xAIKey in .env file!");
+    return;
   }
+
+  const testFile = "./libraryDefs/clean/axios-1.8.4.cleaned.json";
+  if (!await fs.stat(testFile).catch(() => false)) {
+    console.error(`Test file not found: ${testFile}`);
+    return;
+  }
+  await refineWithXAI(testFile, apiKey);
 }
 
-main().catch(console.error);
+main().catch(error => {
+  console.error("Refinement failed:", error);
+  process.exit(1);
+});
