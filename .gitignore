@@ -5,4 +5,8 @@ dist/
 package-lock.json
 
 /libraryDefs/sanitized
-/libraryDefs/extraction
+/libraryDefs/extracted
+/libraryDefs/splited
+/libraryDefs/cleaned
+/libraryDefs/refined
+
