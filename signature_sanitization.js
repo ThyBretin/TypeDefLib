@@ -2,103 +2,58 @@ const fs = require("fs").promises;
 const path = require("path");
 
 function cleanObject(obj) {
-  if (Array.isArray(obj)) {
-    return obj.filter(item => item !== null && item !== undefined).map(cleanObject);
-  }
-  if (typeof obj === "object" && obj !== null) {
-    const cleaned = {};
-    for (const [key, value] of Object.entries(obj)) {
-      if (value === null || value === undefined || value === "") continue;
-      const cleanedValue = cleanObject(value);
-      if (cleanedValue !== null && (Array.isArray(cleanedValue) || Object.keys(cleanedValue).length > 0)) {
-        cleaned[key] = cleanedValue;
-      }
-    }
-    return Object.keys(cleaned).length > 0 ? cleaned : null;
-  }
-  return obj;
+  return Object.fromEntries(
+    Object.entries(obj)
+      .filter(([_, v]) => v !== null && v !== undefined && v !== "")
+      .map(([k, v]) => [k, typeof v === "object" && !Array.isArray(v) ? cleanObject(v) : v])
+  );
 }
 
-function sanitizeString(str) {
-  if (typeof str !== "string") return str;
-  return str.replace(/['"]+/g, "").trim();
-}
-
-function dedupeConstants(defs) {
+function dedupeConstants(constants) {
   const seen = new Map();
-  if (defs.constants) {
-    defs.constants = defs.constants.filter(c => {
-      if (seen.has(c.name)) {
-        const existing = seen.get(c.name);
-        if (c.jsdoc && !existing.jsdoc) existing.jsdoc = c.jsdoc;
-        return false;
-      }
-      seen.set(c.name, c);
-      return true;
-    });
-  }
-  if (defs.namespaces) {
-    defs.namespaces.forEach(ns => {
-      if (ns.contents?.constants) {
-        ns.contents.constants = ns.contents.constants.filter(c => {
-          if (seen.has(c.name)) {
-            const existing = seen.get(c.name);
-            if (c.jsdoc && !existing.jsdoc) existing.jsdoc = c.jsdoc;
-            return false;
-          }
-          seen.set(c.name, c);
-          return true;
-        });
-      }
-    });
-  }
-  return defs;
-}
-
-function validateJson(json, fileName) {
-  try {
-    const cloned = JSON.parse(JSON.stringify(json));
-    const required = ["version"];
-    const missing = required.filter(key => !(key in json));
-    if (missing.length) throw new Error(`Missing required fields: ${missing.join(", ")}`);
+  return constants.filter(c => {
+    const key = `${c.name}:${c.value}`;
+    if (seen.has(key)) return false;
+    seen.set(key, true);
     return true;
-  } catch (e) {
-    console.error(`Invalid JSON in ${fileName}: ${e.message}`);
-    return false;
-  }
+  });
 }
 
-async function sanitizeChunk(inputFile, outputFile) {
-  const json = JSON.parse(await fs.readFile(inputFile, "utf-8"));
-  if (!validateJson(json, inputFile)) throw new Error(`Skipping ${inputFile} due to invalid JSON`);
-
-  const sanitized = JSON.parse(JSON.stringify(json, (key, value) => sanitizeString(value)));
-  const deduped = dedupeConstants(sanitized);
-  const cleaned = cleanObject(deduped);
-
-  if (!cleaned || Object.keys(cleaned).length === 0) {
-    console.warn(`Nothing left after sanitizing ${inputFile}`);
+async function sanitizeSignatures(inputFile) {
+  console.log(`Sanitizing input file: ${inputFile}`);
+  if (!(await fs.stat(inputFile).catch(() => false))) {
+    console.error(`Input file ${inputFile} does not exist`);
     return;
   }
 
-  await fs.mkdir(path.dirname(outputFile), { recursive: true });
-  await fs.writeFile(outputFile, JSON.stringify(cleaned, null, 2));
-  console.log(`Sanitized ${inputFile} → ${outputFile}`);
+  const json = JSON.parse(await fs.readFile(inputFile, "utf-8"));
+  const outputDir = "./libraryDefs/cleaned";
+  await fs.mkdir(outputDir, { recursive: true });
+
+  if (json.constants) json.constants = dedupeConstants(json.constants);
+  const cleanedJson = cleanObject(json);
+  const baseName = path.basename(inputFile, ".chunk.json");
+  const outputPath = `${outputDir}/${baseName}.sanitized.json`;
+  await fs.writeFile(outputPath, JSON.stringify(cleanedJson, null, 2));
+  console.log(`Sanitized chunk → ${outputPath}`);
 }
 
-async function cleanupAll() {
-  console.log("Step 3: Sanitizing chunks...");
-  const splitedDir = "./libraryDefs/splited";
-  const files = await fs.readdir(splitedDir);
+async function main() {
+  console.log("Step 4: Sanitizing chunks...");
+  const chunkedDir = "./libraryDefs/chunked";
+  const files = await fs.readdir(chunkedDir);
+  console.log(`Found ${files.length} files in ${chunkedDir}:`, files);
+
   for (const file of files) {
     if (file.endsWith(".chunk.json")) {
-      const inputFile = `${splitedDir}/${file}`;
-      const outputFile = `./libraryDefs/cleaned/${file.replace(".chunk.json", ".sanitized.json")}`;
-      if (!await fs.stat(outputFile).catch(() => false)) {
-        await sanitizeChunk(inputFile, outputFile);
-      }
+      await sanitizeSignatures(`${chunkedDir}/${file}`);
     }
   }
 }
 
-if (require.main === module) cleanupAll().catch(console.error);
+if (require.main === module) main().catch(error => {
+  console.error("Sanitization failed:", error);
+  process.exit(1);
+});
+
+module.exports = { sanitizeSignatures };

@@ -1,0 +1,682 @@
+{
+  "functions": [
+    {
+      "name": "loadBuffer",
+      "parameters": [
+        {
+          "name": "buffer",
+          "type": "Buffer<ArrayBufferLike>",
+          "optional": false
+        },
+        {
+          "name": "options",
+          "type": "DecodeStreamOptions",
+          "optional": true
+        }
+      ],
+      "returnType": "CheerioAPI",
+      "jsdoc": {
+        "description": "Sniffs buffer encoding, creates querying function bound to document from buffer.",
+        "params": [
+          {
+            "name": "buffer",
+            "description": "The buffer to sniff the encoding of."
+          },
+          {
+            "name": "options",
+            "description": "The options to pass to Cheerio."
+          }
+        ],
+        "returns": "The loaded document.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "stringStream",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "CheerioOptions",
+          "optional": false
+        },
+        {
+          "name": "cb",
+          "type": "(err: Error, $: CheerioAPI) => void",
+          "optional": false
+        }
+      ],
+      "returnType": "Writable",
+      "jsdoc": {
+        "description": "Parses sequence of strings into document, accepts strings, calls callback with loaded document.",
+        "params": [
+          {
+            "name": "options",
+            "description": "The options to pass to Cheerio."
+          },
+          {
+            "name": "cb",
+            "description": "The callback to call when the stream is finished."
+          }
+        ],
+        "returns": "The writable stream.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "decodeStream",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "DecodeStreamOptions",
+          "optional": false
+        },
+        {
+          "name": "cb",
+          "type": "(err: Error, $: CheerioAPI) => void",
+          "optional": false
+        }
+      ],
+      "returnType": "Writable",
+      "jsdoc": {
+        "description": "Parses stream of buffers into document, accepts buffers, calls callback with loaded document.",
+        "params": [
+          {
+            "name": "options",
+            "description": "The options to pass to Cheerio."
+          },
+          {
+            "name": "cb",
+            "description": "The callback to call when the stream is finished."
+          }
+        ],
+        "returns": "The writable stream.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "fromURL",
+      "parameters": [
+        {
+          "name": "url",
+          "type": "string | URL",
+          "optional": false
+        },
+        {
+          "name": "options",
+          "type": "CheerioRequestOptions",
+          "optional": true
+        }
+      ],
+      "returnType": "Promise<CheerioAPI>",
+      "jsdoc": {
+        "description": "Loads document from URL, allows redirects, rejects non-2xx responses.",
+        "params": [
+          {
+            "name": "url",
+            "description": "The URL to load the document from."
+          },
+          {
+            "name": "options",
+            "description": "The options to pass to Cheerio."
+          }
+        ],
+        "returns": "The loaded document.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "contains",
+      "parameters": [
+        {
+          "name": "container",
+          "type": "AnyNode",
+          "optional": false
+        },
+        {
+          "name": "contained",
+          "type": "AnyNode",
+          "optional": false
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": {
+        "description": "Checks if container node contains contained node.",
+        "params": [
+          {
+            "name": "container",
+            "description": "The container node."
+          },
+          {
+            "name": "contained",
+            "description": "The contained node."
+          }
+        ],
+        "returns": "True if container contains contained, false otherwise.",
+        "deprecated": false
+      }
+    },
+    {
+      "name": "merge",
+      "parameters": [
+        {
+          "name": "arr1",
+          "type": "Writable<ArrayLike<T>>",
+          "optional": false
+        },
+        {
+          "name": "arr2",
+          "type": "ArrayLike<T>",
+          "optional": false
+        }
+      ],
+      "returnType": "ArrayLike<T>",
+      "jsdoc": {
+        "xaiDescription": "Merges two arrays into a new array. Uses ArrayLike<T>."
+      }
+    },
+    {
+      "name": "load",
+      "parameters": [
+        {
+          "name": "content",
+          "type": "string | Buffer<ArrayBufferLike> | AnyNode | AnyNode[]",
+          "optional": false
+        },
+        {
+          "name": "options",
+          "type": "CheerioOptions",
+          "optional": true
+        },
+        {
+          "name": "isDocument",
+          "type": "boolean",
+          "optional": true
+        }
+      ],
+      "returnType": "CheerioAPI",
+      "jsdoc": {
+        "xaiDescription": "Loads content into Cheerio. Uses CheerioOptions and CheerioAPI."
+      }
+    }
+  ],
+  "enums": [],
+  "types": [
+    {
+      "name": "DecodeStreamOptions",
+      "type": "DecodeStreamOptions",
+      "properties": [
+        {
+          "name": "encoding",
+          "type": "SnifferOptions",
+          "optional": true,
+          "xaiDescription": "Encoding options for stream decoding. Uses SnifferOptions."
+        },
+        {
+          "name": "xml",
+          "type": "boolean | HTMLParser2Options",
+          "optional": true,
+          "xaiDescription": "XML parsing option. Can be boolean or HTMLParser2Options."
+        },
+        {
+          "name": "xmlMode",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Enables/disables XML parsing mode."
+        },
+        {
+          "name": "baseURI",
+          "type": "string | URL",
+          "optional": true,
+          "xaiDescription": "Base URI for resolving relative URLs. Accepts string or URL."
+        },
+        {
+          "name": "quirksMode",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Enables/disables quirks mode for HTML parsing."
+        },
+        {
+          "name": "pseudos",
+          "type": "Record<string, string | ((elem: Element, value?: string) => boolean)>",
+          "optional": true,
+          "xaiDescription": "Custom pseudo-selectors for querying elements."
+        },
+        {
+          "name": "scriptingEnabled",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Enables/disables scripting during parsing."
+        },
+        {
+          "name": "sourceCodeLocationInfo",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Enables/disables source code location information."
+        },
+        {
+          "name": "treeAdapter",
+          "type": "TreeAdapter<Htmlparser2TreeAdapterMap>",
+          "optional": true,
+          "xaiDescription": "Custom tree adapter for parsing. Uses Htmlparser2TreeAdapterMap."
+        },
+        {
+          "name": "onParseError",
+          "type": "ParserErrorHandler",
+          "optional": true,
+          "xaiDescription": "Callback for handling parsing errors. Uses ParserErrorHandler."
+        }
+      ],
+      "extends": [
+        "CheerioOptions"
+      ],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Options for decoding streams. Extends CheerioOptions."
+    },
+    {
+      "name": "UndiciStreamOptions",
+      "type": "{ dispatcher?: Dispatcher; } & Omit<RequestOptions, \"origin\" | \"path\">",
+      "properties": [
+        {
+          "name": "dispatcher",
+          "type": "Dispatcher",
+          "optional": true,
+          "xaiDescription": "Custom dispatcher for handling requests. Uses Dispatcher."
+        },
+        {
+          "name": "opaque",
+          "type": "unknown",
+          "optional": true,
+          "xaiDescription": "Opaque data for custom use."
+        },
+        {
+          "name": "signal",
+          "type": "unknown",
+          "optional": true,
+          "xaiDescription": "Signal for aborting the request."
+        },
+        {
+          "name": "maxRedirections",
+          "type": "number",
+          "optional": true,
+          "xaiDescription": "Maximum number of redirections allowed."
+        },
+        {
+          "name": "redirectionLimitReached",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Indicates if redirection limit was reached."
+        },
+        {
+          "name": "onInfo",
+          "type": "(info: { statusCode: number; headers: Record<string, string | string[]>; }) => void",
+          "optional": true,
+          "xaiDescription": "Callback for receiving response information."
+        },
+        {
+          "name": "responseHeader",
+          "type": "\"raw\"",
+          "optional": true,
+          "xaiDescription": "Option to receive raw response headers."
+        },
+        {
+          "name": "highWaterMark",
+          "type": "number",
+          "optional": true,
+          "xaiDescription": "High water mark for stream buffering."
+        },
+        {
+          "name": "method",
+          "type": "HttpMethod",
+          "optional": false,
+          "xaiDescription": "HTTP method for the request. Uses HttpMethod."
+        },
+        {
+          "name": "body",
+          "type": "string | Buffer<ArrayBufferLike> | Uint8Array<ArrayBufferLike> | Readable | FormData",
+          "optional": true,
+          "xaiDescription": "Request body. Accepts various formats."
+        },
+        {
+          "name": "headers",
+          "type": "string[] | IncomingHttpHeaders | Iterable<[string, string | string[]]>",
+          "optional": true,
+          "xaiDescription": "Request headers. Accepts various formats."
+        },
+        {
+          "name": "query",
+          "type": "Record<string, any>",
+          "optional": true,
+          "xaiDescription": "Query parameters for the request."
+        },
+        {
+          "name": "idempotent",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Indicates if the request is idempotent."
+        },
+        {
+          "name": "blocking",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Indicates if the request should be blocking."
+        },
+        {
+          "name": "upgrade",
+          "type": "string | boolean",
+          "optional": true,
+          "xaiDescription": "WebSocket upgrade option."
+        },
+        {
+          "name": "headersTimeout",
+          "type": "number",
+          "optional": true,
+          "xaiDescription": "Timeout for receiving headers."
+        },
+        {
+          "name": "bodyTimeout",
+          "type": "number",
+          "optional": true,
+          "xaiDescription": "Timeout for receiving the body."
+        },
+        {
+          "name": "reset",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Indicates if the request should be reset."
+        },
+        {
+          "name": "throwOnError",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Indicates if errors should be thrown."
+        },
+        {
+          "name": "expectContinue",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Indicates if the server should expect a '100 Continue' response."
+        }
+      ],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Options for Undici streams."
+    },
+    {
+      "name": "CheerioRequestOptions",
+      "type": "CheerioRequestOptions",
+      "properties": [
+        {
+          "name": "requestOptions",
+          "type": "{ dispatcher?: Dispatcher; } & Omit<RequestOptions, \"origin\" | \"path\">",
+          "optional": true,
+          "xaiDescription": "Request options for Cheerio. Uses UndiciStreamOptions."
+        },
+        {
+          "name": "encoding",
+          "type": "SnifferOptions",
+          "optional": true,
+          "xaiDescription": "Encoding options for stream decoding. Uses SnifferOptions."
+        },
+        {
+          "name": "xml",
+          "type": "boolean | HTMLParser2Options",
+          "optional": true,
+          "xaiDescription": "XML parsing option. Can be boolean or HTMLParser2Options."
+        },
+        {
+          "name": "xmlMode",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Enables/disables XML parsing mode."
+        },
+        {
+          "name": "baseURI",
+          "type": "string | URL",
+          "optional": true,
+          "xaiDescription": "Base URI for resolving relative URLs. Accepts string or URL."
+        },
+        {
+          "name": "quirksMode",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Enables/disables quirks mode for HTML parsing."
+        },
+        {
+          "name": "pseudos",
+          "type": "Record<string, string | ((elem: Element, value?: string) => boolean)>",
+          "optional": true,
+          "xaiDescription": "Custom pseudo-selectors for querying elements."
+        },
+        {
+          "name": "scriptingEnabled",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Enables/disables scripting during parsing."
+        },
+        {
+          "name": "sourceCodeLocationInfo",
+          "type": "boolean",
+          "optional": true,
+          "xaiDescription": "Enables/disables source code location information."
+        },
+        {
+          "name": "treeAdapter",
+          "type": "TreeAdapter<Htmlparser2TreeAdapterMap>",
+          "optional": true,
+          "xaiDescription": "Custom tree adapter for parsing. Uses Htmlparser2TreeAdapterMap."
+        },
+        {
+          "name": "onParseError",
+          "type": "ParserErrorHandler",
+          "optional": true,
+          "xaiDescription": "Callback for handling parsing errors. Uses ParserErrorHandler."
+        }
+      ],
+      "extends": [
+        "DecodeStreamOptions"
+      ],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Options for Cheerio requests. Extends DecodeStreamOptions."
+    }
+  ],
+  "classes": [],
+  "constants": [],
+  "namespaces": [
+    {
+      "name": "cheerio",
+      "contents": {
+        "functions": [
+          {
+            "name": "loadBuffer",
+            "parameters": [
+              {
+                "name": "buffer",
+                "type": "Buffer<ArrayBufferLike>",
+                "optional": false
+              },
+              {
+                "name": "options",
+                "type": "DecodeStreamOptions",
+                "optional": true
+              }
+            ],
+            "returnType": "CheerioAPI",
+            "jsdoc": {
+              "description": "Sniffs the encoding of a buffer, then creates a querying function bound to a\ndocument created from the buffer.",
+              "params": [
+                {
+                  "name": "buffer",
+                  "description": "- The buffer to sniff the encoding of."
+                },
+                {
+                  "name": "options",
+                  "description": "- The options to pass to Cheerio."
+                }
+              ],
+              "returns": "The loaded document.",
+              "deprecated": false
+            }
+          },
+          {
+            "name": "stringStream",
+            "parameters": [
+              {
+                "name": "options",
+                "type": "CheerioOptions",
+                "optional": false
+              },
+              {
+                "name": "cb",
+                "type": "(err: Error, $: CheerioAPI) => void",
+                "optional": false
+              }
+            ],
+            "returnType": "Writable",
+            "jsdoc": {
+              "description": "Creates a stream that parses a sequence of strings into a document.\n\nThe stream is a `Writable` stream that accepts strings. When the stream is\nfinished, the callback is called with the loaded document.",
+              "params": [
+                {
+                  "name": "options",
+                  "description": "- The options to pass to Cheerio."
+                },
+                {
+                  "name": "cb",
+                  "description": "- The callback to call when the stream is finished."
+                }
+              ],
+              "returns": "The writable stream.",
+              "deprecated": false
+            }
+          },
+          {
+            "name": "decodeStream",
+            "parameters": [
+              {
+                "name": "options",
+                "type": "DecodeStreamOptions",
+                "optional": false
+              },
+              {
+                "name": "cb",
+                "type": "(err: Error, $: CheerioAPI) => void",
+                "optional": false
+              }
+            ],
+            "returnType": "Writable",
+            "jsdoc": {
+              "description": "Parses a stream of buffers into a document.\n\nThe stream is a `Writable` stream that accepts buffers. When the stream is\nfinished, the callback is called with the loaded document.",
+              "params": [
+                {
+                  "name": "options",
+                  "description": "- The options to pass to Cheerio."
+                },
+                {
+                  "name": "cb",
+                  "description": "- The callback to call when the stream is finished."
+                }
+              ],
+              "returns": "The writable stream.",
+              "deprecated": false
+            }
+          },
+          {
+            "name": "fromURL",
+            "parameters": [
+              {
+                "name": "url",
+                "type": "string | URL",
+                "optional": false
+              },
+              {
+                "name": "options",
+                "type": "CheerioRequestOptions",
+                "optional": true
+              }
+            ],
+            "returnType": "Promise<CheerioAPI>",
+            "jsdoc": {
+              "description": "`fromURL` loads a document from a URL.\n\nBy default, redirects are allowed and non-2xx responses are rejected.",
+              "params": [
+                {
+                  "name": "url",
+                  "description": "- The URL to load the document from."
+                },
+                {
+                  "name": "options",
+                  "description": "- The options to pass to Cheerio."
+                }
+              ],
+              "returns": "The loaded document.",
+              "deprecated": false
+            }
+          },
+          {
+            "name": "contains",
+            "parameters": [
+              {
+                "name": "container",
+                "type": "AnyNode",
+                "optional": false
+              },
+              {
+                "name": "contained",
+                "type": "AnyNode",
+                "optional": false
+              }
+            ],
+            "returnType": "boolean",
+            "jsdoc": null,
+            "xaiDescription": "Checks if one node contains another. Uses AnyNode."
+          },
+          {
+            "name": "merge",
+            "parameters": [
+              {
+                "name": "arr1",
+                "type": "Writable<ArrayLike<T>>",
+                "optional": false
+              },
+              {
+                "name": "arr2",
+                "type": "ArrayLike<T>",
+                "optional": false
+              }
+            ],
+            "returnType": "ArrayLike<T>",
+            "jsdoc": null,
+            "xaiDescription": "Merges two arrays. Uses ArrayLike<T>."
+          },
+          {
+            "name": "load",
+            "parameters": [
+              {
+                "name": "content",
+                "type": "string | Buffer<ArrayBufferLike> | AnyNode | AnyNode[]",
+                "optional": false
+              },
+              {
+                "name": "options",
+                "type": "CheerioOptions",
+                "optional": true
+              },
+              {
+                "name": "isDocument",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "returnType": "CheerioAPI",
+            "jsdoc": null,
+            "xaiDescription": "Loads content into a Cheerio document. Uses CheerioAPI."
+          }
+        ]
+      },
+      "jsdoc": null,
+      "isExported": true
+    }
+  ],
+  "version": "1.0.0"
+}

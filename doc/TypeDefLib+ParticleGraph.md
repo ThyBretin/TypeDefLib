@@ -21,7 +21,7 @@ I return a descriptions.json with short, high-level summaries.
 Merge into libraryDefs/${lib}-${version}.json.
 
 Graph Enrichment (ParticleGraph):
-Worker uses libraryDefs:// to match user code (Babel AST) with library defs.
+Worker uses library-dDefs:// to match user code (Babel AST) with library defs.
 
 Particles gain richer depends_on, props, key_logic; Graphs get precise tech_stack.
 

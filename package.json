@@ -11,8 +11,9 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@types/react": "^19.1.0",
-    "axios": "^1.7.2",
+    "@aws-sdk/client-s3": "^3.782.0",
+    "aws-sdk": "^2.1692.0",
+    "axios": "^1.8.4",
     "babel": "^6.23.0",
     "cheerio": "^1.0.0",
     "dotenv": "^16.4.7",
@@ -26,11 +27,11 @@
     "node-fetch": "^3.3.2",
     "playwright": "^1.51.1",
     "puppeteer": "^24.6.0",
-    "react-native-reanimated": "^3.17.2",
+    "react": "^19.1.0",
+    "react-native-reanimated": "^3.17.3",
     "react-native-unistyles": "^2.31.0",
-    "supabase": "^2.20.5",
+    "supabase": "^2.20.12",
     "ts-enums": "^0.0.6",
-    "ts-morph": "^19.0.0",
     "typescript": "^5.8.3",
     "underscore": "^1.13.7",
     "wretch": "^2.11.0",
@@ -40,6 +41,7 @@
     "@types/express": "^5.0.1",
     "@types/lodash": "^4.17.16",
     "@types/moment": "^2.11.29",
+    "@types/react": "^19.1.0",
     "@types/underscore": "^1.13.0"
   }
 }

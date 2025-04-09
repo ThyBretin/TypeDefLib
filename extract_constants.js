@@ -1,60 +1,50 @@
 const ts = require("typescript");
-const { extractJSDoc } = require("./extract_jsdoc");
 
-function extractConstants(checker, node, baseSymbol = null, version = "unknown") {
-  const constantsMap = new Map();
-  
-  if (node && ts.isVariableStatement(node)) {
-    node.declarationList.declarations.forEach(decl => {
-      const symbol = checker.getSymbolAtLocation(decl.name);
-      if (symbol) {
-        const value = decl.initializer ? decl.initializer.getText() : undefined;
-        console.log(`Constant: ${symbol.name}`);
-        constantsMap.set(symbol.name, {
-          name: symbol.name,
-          type: checker.typeToString(checker.getTypeAtLocation(decl)),
-          value,
-          jsdoc: extractJSDoc(decl),
-          isExported: !!(symbol.flags & ts.SymbolFlags.Export)
-        });
-      }
-    });
-  }
+function extractConstants(sourceFile, typeChecker) {
+  const constants = [];
 
-  if (baseSymbol) {
-    const decl = baseSymbol.valueDeclaration || baseSymbol.declarations?.[0];
-    if (decl) {
-      const type = checker.getTypeOfSymbolAtLocation(baseSymbol, decl);
-      type.getProperties().forEach(prop => {
-        const propDecl = prop.valueDeclaration;
-        const value = propDecl && (ts.isPropertySignature(propDecl) || ts.isPropertyDeclaration(propDecl)) && propDecl.initializer 
-          ? propDecl.initializer.getText() 
-          : (prop.name.toLowerCase() === "version" ? `"${version}"` : undefined);
-        const propType = checker.getTypeOfSymbolAtLocation(prop, propDecl || decl);
-        const isConstantLike = value || propType.isStringLiteral() || propType.isNumberLiteral() || prop.name.toLowerCase() === "version";
-        if (isConstantLike) {
-          const fullName = baseSymbol.name === "_" ? `_.${prop.name}` : 
-                          baseSymbol.name === "default" && prop.name === "VERSION" ? "axios.VERSION" : 
-                          `${baseSymbol.name}.${prop.name}`;
-          console.log(`Constant: ${fullName}`);
-          const existing = constantsMap.get(fullName);
-          if (!existing) {
-            constantsMap.set(fullName, {
+  function visit(node) {
+    if (ts.isVariableStatement(node)) {
+      node.declarationList.declarations.forEach(decl => {
+        if (decl.initializer && ts.isModifierLike(decl.modifiers?.find(mod => mod.kind === ts.SyntaxKind.ConstKeyword))) {
+          const symbol = typeChecker.getSymbolAtLocation(decl.name);
+          if (symbol) {
+            const baseSymbol = symbol.declarations[0].parent.symbol || symbol;
+            const fullName = baseSymbol.name === "_" ? `_.${symbol.name}` : `${baseSymbol.name}.${symbol.name}`;
+            constants.push({
               name: fullName,
-              type: checker.typeToString(propType),
-              value: value || (propType.isLiteral() ? propType.value.toString() : undefined),
-              jsdoc: extractJSDoc(propDecl),
-              isExported: !!(prop.flags & ts.SymbolFlags.Export)
+              value: decl.initializer.getText(),
+              jsdoc: extractJsdoc(symbol)
             });
-          } else if (!existing.jsdoc && extractJSDoc(propDecl)) {
-            existing.jsdoc = extractJSDoc(propDecl); // Update with JSDoc if missing
           }
         }
       });
+    } else if (ts.isPropertyDeclaration(node) || ts.isPropertySignature(node)) {
+      const symbol = typeChecker.getSymbolAtLocation(node.name);
+      if (symbol && !node.initializer) return;
+      const propType = typeChecker.getTypeAtLocation(node);
+      const value = node.initializer?.getText();
+      const isConstantLike = value || propType.isStringLiteral() || propType.isNumberLiteral() || symbol.name.toLowerCase() === "version";
+      if (isConstantLike) {
+        const baseSymbol = symbol.declarations[0].parent.symbol || symbol;
+        const fullName = baseSymbol.name === "_" ? `_.${symbol.name}` : `${baseSymbol.name}.${symbol.name}`;
+        constants.push({
+          name: fullName,
+          value: value || typeChecker.typeToString(propType),
+          jsdoc: extractJsdoc(symbol)
+        });
+      }
     }
+    ts.forEachChild(node, visit);
   }
 
-  return Array.from(constantsMap.values());
+  function extractJsdoc(symbol) {
+    const jsdoc = symbol?.getJsDocTags() || [];
+    return jsdoc.length > 0 ? { description: jsdoc.map(tag => tag.text).join(" ") } : undefined;
+  }
+
+  visit(sourceFile);
+  return constants;
 }
 
 module.exports = { extractConstants };

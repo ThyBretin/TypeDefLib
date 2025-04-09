@@ -6,7 +6,7 @@ package-lock.json
 
 /libraryDefs/sanitized
 /libraryDefs/extracted
-/libraryDefs/splited
+/libraryDefs/chunked
 /libraryDefs/cleaned
 /libraryDefs/refined
 
