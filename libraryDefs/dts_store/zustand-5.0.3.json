@@ -1,0 +1,19 @@
+{
+  "files": [
+    "/Users/Thy/TypeDefLib/node_modules/zustand/index.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/middleware/combine.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/middleware/devtools.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/middleware/immer.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/middleware/redux.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/middleware/subscribeWithSelector.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/middleware.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/react/shallow.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/react.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/shallow.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/traditional.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/ts_version_4.5_and_above_is_required.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/vanilla/shallow.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/zustand/vanilla.d.ts"
+  ]
+}

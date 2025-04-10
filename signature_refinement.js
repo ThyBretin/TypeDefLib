@@ -85,7 +85,7 @@ Return only raw JSON—no text, no Markdown, no \`\`\`.
       await fs.mkdir("./libraryDefs/refined", { recursive: true });
       await fs.writeFile(refinedPath, JSON.stringify(refinedJson, null, 2));
       console.log(`Refined ${filePath} → ${refinedPath}`);
-      return refinedPath;
+      return refinedPath; // Should return path
     } catch (error) {
       console.error(`Failed to refine ${filePath} (attempt ${attempt + 1}): ${error.message}`);
       if (error.response) console.error("Response body:", JSON.stringify(error.response.data, null, 2));
@@ -97,6 +97,8 @@ Return only raw JSON—no text, no Markdown, no \`\`\`.
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
   }
+  console.log(`All retries failed for ${filePath}`);
+  return null; // Fallback
 }
 
 async function cleanupIntermediates(baseName) {
@@ -150,7 +152,7 @@ async function main() {
     throw new Error("Missing R2 credentials in .env!");
   }
 
-  const cleanedDir = "./libraryDefs/cleaned"; // Fixed to cleaned
+  const cleanedDir = "./libraryDefs/cleaned";
   const files = await fs.readdir(cleanedDir);
   console.log(`Found ${files.length} files in ${cleanedDir}:`, files);
   const refinedFiles = [];
@@ -161,12 +163,16 @@ async function main() {
       const fullPath = `${cleanedDir}/${file}`;
       console.log(`Processing ${fullPath}`);
       const refinedFile = await refineWithXAI(fullPath, apiKey, failedChunks);
+      console.log(`Refinement result for ${fullPath}: ${refinedFile}`); // Debug
       if (refinedFile) refinedFiles.push(refinedFile);
     }
   }
 
+  console.log(`Refined files before finalization:`, refinedFiles);
   if (refinedFiles.length) {
-    const baseName = path.basename(refinedFiles[0]).match(/^(express-\d+\.\d+\.\d+)/)[0];
+    const baseNameMatch = path.basename(refinedFiles[0]).match(/^([a-z]+-\d+\.\d+\.\d+)/);
+    if (!baseNameMatch) throw new Error(`Failed to parse baseName from ${refinedFiles[0]}`);
+    const baseName = baseNameMatch[0];
     const outputFile = `./libraryDefs/finalized/${baseName}.graph.json`;
     const r2Key = `${baseName}.graph.json`;
 
@@ -178,6 +184,8 @@ async function main() {
     } else {
       console.log(`Skipping ${baseName}—exists in R2`);
     }
+  } else {
+    console.log("No refined files to finalize—check failed chunks or refinement step.");
   }
 
   if (failedChunks.length > 0) {

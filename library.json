@@ -1,0 +1,12 @@
+{
+  "packages": {
+    "zustand": {
+      "version": "5.0.3",
+      "status": "done"
+    },
+    "cheerio": {
+      "version": "1.0.0",
+      "status": "done"
+    }
+  }
+}

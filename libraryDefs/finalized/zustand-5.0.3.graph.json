@@ -1,0 +1,1492 @@
+{
+  "functions": [
+    {
+      "name": "createStore",
+      "parameters": [
+        {
+          "name": "initializer",
+          "type": "StateCreator<T, [], Mos, T>",
+          "optional": false
+        }
+      ],
+      "returnType": "Mutate<StoreApi<T>, Mos>",
+      "jsdoc": {
+        "xaiDescription": "Creates a new store with the given initializer. Uses StateCreator<T, [], Mos, T>."
+      }
+    },
+    {
+      "name": "useStore",
+      "parameters": [
+        {
+          "name": "api",
+          "type": "S",
+          "optional": false
+        }
+      ],
+      "returnType": "ExtractState<S>",
+      "jsdoc": {
+        "xaiDescription": "Hooks into a store to extract its state. Uses ExtractState<S>."
+      }
+    },
+    {
+      "name": "create",
+      "parameters": [
+        {
+          "name": "initializer",
+          "type": "StateCreator<T, [], Mos>",
+          "optional": false
+        }
+      ],
+      "returnType": "UseBoundStore<Mutate<StoreApi<T>, Mos>>",
+      "jsdoc": {
+        "xaiDescription": "Creates a new store using the provided initializer. Uses StateCreator<T, [], Mos>."
+      }
+    },
+    {
+      "name": "combine",
+      "parameters": [
+        {
+          "name": "initialState",
+          "type": "T",
+          "optional": false
+        },
+        {
+          "name": "additionalStateCreator",
+          "type": "StateCreator<T, Mps, Mcs, U>",
+          "optional": false
+        }
+      ],
+      "returnType": "StateCreator<Write<T, U>, Mps, Mcs>",
+      "jsdoc": {
+        "xaiDescription": "Combines initial state with an additional state creator. Uses StateCreator<T, Mps, Mcs, U>."
+      }
+    },
+    {
+      "name": "devtools",
+      "parameters": [
+        {
+          "name": "initializer",
+          "type": "StateCreator<T, [...Mps, [\"zustand/devtools\", never]], Mcs, U>",
+          "optional": false
+        },
+        {
+          "name": "devtoolsOptions",
+          "type": "DevtoolsOptions",
+          "optional": true
+        }
+      ],
+      "returnType": "StateCreator<T, Mps, [[\"zustand/devtools\", never], ...Mcs]>",
+      "jsdoc": {
+        "xaiDescription": "Enhances a store with devtools. Uses StateCreator<T, [...Mps, [\"zustand/devtools\", never]], Mcs, U>."
+      }
+    },
+    {
+      "name": "immer",
+      "parameters": [
+        {
+          "name": "initializer",
+          "type": "StateCreator<T, [...Mps, [\"zustand/immer\", never]], Mcs>",
+          "optional": false
+        }
+      ],
+      "returnType": "StateCreator<T, Mps, [[\"zustand/immer\", never], ...Mcs]>",
+      "jsdoc": {
+        "xaiDescription": "Integrates Immer with a store. Uses StateCreator<T, [...Mps, [\"zustand/immer\", never]], Mcs>."
+      }
+    },
+    {
+      "name": "createJSONStorage",
+      "parameters": [
+        {
+          "name": "getStorage",
+          "type": "() => StateStorage",
+          "optional": false
+        },
+        {
+          "name": "options",
+          "type": "JsonStorageOptions",
+          "optional": true
+        }
+      ],
+      "returnType": "PersistStorage<S>",
+      "jsdoc": {
+        "xaiDescription": "Creates a JSON storage for persistence. Uses StateStorage and JsonStorageOptions."
+      }
+    },
+    {
+      "name": "persist",
+      "parameters": [
+        {
+          "name": "initializer",
+          "type": "StateCreator<T, [...Mps, [\"zustand/persist\", unknown]], Mcs>",
+          "optional": false
+        },
+        {
+          "name": "options",
+          "type": "PersistOptions<T, U>",
+          "optional": false
+        }
+      ],
+      "returnType": "StateCreator<T, Mps, [[\"zustand/persist\", U], ...Mcs]>",
+      "jsdoc": {
+        "xaiDescription": "Enables state persistence. Uses StateCreator<T, [...Mps, [\"zustand/persist\", unknown]], Mcs> and PersistOptions<T, U>."
+      }
+    },
+    {
+      "name": "redux",
+      "parameters": [
+        {
+          "name": "reducer",
+          "type": "(state: T, action: A) => T",
+          "optional": false
+        },
+        {
+          "name": "initialState",
+          "type": "T",
+          "optional": false
+        }
+      ],
+      "returnType": "StateCreator<Write<T, ReduxState<A>>, Cms, [[\"zustand/redux\", A]]>",
+      "jsdoc": {
+        "xaiDescription": "Integrates Redux with a store. Uses Write<T, ReduxState<A>>."
+      }
+    },
+    {
+      "name": "subscribeWithSelector",
+      "parameters": [
+        {
+          "name": "initializer",
+          "type": "StateCreator<T, [...Mps, [\"zustand/subscribeWithSelector\", never]], Mcs>",
+          "optional": false
+        }
+      ],
+      "returnType": "StateCreator<T, Mps, [[\"zustand/subscribeWithSelector\", never], ...Mcs]>",
+      "jsdoc": {
+        "xaiDescription": "Enhances a store with selector-based subscriptions. Uses StateCreator<T, [...Mps, [\"zustand/subscribeWithSelector\", never]], Mcs>."
+      }
+    },
+    {
+      "name": "useShallow",
+      "parameters": [
+        {
+          "name": "selector",
+          "type": "(state: S) => U",
+          "optional": false
+        }
+      ],
+      "returnType": "(state: S) => U",
+      "jsdoc": {
+        "xaiDescription": "Creates a shallow selector for state extraction. Uses (state: S) => U."
+      }
+    },
+    {
+      "name": "shallow",
+      "parameters": [
+        {
+          "name": "valueA",
+          "type": "T",
+          "optional": false
+        },
+        {
+          "name": "valueB",
+          "type": "T",
+          "optional": false
+        }
+      ],
+      "returnType": "boolean",
+      "jsdoc": {
+        "xaiDescription": "Performs a shallow comparison between two values."
+      }
+    },
+    {
+      "name": "useStoreWithEqualityFn",
+      "parameters": [
+        {
+          "name": "api",
+          "type": "S",
+          "optional": false
+        }
+      ],
+      "returnType": "ExtractState<S>",
+      "jsdoc": {
+        "xaiDescription": "Hooks into a store with a custom equality function. Uses ExtractState<S>."
+      }
+    },
+    {
+      "name": "createWithEqualityFn",
+      "parameters": [
+        {
+          "name": "initializer",
+          "type": "StateCreator<T, [], Mos>",
+          "optional": false
+        },
+        {
+          "name": "defaultEqualityFn",
+          "type": "<U>(a: U, b: U) => boolean",
+          "optional": true
+        }
+      ],
+      "returnType": "UseBoundStoreWithEqualityFn<Mutate<StoreApi<T>, Mos>>",
+      "jsdoc": {
+        "xaiDescription": "Creates a store with a custom equality function. Uses StateCreator<T, [], Mos>."
+      }
+    }
+  ],
+  "enums": [],
+  "types": [
+    {
+      "name": "Write",
+      "type": "Write<T, U>",
+      "properties": [],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a write operation on type T with value U."
+      },
+      "isExported": false
+    },
+    {
+      "name": "Combine",
+      "type": "Combine",
+      "properties": [],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a combination of types."
+      },
+      "isExported": false
+    },
+    {
+      "name": "Config",
+      "type": "any",
+      "properties": [],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a configuration object."
+      },
+      "isExported": false
+    },
+    {
+      "name": "StoreMutators",
+      "type": "StoreMutators<S, A>",
+      "properties": [
+        {
+          "name": "zustand/devtools",
+          "type": "WithDevtools<S>",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents store mutators with devtools integration. Uses WithDevtools<S>."
+      },
+      "isExported": false
+    },
+    {
+      "name": "Cast",
+      "type": "Cast<T, U>",
+      "properties": [],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a type casting operation."
+      },
+      "isExported": false
+    },
+    {
+      "name": "TakeTwo",
+      "type": "TakeTwo<T>",
+      "properties": [
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "toString",
+          "type": "(() => string) | (() => string) | (() => string) | (() => string) | (() => string) | (() => string) | (() => string)",
+          "optional": false
+        },
+        {
+          "name": "toLocaleString",
+          "type": "{ (): string; (locales: string | string[], options?: NumberFormatOptions & DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: NumberFormatOptions & DateTimeFormatOptions): string; } | ... 4 more ... | (() => string)",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents an array-like object with two elements."
+      },
+      "isExported": false
+    },
+    {
+      "name": "WithDevtools",
+      "type": "WithDevtools<S>",
+      "properties": [
+        {
+          "name": "setState",
+          "type": "{ (a_0?: unknown, a_1?: unknown, action?: Action): unknown; (a_0?: unknown, a_1?: unknown, action?: Action): unknown; }",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a store with devtools integration. Uses Action."
+      },
+      "isExported": false
+    },
+    {
+      "name": "Action",
+      "type": "Action",
+      "properties": [
+        {
+          "name": "toString",
+          "type": "(() => string) | (() => string)",
+          "optional": false
+        },
+        {
+          "name": "charAt",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "charCodeAt",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "concat",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "indexOf",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "lastIndexOf",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "localeCompare",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "match",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "replace",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "search",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "slice",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "split",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "substring",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "toLowerCase",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "toLocaleLowerCase",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "toUpperCase",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "toLocaleUpperCase",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "trim",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "length",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "substr",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "valueOf",
+          "type": "(() => string) | (() => Object)",
+          "optional": false
+        },
+        {
+          "name": "codePointAt",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "includes",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "endsWith",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "normalize",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "repeat",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "startsWith",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "anchor",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "big",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "blink",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "bold",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "fixed",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "fontcolor",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "fontsize",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "italics",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "link",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "small",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "strike",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "sub",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "sup",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "padStart",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "padEnd",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "trimEnd",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "trimStart",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "trimLeft",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "trimRight",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "matchAll",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "unknown",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents an action with string methods."
+      },
+      "isExported": false
+    },
+    {
+      "name": "StoreDevtools",
+      "type": "StoreDevtools<S>",
+      "properties": [
+        {
+          "name": "setState",
+          "type": "{ (a_0?: unknown, a_1?: unknown, action?: Action): unknown; (a_0?: unknown, a_1?: unknown, action?: Action): unknown; }",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a store with devtools integration. Uses Action."
+      },
+      "isExported": false
+    },
+    {
+      "name": "DevtoolsOptions",
+      "type": "DevtoolsOptions",
+      "properties": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "enabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "anonymousActionType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "store",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "extends": [
+        "Config"
+      ],
+      "jsdoc": {
+        "xaiDescription": "Represents options for devtools configuration. Extends Config."
+      },
+      "isExported": false
+    },
+    {
+      "name": "Devtools",
+      "type": "Devtools",
+      "properties": [],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents devtools functionality."
+      },
+      "isExported": false
+    },
+    {
+      "name": "NamedSet",
+      "type": "{ (partial: T | Partial<T> | ((state: T) => T | Partial<T>), replace?: false, action?: Action): void; (state: T | ((state: T) => T), replace: true, action?: Action): void; }",
+      "properties": [],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a named set function for state updates. Uses Action."
+      },
+      "isExported": false
+    },
+    {
+      "name": "Immer",
+      "type": "Immer",
+      "properties": [],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents Immer functionality."
+      },
+      "isExported": false
+    },
+    {
+      "name": "SkipTwo",
+      "type": "SkipTwo<T>",
+      "properties": [
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "toString",
+          "type": "(() => string) | (() => string)",
+          "optional": false
+        },
+        {
+          "name": "toLocaleString",
+          "type": "{ (): string; (locales: string | string[], options?: NumberFormatOptions & DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: NumberFormatOptions & DateTimeFormatOptions): string; }",
+          "optional": false
+        },
+        {
+          "name": "pop",
+          "type": "(() => unknown) | (() => never)",
+          "optional": false
+        },
+        {
+          "name": "push",
+          "type": "((...items: unknown[]) => number) | ((...items: never[]) => number)",
+          "optional": false
+        },
+        {
+          "name": "concat",
+          "type": "{ (...items: ConcatArray<unknown>[]): unknown[]; (...items: unknown[]): unknown[]; } | { (...items: ConcatArray<never>[]): never[]; (...items: ConcatArray<never>[]): never[]; }",
+          "optional": false
+        },
+        {
+          "name": "join",
+          "type": "((separator?: string) => string) | ((separator?: string) => string)",
+          "optional": false
+        },
+        {
+          "name": "reverse",
+          "type": "(() => unknown[]) | (() => never[])",
+          "optional": false
+        },
+        {
+          "name": "shift",
+          "type": "(() => unknown) | (() => never)",
+          "optional": false
+        },
+        {
+          "name": "slice",
+          "type": "((start?: number, end?: number) => unknown[]) | ((start?: number, end?: number) => never[])",
+          "optional": false
+        },
+        {
+          "name": "sort",
+          "type": "((compareFn?: (a: unknown, b: unknown) => number) => unknown[]) | ((compareFn?: (a: never, b: never) => number) => [])",
+          "optional": false
+        },
+        {
+          "name": "splice",
+          "type": "{ (start: number, deleteCount?: number): unknown[]; (start: number, deleteCount: number, ...items: unknown[]): unknown[]; } | { (start: number, deleteCount?: number): never[]; (start: number, deleteCount: number, ...items: never[]): never[]; }",
+          "optional": false
+        },
+        {
+          "name": "unshift",
+          "type": "((...items: unknown[]) => number) | ((...items: never[]) => number)",
+          "optional": false
+        },
+        {
+          "name": "indexOf",
+          "type": "((searchElement: unknown, fromIndex?: number) => number) | ((searchElement: never, fromIndex?: number) => number)",
+          "optional": false
+        },
+        {
+          "name": "lastIndexOf",
+          "type": "((searchElement: unknown, fromIndex?: number) => number) | ((searchElement: never, fromIndex?: number) => number)",
+          "optional": false
+        },
+        {
+          "name": "every",
+          "type": "{ <S extends unknown>(predicate: (value: unknown, index: number, array: unknown[]) => value is S, thisArg?: any): this is S[]; (predicate: (value: unknown, index: number, array: unknown[]) => unknown, thisArg?: any): boolean; } | { <S extends never>(predicate: (value: never, index: number, array: never[]) => value i...",
+          "optional": false
+        },
+        {
+          "name": "some",
+          "type": "((predicate: (value: unknown, index: number, array: unknown[]) => unknown, thisArg?: any) => boolean) | ((predicate: (value: never, index: number, array: never[]) => unknown, thisArg?: any) => boolean)",
+          "optional": false
+        },
+        {
+          "name": "forEach",
+          "type": "((callbackfn: (value: unknown, index: number, array: unknown[]) => void, thisArg?: any) => void) | ((callbackfn: (value: never, index: number, array: never[]) => void, thisArg?: any) => void)",
+          "optional": false
+        },
+        {
+          "name": "map",
+          "type": "(<U>(callbackfn: (value: unknown, index: number, array: unknown[]) => U, thisArg?: any) => U[]) | (<U>(callbackfn: (value: never, index: number, array: never[]) => U, thisArg?: any) => U[])",
+          "optional": false
+        },
+        {
+          "name": "filter",
+          "type": "{ <S extends unknown>(predicate: (value: unknown, index: number, array: unknown[]) => value is S, thisArg?: any): S[]; (predicate: (value: unknown, index: number, array: unknown[]) => unknown, thisArg?: any): unknown[]; } | { <S extends never>(predicate: (value: never, index: number, array: never[]) => value is S, t...",
+          "optional": false
+        },
+        {
+          "name": "reduce",
+          "type": "{ (callbackfn: (previousValue: unknown, currentValue: unknown, currentIndex: number, array: unknown[]) => unknown): unknown; (callbackfn: (previousValue: unknown, currentValue: unknown, currentIndex: number, array: unknown[]) => unknown, initialValue: unknown): unknown; <U>(callbackfn: (previousValue: U, currentValu...",
+          "optional": false
+        },
+        {
+          "name": "reduceRight",
+          "type": "{ (callbackfn: (previousValue: unknown, currentValue: unknown, currentIndex: number, array: unknown[]) => unknown): unknown; (callbackfn: (previousValue: unknown, currentValue: unknown, currentIndex: number, array: unknown[]) => unknown, initialValue: unknown): unknown; <U>(callbackfn: (previousValue: U, currentValu...",
+          "optional": false
+        },
+        {
+          "name": "find",
+          "type": "{ <S extends unknown>(predicate: (value: unknown, index: number, obj: unknown[]) => value is S, thisArg?: any): S; (predicate: (value: unknown, index: number, obj: unknown[]) => unknown, thisArg?: any): unknown; } | { <S extends never>(predicate: (value: never, index: number, obj: never[]) => value is S, thisArg?: a...",
+          "optional": false
+        },
+        {
+          "name": "findIndex",
+          "type": "((predicate: (value: unknown, index: number, obj: unknown[]) => unknown, thisArg?: any) => number) | ((predicate: (value: never, index: number, obj: never[]) => unknown, thisArg?: any) => number)",
+          "optional": false
+        },
+        {
+          "name": "fill",
+          "type": "((value: unknown, start?: number, end?: number) => unknown[]) | ((value: never, start?: number, end?: number) => [])",
+          "optional": false
+        },
+        {
+          "name": "copyWithin",
+          "type": "((target: number, start: number, end?: number) => unknown[]) | ((target: number, start: number, end?: number) => [])",
+          "optional": false
+        },
+        {
+          "name": "entries",
+          "type": "(() => ArrayIterator<[number, unknown]>) | (() => ArrayIterator<[number, never]>)",
+          "optional": false
+        },
+        {
+          "name": "keys",
+          "type": "(() => ArrayIterator<number>) | (() => ArrayIterator<number>)",
+          "optional": false
+        },
+        {
+          "name": "values",
+          "type": "(() => ArrayIterator<unknown>) | (() => ArrayIterator<never>)",
+          "optional": false
+        },
+        {
+          "name": "includes",
+          "type": "((searchElement: unknown, fromIndex?: number) => boolean) | ((searchElement: never, fromIndex?: number) => boolean)",
+          "optional": false
+        },
+        {
+          "name": "flatMap",
+          "type": "(<U, This = undefined>(callback: (this: This, value: unknown, index: number, array: unknown[]) => U | readonly U[], thisArg?: This) => U[]) | (<U, This = undefined>(callback: (this: This, value: never, index: number, array: never[]) => U | readonly U[], thisArg?: This) => U[])",
+          "optional": false
+        },
+        {
+          "name": "flat",
+          "type": "(<A, D extends number = 1>(this: A, depth?: D) => FlatArray<A, D>[]) | (<A, D extends number = 1>(this: A, depth?: D) => FlatArray<A, D>[])",
+          "optional": false
+        },
+        {
+          "name": "__@iterator@752",
+          "type": "(() => ArrayIterator<unknown>) | (() => ArrayIterator<never>)",
+          "optional": false
+        },
+        {
+          "name": "__@unscopables@754",
+          "type": "{ [x: number]: boolean; length?: boolean; toString?: boolean; toLocaleString?: boolean; pop?: boolean; push?: boolean; concat?: boolean; join?: boolean; reverse?: boolean; shift?: boolean; slice?: boolean; ... 24 more ...; at?: boolean; } | { ...; }",
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "((index: number) => unknown) | ((index: number) => never)",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents an array-like object with methods to manipulate elements."
+      },
+      "isExported": false
+    },
+    {
+      "name": "SetStateType",
+      "type": "SetStateType<T>",
+      "properties": [],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a type for setting state."
+      },
+      "isExported": false
+    },
+    {
+      "name": "WithImmer",
+      "type": "WithImmer<S>",
+      "properties": [],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a store with Immer integration."
+      },
+      "isExported": false
+    },
+    {
+      "name": "StoreImmer",
+      "type": "StoreImmer<S>",
+      "properties": [],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a store with Immer integration."
+      },
+      "isExported": false
+    },
+    {
+      "name": "StateStorage",
+      "type": "StateStorage",
+      "properties": [
+        {
+          "name": "getItem",
+          "type": "(name: string) => string | Promise<string>",
+          "optional": false
+        },
+        {
+          "name": "setItem",
+          "type": "(name: string, value: string) => unknown",
+          "optional": false
+        },
+        {
+          "name": "removeItem",
+          "type": "(name: string) => unknown",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a storage mechanism for state persistence."
+      },
+      "isExported": false
+    },
+    {
+      "name": "StorageValue",
+      "type": "StorageValue<S>",
+      "properties": [
+        {
+          "name": "state",
+          "type": "S",
+          "optional": false
+        },
+        {
+          "name": "version",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a value stored in a storage mechanism."
+      },
+      "isExported": false
+    },
+    {
+      "name": "PersistStorage",
+      "type": "PersistStorage<S>",
+      "properties": [
+        {
+          "name": "getItem",
+          "type": "(name: string) => StorageValue<S> | Promise<StorageValue<S>>",
+          "optional": false
+        },
+        {
+          "name": "setItem",
+          "type": "(name: string, value: StorageValue<S>) => unknown",
+          "optional": false
+        },
+        {
+          "name": "removeItem",
+          "type": "(name: string) => unknown",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a storage mechanism for persisting state. Uses StorageValue<S>."
+      },
+      "isExported": false
+    },
+    {
+      "name": "JsonStorageOptions",
+      "type": "JsonStorageOptions",
+      "properties": [
+        {
+          "name": "reviver",
+          "type": "(key: string, value: unknown) => unknown",
+          "optional": true
+        },
+        {
+          "name": "replacer",
+          "type": "(key: string, value: unknown) => unknown",
+          "optional": true
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents options for JSON storage."
+      },
+      "isExported": false
+    },
+    {
+      "name": "PersistOptions",
+      "type": "PersistOptions<S, PersistedState>",
+      "properties": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "storage",
+          "type": "PersistStorage<PersistedState>",
+          "optional": true
+        },
+        {
+          "name": "partialize",
+          "type": "(state: S) => PersistedState",
+          "optional": true
+        },
+        {
+          "name": "onRehydrateStorage",
+          "type": "(state: S) => void | ((state?: S, error?: unknown) => void)",
+          "optional": true
+        },
+        {
+          "name": "version",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "migrate",
+          "type": "(persistedState: unknown, version: number) => PersistedState | Promise<PersistedState>",
+          "optional": true
+        },
+        {
+          "name": "merge",
+          "type": "(persistedState: unknown, currentState: S) => S",
+          "optional": true
+        },
+        {
+          "name": "skipHydration",
+          "type": "boolean",
+          "optional": true
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents options for state persistence. Uses PersistStorage<PersistedState>."
+      },
+      "isExported": false
+    },
+    {
+      "name": "PersistListener",
+      "type": "PersistListener<S>",
+      "properties": [],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a listener for persistence events."
+      },
+      "isExported": false
+    },
+    {
+      "name": "StorePersist",
+      "type": "StorePersist<S, Ps>",
+      "properties": [
+        {
+          "name": "persist",
+          "type": "{ setOptions: (options: Partial<PersistOptions<S, Ps>>) => void; clearStorage: () => void; rehydrate: () => void | Promise<void>; hasHydrated: () => boolean; onHydrate: (fn: PersistListener<...>) => () => void; onFinishHydration: (fn: PersistListener<...>) => () => void; getOptions: () => Partial<...>; }",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a store with persistence functionality. Uses PersistOptions<S, Ps> and PersistListener."
+      },
+      "isExported": false
+    },
+    {
+      "name": "Persist",
+      "type": "Persist",
+      "properties": [],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents persistence functionality."
+      },
+      "isExported": false
+    },
+    {
+      "name": "WithPersist",
+      "type": "WithPersist<S, A>",
+      "properties": [
+        {
+          "name": "getState",
+          "type": "S[\"getState\"]",
+          "optional": false
+        },
+        {
+          "name": "persist",
+          "type": "{ setOptions: (options: Partial<PersistOptions<unknown, A>>) => void; clearStorage: () => void; rehydrate: () => void | Promise<void>; hasHydrated: () => boolean; onHydrate: (fn: PersistListener<...>) => () => void; onFinishHydration: (fn: PersistListener<...>) => () => void; getOptions: () => Partial<...>; }",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "jsdoc": {
+        "xaiDescription": "Represents a store with persistence functionality. Uses PersistOptions<unknown, A> and PersistListener."
+      },
+      "isExported": false
+    },
+    {
+      "name": "StoreRedux",
+      "type": "StoreRedux<A>",
+      "properties": [
+        {
+          "name": "dispatch",
+          "type": "(a: A) => A",
+          "optional": false,
+          "xaiDescription": "Dispatches an action of type A"
+        },
+        {
+          "name": "dispatchFromDevtools",
+          "type": "true",
+          "optional": false,
+          "xaiDescription": "Enables dispatching from devtools"
+        }
+      ],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Represents a Redux store with type A"
+    },
+    {
+      "name": "ReduxState",
+      "type": "ReduxState<A>",
+      "properties": [
+        {
+          "name": "dispatch",
+          "type": "(a: A) => A",
+          "optional": false,
+          "xaiDescription": "Dispatches an action of type A"
+        }
+      ],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Represents a Redux state with type A"
+    },
+    {
+      "name": "WithRedux",
+      "type": "WithRedux<S, A>",
+      "properties": [
+        {
+          "name": "dispatch",
+          "type": "(a: A) => A",
+          "optional": false,
+          "xaiDescription": "Dispatches an action of type A"
+        },
+        {
+          "name": "dispatchFromDevtools",
+          "type": "true",
+          "optional": false,
+          "xaiDescription": "Enables dispatching from devtools"
+        }
+      ],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Enhances a store with Redux capabilities"
+    },
+    {
+      "name": "Redux",
+      "type": "Redux",
+      "properties": [],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Represents the Redux library"
+    },
+    {
+      "name": "SubscribeWithSelector",
+      "type": "SubscribeWithSelector",
+      "properties": [],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Allows subscribing with a selector"
+    },
+    {
+      "name": "WithSelectorSubscribe",
+      "type": "WithSelectorSubscribe<S>",
+      "properties": [
+        {
+          "name": "getState",
+          "type": "S[\"getState\"]",
+          "optional": false,
+          "xaiDescription": "Gets the current state of type S"
+        },
+        {
+          "name": "subscribe",
+          "type": "{ (listener: (selectedState: unknown, previousSelectedState: unknown) => void): () => void; <U>(selector: (state: unknown) => U, listener: (selectedState: U, previousSelectedState: U) => void, options?: { ...; }): () => void; }",
+          "optional": false,
+          "xaiDescription": "Subscribes to state changes with a selector"
+        }
+      ],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Enhances a store with selector-based subscription"
+    },
+    {
+      "name": "StoreSubscribeWithSelector",
+      "type": "StoreSubscribeWithSelector<T>",
+      "properties": [
+        {
+          "name": "subscribe",
+          "type": "{ (listener: (selectedState: T, previousSelectedState: T) => void): () => void; <U>(selector: (state: T) => U, listener: (selectedState: U, previousSelectedState: U) => void, options?: { ...; }): () => void; }",
+          "optional": false,
+          "xaiDescription": "Subscribes to state changes with a selector"
+        }
+      ],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Enhances a store with selector-based subscription for type T"
+    },
+    {
+      "name": "ReadonlyStoreApi",
+      "type": "ReadonlyStoreApi<T>",
+      "properties": [
+        {
+          "name": "getState",
+          "type": "() => T",
+          "optional": false,
+          "xaiDescription": "Gets the current state of type T"
+        },
+        {
+          "name": "getInitialState",
+          "type": "() => T",
+          "optional": false,
+          "xaiDescription": "Gets the initial state of type T"
+        },
+        {
+          "name": "subscribe",
+          "type": "(listener: (state: T, prevState: T) => void) => () => void",
+          "optional": false,
+          "xaiDescription": "Subscribes to state changes of type T"
+        }
+      ],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Provides a read-only API for a store of type T"
+    },
+    {
+      "name": "UseBoundStore",
+      "type": "UseBoundStore<S>",
+      "properties": [
+        {
+          "name": "getState",
+          "type": "() => unknown",
+          "optional": false,
+          "xaiDescription": "Gets the current state"
+        },
+        {
+          "name": "getInitialState",
+          "type": "() => unknown",
+          "optional": false,
+          "xaiDescription": "Gets the initial state"
+        },
+        {
+          "name": "subscribe",
+          "type": "(listener: (state: unknown, prevState: unknown) => void) => () => void",
+          "optional": false,
+          "xaiDescription": "Subscribes to state changes"
+        }
+      ],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Provides a bound store API for type S"
+    },
+    {
+      "name": "Create",
+      "type": "Create",
+      "properties": [],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Represents a create function"
+    },
+    {
+      "name": "ExtractState",
+      "type": "ExtractState<S>",
+      "properties": [],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Extracts the state from type S"
+    },
+    {
+      "name": "UseBoundStoreWithEqualityFn",
+      "type": "UseBoundStoreWithEqualityFn<S>",
+      "properties": [
+        {
+          "name": "getState",
+          "type": "() => unknown",
+          "optional": false,
+          "xaiDescription": "Gets the current state"
+        },
+        {
+          "name": "getInitialState",
+          "type": "() => unknown",
+          "optional": false,
+          "xaiDescription": "Gets the initial state"
+        },
+        {
+          "name": "subscribe",
+          "type": "(listener: (state: unknown, prevState: unknown) => void) => () => void",
+          "optional": false,
+          "xaiDescription": "Subscribes to state changes"
+        }
+      ],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Provides a bound store API with equality function for type S"
+    },
+    {
+      "name": "CreateWithEqualityFn",
+      "type": "CreateWithEqualityFn",
+      "properties": [],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Represents a create function with equality function"
+    },
+    {
+      "name": "SetStateInternal",
+      "type": "{ (partial: T | Partial<T> | ((state: T) => T | Partial<T>), replace?: false): void; (state: T | ((state: T) => T), replace: true): void; }",
+      "properties": [],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Sets the state internally for type T"
+    },
+    {
+      "name": "StoreApi",
+      "type": "StoreApi<T>",
+      "properties": [
+        {
+          "name": "setState",
+          "type": "{ (partial: T | Partial<T> | ((state: T) => T | Partial<T>), replace?: false): void; (state: T | ((state: T) => T), replace: true): void; }",
+          "optional": false,
+          "xaiDescription": "Sets the state of type T"
+        },
+        {
+          "name": "getState",
+          "type": "() => T",
+          "optional": false,
+          "xaiDescription": "Gets the current state of type T"
+        },
+        {
+          "name": "getInitialState",
+          "type": "() => T",
+          "optional": false,
+          "xaiDescription": "Gets the initial state of type T"
+        },
+        {
+          "name": "subscribe",
+          "type": "(listener: (state: T, prevState: T) => void) => () => void",
+          "optional": false,
+          "xaiDescription": "Subscribes to state changes of type T"
+        }
+      ],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Provides an API for a store of type T"
+    },
+    {
+      "name": "Get",
+      "type": "Get<T, K, F>",
+      "properties": [],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Gets a value from type T using key K and fallback F"
+    },
+    {
+      "name": "Mutate",
+      "type": "Mutate<S, Ms>",
+      "properties": [],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Mutates type S with mutators Ms"
+    },
+    {
+      "name": "StateCreator",
+      "type": "StateCreator<T, Mis, Mos, U>",
+      "properties": [
+        {
+          "name": "$$storeMutators",
+          "type": "Mos",
+          "optional": true,
+          "xaiDescription": "Optional store mutators of type Mos"
+        }
+      ],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Creates a state of type T with initial state Mis, mutators Mos, and result U"
+    },
+    {
+      "name": "StoreMutatorIdentifier",
+      "type": "never",
+      "properties": [],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Represents a store mutator identifier"
+    },
+    {
+      "name": "CreateStore",
+      "type": "CreateStore",
+      "properties": [],
+      "extends": [],
+      "jsdoc": null,
+      "isExported": false,
+      "xaiDescription": "Represents a create store function"
+    }
+  ],
+  "classes": [],
+  "constants": [],
+  "namespaces": [
+    {
+      "name": "zustand",
+      "contents": {
+        "functions": [
+          {
+            "name": "createStore",
+            "parameters": [
+              {
+                "name": "initializer",
+                "type": "StateCreator<T, [], Mos, T>",
+                "optional": false
+              }
+            ],
+            "returnType": "Mutate<StoreApi<T>, Mos>",
+            "jsdoc": null,
+            "xaiDescription": "Creates a store using the provided initializer (Uses StateCreator<T, [], Mos, T>)"
+          },
+          {
+            "name": "useStore",
+            "parameters": [
+              {
+                "name": "api",
+                "type": "S",
+                "optional": false
+              }
+            ],
+            "returnType": "ExtractState<S>",
+            "jsdoc": null,
+            "xaiDescription": "Uses the provided store API to extract the state (Uses ExtractState<S>)"
+          },
+          {
+            "name": "create",
+            "parameters": [
+              {
+                "name": "initializer",
+                "type": "StateCreator<T, [], Mos>",
+                "optional": false
+              }
+            ],
+            "returnType": "UseBoundStore<Mutate<StoreApi<T>, Mos>>",
+            "jsdoc": null,
+            "xaiDescription": "Creates a bound store using the provided initializer (Uses StateCreator<T, [], Mos>)"
+          }
+        ],
+        "enums": [],
+        "types": [],
+        "classes": [],
+        "constants": []
+      },
+      "jsdoc": null,
+      "isExported": true
+    },
+    {
+      "name": "\"/Users/Thy/TypeDefLib/node_modules/zustand/vanilla\"",
+      "contents": {
+        "functions": [],
+        "enums": [],
+        "types": [
+          {
+            "name": "StoreMutators",
+            "type": "StoreMutators<S, A>",
+            "properties": [
+              {
+                "name": "zustand/devtools",
+                "type": "WithDevtools<S>",
+                "optional": false,
+                "xaiDescription": "Enables devtools for the store (Uses WithDevtools<S>)"
+              }
+            ],
+            "extends": [],
+            "jsdoc": null,
+            "isExported": false,
+            "xaiDescription": "Represents store mutators for type S and actions A"
+          }
+        ],
+        "classes": [],
+        "constants": []
+      },
+      "jsdoc": null,
+      "isExported": false
+    }
+  ],
+  "version": "5.0.3"
+}

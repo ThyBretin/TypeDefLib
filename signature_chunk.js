@@ -213,7 +213,7 @@ async function reassembleChunks(chunkFiles, outputFile) {
         merged.version = value;
       } else if (key === "namespaces" && Array.isArray(value)) {
         for (const ns of value) {
-          const nsName = ns.name || "express";
+          const nsName = ns.name || baseName;
           if (!namespaceMap.has(nsName)) {
             namespaceMap.set(nsName, { 
               name: nsName, 
@@ -253,7 +253,7 @@ async function main() {
     }
   }
 
-  const outputFile = `${outputDir}/express-5.0.1.reassembled.json`;
+  const outputFile = `${outputDir}/${baseName}-${version}.reassembled.json`;
   await reassembleChunks(allChunks, outputFile);
 }
 
