@@ -1,6 +1,6 @@
 # TypeDefLib
 
-A Node.js pipeline to extract, sanitize, refine, and store TypeScript definition signatures from npm libraries, enhancing ParticleGraph’s user graph enrichment.
+A Node.js pipeline to extract, chunk, sanitize, refine, and store TypeScript definition signatures from npm libraries, enhancing ParticleGraph’s user graph enrichment.
 
 ## Directory Structure & File Descriptions
 

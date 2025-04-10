@@ -3,7 +3,7 @@ const axios = require("axios");
 const fs = require("fs").promises;
 const path = require("path");
 const { S3Client, PutObjectCommand, HeadObjectCommand } = require("@aws-sdk/client-s3");
-const { reassembleChunks } = require("./chunk_signatures");
+const { reassembleChunks } = require("./signature_chunk");
 
 const s3Client = new S3Client({
   region: "auto",
@@ -21,6 +21,7 @@ async function refineWithXAI(filePath, apiKey, failedChunks, retries = 2) {
     return refinedPath;
   }
 
+  console.log(`Starting refinement for ${filePath}`);
   const json = JSON.parse(await fs.readFile(filePath, "utf-8"));
   const prompt = `
 You’re Grok from xAI. Refine this JSON chunk from ${json.version || "a library"}:
@@ -30,8 +31,11 @@ Add concise JSDoc (max 20 words) for functions, methods, classes, and types if m
 
 Return only raw JSON—no text, no Markdown, no \`\`\`.
 `;
+  console.log(`Prompt length for ${filePath}: ${prompt.length} chars`);
+
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
+      console.log(`Calling xAI API for ${filePath}, attempt ${attempt + 1}`);
       const response = await axios.post("https://api.x.ai/v1/chat/completions", {
         model: "grok-2-1212",
         messages: [
@@ -42,7 +46,7 @@ Return only raw JSON—no text, no Markdown, no \`\`\`.
         headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" }
       });
 
-      console.log(`xAI response for ${filePath} (attempt ${attempt + 1}):`, JSON.stringify(response.data, null, 2));
+      console.log(`xAI raw response for ${filePath}:`, response.data.choices[0].message.content);
       await fs.writeFile(`${filePath}.raw`, JSON.stringify(response.data, null, 2));
 
       if (!response.data.choices || !response.data.choices[0]) {
@@ -50,35 +54,31 @@ Return only raw JSON—no text, no Markdown, no \`\`\`.
       }
 
       let refinedText = response.data.choices[0].message.content;
-      console.log(`Raw refined text for ${filePath}:`, refinedText); // Debug
       refinedText = refinedText.replace(/```json/g, "").replace(/```/g, "").trim();
       let refinedJson;
       try {
         refinedJson = JSON.parse(refinedText);
       } catch (e) {
         console.warn(`Invalid JSON from xAI for ${filePath}: ${e.message}`);
-        const lastBrace = refinedText.lastIndexOf("}");
-        if (lastBrace > 0) {
-          refinedText = refinedText.substring(0, lastBrace + 1);
-          try {
-            refinedJson = JSON.parse(refinedText);
-            console.log(`Salvaged partial JSON for ${filePath}`);
-          } catch (e2) {
-            console.warn(`Salvage failed: ${e2.message}`);
-            if (attempt === retries) {
-              failedChunks.push({ file: filePath, error: e.message });
-              console.log(`Skipping ${filePath} due to unrecoverable JSON error after ${retries + 1} attempts`);
-              return null;
-            }
-            continue; // Retry
-          }
-        } else {
+        let salvagedText = refinedText;
+        const lastBracket = salvagedText.lastIndexOf("]");
+        const lastBrace = salvagedText.lastIndexOf("}");
+        if (lastBracket > lastBrace && lastBracket < salvagedText.length - 1) {
+          salvagedText = salvagedText.substring(0, lastBracket + 1) + "}";
+        } else if (lastBrace > 0) {
+          salvagedText = salvagedText.substring(0, lastBrace + 1);
+        }
+        try {
+          refinedJson = JSON.parse(salvagedText);
+          console.log(`Salvaged JSON for ${filePath}`);
+        } catch (e2) {
+          console.warn(`Salvage failed: ${e2.message}, raw: ${salvagedText.slice(-50)}`);
           if (attempt === retries) {
             failedChunks.push({ file: filePath, error: e.message });
             console.log(`Skipping ${filePath} due to unrecoverable JSON error after ${retries + 1} attempts`);
             return null;
           }
-          continue; // Retry
+          continue;
         }
       }
 
@@ -94,7 +94,7 @@ Return only raw JSON—no text, no Markdown, no \`\`\`.
         console.log(`Skipping ${filePath} due to API error after ${retries + 1} attempts`);
         return null;
       }
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1s before retry
+      await new Promise(resolve => setTimeout(resolve, 1000));
     }
   }
 }
@@ -150,7 +150,7 @@ async function main() {
     throw new Error("Missing R2 credentials in .env!");
   }
 
-  const cleanedDir = "./libraryDefs/cleaned";
+  const cleanedDir = "./libraryDefs/cleaned"; // Fixed to cleaned
   const files = await fs.readdir(cleanedDir);
   console.log(`Found ${files.length} files in ${cleanedDir}:`, files);
   const refinedFiles = [];
@@ -158,7 +158,9 @@ async function main() {
 
   for (const file of files) {
     if (file.endsWith(".sanitized.json")) {
-      const refinedFile = await refineWithXAI(`${cleanedDir}/${file}`, apiKey, failedChunks);
+      const fullPath = `${cleanedDir}/${file}`;
+      console.log(`Processing ${fullPath}`);
+      const refinedFile = await refineWithXAI(fullPath, apiKey, failedChunks);
       if (refinedFile) refinedFiles.push(refinedFile);
     }
   }
