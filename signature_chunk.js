@@ -8,7 +8,7 @@ const { Writable } = require("stream");
 const tokenizer = encoding_for_model("gpt-3.5-turbo");
 const sections = ["functions", "enums", "types", "classes", "constants", "namespaces"];
 
-async function chunkSignatures(inputFile, outputDir, maxTokens = 5000) { // Lowered to 5000
+async function chunkSignatures(inputFile, outputDir, maxTokens = 5100) { // Upped to 5100
   console.log(`Processing input file: ${inputFile}`);
   if (!fsSync.existsSync(inputFile)) {
     console.error(`Input file ${inputFile} does not exist`);
@@ -190,7 +190,7 @@ async function splitLargeItemByTokens(item, maxTokens) {
   return parts;
 }
 
-async function reassembleChunks(chunkFiles, outputFile) {
+async function reassembleChunks(chunkFiles, outputFile, baseName, version) { // Added baseName, version
   const merged = { functions: [], enums: [], types: [], classes: [], constants: [], namespaces: [], version: null };
   const namespaceMap = new Map();
 
@@ -213,7 +213,7 @@ async function reassembleChunks(chunkFiles, outputFile) {
         merged.version = value;
       } else if (key === "namespaces" && Array.isArray(value)) {
         for (const ns of value) {
-          const nsName = ns.name || baseName;
+          const nsName = ns.name || baseName; // Use baseName here
           if (!namespaceMap.has(nsName)) {
             namespaceMap.set(nsName, { 
               name: nsName, 
@@ -245,16 +245,20 @@ async function main() {
   console.log(`Found ${files.length} files in ${extractedDir}:`, files);
 
   let allChunks = [];
+  let baseName, version;
   for (const file of files) {
     if (file.endsWith(".signatures.json")) {
       const inputFile = `${extractedDir}/${file}`;
+      [baseName, version] = file.replace(".signatures.json", "").split("-"); // Set here
       const chunks = await chunkSignatures(inputFile, outputDir);
       allChunks = allChunks.concat(chunks);
     }
   }
 
-  const outputFile = `${outputDir}/${baseName}-${version}.reassembled.json`;
-  await reassembleChunks(allChunks, outputFile);
+  if (allChunks.length > 0) {
+    const outputFile = `${outputDir}/${baseName}-${version}.reassembled.json`;
+    await reassembleChunks(allChunks, outputFile, baseName, version); // Pass baseName, version
+  }
 }
 
 if (require.main === module) main().catch(error => {

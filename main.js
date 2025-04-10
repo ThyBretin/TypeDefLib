@@ -1,6 +1,9 @@
 require("dotenv").config();
 const fs = require("fs").promises;
 const path = require("path");
+const { exec } = require("child_process");
+const util = require("util");
+const execAsync = util.promisify(exec);
 const { extractSignatures } = require("./signature_extraction");
 const { crawlDtsFiles } = require("./dts_finder");
 const { S3Client, HeadObjectCommand } = require("@aws-sdk/client-s3");
@@ -88,6 +91,7 @@ async function main() {
   const outputFile = `./libraryDefs/extracted/${baseName}-${version}.signatures.json`;
   const r2Key = `${baseName}-${version}.graph.json`;
 
+  // Check R2
   if (await checkR2Exists(r2Key)) {
     console.log(`Skipping ${name}-${version}—exists in R2`);
     packages[name].status = "done";
@@ -97,17 +101,11 @@ async function main() {
 
   packages[name].status = "processing";
   await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
+  console.log(`Processing ${name}-${version}`);
 
-  const dtsStorePath = `./libraryDefs/dts_store/${name}-${version}.json`;
-  let dtsFiles = [];
-  if (await fs.stat(dtsStorePath).catch(() => false)) {
-    dtsFiles = JSON.parse(await fs.readFile(dtsStorePath, "utf-8")).files;
-    console.log(`Loaded ${dtsFiles.length} .d.ts files from store:`, dtsFiles);
-  } else {
-    const { dtsFiles: crawledFiles, logs } = await crawlDtsFiles(name, version);
-    console.log("Crawl logs:", logs);
-    dtsFiles = crawledFiles;
-  }
+  // Crawl .d.ts with dts_finder.js
+  const { dtsFiles, logs } = await crawlDtsFiles(name, version);
+  console.log("Crawl logs:", logs);
 
   if (dtsFiles.length === 0) {
     console.error(`No .d.ts files found for ${name}-${version}`);
@@ -116,7 +114,8 @@ async function main() {
     return;
   }
 
-  console.log(`Extracting signatures from ${dtsFiles.length} .d.ts files for ${name}:`, dtsFiles);
+  // Extract
+  console.log(`Extracting signatures from ${dtsFiles.length} .d.ts files:`);
   const allDefs = [];
   for (const dtsPath of dtsFiles) {
     console.log(`Processing ${dtsPath}`);
@@ -131,13 +130,23 @@ async function main() {
   const mergedDefs = mergeDefs(allDefs);
   await fs.mkdir("./libraryDefs/extracted", { recursive: true });
   await fs.writeFile(outputFile, JSON.stringify(mergedDefs, null, 2));
-  console.log(`Signatures extracted for ${name} to ${outputFile}`);
+  console.log(`Signatures extracted to ${outputFile}`);
 
+  // Pipeline
+  console.log("Running chunking...");
+  await execAsync("node signature_chunk.js");
+  console.log("Running sanitization...");
+  await execAsync("node signature_sanitization.js");
+  console.log("Running refinement and R2 upload...");
+  await execAsync("node signature_refinement.js");
+
+  // Update status
   packages[name].status = "done";
   await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
+  console.log(`Completed ${name}-${version}`);
 }
 
 if (require.main === module) main().catch(error => {
-  console.error("Extraction failed:", error);
+  console.error("Process failed:", error);
   process.exit(1);
 });

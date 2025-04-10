@@ -7,6 +7,10 @@
     "cheerio": {
       "version": "1.0.0",
       "status": "done"
+    },
+    "wretch": {
+      "version": "2.11.0",
+      "status": "processing"
     }
   }
 }
