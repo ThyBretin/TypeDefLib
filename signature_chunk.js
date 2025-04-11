@@ -4,11 +4,12 @@ const path = require("path");
 const { encoding_for_model } = require("tiktoken");
 const StreamObject = require("stream-json/streamers/StreamObject");
 const { Writable } = require("stream");
+const { splitLargeItemByTokens } = require("./signature_split");
 
 const tokenizer = encoding_for_model("gpt-3.5-turbo");
 const sections = ["functions", "enums", "types", "classes", "constants", "namespaces"];
 
-async function chunkSignatures(inputFile, outputDir, maxTokens = 5100) { // Upped to 5100
+async function chunkSignatures(inputFile, outputDir, maxTokens = 6000) {
   console.log(`Processing input file: ${inputFile}`);
   if (!fsSync.existsSync(inputFile)) {
     console.error(`Input file ${inputFile} does not exist`);
@@ -23,30 +24,42 @@ async function chunkSignatures(inputFile, outputDir, maxTokens = 5100) { // Uppe
   let currentChunk = { functions: [], enums: [], types: [], classes: [], constants: [], namespaces: [] };
   let currentTokens = 0;
 
+  const hasContent = (chunk) => {
+    return sections.some(section => chunk[section].length > 0);
+  };
+
   const writeChunk = async () => {
-    if (currentTokens > 0) {
+    if (currentTokens > 0 && hasContent(currentChunk)) {
       if (version) currentChunk.version = version;
       const chunkStr = JSON.stringify(currentChunk);
       const finalTokens = tokenizer.encode(chunkStr).length;
+      console.log(`Writing chunk ${chunkIndex}: ${finalTokens} tokens`);
       if (finalTokens > maxTokens) {
         console.warn(`Chunk ${chunkIndex} exceeds ${maxTokens}: ${finalTokens} tokens—re-splitting`);
         const splitChunks = await splitLargeItemByTokens(currentChunk, maxTokens);
         for (const splitChunk of splitChunks) {
-          const splitFile = `${outputDir}/${baseName}_${chunkIndex}.chunk.json`;
-          await fs.writeFile(splitFile, JSON.stringify(splitChunk, null, 2));
-          chunks.push(splitFile);
-          console.log(`Chunked part ${chunkIndex} → ${splitFile} (${tokenizer.encode(JSON.stringify(splitChunk)).length} tokens)`);
-          chunkIndex++;
+          if (hasContent(splitChunk)) {
+            const splitFile = `${outputDir}/${baseName}_${chunkIndex}.chunk.json`;
+            const splitTokens = tokenizer.encode(JSON.stringify(splitChunk)).length;
+            await fs.writeFile(splitFile, JSON.stringify(splitChunk, null, 2));
+            chunks.push(splitFile);
+            console.log(`Chunked ${chunkIndex} → ${splitFile} (${splitTokens} tokens)`);
+            chunkIndex++;
+          } else {
+            console.log(`Skipping empty split chunk ${chunkIndex}`);
+          }
         }
       } else {
         const chunkFile = `${outputDir}/${baseName}_${chunkIndex}.chunk.json`;
         await fs.writeFile(chunkFile, chunkStr);
         chunks.push(chunkFile);
-        console.log(`Chunked part ${chunkIndex} → ${chunkFile} (${finalTokens} tokens)`);
+        console.log(`Chunked ${chunkIndex} → ${chunkFile} (${finalTokens} tokens)`);
         chunkIndex++;
       }
       currentChunk = { functions: [], enums: [], types: [], classes: [], constants: [], namespaces: [] };
       currentTokens = 0;
+    } else {
+      console.log(`Skipping chunk ${chunkIndex} - no content`);
     }
   };
 
@@ -56,7 +69,7 @@ async function chunkSignatures(inputFile, outputDir, maxTokens = 5100) { // Uppe
     console.log(`Item in ${section}: ${tokens} tokens`);
 
     if (tokens > maxTokens) {
-      console.warn(`Single ${section} item exceeds ${maxTokens} tokens: ${tokens}`);
+      console.warn(`Single ${section} item exceeds ${maxTokens}: ${tokens}`);
       const splitItems = await splitLargeItemByTokens(item, maxTokens);
       console.log(`Split into ${splitItems.length} parts`);
       for (const splitItem of splitItems) {
@@ -64,9 +77,6 @@ async function chunkSignatures(inputFile, outputDir, maxTokens = 5100) { // Uppe
         if (currentTokens + splitTokens > maxTokens) await writeChunk();
         currentChunk[section].push(splitItem);
         currentTokens += splitTokens;
-        if (section === "namespaces" && splitItem.contents?.types?.length) {
-          console.log(`Split namespace types: ${splitItem.contents.types.length}, name: ${splitItem.name || 'unnamed'}`);
-        }
       }
     } else {
       if (currentTokens + tokens > maxTokens) await writeChunk();
@@ -97,8 +107,6 @@ async function chunkSignatures(inputFile, outputDir, maxTokens = 5100) { // Uppe
               }
             }
           }
-        } else {
-          console.log(`Skipping key: ${key}`);
         }
         done();
       },
@@ -107,133 +115,8 @@ async function chunkSignatures(inputFile, outputDir, maxTokens = 5100) { // Uppe
         resolve(chunks);
         done();
       }
-    })).on("error", reject).on("finish", () => console.log("Stream finished"));
-  }).catch(err => {
-    console.error("Chunking promise rejected:", err);
-    throw err;
+    })).on("error", reject);
   });
-}
-
-async function splitLargeItemByTokens(item, maxTokens) {
-  const totalTokens = tokenizer.encode(JSON.stringify(item)).length;
-  if (totalTokens <= maxTokens) return [item];
-
-  const parts = [];
-  const name = item.name;
-
-  if (Array.isArray(item)) {
-    let currentPart = [];
-    let currentTokens = 0;
-    for (const subItem of item) {
-      const subTokens = tokenizer.encode(JSON.stringify(subItem)).length;
-      if (currentTokens + subTokens > maxTokens && currentPart.length > 0) {
-        parts.push([...currentPart]);
-        currentPart = [subItem];
-        currentTokens = subTokens;
-      } else {
-        currentPart.push(subItem);
-        currentTokens += subTokens;
-      }
-    }
-    if (currentPart.length > 0) parts.push(currentPart);
-  } else if (typeof item === "object" && item !== null) {
-    const entries = Object.entries(item);
-    console.log(`Splitting ${entries.length} entries`);
-    let currentPart = name ? { name } : {};
-    let currentTokens = tokenizer.encode(JSON.stringify(currentPart)).length;
-
-    for (const [key, value] of entries) {
-      if (key === "name") continue;
-      const entryTokens = tokenizer.encode(JSON.stringify({ [key]: value })).length;
-      console.log(`Entry ${key}: ${entryTokens} tokens`);
-
-      if (entryTokens > maxTokens) {
-        console.log(`Recursing into ${key} (${entryTokens} tokens)`);
-        const subParts = await splitLargeItemByTokens(value, maxTokens);
-        for (const subPart of subParts) {
-          const subTokens = tokenizer.encode(JSON.stringify(subPart)).length;
-          if (currentTokens + subTokens > maxTokens && Object.keys(currentPart).length > (name ? 1 : 0)) {
-            parts.push({ ...currentPart });
-            console.log(`Part ${parts.length - 1} tokens: ${tokenizer.encode(JSON.stringify(currentPart)).length}`);
-            currentPart = name ? { name } : {};
-            currentTokens = tokenizer.encode(JSON.stringify(currentPart)).length;
-          }
-          currentPart[key] = subPart;
-          currentTokens = tokenizer.encode(JSON.stringify(currentPart)).length;
-          if (currentTokens > maxTokens) {
-            parts.push({ ...(name ? { name } : {}), [key]: subPart });
-            console.log(`Part ${parts.length - 1} tokens: ${subTokens}`);
-            currentPart = name ? { name } : {};
-            currentTokens = tokenizer.encode(JSON.stringify(currentPart)).length;
-          }
-        }
-      } else {
-        if (currentTokens + entryTokens > maxTokens && Object.keys(currentPart).length > (name ? 1 : 0)) {
-          parts.push({ ...currentPart });
-          console.log(`Part ${parts.length - 1} tokens: ${tokenizer.encode(JSON.stringify(currentPart)).length}`);
-          currentPart = name ? { name } : {};
-          currentTokens = tokenizer.encode(JSON.stringify(currentPart)).length;
-        }
-        currentPart[key] = value;
-        currentTokens += entryTokens;
-      }
-    }
-    if (Object.keys(currentPart).length > (name ? 1 : 0)) {
-      parts.push({ ...currentPart });
-      console.log(`Part ${parts.length - 1} tokens: ${currentTokens}`);
-    }
-  } else {
-    parts.push(item);
-  }
-
-  console.log(`Split parts token counts: ${parts.map(p => tokenizer.encode(JSON.stringify(p)).length).join(", ")}`);
-  return parts;
-}
-
-async function reassembleChunks(chunkFiles, outputFile, baseName, version) { // Added baseName, version
-  const merged = { functions: [], enums: [], types: [], classes: [], constants: [], namespaces: [], version: null };
-  const namespaceMap = new Map();
-
-  const mergeArraysDeep = (target, source) => {
-    for (const [key, value] of Object.entries(source)) {
-      if (Array.isArray(value) && Array.isArray(target[key])) {
-        target[key] = [...new Set([...target[key], ...value])];
-      } else if (typeof value === "object" && value !== null && target[key]) {
-        mergeArraysDeep(target[key], value);
-      } else {
-        target[key] = value;
-      }
-    }
-  };
-
-  for (const file of chunkFiles) {
-    const chunk = JSON.parse(await fs.readFile(file, "utf-8"));
-    for (const [key, value] of Object.entries(chunk)) {
-      if (key === "version" && value && !merged.version) {
-        merged.version = value;
-      } else if (key === "namespaces" && Array.isArray(value)) {
-        for (const ns of value) {
-          const nsName = ns.name || baseName; // Use baseName here
-          if (!namespaceMap.has(nsName)) {
-            namespaceMap.set(nsName, { 
-              name: nsName, 
-              contents: { functions: [], enums: [], types: [], classes: [], constants: [] },
-              jsdoc: null,
-              isExported: false
-            });
-          }
-          const targetNs = namespaceMap.get(nsName);
-          mergeArraysDeep(targetNs, ns);
-        }
-      } else if (sections.includes(key) && Array.isArray(value)) {
-        merged[key] = merged[key].concat(value);
-      }
-    }
-  }
-
-  merged.namespaces = Array.from(namespaceMap.values());
-  await fs.writeFile(outputFile, JSON.stringify(merged, null, 2));
-  console.log(`Reassembled → ${outputFile}, namespaces merged: ${merged.namespaces.length}, version: ${merged.version}`);
 }
 
 async function main() {
@@ -245,19 +128,13 @@ async function main() {
   console.log(`Found ${files.length} files in ${extractedDir}:`, files);
 
   let allChunks = [];
-  let baseName, version;
   for (const file of files) {
     if (file.endsWith(".signatures.json")) {
       const inputFile = `${extractedDir}/${file}`;
-      [baseName, version] = file.replace(".signatures.json", "").split("-"); // Set here
       const chunks = await chunkSignatures(inputFile, outputDir);
+      console.log(`Chunked ${file} into ${chunks.length} parts`);
       allChunks = allChunks.concat(chunks);
     }
-  }
-
-  if (allChunks.length > 0) {
-    const outputFile = `${outputDir}/${baseName}-${version}.reassembled.json`;
-    await reassembleChunks(allChunks, outputFile, baseName, version); // Pass baseName, version
   }
 }
 
@@ -266,4 +143,4 @@ if (require.main === module) main().catch(error => {
   process.exit(1);
 });
 
-module.exports = { chunkSignatures, reassembleChunks };
+module.exports = { chunkSignatures };

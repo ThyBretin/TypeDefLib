@@ -133,12 +133,12 @@ async function main() {
   console.log(`Signatures extracted to ${outputFile}`);
 
   // Pipeline
-  console.log("Running chunking...");
-  await execAsync("node signature_chunk.js");
-  console.log("Running sanitization...");
-  await execAsync("node signature_sanitization.js");
-  console.log("Running refinement and R2 upload...");
-  await execAsync("node signature_refinement.js");
+console.log("Running chunking...");
+await execAsync("node signature_chunk.js", { timeout: 300000 });
+console.log("Running sanitization...");
+await execAsync("node signature_sanitization.js", { timeout: 300000 });
+console.log("Running refinement and R2 upload...");
+await execAsync("node signature_refinement.js");
 
   // Update status
   packages[name].status = "done";

@@ -10,6 +10,10 @@
     },
     "wretch": {
       "version": "2.11.0",
+      "status": "done"
+    },
+    "expo": {
+      "version": "52.0.44",
       "status": "processing"
     }
   }
