@@ -1,5 +1,4 @@
 const ts = require("typescript");
-const { extractFunctions } = require("./extract_functions");
 const { extractEnums } = require("./extract_enums");
 const { extractTypes } = require("./extract_types");
 const { extractClasses } = require("./extract_classes");
@@ -42,6 +41,7 @@ function extractSignatures(dtsPath, libName, version) {
     if (ts.isModuleDeclaration(node)) {
       const namespaceDef = extractNamespaces(checker, node, sourceFile, seenFunctions, visitedTypes);
       if (namespaceDef) {
+        console.log(`Namespace: ${namespaceDef.name}, Functions: ${namespaceDef.contents.functions.length}`);
         defs.namespaces.push(namespaceDef);
         defs.functions.push(...namespaceDef.contents.functions);
         defs.enums.push(...namespaceDef.contents.enums);
@@ -50,38 +50,10 @@ function extractSignatures(dtsPath, libName, version) {
         defs.constants.push(...namespaceDef.contents.constants);
       }
     }
-    if (ts.isVariableStatement(node) && node.parent?.kind === ts.SyntaxKind.ModuleBlock) {
-      node.declarationList.declarations.forEach(decl => {
-        const symbol = checker.getSymbolAtLocation(decl.name);
-        if (symbol) {
-          console.log(`Module var: ${symbol.name}`);
-          defs.functions.push(...extractFunctions(checker, symbol, sourceFile, "", seenFunctions));
-          const varType = checker.getTypeOfSymbolAtLocation(symbol, decl);
-          const varProps = varType.getProperties();
-          console.log(`  ${symbol.name} has ${varProps.length} properties`);
-          varProps.forEach(prop => {
-            defs.functions.push(...extractFunctions(checker, prop, sourceFile, symbol.name, seenFunctions));
-          });
-        }
-      });
-    }
-    if (ts.isVariableStatement(node) && node.parent?.kind === ts.SyntaxKind.SourceFile) {
-      defs.constants.push(...extractConstants(checker, node, null, version));
-    }
-    if (ts.isExportAssignment(node) && node.expression) {
-      const symbol = checker.getSymbolAtLocation(node.expression);
-      if (symbol) {
-        console.log(`Export assignment: ${symbol.name}`);
-        defs.functions.push(...extractFunctions(checker, symbol, sourceFile, "", seenFunctions));
-        const expType = checker.getTypeOfSymbolAtLocation(symbol, sourceFile);
-        const expProps = expType.getProperties();
-        console.log(`  ${symbol.name} has ${expProps.length} properties`);
-        expProps.forEach(prop => {
-          defs.functions.push(...extractFunctions(checker, prop, sourceFile, symbol.name, seenFunctions));
-        });
-        const decl = symbol.valueDeclaration || symbol.declarations?.[0];
-        if (decl) defs.constants.push(...extractConstants(checker, decl, symbol, version));
-      }
+    if (ts.isVariableStatement(node)) {
+      const constants = extractConstants(sourceFile, checker);
+      console.log(`Constants: ${constants.length}`);
+      defs.constants.push(...constants);
     }
   }
 
@@ -93,22 +65,41 @@ function extractSignatures(dtsPath, libName, version) {
       console.log(`Found ${exports.length} top-level exports`);
       exports.forEach(exp => {
         console.log(`Export: ${exp.name}`);
-        defs.functions.push(...extractFunctions(checker, exp, sourceFile, "", seenFunctions));
         const expType = checker.getTypeOfSymbolAtLocation(exp, sourceFile);
         const expProps = expType.getProperties();
         console.log(`  ${exp.name} has ${expProps.length} properties`);
+        
         expProps.forEach(prop => {
-          defs.functions.push(...extractFunctions(checker, prop, sourceFile, exp.name, seenFunctions));
+          const propDecl = prop.valueDeclaration || prop.declarations?.[0];
+          if (!propDecl) return;
+          const propType = checker.getTypeOfSymbolAtLocation(prop, propDecl);
+          const signatures = propType.getCallSignatures();
+          signatures.forEach(sig => {
+            const name = exp.name === "_" ? `_.${prop.name}` : `${exp.name}.${prop.name}`;
+            if (!seenFunctions.has(name)) {
+              seenFunctions.add(name);
+              defs.functions.push({
+                name,
+                parameters: sig.parameters.map(p => ({
+                  name: p.name,
+                  type: checker.typeToString(checker.getTypeOfSymbolAtLocation(p, sourceFile)),
+                  optional: !!p.valueDeclaration?.questionToken
+                })),
+                returnType: checker.typeToString(sig.getReturnType()),
+                jsdoc: extractJSDoc(propDecl)
+              });
+            }
+          });
         });
+
         const decl = exp.valueDeclaration || exp.declarations?.[0];
-        if (decl) defs.constants.push(...extractConstants(checker, decl, exp, version));
-        if (libName === "lodash" || exp.name === "List" || exp.name === "Dictionary") {
-          const typeDef = extractTypes(checker, decl || sourceFile, visitedTypes);
-          if (typeDef && !defs.types.some(t => t.name === typeDef.name)) defs.types.push(typeDef);
+        if (decl) {
+          const constants = extractConstants(sourceFile, checker);
+          console.log(`  Constants from ${exp.name}: ${constants.length}`);
+          defs.constants.push(...constants);
         }
       });
 
-      // Treat file as a namespace with proper naming
       const namespaceName = libName === "lodash" ? "_" : libName;
       const namespaceDef = {
         name: namespaceName,
@@ -119,38 +110,18 @@ function extractSignatures(dtsPath, libName, version) {
           classes: defs.classes.slice(),
           constants: defs.constants.slice()
         },
-        jsdoc: null,
+        jsdoc: extractJSDoc(sourceFile),
         isExported: true
       };
-      defs.namespaces = [namespaceDef]; // Replace, don’t append
-
-      // Extract constants from namespace properties
-      defs.namespaces.forEach(ns => {
-        ns.contents.types.forEach(t => {
-          t.properties.forEach(prop => {
-            if (prop.name.toLowerCase() === "version" && !defs.constants.some(c => c.name === `${ns.name}.${prop.name}`)) {
-              const fullName = ns.name === "_" ? `_.${prop.name}` : `${ns.name}.${prop.name}`;
-              defs.constants.push({
-                name: fullName,
-                type: prop.type,
-                value: `"${version}"`,
-                jsdoc: null,
-                isExported: true
-              });
-            }
-          });
-        });
-      });
-
-      // Dedupe constants
-      defs.constants = defs.constants.filter((c, i, self) => 
-        i === self.findIndex(d => d.name === c.name)
-      );
+      if (defs.functions.length > 0 || defs.namespaces.length > 0) {
+        defs.namespaces = [namespaceDef];
+      }
     }
 
     ts.forEachChild(sourceFile, processNode);
   }
 
+  console.log(`Final defs for ${dtsPath}: Functions=${defs.functions.length}, Namespaces=${defs.namespaces.length}`);
   return defs;
 }
 
