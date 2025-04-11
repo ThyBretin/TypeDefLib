@@ -22,14 +22,14 @@
     },
     "lodash": {
       "version": "4.17.16",
-      "status": "done"
+      "status": "processing"
     },
     "moment": {
       "version": "2.30.1",
       "status": "done"
     },
-    "playwright": {
-      "version": "1.51.1",
+    "dayjs": {
+      "version": "1.11.13",
       "status": "processing"
     }
   }

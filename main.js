@@ -91,7 +91,6 @@ async function main() {
   const outputFile = `./libraryDefs/extracted/${baseName}-${version}.signatures.json`;
   const r2Key = `${baseName}-${version}.graph.json`;
 
-  // Check R2
   if (await checkR2Exists(r2Key)) {
     console.log(`Skipping ${name}-${version}—exists in R2`);
     packages[name].status = "done";
@@ -103,7 +102,6 @@ async function main() {
   await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
   console.log(`Processing ${name}-${version}`);
 
-  // Crawl .d.ts with dts_finder.js
   const { dtsFiles, logs } = await crawlDtsFiles(name, version);
   console.log("Crawl logs:", logs);
 
@@ -114,33 +112,28 @@ async function main() {
     return;
   }
 
-  // Extract
-  console.log(`Extracting signatures from ${dtsFiles.length} .d.ts files:`);
-  const allDefs = [];
-  for (const dtsPath of dtsFiles) {
-    console.log(`Processing ${dtsPath}`);
-    try {
-      const defs = extractSignatures(dtsPath, name, version);
-      allDefs.push(defs);
-    } catch (e) {
-      console.error(`Failed to extract ${dtsPath}:`, e);
-    }
+  console.log(`Extracting signatures from ${dtsFiles.length} .d.ts files`);
+  let mergedDefs;
+  try {
+    mergedDefs = extractSignatures(dtsFiles, name, version); // Pass all files at once
+  } catch (e) {
+    console.error(`Failed to extract signatures:`, e);
+    packages[name].status = "failed";
+    await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
+    return;
   }
 
-  const mergedDefs = mergeDefs(allDefs);
   await fs.mkdir("./libraryDefs/extracted", { recursive: true });
   await fs.writeFile(outputFile, JSON.stringify(mergedDefs, null, 2));
   console.log(`Signatures extracted to ${outputFile}`);
 
-  // Pipeline
-console.log("Running chunking...");
-await execAsync("node signature_chunk.js", { timeout: 300000 });
-console.log("Running sanitization...");
-await execAsync("node signature_sanitization.js", { timeout: 300000 });
-console.log("Running refinement and R2 upload...");
-await execAsync("node signature_refinement.js");
+  console.log("Running chunking...");
+  await execAsync("node signature_chunk.js", { timeout: 300000 });
+  console.log("Running sanitization...");
+  await execAsync("node signature_sanitization.js", { timeout: 300000 });
+  console.log("Running refinement and R2 upload...");
+  await execAsync("node signature_refinement.js");
 
-  // Update status
   packages[name].status = "done";
   await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
   console.log(`Completed ${name}-${version}`);

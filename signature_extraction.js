@@ -6,10 +6,9 @@ const { extractConstants } = require("./extract_constants");
 const { extractNamespaces } = require("./extract_namespaces");
 const { extractJSDoc } = require("./extract_jsdoc");
 
-function extractSignatures(dtsPath, libName, version) {
-  const program = ts.createProgram([dtsPath], { allowJs: false });
+function extractSignatures(dtsPaths, libName, version) { // Changed to accept array of paths
+  const program = ts.createProgram(dtsPaths, { allowJs: false }); // Use all files
   const checker = program.getTypeChecker();
-  const sourceFile = program.getSourceFile(dtsPath);
   const defs = { 
     functions: [], 
     enums: [], 
@@ -22,7 +21,7 @@ function extractSignatures(dtsPath, libName, version) {
   const seenFunctions = new Set();
   const visitedTypes = new Set();
 
-  function processNode(node) {
+  function processNode(node, sourceFile) {
     if (ts.isEnumDeclaration(node)) {
       const enumDef = extractEnums(checker, node);
       if (enumDef) defs.enums.push(enumDef);
@@ -57,7 +56,11 @@ function extractSignatures(dtsPath, libName, version) {
     }
   }
 
-  if (sourceFile) {
+  // Process all source files
+  for (const dtsPath of dtsPaths) {
+    const sourceFile = program.getSourceFile(dtsPath);
+    if (!sourceFile) continue;
+
     console.log(`Processing file: ${dtsPath}`);
     const moduleSymbol = checker.getSymbolAtLocation(sourceFile);
     if (moduleSymbol) {
@@ -99,29 +102,32 @@ function extractSignatures(dtsPath, libName, version) {
           defs.constants.push(...constants);
         }
       });
-
-      const namespaceName = libName === "lodash" ? "_" : libName;
-      const namespaceDef = {
-        name: namespaceName,
-        contents: {
-          functions: defs.functions.slice(),
-          enums: defs.enums.slice(),
-          types: defs.types.slice(),
-          classes: defs.classes.slice(),
-          constants: defs.constants.slice()
-        },
-        jsdoc: extractJSDoc(sourceFile),
-        isExported: true
-      };
-      if (defs.functions.length > 0 || defs.namespaces.length > 0) {
-        defs.namespaces = [namespaceDef];
-      }
     }
 
-    ts.forEachChild(sourceFile, processNode);
+    ts.forEachChild(sourceFile, node => processNode(node, sourceFile));
   }
 
-  console.log(`Final defs for ${dtsPath}: Functions=${defs.functions.length}, Namespaces=${defs.namespaces.length}`);
+  // Consolidate namespaces
+  const namespaceName = libName === "lodash" ? "_" : libName;
+  const namespaceDef = {
+    name: namespaceName,
+    contents: {
+      functions: defs.functions.slice(),
+      enums: defs.enums.slice(),
+      types: defs.types.slice(),
+      classes: defs.classes.slice(),
+      constants: defs.constants.slice()
+    },
+    jsdoc: null, // Could aggregate JSDoc if needed
+    isExported: true
+  };
+  if (defs.functions.length > 0 || defs.namespaces.length > 0) {
+    defs.namespaces = [namespaceDef];
+  } else {
+    defs.namespaces = defs.namespaces.filter(n => n.contents.functions.length > 0);
+  }
+
+  console.log(`Final defs: Functions=${defs.functions.length}, Namespaces=${defs.namespaces.length}`);
   return defs;
 }
 
