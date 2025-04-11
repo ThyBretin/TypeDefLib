@@ -67,7 +67,7 @@ Return only raw JSON—no text, no Markdown, no \`\`\`.
     try {
       console.log(`Calling xAI API for ${filePath}, attempt ${attempt + 1}`);
       const response = await axios.post("https://api.x.ai/v1/chat/completions", {
-        model: "grok-2-1212",
+        model: "grok-3-mini-beta",
         messages: [
           { role: "system", content: "You are Grok from xAI. Return only JSON, no commentary, no Markdown." },
           { role: "user", content: prompt }
