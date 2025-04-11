@@ -16,8 +16,12 @@ async function chunkSignatures(inputFile, outputDir, maxTokens = 6000) {
     return [];
   }
 
-  await fs.mkdir(outputDir, { recursive: true });
+  // Extract version from filename
   const baseName = path.basename(inputFile, ".signatures.json");
+  const versionMatch = baseName.match(/-(\d+\.\d+\.\d+)$/);
+  const fallbackVersion = versionMatch ? versionMatch[1] : "unknown";
+
+  await fs.mkdir(outputDir, { recursive: true });
   const chunks = [];
   let chunkIndex = 0;
   let version = null;
@@ -25,13 +29,22 @@ async function chunkSignatures(inputFile, outputDir, maxTokens = 6000) {
   let currentTokens = 0;
 
   const hasContent = (chunk) => {
-    return sections.some(section => chunk[section].length > 0);
+    return chunk.version || sections.some(section => chunk[section].length > 0);
   };
 
   const writeChunk = async () => {
     if (currentTokens > 0 && hasContent(currentChunk)) {
-      if (version) currentChunk.version = version;
-      const chunkStr = JSON.stringify(currentChunk);
+      if (!currentChunk.version) currentChunk.version = version || fallbackVersion;
+      const chunkStr = (() => {
+        try {
+          return JSON.stringify(currentChunk);
+        } catch (e) {
+          console.error(`Failed to serialize chunk ${chunkIndex}: ${e.message}`);
+          return null;
+        }
+      })();
+      if (!chunkStr) return;
+
       const finalTokens = tokenizer.encode(chunkStr).length;
       console.log(`Writing chunk ${chunkIndex}: ${finalTokens} tokens`);
       if (finalTokens > maxTokens) {
@@ -39,9 +52,24 @@ async function chunkSignatures(inputFile, outputDir, maxTokens = 6000) {
         const splitChunks = await splitLargeItemByTokens(currentChunk, maxTokens);
         for (const splitChunk of splitChunks) {
           if (hasContent(splitChunk)) {
+            const splitChunkStr = (() => {
+              try {
+                return JSON.stringify(splitChunk, null, 2);
+              } catch (e) {
+                console.error(`Invalid split chunk ${chunkIndex}: ${e.message}`);
+                return null;
+              }
+            })();
+            if (!splitChunkStr) continue;
+
             const splitFile = `${outputDir}/${baseName}_${chunkIndex}.chunk.json`;
-            const splitTokens = tokenizer.encode(JSON.stringify(splitChunk)).length;
-            await fs.writeFile(splitFile, JSON.stringify(splitChunk, null, 2));
+            const splitTokens = tokenizer.encode(splitChunkStr).length;
+            if (splitTokens > maxTokens) {
+              console.warn(`Split chunk ${splitFile} still exceeds ${maxTokens}: ${splitTokens} tokens`);
+              continue;
+            }
+            await fs.writeFile(splitFile, splitChunkStr);
+            console.log(`Chunk ${splitFile} head: ${splitChunkStr.slice(0, 100)}`);
             chunks.push(splitFile);
             console.log(`Chunked ${chunkIndex} → ${splitFile} (${splitTokens} tokens)`);
             chunkIndex++;
@@ -50,8 +78,15 @@ async function chunkSignatures(inputFile, outputDir, maxTokens = 6000) {
           }
         }
       } else {
+        try {
+          JSON.parse(chunkStr);
+        } catch (e) {
+          console.error(`Invalid JSON for chunk ${chunkIndex}: ${e.message}`);
+          return;
+        }
         const chunkFile = `${outputDir}/${baseName}_${chunkIndex}.chunk.json`;
         await fs.writeFile(chunkFile, chunkStr);
+        console.log(`Chunk ${chunkFile} head: ${chunkStr.slice(0, 100)}`);
         chunks.push(chunkFile);
         console.log(`Chunked ${chunkIndex} → ${chunkFile} (${finalTokens} tokens)`);
         chunkIndex++;

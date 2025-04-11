@@ -3,7 +3,6 @@ const axios = require("axios");
 const fs = require("fs").promises;
 const path = require("path");
 const { S3Client, PutObjectCommand, HeadObjectCommand } = require("@aws-sdk/client-s3");
-const { reassembleChunks } = require("./signature_chunk");
 
 const s3Client = new S3Client({
   region: "auto",
@@ -13,6 +12,37 @@ const s3Client = new S3Client({
     secretAccessKey: process.env.R2_SECRET_ACCESS_KEY
   }
 });
+
+// Remove incorrect import since reassembleChunks isn't in signature_chunk.js
+// const { reassembleChunks } = require("./signature_chunk");
+
+// New reassembleChunks function
+async function reassembleChunks(chunkFiles, outputFile) {
+  console.log(`Reassembling ${chunkFiles.length} chunks into ${outputFile}`);
+  const combined = {
+    version: null,
+    functions: [],
+    enums: [],
+    types: [],
+    classes: [],
+    constants: [],
+    namespaces: []
+  };
+
+  for (const chunkFile of chunkFiles) {
+    const chunkData = JSON.parse(await fs.readFile(chunkFile, "utf-8"));
+    if (chunkData.version && !combined.version) combined.version = chunkData.version;
+    combined.functions.push(...(chunkData.functions || []));
+    combined.enums.push(...(chunkData.enums || []));
+    combined.types.push(...(chunkData.types || []));
+    combined.classes.push(...(chunkData.classes || []));
+    combined.constants.push(...(chunkData.constants || []));
+    combined.namespaces.push(...(chunkData.namespaces || []));
+  }
+
+  await fs.writeFile(outputFile, JSON.stringify(combined, null, 2));
+  console.log(`Assembled chunks into ${outputFile}`);
+}
 
 async function refineWithXAI(filePath, apiKey, failedChunks, retries = 2) {
   const refinedPath = `./libraryDefs/refined/${path.basename(filePath).replace(".sanitized.json", ".refined.json")}`;
@@ -85,7 +115,7 @@ Return only raw JSON—no text, no Markdown, no \`\`\`.
       await fs.mkdir("./libraryDefs/refined", { recursive: true });
       await fs.writeFile(refinedPath, JSON.stringify(refinedJson, null, 2));
       console.log(`Refined ${filePath} → ${refinedPath}`);
-      return refinedPath; // Should return path
+      return refinedPath;
     } catch (error) {
       console.error(`Failed to refine ${filePath} (attempt ${attempt + 1}): ${error.message}`);
       if (error.response) console.error("Response body:", JSON.stringify(error.response.data, null, 2));
@@ -98,7 +128,7 @@ Return only raw JSON—no text, no Markdown, no \`\`\`.
     }
   }
   console.log(`All retries failed for ${filePath}`);
-  return null; // Fallback
+  return null;
 }
 
 async function cleanupIntermediates(baseName) {
@@ -163,7 +193,7 @@ async function main() {
       const fullPath = `${cleanedDir}/${file}`;
       console.log(`Processing ${fullPath}`);
       const refinedFile = await refineWithXAI(fullPath, apiKey, failedChunks);
-      console.log(`Refinement result for ${fullPath}: ${refinedFile}`); // Debug
+      console.log(`Refinement result for ${fullPath}: ${refinedFile}`);
       if (refinedFile) refinedFiles.push(refinedFile);
     }
   }

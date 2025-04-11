@@ -14,8 +14,8 @@ async function splitLargeItemByTokens(item, maxTokens) {
     let currentTokens = 0;
     for (const subItem of item) {
       const subTokens = tokenizer.encode(JSON.stringify(subItem)).length;
-      if (currentTokens + subTokens > maxTokens && currentPart.length > 0) {
-        parts.push([...currentPart]);
+      if (currentTokens + subTokens > maxTokens || currentPart.length >= 50) { // Cap at 50 items
+        if (currentPart.length > 0) parts.push([...currentPart]);
         currentPart = [subItem];
         currentTokens = subTokens;
       } else {
@@ -47,7 +47,7 @@ async function splitLargeItemByTokens(item, maxTokens) {
             currentTokens = tokenizer.encode(JSON.stringify(currentPart)).length;
           }
           currentPart[key] = subPart;
-          currentTokens += subTokens; // Fixed: += not =
+          currentTokens += subTokens;
           if (currentTokens > maxTokens) {
             parts.push({ ...(name ? { name } : {}), [key]: subPart });
             console.log(`Part ${parts.length - 1} tokens: ${subTokens}`);
@@ -76,6 +76,11 @@ async function splitLargeItemByTokens(item, maxTokens) {
 
   console.log(`Split parts tokens: ${parts.map(p => tokenizer.encode(JSON.stringify(p)).length).join(", ")}`);
   return parts.filter(part => {
+    const tokens = tokenizer.encode(JSON.stringify(part)).length;
+    if (tokens > maxTokens) {
+      console.warn(`Split part exceeds ${maxTokens}: ${tokens} tokens`);
+      return false;
+    }
     const hasData = typeof part === "object" && Object.keys(part).some(k => Array.isArray(part[k]) && part[k].length > 0);
     if (!hasData) console.log(`Filtered empty split part: ${JSON.stringify(part)}`);
     return hasData;
