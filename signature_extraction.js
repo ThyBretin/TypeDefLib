@@ -66,7 +66,9 @@ async function extractSignatures(dtsPaths, libName, version) {
     isExported: true
   }];
 
-  console.log(`Final defs: Functions=${defs.functions.length}, Types=${defs.types.length}, Namespaces=${defs.namespaces.length}`);
+  // Only keep high-level progress and warnings/errors
+  // Remove or comment out verbose logs
+  // console.log(`Final defs: Functions=${defs.functions.length}, Types=${defs.types.length}, Namespaces=${defs.namespaces.length}`);
   return defs;
 }
 

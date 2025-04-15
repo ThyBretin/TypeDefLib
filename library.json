@@ -2,7 +2,7 @@
   "packages": {
     "zustand": {
       "version": "5.0.3",
-      "status": "done"
+      "status": "failed"
     },
     "cheerio": {
       "version": "1.0.0",
@@ -34,7 +34,7 @@
     },
     "react": {
       "version": "19.1.0",
-      "status": "failed"
+      "status": "done"
     }
   }
 }

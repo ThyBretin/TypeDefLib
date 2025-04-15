@@ -20,7 +20,7 @@ function dedupeConstants(constants) {
 }
 
 async function sanitizeSignatures(inputFile) {
-  console.log(`Sanitizing input file: ${inputFile}`);
+  // console.log(`Sanitizing input file: ${inputFile}`);
   if (!(await fs.stat(inputFile).catch(() => false))) {
     console.error(`Input file ${inputFile} does not exist`);
     return;
@@ -32,17 +32,26 @@ async function sanitizeSignatures(inputFile) {
 
   if (json.constants) json.constants = dedupeConstants(json.constants);
   const cleanedJson = cleanObject(json);
+
+  // Prevalidate cleaned JSON before writing
+  try {
+    JSON.parse(JSON.stringify(cleanedJson));
+  } catch (e) {
+    console.error(`Sanitized JSON for ${inputFile} is invalid and will not be written:`, e);
+    return;
+  }
+
   const baseName = path.basename(inputFile, ".chunk.json");
   const outputPath = `${outputDir}/${baseName}.sanitized.json`;
   await fs.writeFile(outputPath, JSON.stringify(cleanedJson, null, 2));
-  console.log(`Sanitized chunk → ${outputPath}`);
+  // console.log(`Sanitized chunk → ${outputPath}`);
 }
 
 async function main() {
-  console.log("Step 4: Sanitizing chunks...");
+  // console.log("Step 4: Sanitizing chunks...");
   const chunkedDir = "./libraryDefs/chunked";
   const files = await fs.readdir(chunkedDir);
-  console.log(`Found ${files.length} files in ${chunkedDir}:`, files);
+  // console.log(`Found ${files.length} files in ${chunkedDir}:`, files);
 
   for (const file of files) {
     if (file.endsWith(".chunk.json")) {

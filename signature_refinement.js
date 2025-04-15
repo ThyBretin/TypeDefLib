@@ -38,50 +38,118 @@ async function reassembleChunks(chunkFiles, outputFile) {
     // Set version from the first chunk that has it
     if (chunkData.version && !combined.version) combined.version = chunkData.version;
 
-    // Concatenate top-level arrays (outside namespaces)
-    combined.functions.push(...(chunkData.functions || []));
-    combined.enums.push(...(chunkData.enums || []));
-    combined.types.push(...(chunkData.types || []));
-    combined.classes.push(...(chunkData.classes || []));
-    combined.constants.push(...(chunkData.constants || []));
-
-    // Merge namespaces
-    if (chunkData.namespaces) {
-      for (const ns of chunkData.namespaces) {
-        const name = ns.name;
-        if (!namespaceMap.has(name)) {
-          // Initialize new namespace entry
-          namespaceMap.set(name, {
-            name: name,
-            contents: {
-              functions: [],
-              enums: [],
-              types: [],
-              classes: [],
-              constants: []
-            },
-            jsdoc: ns.jsdoc, // Preserve JSDoc from the first occurrence
-            isExported: ns.isExported
-          });
+    if (Array.isArray(chunkData)) {
+      for (const item of chunkData) {
+        // Guess type by keys present in item
+        if (item.name && item.type && Array.isArray(item.properties)) {
+          combined.types.push(item);
+        } else if (item.name && Array.isArray(item.parameters)) {
+          combined.functions.push(item);
+        } else if (item.name && Array.isArray(item.methods)) {
+          combined.classes.push(item);
+        } else if (item.name && item.value !== undefined) {
+          combined.constants.push(item);
+        } else if (item.name && Array.isArray(item.members)) {
+          combined.enums.push(item);
+        } else if (item.name && item.contents) {
+          // Namespace-like
+          if (!namespaceMap.has(item.name)) {
+            namespaceMap.set(item.name, item);
+          } else {
+            // Merge contents if duplicate namespace
+            const existing = namespaceMap.get(item.name);
+            for (const key of ['functions','enums','types','classes','constants']) {
+              if (item.contents[key]) {
+                existing.contents[key] = (existing.contents[key] || []).concat(item.contents[key]);
+              }
+            }
+          }
         }
-        // Merge contents into existing namespace
-        const existing = namespaceMap.get(name);
-        existing.contents.functions.push(...(ns.contents.functions || []));
-        existing.contents.enums.push(...(ns.contents.enums || []));
-        existing.contents.types.push(...(ns.contents.types || []));
-        existing.contents.classes.push(...(ns.contents.classes || []));
-        existing.contents.constants.push(...(ns.contents.constants || []));
+      }
+    } else if (
+      typeof chunkData === 'object' &&
+      chunkData !== null &&
+      !Array.isArray(chunkData)
+    ) {
+      // Check if all keys are numeric (flattened chunk)
+      const keys = Object.keys(chunkData);
+      if (keys.length > 0 && keys.every(k => !isNaN(Number(k)))) {
+        // Convert to array and process as above
+        const arr = keys.map(k => chunkData[k]);
+        for (const item of arr) {
+          if (item.name && item.type && Array.isArray(item.properties)) {
+            combined.types.push(item);
+          } else if (item.name && Array.isArray(item.parameters)) {
+            combined.functions.push(item);
+          } else if (item.name && Array.isArray(item.methods)) {
+            combined.classes.push(item);
+          } else if (item.name && item.value !== undefined) {
+            combined.constants.push(item);
+          } else if (item.name && Array.isArray(item.members)) {
+            combined.enums.push(item);
+          } else if (item.name && item.contents) {
+            if (!namespaceMap.has(item.name)) {
+              namespaceMap.set(item.name, item);
+            } else {
+              const existing = namespaceMap.get(item.name);
+              for (const key of ['functions','enums','types','classes','constants']) {
+                if (item.contents[key]) {
+                  existing.contents[key] = (existing.contents[key] || []).concat(item.contents[key]);
+                }
+              }
+            }
+          }
+        }
+        continue; // skip further processing for this chunk
+      }
+      // Otherwise, treat as keyed object (original logic)
+      combined.functions.push(...(chunkData.functions || []));
+      combined.enums.push(...(chunkData.enums || []));
+      combined.types.push(...(chunkData.types || []));
+      combined.classes.push(...(chunkData.classes || []));
+      combined.constants.push(...(chunkData.constants || []));
+
+      // Merge namespaces
+      if (chunkData.namespaces) {
+        for (const ns of chunkData.namespaces) {
+          const name = ns.name;
+          if (!namespaceMap.has(name)) {
+            // Initialize new namespace entry
+            namespaceMap.set(name, {
+              name: name,
+              contents: {
+                functions: [],
+                enums: [],
+                types: [],
+                classes: [],
+                constants: []
+              },
+              jsdoc: ns.jsdoc, // Preserve JSDoc from the first occurrence
+              isExported: ns.isExported
+            });
+          }
+          // Merge contents into existing namespace
+          const existing = namespaceMap.get(name);
+          existing.contents.functions.push(...(ns.contents.functions || []));
+          existing.contents.enums.push(...(ns.contents.enums || []));
+          existing.contents.types.push(...(ns.contents.types || []));
+          existing.contents.classes.push(...(ns.contents.classes || []));
+          existing.contents.constants.push(...(ns.contents.constants || []));
+        }
       }
     }
+
+    // Convert merged namespaces to array
+    combined.namespaces = Array.from(namespaceMap.values());
+    try {
+      await fs.mkdir(path.dirname(outputFile), { recursive: true });
+      await fs.writeFile(outputFile, JSON.stringify(combined, null, 2));
+      console.log(`Assembled chunks into ${outputFile}`);
+    } catch (err) {
+      console.error(`Failed to write finalized file ${outputFile}:`, err);
+      throw err; // Prevent further steps if writing failed
+    }
   }
-
-  // Convert merged namespaces to array
-  combined.namespaces = Array.from(namespaceMap.values());
-
-  // Write the final combined JSON
-  await fs.mkdir(path.dirname(outputFile), { recursive: true });
-  await fs.writeFile(outputFile, JSON.stringify(combined, null, 2));
-  console.log(`Assembled chunks into ${outputFile}`);
 }
 
 async function refineWithXAI(filePath, apiKey, failedChunks, retries = 2) {
@@ -116,7 +184,6 @@ Return only raw JSON—no text, no Markdown, no \`\`\`.
         headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" }
       });
 
-      console.log(`xAI raw response for ${filePath}:`, response.data.choices[0].message.content);
       await fs.writeFile(`${filePath}.raw`, JSON.stringify(response.data, null, 2));
 
       if (!response.data.choices || !response.data.choices[0]) {
@@ -223,6 +290,13 @@ async function main() {
   }
 
   const cleanedDir = "./libraryDefs/cleaned";
+  // Ensure cleanedDir exists before reading
+  try {
+    await fs.mkdir(cleanedDir, { recursive: true });
+  } catch (err) {
+    console.error(`Failed to create directory ${cleanedDir}:`, err);
+    throw err;
+  }
   const files = await fs.readdir(cleanedDir);
   console.log(`Found ${files.length} files in ${cleanedDir}:`, files);
   const refinedFiles = [];

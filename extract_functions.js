@@ -60,7 +60,9 @@ function extractFunctions(filePath) {
           isExported: fn.isExported?.() || node.isExported?.() || false
         });
       }
-      console.log("Function:", name, jsdoc);
+      // Only keep high-level progress and warnings/errors
+      // Remove or comment out verbose logs
+      // console.log("Function:", name, jsdoc);
     }
   });
 

@@ -23,7 +23,6 @@ function extractJSDoc(node) {
     name: tag.getName?.() || "",
     text: tag.getCommentText()?.trim() || ""
   }));
-  console.log("Node JSDoc:", jsDocNode?.getJsDocs()?.map(doc => doc.getText()));
 
   return {
     description,

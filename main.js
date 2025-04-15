@@ -18,7 +18,7 @@ const s3Client = new S3Client({
 });
 
 async function checkR2Exists(key) {
-  console.log(`Checking R2 for key: ${key}, Bucket: ${process.env.R2_BUCKET}`);
+  // console.log(`Checking R2 for key: ${key}, Bucket: ${process.env.R2_BUCKET}`);
   try {
     await s3Client.send(new HeadObjectCommand({
       Bucket: process.env.R2_BUCKET,
@@ -72,7 +72,7 @@ function mergeDefs(defsArray) {
 }
 
 async function main() {
-  console.log("Step 2: Starting extraction...");
+  // console.log("Step 2: Starting extraction...");
   if (!process.env.R2_ENDPOINT || !process.env.R2_ACCESS_KEY_ID || !process.env.R2_SECRET_ACCESS_KEY || !process.env.R2_BUCKET) {
     throw new Error("Missing R2 credentials in .env! Required: R2_ENDPOINT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET");
   }
@@ -82,7 +82,7 @@ async function main() {
   const pendingPackage = Object.entries(packages).find(([_, pkg]) => pkg.status === "pending");
 
   if (!pendingPackage) {
-    console.log("No pending packages to process in library.json");
+    // console.log("No pending packages to process in library.json");
     return;
   }
 
@@ -92,7 +92,7 @@ async function main() {
   const r2Key = `${baseName}-${version}.graph.json`;
 
   if (await checkR2Exists(r2Key)) {
-    console.log(`Skipping ${name}-${version}—exists in R2`);
+    // console.log(`Skipping ${name}-${version}—exists in R2`);
     packages[name].status = "done";
     await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
     return;
@@ -100,10 +100,10 @@ async function main() {
 
   packages[name].status = "processing";
   await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
-  console.log(`Processing ${name}-${version}`);
+  // console.log(`Processing ${name}-${version}`);
 
   const { dtsFiles, logs } = await crawlDtsFiles(name, version);
-  console.log("Crawl logs:", logs);
+  // console.log("Crawl logs:", logs);
 
   if (dtsFiles.length === 0) {
     console.error(`No .d.ts files found for ${name}-${version}`);
@@ -114,7 +114,7 @@ async function main() {
     return;
   }
 
-  console.log(`Extracting signatures from ${dtsFiles.length} .d.ts files`);
+  // console.log(`Extracting signatures from ${dtsFiles.length} .d.ts files`);
   let mergedDefs;
   try {
     mergedDefs = await extractSignatures(dtsFiles, name, version); // Make async
@@ -130,7 +130,7 @@ async function main() {
   try {
     await fs.mkdir("./libraryDefs/extracted", { recursive: true });
     await fs.writeFile(outputFile, JSON.stringify(mergedDefs, null, 2));
-    console.log(`Signatures extracted to ${outputFile}`);
+    // console.log(`Signatures extracted to ${outputFile}`);
   } catch (e) {
     console.error(`Failed to write signatures to ${outputFile}: ${e.message}`);
     const errorLog = { name, version, error: `Write failed: ${e.message}`, stack: e.stack, timestamp: new Date().toISOString() };
@@ -141,7 +141,7 @@ async function main() {
   }
 
 try {
-    console.log("Running refinement and R2 upload...");
+    // console.log("Running refinement and R2 upload...");
     await execAsync(`node signature_refinement.js > ./libraryDefs/refinement_${name}-${version}.log 2>&1`, { timeout: 300000 });
 } catch (e) {
     console.error(`Refinement failed for ${name}-${version}: ${e.message}`);
@@ -153,8 +153,8 @@ try {
 }
 
   try {
-    console.log("Running sanitization...");
-    await execAsync("node signature_chunk.js", { timeout: 300000 });
+    // console.log("Running sanitization...");
+    await execAsync("node signature_refinement.js > ./libraryDefs/refinement.log 2>&1", { timeout: 300000 });
   } catch (e) {
     console.error(`Sanitization failed for ${name}-${version}: ${e.message}`);
     const errorLog = { name, version, error: `Sanitization failed: ${e.message}`, stack: e.stack, timestamp: new Date().toISOString() };
@@ -165,7 +165,7 @@ try {
   }
 
   try {
-    console.log("Running refinement and R2 upload...");
+    // console.log("Running refinement and R2 upload...");
     await execAsync("node signature_refinement.js");
   } catch (e) {
     console.error(`Refinement failed for ${name}-${version}: ${e.message}`);
@@ -178,7 +178,7 @@ try {
 
   packages[name].status = "done";
   await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
-  console.log(`Completed ${name}-${version}`);
+  // console.log(`Completed ${name}-${version}`);
 }
 
 if (require.main === module) main().catch(error => {

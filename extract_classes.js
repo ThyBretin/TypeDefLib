@@ -10,7 +10,7 @@ function extractClasses(filePath) {
       parameters: c.getParameters().map(p => ({
         name: p.getName(),
         type: p.getType().getText(),
-        optional: p.isOptional()
+        optional: typeof p.isOptional === 'function' ? p.isOptional() : false
       })),
       returnType: c.getReturnType().getText()
     })),
@@ -19,7 +19,7 @@ function extractClasses(filePath) {
       parameters: m.getParameters().map(p => ({
         name: p.getName(),
         type: p.getType().getText(),
-        optional: p.isOptional()
+        optional: typeof p.isOptional === 'function' ? p.isOptional() : false
       })),
       returnType: m.getReturnType().getText(),
       jsdoc: extractJSDoc(m)
@@ -27,7 +27,7 @@ function extractClasses(filePath) {
     properties: cls.getProperties().map(p => ({
       name: p.getName(),
       type: p.getType().getText(),
-      optional: p.isOptional()
+      optional: typeof p.isOptional === 'function' ? p.isOptional() : false
     })),
     extends: cls.getBaseClass()?.getName(),
     implements: cls.getImplements().map(i => i.getText()),

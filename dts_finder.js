@@ -47,13 +47,15 @@ async function crawlDtsFiles(packageName, version) {
 
     if (dtsFiles.length > 100) {
       logs.push(`Large library detected: ${packageName} with ${dtsFiles.length} files`);
-      console.log(`Processing large library: ${packageName} (${dtsFiles.length} files)`);
+      // Only keep high-level progress and warnings/errors
+      // Remove or comment out verbose logs
+      // console.log(`Processing large library: ${packageName} (${dtsFiles.length} files)`);
     }
 
     logs.push(`Total found ${dtsFiles.length} files: ${dtsFiles.join(", ")}`);
     await fs.mkdir("./libraryDefs/dts_store", { recursive: true });
     await fs.writeFile(outputPath, JSON.stringify({ files: dtsFiles }, null, 2));
-    console.log(`Stored files for ${packageName}-${version} to ${outputPath}`);
+    // console.log(`Stored files for ${packageName}-${version} to ${outputPath}`);
     return { dtsFiles, logs };
   } catch (e) {
     logs.push(`Error crawling ${packageName}: ${e.message}`);
