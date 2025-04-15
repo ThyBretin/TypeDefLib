@@ -1,0 +1,2112 @@
+{
+  "version": null,
+  "functions": [],
+  "enums": [],
+  "types": [
+    {
+      "name": "CheerioRequestOptions",
+      "type": "export interface CheerioRequestOptions extends DecodeStreamOptions {\n    /** The options passed to `undici`'s `stream` method. */\n    requestOptions?: UndiciStreamOptions;\n}",
+      "properties": [
+        {
+          "name": "requestOptions",
+          "type": "{ dispatcher?: import(\"/Users/Thy/TypeDefLib/node_modules/undici/types/dispatcher\").default; } & Omit<import(\"/Users/Thy/TypeDefLib/node_modules/undici/types/dispatcher\").default.RequestOptions, \"origin\" | \"path\">",
+          "optional": true
+        }
+      ],
+      "extends": [
+        "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/commonjs/index\").DecodeStreamOptions"
+      ],
+      "isExported": true,
+      "xaiDescription": "Options for Cheerio HTTP requests, extending DecodeStreamOptions."
+    },
+    {
+      "name": "DecodeStreamOptions",
+      "type": "export interface DecodeStreamOptions extends CheerioOptions {\n    encoding?: SnifferOptions;\n}",
+      "properties": [
+        {
+          "name": "encoding",
+          "type": "import(\"/Users/Thy/TypeDefLib/node_modules/encoding-sniffer/dist/commonjs/sniffer\").SnifferOptions",
+          "optional": true
+        }
+      ],
+      "extends": [
+        "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/commonjs/options\").CheerioOptions"
+      ],
+      "isExported": true,
+      "xaiDescription": "Options for decoding streams in Cheerio, extending CheerioOptions."
+    },
+    {
+      "name": "UndiciStreamOptions",
+      "type": "Parameters<typeof undici.stream>[1]",
+      "properties": [
+        {
+          "name": "dispatcher",
+          "type": "import(\"/Users/Thy/TypeDefLib/node_modules/undici/types/dispatcher\").default",
+          "optional": true
+        },
+        {
+          "name": "opaque",
+          "type": "unknown",
+          "optional": true
+        },
+        {
+          "name": "signal",
+          "type": "unknown",
+          "optional": true
+        },
+        {
+          "name": "maxRedirections",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "redirectionLimitReached",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "onInfo",
+          "type": "(info: { statusCode: number; headers: Record<string, string | string[]>; }) => void",
+          "optional": true
+        },
+        {
+          "name": "responseHeader",
+          "type": "\"raw\"",
+          "optional": true
+        },
+        {
+          "name": "highWaterMark",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "method",
+          "type": "import(\"/Users/Thy/TypeDefLib/node_modules/undici/types/dispatcher\").default.HttpMethod",
+          "optional": false
+        },
+        {
+          "name": "body",
+          "type": "string | Buffer<ArrayBufferLike> | Uint8Array<ArrayBufferLike> | import(\"stream\").Readable | import(\"/Users/Thy/TypeDefLib/node_modules/undici/types/formdata\").FormData",
+          "optional": true
+        },
+        {
+          "name": "headers",
+          "type": "string[] | import(\"/Users/Thy/TypeDefLib/node_modules/undici/types/header\").IncomingHttpHeaders | Iterable<[string, string | string[]]>",
+          "optional": true
+        },
+        {
+          "name": "query",
+          "type": "Record<string, any>",
+          "optional": true
+        },
+        {
+          "name": "idempotent",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "blocking",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "upgrade",
+          "type": "string | boolean",
+          "optional": true
+        },
+        {
+          "name": "headersTimeout",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "bodyTimeout",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "reset",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "throwOnError",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "expectContinue",
+          "type": "boolean",
+          "optional": true
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Parameters for Undici's stream method."
+    },
+    {
+      "name": "StyleProp",
+      "type": "interface StyleProp {\n    length: number;\n    [key: string]: string | number;\n    [index: number]: string;\n}",
+      "properties": [
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "isExported": false,
+      "xaiDescription": "Interface for CSS style properties with dynamic access."
+    },
+    {
+      "name": "ExtractDescriptor",
+      "type": "interface ExtractDescriptor {\n    selector: string;\n    value?: string | ExtractDescriptorFn | ExtractMap;\n}",
+      "properties": [
+        {
+          "name": "selector",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "value",
+          "type": "string | ExtractDescriptorFn | import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/extract\").ExtractMap",
+          "optional": true
+        }
+      ],
+      "extends": [],
+      "isExported": false,
+      "xaiDescription": "Descriptor for extracting data from DOM elements using selectors."
+    },
+    {
+      "name": "ExtractDescriptorFn",
+      "type": "(el: Element, key: string, obj: Record<string, unknown>) => unknown",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Function to extract values from an element based on key and object."
+    },
+    {
+      "name": "ExtractedMap",
+      "type": "{\n    [key in keyof M]: ExtractedValue<M[key], M>;\n}",
+      "properties": [],
+      "isExported": true,
+      "xaiDescription": "Mapped type for extracted values from descriptors."
+    },
+    {
+      "name": "ExtractedValue",
+      "type": "V extends [\n    string | ExtractDescriptor\n] ? NonNullable<ExtractedValue<V[0], M>>[] : V extends string ? string | undefined : V extends ExtractDescriptor ? V['value'] extends ExtractMap ? ExtractedMap<V['value']> | undefined : V['value'] extends ExtractDescriptorFn ? ReturnType<V['value']> | undefined : ReturnType<typeof prop> | undefined : never",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Type for values extracted based on descriptors or strings."
+    },
+    {
+      "name": "ExtractMap",
+      "type": "export interface ExtractMap {\n    [key: string]: ExtractValue;\n}",
+      "properties": [],
+      "extends": [],
+      "isExported": true,
+      "xaiDescription": "Interface for mapping keys to extract values."
+    },
+    {
+      "name": "ExtractValue",
+      "type": "string | ExtractDescriptor | [string | ExtractDescriptor]",
+      "properties": [
+        {
+          "name": "toString",
+          "type": "(() => string) | (() => string) | (() => string)",
+          "optional": false
+        },
+        {
+          "name": "valueOf",
+          "type": "(() => string) | (() => Object)",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Possible types for values in data extraction."
+    },
+    {
+      "name": "Cheerio",
+      "type": "export interface Cheerio<T> extends MethodsType, Iterable<T> {\n    cheerio: '[cheerio object]';\n    splice: typeof Array.prototype.splice;\n}",
+      "properties": [
+        {
+          "name": "cheerio",
+          "type": "\"[cheerio object]\"",
+          "optional": false
+        },
+        {
+          "name": "splice",
+          "type": "{ (start: number, deleteCount?: number): any[]; (start: number, deleteCount: number, ...items: any[]): any[]; }",
+          "optional": false
+        }
+      ],
+      "extends": [
+        "MethodsType",
+        "Iterable<T>"
+      ],
+      "isExported": true,
+      "xaiDescription": "Main Cheerio object for DOM manipulation, extending MethodsType."
+    },
+    {
+      "name": "MethodsType",
+      "type": "typeof Attributes & typeof Traversing & typeof Manipulation & typeof Css & typeof Forms & typeof Extract",
+      "properties": [
+        {
+          "name": "attr",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/attributes\").attr",
+          "optional": false,
+          "xaiDescription": "Gets or sets HTML attributes on elements."
+        },
+        {
+          "name": "prop",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/attributes\").prop",
+          "optional": false,
+          "xaiDescription": "Gets or sets DOM properties of elements."
+        },
+        {
+          "name": "data",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/attributes\").data",
+          "optional": false,
+          "xaiDescription": "Gets or sets data attributes on elements."
+        },
+        {
+          "name": "val",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/attributes\").val",
+          "optional": false,
+          "xaiDescription": "Gets or sets the value of form elements."
+        },
+        {
+          "name": "removeAttr",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/attributes\").removeAttr",
+          "optional": false,
+          "xaiDescription": "Removes specified attributes from elements."
+        },
+        {
+          "name": "hasClass",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/attributes\").hasClass",
+          "optional": false,
+          "xaiDescription": "Checks if elements have a specific class."
+        },
+        {
+          "name": "addClass",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/attributes\").addClass",
+          "optional": false,
+          "xaiDescription": "Adds one or more classes to elements."
+        },
+        {
+          "name": "removeClass",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/attributes\").removeClass",
+          "optional": false,
+          "xaiDescription": "Removes one or more classes from elements."
+        },
+        {
+          "name": "toggleClass",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/attributes\").toggleClass",
+          "optional": false,
+          "xaiDescription": "Toggles classes on elements."
+        },
+        {
+          "name": "find",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").find",
+          "optional": false,
+          "xaiDescription": "Finds descendant elements matching selector; returns Cheerio object."
+        },
+        {
+          "name": "_findBySelector",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\")._findBySelector",
+          "optional": false,
+          "xaiDescription": "Internal method to find elements by selector."
+        },
+        {
+          "name": "closest",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").closest",
+          "optional": false,
+          "xaiDescription": "Gets closest ancestor matching selector."
+        },
+        {
+          "name": "contents",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").contents",
+          "optional": false,
+          "xaiDescription": "Gets child nodes of elements."
+        },
+        {
+          "name": "each",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").each",
+          "optional": false,
+          "xaiDescription": "Iterates over elements with callback."
+        },
+        {
+          "name": "map",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").map",
+          "optional": false,
+          "xaiDescription": "Creates array by mapping each element."
+        },
+        {
+          "name": "filter",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").filter",
+          "optional": false,
+          "xaiDescription": "Reduces set to elements matching selector or function."
+        },
+        {
+          "name": "filterArray",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").filterArray",
+          "optional": false,
+          "xaiDescription": "Filters array of elements."
+        },
+        {
+          "name": "is",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").is",
+          "optional": false,
+          "xaiDescription": "Checks if elements match selector."
+        },
+        {
+          "name": "not",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").not",
+          "optional": false,
+          "xaiDescription": "Removes elements matching selector."
+        },
+        {
+          "name": "has",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").has",
+          "optional": false,
+          "xaiDescription": "Keeps elements with matching descendants."
+        },
+        {
+          "name": "first",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").first",
+          "optional": false,
+          "xaiDescription": "Reduces to first element in set."
+        },
+        {
+          "name": "last",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").last",
+          "optional": false,
+          "xaiDescription": "Reduces to last element in set."
+        },
+        {
+          "name": "eq",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").eq",
+          "optional": false,
+          "xaiDescription": "Reduces to element at specified index."
+        },
+        {
+          "name": "get",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").get",
+          "optional": false,
+          "xaiDescription": "Retrieves DOM elements as array."
+        },
+        {
+          "name": "toArray",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").toArray",
+          "optional": false,
+          "xaiDescription": "Converts selection to array of elements."
+        },
+        {
+          "name": "index",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").index",
+          "optional": false,
+          "xaiDescription": "Gets index of element in parent or selector."
+        },
+        {
+          "name": "slice",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").slice",
+          "optional": false,
+          "xaiDescription": "Reduces set to subset based on indices."
+        },
+        {
+          "name": "end",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").end",
+          "optional": false,
+          "xaiDescription": "Ends selection and returns previous one."
+        },
+        {
+          "name": "add",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").add",
+          "optional": false,
+          "xaiDescription": "Adds elements to current set."
+        },
+        {
+          "name": "addBack",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/traversing\").addBack",
+          "optional": false,
+          "xaiDescription": "Adds previous set of elements back."
+        },
+        {
+          "name": "parent",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, selector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>",
+          "optional": false,
+          "xaiDescription": "Gets parent elements matching selector; uses Cheerio<T>."
+        },
+        {
+          "name": "parents",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, selector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>",
+          "optional": false,
+          "xaiDescription": "Gets ancestor elements matching selector; returns Cheerio object."
+        },
+        {
+          "name": "parentsUntil",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, selector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>, filterSelector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>",
+          "optional": false,
+          "xaiDescription": "Gets ancestors until selector; filters with another selector."
+        },
+        {
+          "name": "next",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, selector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>",
+          "optional": false,
+          "xaiDescription": "Gets next sibling elements matching selector."
+        },
+        {
+          "name": "nextAll",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, selector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>",
+          "optional": false,
+          "xaiDescription": "Gets all following siblings matching selector."
+        },
+        {
+          "name": "nextUntil",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, selector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>, filterSelector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>",
+          "optional": false,
+          "xaiDescription": "Gets following siblings until selector."
+        },
+        {
+          "name": "prev",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, selector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>",
+          "optional": false,
+          "xaiDescription": "Gets previous sibling elements matching selector."
+        },
+        {
+          "name": "prevAll",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, selector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>",
+          "optional": false,
+          "xaiDescription": "Gets all preceding siblings matching selector."
+        },
+        {
+          "name": "prevUntil",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, selector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>, filterSelector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>",
+          "optional": false,
+          "xaiDescription": "Gets preceding siblings until selector."
+        },
+        {
+          "name": "siblings",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, selector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>",
+          "optional": false,
+          "xaiDescription": "Gets sibling elements matching selector."
+        },
+        {
+          "name": "children",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, selector?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedFilters<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element>",
+          "optional": false,
+          "xaiDescription": "Gets child elements matching selector."
+        },
+        {
+          "name": "_makeDomArray",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\")._makeDomArray",
+          "optional": false,
+          "xaiDescription": "Internal utility to create DOM array."
+        },
+        {
+          "name": "appendTo",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").appendTo",
+          "optional": false,
+          "xaiDescription": "Appends elements to target."
+        },
+        {
+          "name": "prependTo",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").prependTo",
+          "optional": false,
+          "xaiDescription": "Prepends elements to target."
+        },
+        {
+          "name": "unwrap",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").unwrap",
+          "optional": false,
+          "xaiDescription": "Removes parent elements from set."
+        },
+        {
+          "name": "wrapAll",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").wrapAll",
+          "optional": false,
+          "xaiDescription": "Wraps all elements with specified HTML."
+        },
+        {
+          "name": "after",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").after",
+          "optional": false,
+          "xaiDescription": "Inserts content after each element."
+        },
+        {
+          "name": "insertAfter",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").insertAfter",
+          "optional": false,
+          "xaiDescription": "Inserts elements after target."
+        },
+        {
+          "name": "before",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").before",
+          "optional": false,
+          "xaiDescription": "Inserts content before each element."
+        },
+        {
+          "name": "insertBefore",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").insertBefore",
+          "optional": false,
+          "xaiDescription": "Inserts elements before target."
+        },
+        {
+          "name": "remove",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").remove",
+          "optional": false,
+          "xaiDescription": "Removes elements from DOM."
+        },
+        {
+          "name": "replaceWith",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").replaceWith",
+          "optional": false,
+          "xaiDescription": "Replaces elements with new content."
+        },
+        {
+          "name": "empty",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").empty",
+          "optional": false,
+          "xaiDescription": "Removes all child nodes from elements."
+        },
+        {
+          "name": "html",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").html",
+          "optional": false,
+          "xaiDescription": "Gets or sets HTML content of elements."
+        },
+        {
+          "name": "toString",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").toString",
+          "optional": false,
+          "xaiDescription": "Serializes elements to HTML string."
+        },
+        {
+          "name": "text",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").text",
+          "optional": false,
+          "xaiDescription": "Gets or sets text content of elements."
+        },
+        {
+          "name": "clone",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/manipulation\").clone",
+          "optional": false,
+          "xaiDescription": "Creates a deep copy of elements."
+        },
+        {
+          "name": "append",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, ...elems: [(this: import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode, i: number, html: string) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").BasicAcceptedElems<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode>] | import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").BasicAcceptedElems<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode>[]) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>",
+          "optional": false,
+          "xaiDescription": "Appends content to elements; returns Cheerio<T>."
+        },
+        {
+          "name": "prepend",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, ...elems: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").BasicAcceptedElems<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode>[] | [(this: import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode, i: number, html: string) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").BasicAcceptedElems<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode>]) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>",
+          "optional": false,
+          "xaiDescription": "Prepends content to elements; returns Cheerio<T>."
+        },
+        {
+          "name": "wrap",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, wrapper: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedElems<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>",
+          "optional": false,
+          "xaiDescription": "Wraps each element with specified HTML."
+        },
+        {
+          "name": "wrapInner",
+          "type": "<T extends AnyNode>(this: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>, wrapper: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").AcceptedElems<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode>) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>",
+          "optional": false,
+          "xaiDescription": "Wraps inner content of each element."
+        },
+        {
+          "name": "css",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/css\").css",
+          "optional": false,
+          "xaiDescription": "Gets or sets CSS properties of elements."
+        },
+        {
+          "name": "serialize",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/forms\").serialize",
+          "optional": false,
+          "xaiDescription": "Serializes form elements to string."
+        },
+        {
+          "name": "serializeArray",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/forms\").serializeArray",
+          "optional": false,
+          "xaiDescription": "Serializes form elements to array."
+        },
+        {
+          "name": "extract",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/api/extract\").extract",
+          "optional": false,
+          "xaiDescription": "Extracts data from elements."
+        }
+      ],
+      "isExported": false
+    },
+    {
+      "name": "SelectorSpecial",
+      "type": "'.' | '#' | ':' | '|' | '>' | '+' | '~' | '['",
+      "properties": [
+        {
+          "name": "toString",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "charAt",
+          "type": "(pos: number) => string",
+          "optional": false
+        },
+        {
+          "name": "charCodeAt",
+          "type": "(index: number) => number",
+          "optional": false
+        },
+        {
+          "name": "concat",
+          "type": "(...strings: string[]) => string",
+          "optional": false
+        },
+        {
+          "name": "indexOf",
+          "type": "(searchString: string, position?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "lastIndexOf",
+          "type": "(searchString: string, position?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "localeCompare",
+          "type": "{ (that: string): number; (that: string, locales?: string | string[], options?: Intl.CollatorOptions): number; (that: string, locales?: Intl.LocalesArgument, options?: Intl.CollatorOptions): number; }",
+          "optional": false
+        },
+        {
+          "name": "match",
+          "type": "{ (regexp: string | RegExp): RegExpMatchArray; (matcher: { [Symbol.match](string: string): RegExpMatchArray; }): RegExpMatchArray; }",
+          "optional": false
+        },
+        {
+          "name": "replace",
+          "type": "{ (searchValue: string | RegExp, replaceValue: string): string; (searchValue: string | RegExp, replacer: (substring: string, ...args: any[]) => string): string; (searchValue: { [Symbol.replace](string: string, replaceValue: string): string; }, replaceValue: string): string; (searchValue: { [Symbol.replace](string: string, replacer: (substring: string, ...args: any[]) => string): string; }, replacer: (substring: string, ...args: any[]) => string): string; }",
+          "optional": false
+        },
+        {
+          "name": "search",
+          "type": "{ (regexp: string | RegExp): number; (searcher: { [Symbol.search](string: string): number; }): number; }",
+          "optional": false
+        },
+        {
+          "name": "slice",
+          "type": "(start?: number, end?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "split",
+          "type": "{ (separator: string | RegExp, limit?: number): string[]; (splitter: { [Symbol.split](string: string, limit?: number): string[]; }, limit?: number): string[]; }",
+          "optional": false
+        },
+        {
+          "name": "substring",
+          "type": "(start: number, end?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "toLowerCase",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "toLocaleLowerCase",
+          "type": "{ (locales?: string | string[]): string; (locales?: Intl.LocalesArgument): string; }",
+          "optional": false
+        },
+        {
+          "name": "toUpperCase",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "toLocaleUpperCase",
+          "type": "{ (locales?: string | string[]): string; (locales?: Intl.LocalesArgument): string; }",
+          "optional": false
+        },
+        {
+          "name": "trim",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "substr",
+          "type": "(from: number, length?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "valueOf",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "codePointAt",
+          "type": "(pos: number) => number",
+          "optional": false
+        },
+        {
+          "name": "includes",
+          "type": "(searchString: string, position?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "endsWith",
+          "type": "(searchString: string, endPosition?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "normalize",
+          "type": "{ (form: \"NFC\" | \"NFD\" | \"NFKC\" | \"NFKD\"): string; (form?: string): string; }",
+          "optional": false
+        },
+        {
+          "name": "repeat",
+          "type": "(count: number) => string",
+          "optional": false
+        },
+        {
+          "name": "startsWith",
+          "type": "(searchString: string, position?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "anchor",
+          "type": "(name: string) => string",
+          "optional": false
+        },
+        {
+          "name": "big",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "blink",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "bold",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "fixed",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "fontcolor",
+          "type": "(color: string) => string",
+          "optional": false
+        },
+        {
+          "name": "fontsize",
+          "type": "{ (size: number): string; (size: string): string; }",
+          "optional": false
+        },
+        {
+          "name": "italics",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "link",
+          "type": "(url: string) => string",
+          "optional": false
+        },
+        {
+          "name": "small",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "strike",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "sub",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "sup",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "padStart",
+          "type": "(maxLength: number, fillString?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "padEnd",
+          "type": "(maxLength: number, fillString?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "trimEnd",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "trimStart",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "trimLeft",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "trimRight",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "matchAll",
+          "type": "(regexp: RegExp) => RegExpStringIterator<RegExpExecArray>",
+          "optional": false
+        },
+        {
+          "name": "__@iterator@35973",
+          "type": "() => StringIterator<string>",
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "(index: number) => string",
+          "optional": false
+        }
+      ],
+      "xaiDescription": "Type for CSS selector special characters like '.' or '#'.",
+      "isExported": false
+    },
+    {
+      "name": "SelectorType",
+      "type": "`${SelectorSpecial}${AlphaNumeric}${string}` | `${AlphaNumeric}${string}`",
+      "properties": [
+        {
+          "name": "toString",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "charAt",
+          "type": "(pos: number) => string",
+          "optional": false
+        },
+        {
+          "name": "charCodeAt",
+          "type": "(index: number) => number",
+          "optional": false
+        },
+        {
+          "name": "concat",
+          "type": "(...strings: string[]) => string",
+          "optional": false
+        },
+        {
+          "name": "indexOf",
+          "type": "(searchString: string, position?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "lastIndexOf",
+          "type": "(searchString: string, position?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "localeCompare",
+          "type": "{ (that: string): number; (that: string, locales?: string | string[], options?: Intl.CollatorOptions): number; (that: string, locales?: Intl.LocalesArgument, options?: Intl.CollatorOptions): number; }",
+          "optional": false
+        },
+        {
+          "name": "match",
+          "type": "{ (regexp: string | RegExp): RegExpMatchArray; (matcher: { [Symbol.match](string: string): RegExpMatchArray; }): RegExpMatchArray; }",
+          "optional": false
+        },
+        {
+          "name": "replace",
+          "type": "{ (searchValue: string | RegExp, replaceValue: string): string; (searchValue: string | RegExp, replacer: (substring: string, ...args: any[]) => string): string; (searchValue: { [Symbol.replace](string: string, replaceValue: string): string; }, replaceValue: string): string; (searchValue: { [Symbol.replace](string: string, replacer: (substring: string, ...args: any[]) => string): string; }, replacer: (substring: string, ...args: any[]) => string): string; }",
+          "optional": false
+        },
+        {
+          "name": "search",
+          "type": "{ (regexp: string | RegExp): number; (searcher: { [Symbol.search](string: string): number; }): number; }",
+          "optional": false
+        },
+        {
+          "name": "slice",
+          "type": "(start?: number, end?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "split",
+          "type": "{ (separator: string | RegExp, limit?: number): string[]; (splitter: { [Symbol.split](string: string, limit?: number): string[]; }, limit?: number): string[]; }",
+          "optional": false
+        },
+        {
+          "name": "substring",
+          "type": "(start: number, end?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "toLowerCase",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "toLocaleLowerCase",
+          "type": "{ (locales?: string | string[]): string; (locales?: Intl.LocalesArgument): string; }",
+          "optional": false
+        },
+        {
+          "name": "toUpperCase",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "toLocaleUpperCase",
+          "type": "{ (locales?: string | string[]): string; (locales?: Intl.LocalesArgument): string; }",
+          "optional": false
+        },
+        {
+          "name": "trim",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "substr",
+          "type": "(from: number, length?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "valueOf",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "codePointAt",
+          "type": "(pos: number) => number",
+          "optional": false
+        },
+        {
+          "name": "includes",
+          "type": "(searchString: string, position?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "endsWith",
+          "type": "(searchString: string, endPosition?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "normalize",
+          "type": "{ (form: \"NFC\" | \"NFD\" | \"NFKC\" | \"NFKD\"): string; (form?: string): string; }",
+          "optional": false
+        },
+        {
+          "name": "repeat",
+          "type": "(count: number) => string",
+          "optional": false
+        },
+        {
+          "name": "startsWith",
+          "type": "(searchString: string, position?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "anchor",
+          "type": "(name: string) => string",
+          "optional": false
+        },
+        {
+          "name": "big",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "blink",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "bold",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "fixed",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "fontcolor",
+          "type": "(color: string) => string",
+          "optional": false
+        },
+        {
+          "name": "fontsize",
+          "type": "{ (size: number): string; (size: string): string; }",
+          "optional": false
+        },
+        {
+          "name": "italics",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "link",
+          "type": "(url: string) => string",
+          "optional": false
+        },
+        {
+          "name": "small",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "strike",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "sub",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "sup",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "padStart",
+          "type": "(maxLength: number, fillString?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "padEnd",
+          "type": "(maxLength: number, fillString?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "trimEnd",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "trimStart",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "trimLeft",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "trimRight",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "matchAll",
+          "type": "(regexp: RegExp) => RegExpStringIterator<RegExpExecArray>",
+          "optional": false
+        },
+        {
+          "name": "__@iterator@35973",
+          "type": "() => StringIterator<string>",
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "(index: number) => string",
+          "optional": false
+        }
+      ],
+      "jsdoc": {
+        "description": "Type for identifying selectors. Allows us to \"upgrade\" queries using\nselectors to return `Element`s.",
+        "tags": []
+      },
+      "isExported": true
+    },
+    {
+      "name": "CheerioAPI",
+      "type": "export interface CheerioAPI extends StaticType {\n    /**\n     * This selector method is the starting point for traversing and manipulating\n     * the document. Like jQuery, it's the primary method for selecting elements\n     * in the document.\n     *\n     * `selector` searches within the `context` scope, which searches within the\n     * `root` scope.\n     *\n     * @example\n     *\n     * js\n     * $('ul .pear').attr('class');\n     * //=> pear\n     *\n     * $('li[class=orange]').html();\n     * //=> Orange\n     *\n     * $('.apple', '#fruits').text();\n     * //=> Apple\n     * \n     *\n     * Optionally, you can also load HTML by passing the string as the selector:\n     *\n     * js\n     * $('<ul id=\"fruits\">...</ul>');\n     * \n     *\n     * Or the context:\n     *\n     * js\n     * $('ul', '<ul id=\"fruits\">...</ul>');\n     * \n     *\n     * Or as the root:\n     *\n     * js\n     * $('li', 'ul', '<ul id=\"fruits\">...</ul>');\n     * \n     *\n     * @param selector - Either a selector to look for within the document, or the\n     *   contents of a new Cheerio instance.\n     * @param context - Either a selector to look for within the root, or the\n     *   contents of the document to query.\n     * @param root - Optional HTML document string.\n     */\n    <T extends AnyNode, S extends string>(selector?: S | BasicAcceptedElems<T>, context?: BasicAcceptedElems<AnyNode> | null, root?: BasicAcceptedElems<Document>, options?: CheerioOptions): Cheerio<S extends SelectorType ? Element : T>;\n    /**\n     * The root the document was originally loaded with.\n     *\n     * @private\n     */\n    _root: Document;\n    /**\n     * The options the document was originally loaded with.\n     *\n     * @private\n     */\n    _options: InternalOptions;\n    /** Mimic jQuery's prototype alias for plugin authors. */\n    fn: typeof Cheerio.prototype;\n    /**\n     * The `.load` static method defined on the \"loaded\" Cheerio factory function\n     * is deprecated. Users are encouraged to instead use the `load` function\n     * exported by the Cheerio module.\n     *\n     * @deprecated Use the `load` function exported by the Cheerio module.\n     * @category Deprecated\n     * @example\n     *\n     * js\n     * const $ = cheerio.load('<h1>Hello, <span>world</span>.</h1>');\n     * \n     */\n    load: ReturnType<typeof getLoad>;\n}",
+      "properties": [
+        {
+          "name": "_root",
+          "type": "import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Document",
+          "optional": false
+        },
+        {
+          "name": "_options",
+          "type": "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/options\").InternalOptions",
+          "optional": false
+        },
+        {
+          "name": "fn",
+          "type": "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/cheerio\").Cheerio<any>",
+          "optional": false
+        },
+        {
+          "name": "load",
+          "type": "(content: string | import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode | import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode[] | Buffer<ArrayBufferLike>, options?: import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/options\").CheerioOptions, isDocument?: boolean) => import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/load\").CheerioAPI",
+          "optional": false
+        }
+      ],
+      "extends": [
+        "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/static\")"
+      ],
+      "jsdoc": {
+        "description": "A querying function, bound to a document created from the provided markup.\n\nAlso provides several helper methods for dealing with the document as a\nwhole.",
+        "tags": []
+      },
+      "isExported": true
+    },
+    {
+      "name": "StaticType",
+      "type": "typeof staticMethods",
+      "properties": [
+        {
+          "name": "html",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/static\").html",
+          "optional": false
+        },
+        {
+          "name": "xml",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/static\").xml",
+          "optional": false
+        },
+        {
+          "name": "text",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/static\").text",
+          "optional": false
+        },
+        {
+          "name": "parseHTML",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/static\").parseHTML",
+          "optional": false
+        },
+        {
+          "name": "root",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/static\").root",
+          "optional": false
+        },
+        {
+          "name": "contains",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/static\").contains",
+          "optional": false
+        },
+        {
+          "name": "extract",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/static\").extract",
+          "optional": false
+        },
+        {
+          "name": "merge",
+          "type": "typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/static\").merge",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Static methods for Cheerio HTML utilities like parsing and extraction."
+    },
+    {
+      "name": "CheerioOptions",
+      "type": "export interface CheerioOptions extends Parse5ParserOptions<Htmlparser2TreeAdapterMap> {\n    /**\n     * Recommended way of configuring htmlparser2 when wanting to parse XML.\n     *\n     * This will switch Cheerio to use htmlparser2.\n     *\n     * @default false\n     */\n    xml?: HTMLParser2Options | boolean;\n    /**\n     * Enable xml mode, which will switch Cheerio to use htmlparser2.\n     *\n     * @deprecated Please use the `xml` option instead.\n     * @default false\n     */\n    xmlMode?: boolean;\n    /** The base URI for the document. Used to resolve the `href` and `src` props. */\n    baseURI?: string | URL;\n    /**\n     * Is the document in quirks mode?\n     *\n     * This will lead to `.className` and `#id` being case-insensitive.\n     *\n     * @default false\n     */\n    quirksMode?: SelectOptions['quirksMode'];\n    /**\n     * Extension point for pseudo-classes.\n     *\n     * Maps from names to either strings of functions.\n     *\n     * - A string value is a selector that the element must match to be selected.\n     * - A function is called with the element as its first argument, and optional\n     *   parameters second. If it returns true, the element is selected.\n     *\n     * @example\n     *\n     * js\n     * const $ = cheerio.load(\n     *   '<div class=\"foo\"></div><div data-bar=\"boo\"></div>',\n     *   {\n     *     pseudos: {\n     *       // `:foo` is an alias for `div.foo`\n     *       foo: 'div.foo',\n     *       // `:bar(val)` is equivalent to `[data-bar=val s]`\n     *       bar: (el, val) => el.attribs['data-bar'] === val,\n     *     },\n     *   },\n     * );\n     *\n     * $(':foo').length; // 1\n     * $('div:bar(boo)').length; // 1\n     * $('div:bar(baz)').length; // 0\n     * \n     */\n    pseudos?: SelectOptions['pseudos'];\n}",
+      "properties": [
+        {
+          "name": "xml",
+          "type": "boolean | import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/options\").HTMLParser2Options",
+          "optional": true
+        },
+        {
+          "name": "xmlMode",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "baseURI",
+          "type": "string | URL",
+          "optional": true
+        },
+        {
+          "name": "quirksMode",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "pseudos",
+          "type": "Record<string, string | ((elem: import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Element, value?: string) => boolean)>",
+          "optional": true
+        }
+      ],
+      "extends": [
+        "import(\"/Users/Thy/TypeDefLib/node_modules/parse5/dist/parser/index\").ParserOptions<import(\"/Users/Thy/TypeDefLib/node_modules/parse5-htmlparser2-tree-adapter/dist/index\").Htmlparser2TreeAdapterMap>"
+      ],
+      "jsdoc": {
+        "description": "Options accepted by Cheerio.\n\nPlease note that parser-specific options are _only recognized_ if the\nrelevant parser is used.",
+        "tags": []
+      },
+      "isExported": true
+    },
+    {
+      "name": "HTMLParser2Options",
+      "type": "export interface HTMLParser2Options extends DomHandlerOptions, HTMLParser2ParserOptions {\n}",
+      "properties": [],
+      "extends": [
+        "import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/index\").DomHandlerOptions",
+        "import(\"/Users/Thy/TypeDefLib/node_modules/htmlparser2/lib/Parser\").ParserOptions"
+      ],
+      "jsdoc": {
+        "description": "Options accepted by htmlparser2, the default parser for XML.",
+        "tags": [
+          {
+            "tagName": "see",
+            "name": "",
+            "text": "://github.com/fb55/htmlparser2/wiki/Parser-options"
+          }
+        ]
+      },
+      "isExported": true
+    },
+    {
+      "name": "InternalOptions",
+      "type": "export interface InternalOptions extends HTMLParser2Options, Omit<CheerioOptions, 'xml'> {\n    /**\n     * Whether to use htmlparser2.\n     *\n     * This is set to true if `xml` is set to true.\n     */\n    _useHtmlParser2?: boolean;\n}",
+      "properties": [
+        {
+          "name": "_useHtmlParser2",
+          "type": "boolean",
+          "optional": true
+        }
+      ],
+      "extends": [
+        "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/options\").HTMLParser2Options",
+        "Omit<import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/options\").CheerioOptions, \"xml\">"
+      ],
+      "jsdoc": {
+        "description": "Internal options for Cheerio.",
+        "tags": []
+      },
+      "isExported": true
+    },
+    {
+      "name": "Writable",
+      "type": "{\n    -readonly [P in keyof T]: T[P];\n}",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Type for making all properties of T writable."
+    },
+    {
+      "name": "AcceptedElems",
+      "type": "BasicAcceptedElems<T> | ((this: T, i: number, el: T) => BasicAcceptedElems<T>)",
+      "properties": [
+        {
+          "name": "toString",
+          "type": "(() => string) | (() => string) | (() => string)",
+          "optional": false
+        },
+        {
+          "name": "valueOf",
+          "type": "(() => string) | (() => Object)",
+          "optional": false
+        }
+      ],
+      "jsdoc": {
+        "description": "Elements that can be passed to manipulation methods, including functions.",
+        "tags": []
+      },
+      "isExported": true
+    },
+    {
+      "name": "AcceptedFilters",
+      "type": "string | FilterFunction<T> | T | Cheerio<T>",
+      "properties": [
+        {
+          "name": "toString",
+          "type": "(() => string) | (() => string) | (() => string) | typeof import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/esm/api/manipulation\").toString",
+          "optional": false
+        },
+        {
+          "name": "valueOf",
+          "type": "(() => string) | (() => Object)",
+          "optional": false
+        }
+      ],
+      "jsdoc": {
+        "description": "Supported filter types, for traversal methods.",
+        "tags": []
+      },
+      "isExported": true
+    },
+    {
+      "name": "AlphaNumeric",
+      "type": "LowercaseLetters | Uppercase<LowercaseLetters> | `${number}`",
+      "properties": [
+        {
+          "name": "toString",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "charAt",
+          "type": "(pos: number) => string",
+          "optional": false
+        },
+        {
+          "name": "charCodeAt",
+          "type": "(index: number) => number",
+          "optional": false
+        },
+        {
+          "name": "concat",
+          "type": "(...strings: string[]) => string",
+          "optional": false
+        },
+        {
+          "name": "indexOf",
+          "type": "(searchString: string, position?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "lastIndexOf",
+          "type": "(searchString: string, position?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "localeCompare",
+          "type": "{ (that: string): number; (that: string, locales?: string | string[], options?: Intl.CollatorOptions): number; (that: string, locales?: Intl.LocalesArgument, options?: Intl.CollatorOptions): number; }",
+          "optional": false
+        },
+        {
+          "name": "match",
+          "type": "{ (regexp: string | RegExp): RegExpMatchArray; (matcher: { [Symbol.match](string: string): RegExpMatchArray; }): RegExpMatchArray; }",
+          "optional": false
+        },
+        {
+          "name": "replace",
+          "type": "{ (searchValue: string | RegExp, replaceValue: string): string; (searchValue: string | RegExp, replacer: (substring: string, ...args: any[]) => string): string; (searchValue: { [Symbol.replace](string: string, replaceValue: string): string; }, replaceValue: string): string; (searchValue: { [Symbol.replace](string: string, replacer: (substring: string, ...args: any[]) => string): string; }, replacer: (substring: string, ...args: any[]) => string): string; }",
+          "optional": false
+        },
+        {
+          "name": "search",
+          "type": "{ (regexp: string | RegExp): number; (searcher: { [Symbol.search](string: string): number; }): number; }",
+          "optional": false
+        },
+        {
+          "name": "slice",
+          "type": "(start?: number, end?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "split",
+          "type": "{ (separator: string | RegExp, limit?: number): string[]; (splitter: { [Symbol.split](string: string, limit?: number): string[]; }, limit?: number): string[]; }",
+          "optional": false
+        },
+        {
+          "name": "substring",
+          "type": "(start: number, end?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "toLowerCase",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "toLocaleLowerCase",
+          "type": "{ (locales?: string | string[]): string; (locales?: Intl.LocalesArgument): string; }",
+          "optional": false
+        },
+        {
+          "name": "toUpperCase",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "toLocaleUpperCase",
+          "type": "{ (locales?: string | string[]): string; (locales?: Intl.LocalesArgument): string; }",
+          "optional": false
+        },
+        {
+          "name": "trim",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "substr",
+          "type": "(from: number, length?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "valueOf",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "codePointAt",
+          "type": "(pos: number) => number",
+          "optional": false
+        },
+        {
+          "name": "includes",
+          "type": "(searchString: string, position?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "endsWith",
+          "type": "(searchString: string, endPosition?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "normalize",
+          "type": "{ (form: \"NFC\" | \"NFD\" | \"NFKC\" | \"NFKD\"): string; (form?: string): string; }",
+          "optional": false
+        },
+        {
+          "name": "repeat",
+          "type": "(count: number) => string",
+          "optional": false
+        },
+        {
+          "name": "startsWith",
+          "type": "(searchString: string, position?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "anchor",
+          "type": "(name: string) => string",
+          "optional": false
+        },
+        {
+          "name": "big",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "blink",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "bold",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "fixed",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "fontcolor",
+          "type": "(color: string) => string",
+          "optional": false
+        },
+        {
+          "name": "fontsize",
+          "type": "{ (size: number): string; (size: string): string; }",
+          "optional": false
+        },
+        {
+          "name": "italics",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "link",
+          "type": "(url: string) => string",
+          "optional": false
+        },
+        {
+          "name": "small",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "strike",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "sub",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "sup",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "padStart",
+          "type": "(maxLength: number, fillString?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "padEnd",
+          "type": "(maxLength: number, fillString?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "trimEnd",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "trimStart",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "trimLeft",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "trimRight",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "matchAll",
+          "type": "(regexp: RegExp) => RegExpStringIterator<RegExpExecArray>",
+          "optional": false
+        },
+        {
+          "name": "__@iterator@57271",
+          "type": "() => StringIterator<string>",
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "(index: number) => string",
+          "optional": false
+        }
+      ],
+      "xaiDescription": "Alphanumeric type combining letters and numbers with standard string methods.",
+      "isExported": false
+    },
+    {
+      "name": "BasicAcceptedElems",
+      "type": "ArrayLike<T> | T | string",
+      "properties": [
+        {
+          "name": "toString",
+          "type": "(() => string) | (() => string)",
+          "optional": false
+        },
+        {
+          "name": "valueOf",
+          "type": "(() => string) | (() => Object)",
+          "optional": false
+        }
+      ],
+      "jsdoc": {
+        "description": "Elements that can be passed to manipulation methods.",
+        "tags": []
+      },
+      "isExported": true
+    },
+    {
+      "name": "FilterFunction",
+      "type": "(this: T, i: number, el: T) => boolean",
+      "properties": [],
+      "jsdoc": {
+        "description": "Function signature, for traversal methods.",
+        "tags": []
+      },
+      "isExported": true
+    },
+    {
+      "name": "LowercaseLetters",
+      "type": "'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'",
+      "properties": [
+        {
+          "name": "toString",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "charAt",
+          "type": "(pos: number) => string",
+          "optional": false
+        },
+        {
+          "name": "charCodeAt",
+          "type": "(index: number) => number",
+          "optional": false
+        },
+        {
+          "name": "concat",
+          "type": "(...strings: string[]) => string",
+          "optional": false
+        },
+        {
+          "name": "indexOf",
+          "type": "(searchString: string, position?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "lastIndexOf",
+          "type": "(searchString: string, position?: number) => number",
+          "optional": false
+        },
+        {
+          "name": "localeCompare",
+          "type": "{ (that: string): number; (that: string, locales?: string | string[], options?: Intl.CollatorOptions): number; (that: string, locales?: Intl.LocalesArgument, options?: Intl.CollatorOptions): number; }",
+          "optional": false
+        },
+        {
+          "name": "match",
+          "type": "{ (regexp: string | RegExp): RegExpMatchArray; (matcher: { [Symbol.match](string: string): RegExpMatchArray; }): RegExpMatchArray; }",
+          "optional": false
+        },
+        {
+          "name": "replace",
+          "type": "{ (searchValue: string | RegExp, replaceValue: string): string; (searchValue: string | RegExp, replacer: (substring: string, ...args: any[]) => string): string; (searchValue: { [Symbol.replace](string: string, replaceValue: string): string; }, replaceValue: string): string; (searchValue: { [Symbol.replace](string: string, replacer: (substring: string, ...args: any[]) => string): string; }, replacer: (substring: string, ...args: any[]) => string): string; }",
+          "optional": false
+        },
+        {
+          "name": "search",
+          "type": "{ (regexp: string | RegExp): number; (searcher: { [Symbol.search](string: string): number; }): number; }",
+          "optional": false
+        },
+        {
+          "name": "slice",
+          "type": "(start?: number, end?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "split",
+          "type": "{ (separator: string | RegExp, limit?: number): string[]; (splitter: { [Symbol.split](string: string, limit?: number): string[]; }, limit?: number): string[]; }",
+          "optional": false
+        },
+        {
+          "name": "substring",
+          "type": "(start: number, end?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "toLowerCase",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "toLocaleLowerCase",
+          "type": "{ (locales?: string | string[]): string; (locales?: Intl.LocalesArgument): string; }",
+          "optional": false
+        },
+        {
+          "name": "toUpperCase",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "toLocaleUpperCase",
+          "type": "{ (locales?: string | string[]): string; (locales?: Intl.LocalesArgument): string; }",
+          "optional": false
+        },
+        {
+          "name": "trim",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "substr",
+          "type": "(from: number, length?: number) => string",
+          "optional": false
+        },
+        {
+          "name": "valueOf",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "codePointAt",
+          "type": "(pos: number) => number",
+          "optional": false
+        },
+        {
+          "name": "includes",
+          "type": "(searchString: string, position?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "endsWith",
+          "type": "(searchString: string, endPosition?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "normalize",
+          "type": "{ (form: \"NFC\" | \"NFD\" | \"NFKC\" | \"NFKD\"): string; (form?: string): string; }",
+          "optional": false
+        },
+        {
+          "name": "repeat",
+          "type": "(count: number) => string",
+          "optional": false
+        },
+        {
+          "name": "startsWith",
+          "type": "(searchString: string, position?: number) => boolean",
+          "optional": false
+        },
+        {
+          "name": "anchor",
+          "type": "(name: string) => string",
+          "optional": false
+        },
+        {
+          "name": "big",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "blink",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "bold",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "fixed",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "fontcolor",
+          "type": "(color: string) => string",
+          "optional": false
+        },
+        {
+          "name": "fontsize",
+          "type": "{ (size: number): string; (size: string): string; }",
+          "optional": false
+        },
+        {
+          "name": "italics",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "link",
+          "type": "(url: string) => string",
+          "optional": false
+        },
+        {
+          "name": "small",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "strike",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "sub",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "sup",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "padStart",
+          "type": "(maxLength: number, fillString?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "padEnd",
+          "type": "(maxLength: number, fillString?: string) => string",
+          "optional": false
+        },
+        {
+          "name": "trimEnd",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "trimStart",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "trimLeft",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "trimRight",
+          "type": "() => string",
+          "optional": false
+        },
+        {
+          "name": "matchAll",
+          "type": "(regexp: RegExp) => RegExpStringIterator<RegExpExecArray>",
+          "optional": false
+        },
+        {
+          "name": "__@iterator@57271",
+          "type": "() => StringIterator<string>",
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "(index: number) => string",
+          "optional": false
+        }
+      ],
+      "jsdoc": {
+        "description": "",
+        "tags": [
+          {
+            "tagName": "file",
+            "name": "",
+            "text": "Types used in signatures of Cheerio methods."
+          }
+        ]
+      },
+      "xaiDescription": "Union of lowercase English letters a through z.",
+      "isExported": false
+    }
+  ],
+  "classes": [
+    {
+      "name": "Cheerio",
+      "constructors": [
+        {
+          "parameters": [
+            {
+              "name": "elements",
+              "type": "ArrayLike<T>",
+              "optional": false
+            },
+            {
+              "name": "root",
+              "type": "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Document>",
+              "optional": false
+            },
+            {
+              "name": "options",
+              "type": "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/options\").InternalOptions",
+              "optional": false
+            }
+          ],
+          "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>",
+          "xaiDescription": "Constructs Cheerio instance with elements (uses ArrayLike<T>), root, and options."
+        }
+      ],
+      "methods": [
+        {
+          "name": "Cheerio._make",
+          "parameters": [
+            {
+              "name": "dom",
+              "type": "string | T | ArrayLike<T>",
+              "optional": false
+            },
+            {
+              "name": "context",
+              "type": "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/types\").BasicAcceptedElems<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode>",
+              "optional": true
+            }
+          ],
+          "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<T>",
+          "jsdoc": {
+            "description": "Make a cheerio object.",
+            "tags": [
+              {
+                "tagName": "private",
+                "name": "",
+                "text": ""
+              },
+              {
+                "tagName": "param",
+                "name": "dom",
+                "text": "- The contents of the new object."
+              },
+              {
+                "tagName": "param",
+                "name": "context",
+                "text": "- The context of the new object."
+              },
+              {
+                "tagName": "returns",
+                "name": "",
+                "text": "The new cheerio object."
+              }
+            ]
+          },
+          "xaiDescription": "Creates Cheerio object from DOM content (uses ArrayLike<T>)."
+        },
+        {
+          "name": "Cheerio._parse",
+          "parameters": [
+            {
+              "name": "content",
+              "type": "string | import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode | import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode[] | Buffer<ArrayBufferLike>",
+              "optional": false
+            },
+            {
+              "name": "options",
+              "type": "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/options\").InternalOptions",
+              "optional": false
+            },
+            {
+              "name": "isDocument",
+              "type": "boolean",
+              "optional": false
+            },
+            {
+              "name": "context",
+              "type": "import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").ParentNode",
+              "optional": false
+            }
+          ],
+          "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Document",
+          "jsdoc": {
+            "description": "Parses some content.",
+            "tags": [
+              {
+                "tagName": "private",
+                "name": "",
+                "text": ""
+              },
+              {
+                "tagName": "param",
+                "name": "content",
+                "text": "- Content to parse."
+              },
+              {
+                "tagName": "param",
+                "name": "options",
+                "text": "- Options for parsing."
+              },
+              {
+                "tagName": "param",
+                "name": "isDocument",
+                "text": "- Allows parser to be switched to fragment mode."
+              },
+              {
+                "tagName": "returns",
+                "name": "",
+                "text": "A document containing the `content`."
+              }
+            ]
+          },
+          "xaiDescription": "Parses content into a document using specified options."
+        },
+        {
+          "name": "Cheerio._render",
+          "parameters": [
+            {
+              "name": "dom",
+              "type": "import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode | ArrayLike<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").AnyNode>",
+              "optional": false
+            }
+          ],
+          "returnType": "string",
+          "jsdoc": {
+            "description": "Render an element or a set of elements.",
+            "tags": [
+              {
+                "tagName": "private",
+                "name": "",
+                "text": ""
+              },
+              {
+                "tagName": "param",
+                "name": "dom",
+                "text": "- DOM to render."
+              },
+              {
+                "tagName": "returns",
+                "name": "",
+                "text": "The rendered DOM."
+              }
+            ]
+          },
+          "xaiDescription": "Renders DOM elements to string (uses ArrayLike for nodes)."
+        }
+      ],
+      "properties": [
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "options",
+          "type": "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/options\").InternalOptions",
+          "optional": false
+        },
+        {
+          "name": "_root",
+          "type": "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<import(\"/Users/Thy/TypeDefLib/node_modules/domhandler/lib/node\").Document>",
+          "optional": false
+        },
+        {
+          "name": "prevObject",
+          "type": "import(\"/Users/Thy/TypeDefLib/node_modules/cheerio/dist/browser/cheerio\").Cheerio<any>",
+          "optional": false
+        }
+      ],
+      "implements": [
+        "ArrayLike<T>"
+      ],
+      "jsdoc": {
+        "description": "The cheerio class is the central class of the library. It wraps a set of\nelements and provides an API for traversing, modifying, and interacting with\nthe set.\n\nLoading a document will return the Cheerio class bound to the root element of\nthe document. The class will be instantiated when querying the document (when\ncalling `$('selector')`).",
+        "tags": [
+          {
+            "tagName": "example",
+            "name": "",
+            "text": "This is the HTML markup we will be using in all of the API examples:\n\nhtml\n<ul id=\"fruits\">\n<li class=\"apple\">Apple</li>\n<li class=\"orange\">Orange</li>\n<li class=\"pear\">Pear</li>\n</ul>\n"
+          }
+        ]
+      },
+      "xaiDescription": "Cheerio class for HTML element manipulation and traversal.",
+      "isExported": true
+    }
+  ],
+  "constants": [],
+  "namespaces": []
+}

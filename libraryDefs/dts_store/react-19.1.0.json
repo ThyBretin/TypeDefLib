@@ -1,0 +1,25 @@
+{
+  "files": [
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/index.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/canary.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/compiler-runtime.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/experimental.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/global.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/jsx-dev-runtime.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/jsx-runtime.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/canary.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/experimental.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/global.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/index.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/jsx-dev-runtime.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/jsx-runtime.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/v18/global.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/v18/index.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/v18/jsx-dev-runtime.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/v18/jsx-runtime.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/v18/ts5.0/global.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/v18/ts5.0/index.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/v18/ts5.0/jsx-dev-runtime.d.ts",
+    "/Users/Thy/TypeDefLib/node_modules/@types/react/ts5.0/v18/ts5.0/jsx-runtime.d.ts"
+  ]
+}
