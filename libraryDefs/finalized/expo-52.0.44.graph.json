@@ -16,7 +16,7 @@
         "tags": []
       },
       "isExported": false,
-      "xaiDescription": "Handles WebSocket messages for Expo DevTools communication."
+      "xaiDescription": "Facilitates Expo DevTools plugin communication between app and browser, ensuring browser and React Native compatibility."
     },
     {
       "name": "useDevToolsPluginClient",
@@ -73,7 +73,8 @@
         "description": "Get the best estimate safe area before native modules have fully loaded.\nThis is a hack to get the safe area insets without explicitly depending on react-native-safe-area-context.",
         "tags": []
       },
-      "isExported": true
+      "isExported": true,
+      "xaiDescription": "Estimates safe area insets without relying on react-native-safe-area-context module."
     },
     {
       "name": "useEvent",
@@ -125,7 +126,8 @@
           }
         ]
       },
-      "isExported": true
+      "isExported": true,
+      "xaiDescription": "React hook to listen to events from an emitter and return updated parameters, using EventEmitter<TEventsMap>."
     },
     {
       "name": "useEventListener",
@@ -172,7 +174,8 @@
           }
         ]
       },
-      "isExported": true
+      "isExported": true,
+      "xaiDescription": "React hook to add and auto-remove event listeners from an emitter, using EventEmitter<TEventsMap>."
     },
     {
       "name": "registerRootComponent",
@@ -194,7 +197,8 @@
           }
         ]
       },
-      "isExported": true
+      "isExported": true,
+      "xaiDescription": "Registers main React component for app rendering on multiple platforms, using React.ComponentType<P>."
     },
     {
       "name": "convertFormDataAsync",
@@ -237,9 +241,7 @@
       ],
       "extends": [],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Generic interface for message frame with key and optional payload. Uses MessageKeyTypeBase."
-      },
+      "xaiDescription": "Interface for message frame with key of type T and optional payload.",
       "isExported": false
     },
     {
@@ -284,9 +286,7 @@
         }
       ],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Union type for various payload data formats including arrays and objects."
-      },
+      "xaiDescription": "Type for various payload formats including arrays, strings, and blobs.",
       "isExported": false
     },
     {
@@ -326,9 +326,7 @@
       ],
       "extends": [],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Configuration options for WebSocket connection and retries."
-      },
+      "xaiDescription": "Configuration options for WebSocket connections including retries and error handling.",
       "isExported": true
     },
     {
@@ -439,9 +437,7 @@
         }
       ],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Generic structure for bridge messages with type and data."
-      },
+      "xaiDescription": "Structure for bridge messages with a type and associated data.",
       "isExported": true
     },
     {
@@ -474,9 +470,7 @@
         "Omit<RNWebViewProps, \"source\">"
       ],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Properties for DOM handling, extending RNWebViewProps without source."
-      },
+      "xaiDescription": "Properties for DOM handling, extending RNWebViewProps without source.",
       "isExported": true
     },
     {
@@ -487,9 +481,7 @@
         "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/dom/dom.types\").JSONValue[]"
       ],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Array type containing JSON values."
-      },
+      "xaiDescription": "Array type that extends JSONValue for JSON-compatible arrays.",
       "isExported": true
     },
     {
@@ -498,9 +490,7 @@
       "properties": [],
       "extends": [],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Object type with string keys and JSON values."
-      },
+      "xaiDescription": "Object type with string keys and JSONValue values.",
       "isExported": true
     },
     {
@@ -524,9 +514,7 @@
         }
       ],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Union of basic JSON-compatible types including arrays and objects."
-      },
+      "xaiDescription": "Type representing any valid JSON value including primitives and structures.",
       "isExported": true
     },
     {
@@ -534,9 +522,7 @@
       "type": "RNWebView",
       "properties": [],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Reference type for RNWebView component."
-      },
+      "xaiDescription": "Reference type for RNWebView component.",
       "isExported": false
     },
     {
@@ -544,9 +530,7 @@
       "type": "RNWebViewProps",
       "properties": [],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Properties for WebView component based on RNWebViewProps."
-      },
+      "xaiDescription": "Properties type for WebView component based on RNWebViewProps.",
       "isExported": true
     },
     {
@@ -554,19 +538,15 @@
       "type": "RNWebViewRef",
       "properties": [],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Reference type for WebView component."
-      },
+      "xaiDescription": "Reference type for WebView based on RNWebViewRef.",
       "isExported": true
     },
     {
       "name": "UseDebugZeroHeightType",
       "type": "(dom?: DOMProps) => {\n    debugZeroHeightStyle: WebViewProps['containerStyle'] | undefined;\n    debugOnLayout: ViewProps['onLayout'];\n}",
       "properties": [],
-      "xaiDescription": {
-        "description": "Function type for debugging zero height with DOM props."
-      },
       "jsdoc": null,
+      "xaiDescription": "Function type for debugging zero height with DOM props.",
       "isExported": false
     },
     {
@@ -586,9 +566,7 @@
       ],
       "extends": [],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Interface for props including optional DOM and required file path."
-      },
+      "xaiDescription": "Interface for props including optional DOM properties and required file path.",
       "isExported": false
     },
     {
@@ -631,10 +609,8 @@
           "optional": true
         }
       ],
-      "xaiDescription": {
-        "description": "Options for Expo Go packager configuration."
-      },
       "jsdoc": null,
+      "xaiDescription": "Options for Expo Go packager configuration.",
       "isExported": true
     },
     {
@@ -668,9 +644,7 @@
         }
       ],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Configuration for Expo Go project settings."
-      },
+      "xaiDescription": "Configuration for Expo Go project settings and packager options.",
       "isExported": false
     },
     {
@@ -678,9 +652,7 @@
       "type": "(...args: any[]) => any",
       "properties": [],
       "jsdoc": null,
-      "xaiDescription": {
-        "description": "Generic function type for any event listener."
-      },
+      "xaiDescription": "Generic function type for any event listener.",
       "isExported": false
     },
     {
@@ -749,10 +721,8 @@
           "optional": true
         }
       ],
-      "xaiDescription": {
-        "description": "Initial properties for app configuration including exp and shell options."
-      },
       "jsdoc": null,
+      "xaiDescription": "Initial properties for app configuration including exp and shell settings.",
       "isExported": false
     },
     {
@@ -765,10 +735,8 @@
           "optional": false
         }
       ],
-      "xaiDescription": {
-        "description": "Union type for form data parts with string, blob, or URI."
-      },
       "jsdoc": null,
+      "xaiDescription": "Part of form data with string, blob, or URI and associated headers.",
       "isExported": true
     },
     {
@@ -791,20 +759,16 @@
           "optional": false
         }
       ],
-      "xaiDescription": {
-        "description": "Union type for form data values as string or blob."
-      },
       "jsdoc": null,
+      "xaiDescription": "Value type for form data, either string or blob.",
       "isExported": true
     },
     {
       "name": "AbortSubscriptionCleanupFunction",
       "type": "() => void",
       "properties": [],
-      "xaiDescription": {
-        "description": "Function to clean up subscription aborts."
-      },
       "jsdoc": null,
+      "xaiDescription": "Function to clean up aborted subscriptions.",
       "isExported": true
     },
     {
@@ -988,7 +952,7 @@
         }
       ],
       "jsdoc": null,
-      "xaiDescription": "Array of string key-value pairs for HTTP headers, supports standard array methods like map and filter.",
+      "xaiDescription": "Array-like type for HTTP headers using string pairs, with standard array methods.",
       "isExported": true
     },
     {
@@ -1013,7 +977,7 @@
       ],
       "extends": [],
       "jsdoc": null,
-      "xaiDescription": "Initialization options for native HTTP requests, including credentials and headers.",
+      "xaiDescription": "Options for initializing native HTTP requests, including credentials and headers.",
       "isExported": true
     },
     {
@@ -1042,7 +1006,7 @@
         }
       ],
       "jsdoc": null,
-      "xaiDescription": "Event handlers for native response lifecycle, such as data receipt and error handling.",
+      "xaiDescription": "Event handlers for native HTTP responses, including data receipt and error handling.",
       "isExported": true
     },
     {
@@ -1142,8 +1106,7 @@
               "optional": true
             }
           ],
-          "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/DevToolsPluginClient\").DevToolsPluginClient",
-          "xaiDescription": "Creates client for app-browser communication using specified connection info."
+          "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/DevToolsPluginClient\").DevToolsPluginClient"
         }
       ],
       "methods": [
@@ -1220,7 +1183,8 @@
           "jsdoc": {
             "description": "This client is for the Expo DevTools Plugins to communicate between the app and the DevTools webpage hosted in a browser.\nAll the code should be both compatible with browsers and React Native.",
             "tags": []
-          }
+          },
+          "xaiDescription": "Sends message using legacy protocol for app-DevTools communication."
         },
         {
           "name": "DevToolsPluginClient.addMessageListener",
@@ -1364,62 +1328,52 @@
         {
           "name": "connectionInfo",
           "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/devtools.types\").ConnectionInfo",
-          "optional": false,
-          "xaiDescription": "Holds connection information for DevTools communication."
+          "optional": false
         },
         {
           "name": "options",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Configuration options for the client."
+          "optional": false
         },
         {
           "name": "eventEmitter",
           "type": "EventEmitter",
-          "optional": false,
-          "xaiDescription": "Emits events for client operations. Uses EventEmitter."
+          "optional": false
         },
         {
           "name": "defaultWSStore",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Default WebSocket store for connections."
+          "optional": false
         },
         {
           "name": "wsStore",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "WebSocket store instance."
+          "optional": false
         },
         {
           "name": "isClosed",
           "type": "boolean",
-          "optional": false,
-          "xaiDescription": "Indicates if the connection is closed."
+          "optional": false
         },
         {
           "name": "retries",
           "type": "number",
-          "optional": false,
-          "xaiDescription": "Number of connection retry attempts."
+          "optional": false
         },
         {
           "name": "messageFramePacker",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Utility for packing message frames."
+          "optional": false
         },
         {
           "name": "sendMessageImpl",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Implementation for sending messages."
+          "optional": false
         },
         {
           "name": "handleMessage",
           "type": "(event: WebSocketMessageEvent) => Promise<void>",
-          "optional": false,
-          "xaiDescription": "Handles incoming WebSocket messages asynchronously."
+          "optional": false
         }
       ],
       "implements": [],
@@ -1467,27 +1421,24 @@
             "description": "The DevToolsPluginClient for the app -> browser communication.",
             "tags": []
           },
-          "xaiDescription": "Sends message from app to browser using specified method and params."
+          "xaiDescription": "Sends message from app to browser via DevToolsPluginClient."
         }
       ],
       "properties": [
         {
           "name": "browserClientMap",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Mapping of browser clients."
+          "optional": false
         },
         {
           "name": "addHandshakeHandler",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Adds handler for handshake messages."
+          "optional": false
         },
         {
           "name": "terminateBrowserClient",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Terminates a browser client connection."
+          "optional": false
         }
       ],
       "extends": "DevToolsPluginClient",
@@ -1496,8 +1447,7 @@
         "description": "The DevToolsPluginClient for the app -> browser communication.",
         "tags": []
       },
-      "isExported": true,
-      "xaiDescription": "Implements client for app-to-browser DevTools communication."
+      "isExported": true
     },
     {
       "name": "DevToolsPluginClientImplBrowser",
@@ -1523,14 +1473,12 @@
         {
           "name": "browserClientId",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Identifier for the browser client."
+          "optional": false
         },
         {
           "name": "startHandshake",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Starts the handshake process."
+          "optional": false
         }
       ],
       "extends": "DevToolsPluginClient",
@@ -1539,8 +1487,7 @@
         "description": "The DevToolsPluginClient for the browser -> app communication.",
         "tags": []
       },
-      "isExported": true,
-      "xaiDescription": "Implements client for browser-to-app DevTools communication."
+      "isExported": true
     },
     {
       "name": "MessageFramePacker",
@@ -1562,7 +1509,7 @@
           ],
           "returnType": "string | Uint8Array<ArrayBufferLike> | Promise<Uint8Array<ArrayBufferLike>>",
           "jsdoc": null,
-          "xaiDescription": "Packs message frame with key and payload, optionally using legacy transport."
+          "xaiDescription": "Packs message frame into transportable format, using MessageFrame<T>."
         },
         {
           "name": "MessageFramePacker.unpack",
@@ -1575,57 +1522,50 @@
           ],
           "returnType": "MessageFrame<T>",
           "jsdoc": null,
-          "xaiDescription": "Unpacks data into message frame."
+          "xaiDescription": "Unpacks data into MessageFrame<T> structure."
         }
       ],
       "properties": [
         {
           "name": "textEncoder",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Encodes text for message packing."
+          "optional": false
         },
         {
           "name": "textDecoder",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Decodes text from packed messages."
+          "optional": false
         },
         {
           "name": "isFastPathPayload",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Checks if payload uses fast path."
+          "optional": false
         },
         {
           "name": "payloadToUint8Array",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Converts payload to Uint8Array."
+          "optional": false
         },
         {
           "name": "packImpl",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Implementation for packing logic."
+          "optional": false
         },
         {
           "name": "deserializePayload",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Deserializes payload data."
+          "optional": false
         },
         {
           "name": "getPayloadTypeIndicator",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Gets indicator for payload type."
+          "optional": false
         }
       ],
       "implements": [],
       "jsdoc": null,
-      "isExported": true,
-      "xaiDescription": "Handles packing and unpacking of message frames for data transfer."
+      "xaiDescription": "Utility for packing and unpacking message frames.",
+      "isExported": true
     },
     {
       "name": "WebSocketBackingStore",
@@ -1643,8 +1583,7 @@
               "optional": true
             }
           ],
-          "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/WebSocketBackingStore\").WebSocketBackingStore",
-          "xaiDescription": "Creates backing store for WebSocket with reference count."
+          "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/WebSocketBackingStore\").WebSocketBackingStore"
         }
       ],
       "methods": [],
@@ -1652,14 +1591,12 @@
         {
           "name": "ws",
           "type": "WebSocket",
-          "optional": false,
-          "xaiDescription": "WebSocket instance for connections."
+          "optional": false
         },
         {
           "name": "refCount",
           "type": "number",
-          "optional": false,
-          "xaiDescription": "Reference count for multiplexing."
+          "optional": false
         }
       ],
       "implements": [],
@@ -1685,8 +1622,7 @@
               "optional": true
             }
           ],
-          "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/WebSocketWithReconnect\").WebSocketWithReconnect",
-          "xaiDescription": "Initializes WebSocket with automatic reconnection options."
+          "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/WebSocketWithReconnect\").WebSocketWithReconnect"
         }
       ],
       "methods": [
@@ -1724,7 +1660,7 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Adds listener for message events."
+          "xaiDescription": "Adds listener for message events on WebSocket."
         },
         {
           "name": "WebSocketWithReconnect.addEventListener",
@@ -1742,7 +1678,7 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Adds listener for open events."
+          "xaiDescription": "Adds listener for open events on WebSocket."
         },
         {
           "name": "WebSocketWithReconnect.addEventListener",
@@ -1760,7 +1696,7 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Adds listener for error events."
+          "xaiDescription": "Adds listener for error events on WebSocket."
         },
         {
           "name": "WebSocketWithReconnect.addEventListener",
@@ -1778,7 +1714,7 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Adds listener for close events."
+          "xaiDescription": "Adds listener for close events on WebSocket."
         },
         {
           "name": "WebSocketWithReconnect.removeEventListener",
@@ -1796,7 +1732,7 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Removes specified event listener."
+          "xaiDescription": "Removes specified event listener from WebSocket."
         },
         {
           "name": "WebSocketWithReconnect.send",
@@ -1809,14 +1745,14 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Sends data over WebSocket."
+          "xaiDescription": "Sends data over WebSocket connection."
         },
         {
           "name": "WebSocketWithReconnect.ping",
           "parameters": [],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Sends ping to maintain connection."
+          "xaiDescription": "Sends ping to maintain WebSocket connection."
         },
         {
           "name": "WebSocketWithReconnect.dispatchEvent",
@@ -1829,153 +1765,129 @@
           ],
           "returnType": "boolean",
           "jsdoc": null,
-          "xaiDescription": "Dispatches an event to listeners."
+          "xaiDescription": "Dispatches an event on the WebSocket."
         }
       ],
       "properties": [
         {
           "name": "url",
           "type": "string",
-          "optional": false,
-          "xaiDescription": "URL for WebSocket connection."
+          "optional": false
         },
         {
           "name": "retriesInterval",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Interval between reconnection retries."
+          "optional": false
         },
         {
           "name": "maxRetries",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Maximum number of retries."
+          "optional": false
         },
         {
           "name": "connectTimeout",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Timeout for connection attempts."
+          "optional": false
         },
         {
           "name": "onError",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Callback for error events."
+          "optional": false
         },
         {
           "name": "onReconnect",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Callback on successful reconnect."
+          "optional": false
         },
         {
           "name": "ws",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Underlying WebSocket instance."
+          "optional": false
         },
         {
           "name": "retries",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Current retry count."
+          "optional": false
         },
         {
           "name": "connectTimeoutHandle",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Handle for connection timeout."
+          "optional": false
         },
         {
           "name": "isClosed",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Indicates if WebSocket is closed."
+          "optional": false
         },
         {
           "name": "sendQueue",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Queue for messages to send."
+          "optional": false
         },
         {
           "name": "lastCloseEvent",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Last close event details."
+          "optional": false
         },
         {
           "name": "emitter",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Event emitter for WebSocket events."
+          "optional": false
         },
         {
           "name": "eventSubscriptions",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Subscriptions for events."
+          "optional": false
         },
         {
           "name": "wsBinaryType",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Binary type for WebSocket."
+          "optional": false
         },
         {
           "name": "connect",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Function to establish connection."
+          "optional": false
         },
         {
           "name": "handleOpen",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Handler for open events."
+          "optional": false
         },
         {
           "name": "handleMessage",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Handler for incoming messages."
+          "optional": false
         },
         {
           "name": "handleError",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Handler for error events."
+          "optional": false
         },
         {
           "name": "handleClose",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Handler for close events."
+          "optional": false
         },
         {
           "name": "handleConnectTimeout",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Handler for connection timeouts."
+          "optional": false
         },
         {
           "name": "clearConnectTimeoutIfNeeded",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Clears timeout if necessary."
+          "optional": false
         },
         {
           "name": "reconnectIfNeeded",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Attempts reconnection if needed."
+          "optional": false
         },
         {
           "name": "wsClose",
           "type": "any",
-          "optional": false,
-          "xaiDescription": "Closes the WebSocket."
+          "optional": false
         },
         {
           "name": "CONNECTING",
@@ -2002,16 +1914,17 @@
         "WebSocket"
       ],
       "jsdoc": null,
-      "isExported": true,
-      "xaiDescription": "WebSocket with automatic reconnection and event handling."
+      "xaiDescription": "WebSocket with automatic reconnect functionality.",
+      "isExported": true
     },
     {
       "name": "ExpoFormData",
+      "xaiDescription": "Handles form data operations for Expo HTTP requests.",
       "constructors": [
         {
           "parameters": [],
           "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/FormData\").ExpoFormData",
-          "xaiDescription": "Creates a new ExpoFormData object for form handling."
+          "xaiDescription": "Creates a new ExpoFormData instance."
         }
       ],
       "methods": [
@@ -2031,7 +1944,7 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Appends a string value to the specified key in FormData."
+          "xaiDescription": "Appends a string value to the specified form data key."
         },
         {
           "name": "ExpoFormData.append",
@@ -2054,7 +1967,7 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Appends a Blob value to the specified key, with optional filename."
+          "xaiDescription": "Appends a Blob value to the form data with optional filename."
         },
         {
           "name": "ExpoFormData.delete",
@@ -2067,7 +1980,7 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Deletes the value associated with the specified key."
+          "xaiDescription": "Removes the value associated with the specified key."
         },
         {
           "name": "ExpoFormData.get",
@@ -2106,7 +2019,7 @@
           ],
           "returnType": "boolean",
           "jsdoc": null,
-          "xaiDescription": "Checks if the specified key exists in FormData."
+          "xaiDescription": "Checks if the specified key exists in the form data."
         },
         {
           "name": "ExpoFormData.set",
@@ -2124,7 +2037,7 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Sets a string value for the specified key, overwriting if exists."
+          "xaiDescription": "Sets a string value for the specified key, overwriting existing."
         },
         {
           "name": "ExpoFormData.set",
@@ -2147,7 +2060,7 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Sets a Blob value for the specified key, with optional filename."
+          "xaiDescription": "Sets a Blob value for the key with optional filename."
         },
         {
           "name": "ExpoFormData.append",
@@ -2165,7 +2078,7 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Appends an object with URI to the specified key."
+          "xaiDescription": "Appends an object with URI to the form data."
         },
         {
           "name": "ExpoFormData.set",
@@ -2201,45 +2114,45 @@
           ],
           "returnType": "void",
           "jsdoc": null,
-          "xaiDescription": "Executes a callback for each key/value pair in FormData."
+          "xaiDescription": "Executes a callback for each key-value pair in the form data."
         },
         {
           "name": "ExpoFormData.keys",
           "parameters": [],
           "returnType": "IterableIterator<string>",
           "jsdoc": null,
-          "xaiDescription": "Returns an iterator over the keys in FormData."
+          "xaiDescription": "Returns an iterator over the keys in the form data."
         },
         {
           "name": "ExpoFormData.values",
           "parameters": [],
           "returnType": "IterableIterator<FormDataEntryValue>",
           "jsdoc": null,
-          "xaiDescription": "Returns an iterator over the values in FormData."
+          "xaiDescription": "Returns an iterator over the values in the form data."
         },
         {
           "name": "ExpoFormData.entries",
           "parameters": [],
           "returnType": "IterableIterator<[string, FormDataEntryValue]>",
           "jsdoc": null,
-          "xaiDescription": "Returns an iterator over the key/value pairs in FormData."
+          "xaiDescription": "Returns an iterator over the key-value pairs."
         },
         {
           "name": "ExpoFormData.[Symbol.iterator]",
           "parameters": [],
           "returnType": "IterableIterator<[string, FormDataEntryValue]>",
           "jsdoc": null,
-          "xaiDescription": "Provides iteration over key/value pairs in FormData."
+          "xaiDescription": "Provides iteration over key-value pairs."
         }
       ],
       "properties": [],
       "implements": [],
       "jsdoc": null,
-      "xaiDescription": "Manages form data for HTTP requests in Expo.",
       "isExported": true
     },
     {
       "name": "TextDecoder",
+      "xaiDescription": "Decodes byte streams into strings using specified encoding.",
       "constructors": [
         {
           "parameters": [
@@ -2255,7 +2168,7 @@
             }
           ],
           "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/TextDecoder\").TextDecoder",
-          "xaiDescription": "Creates a new TextDecoder for decoding text from binary data."
+          "xaiDescription": "Initializes a TextDecoder with encoding and options."
         }
       ],
       "methods": [
@@ -2275,53 +2188,60 @@
           ],
           "returnType": "string",
           "jsdoc": null,
-          "xaiDescription": "Decodes the input ArrayBuffer or DataView into a string."
+          "xaiDescription": "Decodes the input byte array into a string."
         }
       ],
       "properties": [
         {
           "name": "_encoding",
           "type": "any",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "Stores the encoding type used."
         },
         {
           "name": "_ignoreBOM",
           "type": "any",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "Flag to ignore byte order mark."
         },
         {
           "name": "_errorMode",
           "type": "any",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "Error handling mode for decoding."
         },
         {
           "name": "_BOMseen",
           "type": "any",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "Indicates if BOM was detected."
         },
         {
           "name": "_doNotFlush",
           "type": "any",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "Flag for flushing behavior."
         },
         {
           "name": "_decoder",
           "type": "any",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "Internal decoder object."
         },
         {
           "name": "serializeStream",
           "type": "any",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "Serializes the stream data."
         }
       ],
       "implements": [],
       "jsdoc": null,
-      "xaiDescription": "Decodes text from binary formats using specified encoding.",
       "isExported": true
     },
     {
       "name": "StubNativeRequest",
+      "xaiDescription": "Placeholder for native request implementation.",
       "constructors": [],
       "methods": [],
       "properties": [],
@@ -2331,6 +2251,7 @@
     },
     {
       "name": "StubNativeResponse",
+      "xaiDescription": "Placeholder for native response implementation.",
       "constructors": [],
       "methods": [],
       "properties": [],
@@ -2340,6 +2261,7 @@
     },
     {
       "name": "FetchError",
+      "xaiDescription": "Represents errors in fetch operations.",
       "constructors": [
         {
           "parameters": [
@@ -2355,7 +2277,7 @@
             }
           ],
           "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/FetchErrors\").FetchError",
-          "xaiDescription": "Creates a new FetchError instance with optional cause and stack."
+          "xaiDescription": "Creates a new FetchError instance with message and options."
         }
       ],
       "methods": [
@@ -2376,7 +2298,6 @@
       "properties": [],
       "implements": [],
       "jsdoc": null,
-      "xaiDescription": "Represents errors occurring during fetch operations.",
       "isExported": true
     },
     {
@@ -2489,7 +2410,12 @@
     },
     {
       "name": "NativeRequest",
-      "constructors": [],
+      "xaiDescription": "Manages native HTTP requests.",
+      "constructors": [
+        {
+          "xaiDescription": "Initializes a NativeRequest object."
+        }
+      ],
       "methods": [
         {
           "name": "NativeRequest.start",
@@ -2512,7 +2438,7 @@
           ],
           "returnType": "Promise<import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/NativeRequest\").NativeResponse>",
           "jsdoc": null,
-          "xaiDescription": "Starts a native request with URL, init, and body."
+          "xaiDescription": "Starts a native HTTP request with URL, init, and body."
         },
         {
           "name": "NativeRequest.cancel",
@@ -2526,12 +2452,16 @@
       "extends": "SharedObject",
       "implements": [],
       "jsdoc": null,
-      "xaiDescription": "Handles native HTTP requests with start and cancel operations.",
       "isExported": true
     },
     {
       "name": "NativeResponse",
-      "constructors": [],
+      "xaiDescription": "Handles native HTTP responses.",
+      "constructors": [
+        {
+          "xaiDescription": "Initializes a NativeResponse object."
+        }
+      ],
       "methods": [
         {
           "name": "NativeResponse.startStreaming",
@@ -2572,38 +2502,43 @@
         {
           "name": "bodyUsed",
           "type": "boolean",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "Indicates if the body has been read."
         },
         {
           "name": "_rawHeaders",
           "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/NativeRequest\").NativeHeadersType",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "Stores the raw response headers."
         },
         {
           "name": "status",
           "type": "number",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "HTTP status code of the response."
         },
         {
           "name": "statusText",
           "type": "string",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "HTTP status message."
         },
         {
           "name": "url",
           "type": "string",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "URL of the response."
         },
         {
           "name": "redirected",
           "type": "boolean",
-          "optional": false
+          "optional": false,
+          "xaiDescription": "Indicates if the response was redirected."
         }
       ],
       "extends": "SharedObject",
       "implements": [],
       "jsdoc": null,
-      "xaiDescription": "Manages native HTTP responses with streaming and data access.",
       "isExported": true
     }
   ],
@@ -2612,19 +2547,2595 @@
     {
       "name": "expo",
       "contents": {
-        "functions": {
-          "__chunked__": true,
-          "xaiDescription": "Provides utility functions for expo namespace operations."
-        },
+        "functions": [
+          {
+            "name": "anonymous",
+            "parameters": [
+              {
+                "name": "event",
+                "type": "WebSocketMessageEvent",
+                "optional": false
+              }
+            ],
+            "returnType": "Promise<void>",
+            "jsdoc": {
+              "description": "This client is for the Expo DevTools Plugins to communicate between the app and the DevTools webpage hosted in a browser.\nAll the code should be both compatible with browsers and React Native.",
+              "tags": [],
+              "xaiDescription": "Facilitates Expo DevTools communication between app and webpage, ensuring browser and React Native compatibility."
+            },
+            "isExported": false
+          },
+          {
+            "name": "useDevToolsPluginClient",
+            "parameters": [
+              {
+                "name": "pluginName",
+                "type": "string",
+                "optional": false
+              },
+              {
+                "name": "options",
+                "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/devtools.types\").DevToolsPluginClientOptions",
+                "optional": true
+              }
+            ],
+            "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/DevToolsPluginClient\").DevToolsPluginClient",
+            "jsdoc": {
+              "description": "A React hook to get the DevToolsPluginClient instance.",
+              "tags": []
+            },
+            "isExported": true
+          },
+          {
+            "name": "useDOMImperativeHandle",
+            "parameters": [
+              {
+                "name": "ref",
+                "type": "React.Ref<T>",
+                "optional": false
+              },
+              {
+                "name": "init",
+                "type": "() => T",
+                "optional": false
+              },
+              {
+                "name": "deps",
+                "type": "React.DependencyList",
+                "optional": true
+              }
+            ],
+            "returnType": "void",
+            "jsdoc": {
+              "description": "A React `useImperativeHandle` like hook for DOM components.",
+              "tags": []
+            },
+            "isExported": true
+          },
+          {
+            "name": "anonymous",
+            "parameters": [],
+            "returnType": "T",
+            "jsdoc": {
+              "description": "A React `useImperativeHandle` like hook for DOM components.",
+              "tags": []
+            },
+            "isExported": false
+          },
+          {
+            "name": "getInitialSafeArea",
+            "parameters": [],
+            "returnType": "{ top: number; bottom: number; left: number; right: number; }",
+            "jsdoc": {
+              "description": "Get the best estimate safe area before native modules have fully loaded.\nThis is a hack to get the safe area insets without explicitly depending on react-native-safe-area-context.",
+              "tags": [],
+              "xaiDescription": "Estimates safe area insets early, without relying on react-native-safe-area-context module."
+            },
+            "isExported": true
+          },
+          {
+            "name": "useEvent",
+            "parameters": [
+              {
+                "name": "eventEmitter",
+                "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo-modules-core/build/ts-declarations/EventEmitter\").EventEmitter<TEventsMap>",
+                "optional": false
+              },
+              {
+                "name": "eventName",
+                "type": "TEventName",
+                "optional": false
+              },
+              {
+                "name": "initialValue",
+                "type": "TInitialValue",
+                "optional": true
+              }
+            ],
+            "returnType": "InferEventParameter<TEventListener, TInitialValue>",
+            "jsdoc": {
+              "description": "React hook that listens to events emitted by the given object. The returned value is an event parameter\nthat gets updated whenever a new event is dispatched.",
+              "tags": [
+                {
+                  "tagName": "param",
+                  "name": "eventEmitter",
+                  "text": "An object that emits events. For example, a native module or shared object or an instance of [`EventEmitter`](#eventemitter)."
+                },
+                {
+                  "tagName": "param",
+                  "name": "eventName",
+                  "text": "Name of the event to listen to."
+                },
+                {
+                  "tagName": "param",
+                  "name": "initialValue",
+                  "text": "An event parameter to use until the event is called for the first time."
+                },
+                {
+                  "tagName": "returns",
+                  "name": "",
+                  "text": "A parameter of the event listener."
+                },
+                {
+                  "tagName": "example",
+                  "name": "",
+                  "text": "tsx\nimport { useEvent } from 'expo';\nimport { VideoPlayer } from 'expo-video';\n\nexport function PlayerStatus({ videoPlayer }: { videoPlayer: VideoPlayer }) {\n  const { status } = useEvent(videoPlayer, 'statusChange', { status: videoPlayer.status });\n\n  return <Text>{`Player status: ${status}`}</Text>;\n}\n"
+                }
+              ],
+              "xaiDescription": "Hook to listen for events from an emitter, returning updated parameters. Uses EventEmitter<T>."
+            },
+            "isExported": true
+          },
+          {
+            "name": "useEventListener",
+            "parameters": [
+              {
+                "name": "eventEmitter",
+                "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo-modules-core/build/ts-declarations/EventEmitter\").EventEmitter<TEventsMap>",
+                "optional": false
+              },
+              {
+                "name": "eventName",
+                "type": "TEventName",
+                "optional": false
+              },
+              {
+                "name": "listener",
+                "type": "TEventListener",
+                "optional": false
+              }
+            ],
+            "returnType": "void",
+            "jsdoc": {
+              "description": "React hook that listens to events emitted by the given object and calls the listener function whenever a new event is dispatched.\nThe event listener is automatically added during the first render and removed when the component unmounts.",
+              "tags": [
+                {
+                  "tagName": "param",
+                  "name": "eventEmitter",
+                  "text": "An object that emits events. For example, a native module or shared object or an instance of [`EventEmitter`](#eventemitter)."
+                },
+                {
+                  "tagName": "param",
+                  "name": "eventName",
+                  "text": "Name of the event to listen to."
+                },
+                {
+                  "tagName": "param",
+                  "name": "listener",
+                  "text": "A function to call when the event is dispatched."
+                },
+                {
+                  "tagName": "example",
+                  "name": "",
+                  "text": "tsx\nimport { useEventListener } from 'expo';\nimport { useVideoPlayer, VideoView } from 'expo-video';\n\nexport function VideoPlayerView() {\n  const player = useVideoPlayer(videoSource);\n\n  useEventListener(player, 'playingChange', ({ isPlaying }) => {\n    console.log('Player is playing:', isPlaying);\n  });\n\n  return <VideoView player={player} />;\n}\n"
+                }
+              ],
+              "xaiDescription": "Hook to add and remove event listeners automatically. Uses EventEmitter<T> for events."
+            },
+            "isExported": true
+          },
+          {
+            "name": "registerRootComponent",
+            "parameters": [
+              {
+                "name": "component",
+                "type": "React.ComponentType<P>",
+                "optional": false
+              }
+            ],
+            "returnType": "void",
+            "jsdoc": {
+              "description": "Sets the initial React component to render natively in the app's root React Native view on Android, iOS, tvOS and the web.\n\nThis method does the following:\n- Invokes React Native's `AppRegistry.registerComponent`.\n- Invokes React Native web's `AppRegistry.runApplication` on web to render to the root `index.html` file.\n- Polyfills the `process.nextTick` function globally.\n\nThis method also adds the following dev-only features that are removed in production bundles.\n- Adds the Fast Refresh and bundle splitting indicator to the app.\n- Asserts if the `expo-updates` package is misconfigured.\n- Asserts if `react-native` is not aliased to `react-native-web` when running in the browser.",
+              "tags": [
+                {
+                  "tagName": "param",
+                  "name": "component",
+                  "text": "The React component class that renders the rest of your app."
+                }
+              ],
+              "xaiDescription": "Registers main React component for app rendering across platforms, including web and native."
+            },
+            "isExported": true
+          },
+          {
+            "name": "convertFormDataAsync",
+            "parameters": [
+              {
+                "name": "formData",
+                "type": "FormData",
+                "optional": false
+              },
+              {
+                "name": "boundary",
+                "type": "string",
+                "optional": true
+              }
+            ],
+            "returnType": "Promise<{ body: Uint8Array<ArrayBufferLike>; boundary: string; }>",
+            "jsdoc": {
+              "description": "Convert FormData to Uint8Array with a boundary\n\n`uri` is not supported for React Native's FormData.\n`blob` is not supported for standard FormData.",
+              "tags": [],
+              "xaiDescription": "Converts FormData to Uint8Array, handling boundaries. Note limitations for React Native."
+            },
+            "isExported": true
+          }
+        ],
         "enums": [],
-        "types": {
-          "__chunked__": true,
-          "xaiDescription": "Defines custom types for expo features, e.g., uses Array<string>."
-        },
-        "classes": {
-          "__chunked__": true,
-          "xaiDescription": "Implements classes for expo functionality management."
-        },
+        "types": [
+          {
+            "name": "MessageFrame",
+            "type": "interface MessageFrame<T extends MessageKeyTypeBase> {\n    messageKey: T;\n    payload?: PayloadType;\n}",
+            "properties": [
+              {
+                "name": "messageKey",
+                "type": "T",
+                "optional": false
+              },
+              {
+                "name": "payload",
+                "type": "PayloadType",
+                "optional": true
+              }
+            ],
+            "extends": [],
+            "jsdoc": null,
+            "xaiDescription": "Interface for structuring messages with a key and optional payload.",
+            "isExported": false
+          },
+          {
+            "name": "MessageKeyTypeBase",
+            "type": "string | object",
+            "properties": [
+              {
+                "name": "toString",
+                "type": "(() => string) | (() => string)",
+                "optional": false
+              },
+              {
+                "name": "valueOf",
+                "type": "(() => string) | (() => Object)",
+                "optional": false
+              }
+            ],
+            "jsdoc": {
+              "description": "A message frame packer that serializes a messageKey and a payload into either a JSON string\n(fast path) or a binary format (for complex payloads).\n\nFast Path (JSON.stringify/JSON.parse):\n- For simple payloads (e.g., strings, numbers, null, undefined, or plain objects), the packer\n  uses `JSON.stringify` for serialization and `JSON.parse` for deserialization, ensuring\n  optimal performance.\n\nBinary Format:\n- For more complex payloads (e.g., Uint8Array, ArrayBuffer, Blob), the packer uses a binary\n  format with the following structure:\n\n  +------------------+-------------------+----------------------------+--------------------------+\n  | 4 bytes (Uint32) | Variable length   | 1 byte (Uint8)             | Variable length          |\n  | MessageKeyLength | MessageKey (JSON) | PayloadTypeIndicator (enum)| Payload (binary data)    |\n  +------------------+-------------------+----------------------------+--------------------------+\n\n  1. MessageKeyLength (4 bytes):\n     - A 4-byte unsigned integer indicating the length of the MessageKey JSON string.\n\n  2. MessageKey (Variable length):\n     - The JSON string representing the message key, encoded as UTF-8.\n\n  3. PayloadTypeIndicator (1 byte):\n     - A single byte enum value representing the type of the payload (e.g., Uint8Array, String,\n       Object, ArrayBuffer, Blob).\n\n  4. Payload (Variable length):\n     - The actual payload data, which can vary in type and length depending on the PayloadType.",
+              "tags": []
+            },
+            "isExported": false
+          },
+          {
+            "name": "PayloadType",
+            "type": "Uint8Array | string | number | null | undefined | object | ArrayBuffer | Blob",
+            "properties": [
+              {
+                "name": "toString",
+                "type": "(() => string) | (() => string) | ((radix?: number) => string) | (() => string)",
+                "optional": false
+              },
+              {
+                "name": "valueOf",
+                "type": "(() => string) | (() => Object) | (() => number) | (() => Uint8Array<ArrayBufferLike>)",
+                "optional": false
+              },
+              {
+                "name": "toLocaleString",
+                "type": "(() => string) | { (locales?: string | string[], options?: Intl.NumberFormatOptions): string; (locales?: Intl.LocalesArgument, options?: Intl.NumberFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions): string; }",
+                "optional": false
+              }
+            ],
+            "jsdoc": null,
+            "xaiDescription": "Union type for various data payloads including strings, numbers, and binary formats.",
+            "isExported": false
+          },
+          {
+            "name": "Options",
+            "type": "export interface Options {\n    /**\n     * Reconnect interval in milliseconds.\n     * @default 1500\n     */\n    retriesInterval?: number;\n    /**\n     * The maximum number of retries.\n     * @default 200\n     */\n    maxRetries?: number;\n    /**\n     * The timeout in milliseconds for the WebSocket connecting.\n     */\n    connectTimeout?: number;\n    /**\n     * The error handler.\n     * @default throwing an error\n     */\n    onError?: (error: Error) => void;\n    /**\n     * The callback to be called when the WebSocket is reconnected.\n     * @default no-op\n     */\n    onReconnect?: (reason: string) => void;\n    /**\n     * The [`binaryType`](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/binaryType).\n     */\n    binaryType?: DevToolsPluginClientOptions['websocketBinaryType'];\n}",
+            "properties": [
+              {
+                "name": "retriesInterval",
+                "type": "number",
+                "optional": true
+              },
+              {
+                "name": "maxRetries",
+                "type": "number",
+                "optional": true
+              },
+              {
+                "name": "connectTimeout",
+                "type": "number",
+                "optional": true
+              },
+              {
+                "name": "onError",
+                "type": "(error: Error) => void",
+                "optional": true
+              },
+              {
+                "name": "onReconnect",
+                "type": "(reason: string) => void",
+                "optional": true
+              },
+              {
+                "name": "binaryType",
+                "type": "\"arraybuffer\" | \"blob\"",
+                "optional": true
+              }
+            ],
+            "extends": [],
+            "jsdoc": null,
+            "xaiDescription": "Configuration options for WebSocket connections including retries and error handling.",
+            "isExported": true
+          },
+          {
+            "name": "ConnectionInfo",
+            "type": "export interface ConnectionInfo {\n    /** Indicates the sender towards the devtools plugin. */\n    sender: 'app' | 'browser';\n    /** Dev server address. */\n    devServer: string;\n    /** The plugin name. */\n    pluginName: string;\n    /**\n     * The backing store for the WebSocket connection. Exposed for testing.\n     * If not provided, the default singleton instance will be used.\n     * @hidden\n     */\n    wsStore?: WebSocketBackingStore;\n    /**\n     * The transport protocol version between the app and the webui.\n     */\n    protocolVersion: number;\n}",
+            "properties": [
+              {
+                "name": "sender",
+                "type": "\"app\" | \"browser\"",
+                "optional": false
+              },
+              {
+                "name": "devServer",
+                "type": "string",
+                "optional": false
+              },
+              {
+                "name": "pluginName",
+                "type": "string",
+                "optional": false
+              },
+              {
+                "name": "wsStore",
+                "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/WebSocketBackingStore\").WebSocketBackingStore",
+                "optional": true
+              },
+              {
+                "name": "protocolVersion",
+                "type": "number",
+                "optional": false
+              }
+            ],
+            "extends": [],
+            "jsdoc": {
+              "description": "The connection info for devtools plugins client.",
+              "tags": []
+            },
+            "isExported": true
+          },
+          {
+            "name": "DevToolsPluginClientOptions",
+            "type": "export interface DevToolsPluginClientOptions {\n    /**\n     * The underlying WebSocket [`binaryType`](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/binaryType).\n     */\n    websocketBinaryType?: 'arraybuffer' | 'blob';\n}",
+            "properties": [
+              {
+                "name": "websocketBinaryType",
+                "type": "\"arraybuffer\" | \"blob\"",
+                "optional": true
+              }
+            ],
+            "extends": [],
+            "jsdoc": {
+              "description": "Options for the devtools plugin client.",
+              "tags": []
+            },
+            "isExported": true
+          },
+          {
+            "name": "HandshakeMessageParams",
+            "type": "export interface HandshakeMessageParams {\n    protocolVersion: number;\n    pluginName: string;\n    method: 'handshake' | 'terminateBrowserClient';\n    browserClientId: string;\n}",
+            "properties": [
+              {
+                "name": "protocolVersion",
+                "type": "number",
+                "optional": false
+              },
+              {
+                "name": "pluginName",
+                "type": "string",
+                "optional": false
+              },
+              {
+                "name": "method",
+                "type": "\"handshake\" | \"terminateBrowserClient\"",
+                "optional": false
+              },
+              {
+                "name": "browserClientId",
+                "type": "string",
+                "optional": false
+              }
+            ],
+            "extends": [],
+            "jsdoc": {
+              "description": "The handshake messages for the devtools plugin client.",
+              "tags": [
+                {
+                  "tagName": "hidden",
+                  "name": "",
+                  "text": ""
+                }
+              ]
+            },
+            "isExported": true
+          },
+          {
+            "name": "BridgeMessage",
+            "type": "{\n    type: string;\n    data: TData;\n}",
+            "properties": [
+              {
+                "name": "type",
+                "type": "string",
+                "optional": false
+              },
+              {
+                "name": "data",
+                "type": "TData",
+                "optional": false
+              }
+            ],
+            "jsdoc": null,
+            "xaiDescription": "Generic structure for messages with a type and associated data.",
+            "isExported": true
+          },
+          {
+            "name": "DOMImperativeFactory",
+            "type": "export interface DOMImperativeFactory {\n    [key: string]: (...args: JSONValue[]) => void;\n}",
+            "properties": [],
+            "extends": [],
+            "jsdoc": {
+              "description": "The return type of the init function for `useDOMImperativeHandle`.",
+              "tags": []
+            },
+            "isExported": true
+          },
+          {
+            "name": "DOMProps",
+            "type": "export interface DOMProps extends Omit<RNWebViewProps, 'source'> {\n    /**\n     * Whether to resize the native WebView size based on the DOM content size.\n     * @default false\n     */\n    matchContents?: boolean;\n    /**\n     * Whether to use the `@expo/dom-webview` as the underlying WebView implementation.\n     * @default false\n     */\n    useExpoDOMWebView?: boolean;\n}",
+            "properties": [
+              {
+                "name": "matchContents",
+                "type": "boolean",
+                "optional": true
+              },
+              {
+                "name": "useExpoDOMWebView",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "extends": [
+              "Omit<RNWebViewProps, \"source\">"
+            ],
+            "jsdoc": null,
+            "xaiDescription": "Properties for DOM handling, extending RNWebViewProps without source. Uses Omit<RNWebViewProps, 'source'>.",
+            "isExported": true
+          },
+          {
+            "name": "JSONArray",
+            "type": "export interface JSONArray extends Array<JSONValue> {\n}",
+            "properties": [],
+            "extends": [
+              "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/dom/dom.types\").JSONValue[]"
+            ],
+            "jsdoc": null,
+            "xaiDescription": "Array type that extends JSONValue elements. Uses Array<JSONValue>.",
+            "isExported": true
+          },
+          {
+            "name": "JSONObject",
+            "type": "export interface JSONObject {\n    [key: string]: JSONValue | undefined;\n}",
+            "properties": [],
+            "extends": [],
+            "jsdoc": null,
+            "xaiDescription": "Object type with string keys and JSONValue values.",
+            "isExported": true
+          },
+          {
+            "name": "JSONValue",
+            "type": "boolean | number | string | null | JSONArray | JSONObject",
+            "properties": [
+              {
+                "name": "toString",
+                "type": "(() => string) | ((radix?: number) => string) | (() => string) | (() => string)",
+                "optional": false
+              },
+              {
+                "name": "valueOf",
+                "type": "(() => string) | (() => number) | (() => boolean) | (() => Object)",
+                "optional": false
+              },
+              {
+                "name": "toLocaleString",
+                "type": "(() => string) | { (locales?: string | string[], options?: Intl.NumberFormatOptions): string; (locales?: Intl.LocalesArgument, options?: Intl.NumberFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; }",
+                "optional": false
+              }
+            ],
+            "jsdoc": null,
+            "xaiDescription": "Union type for JSON-compatible values including primitives and structures.",
+            "isExported": true
+          },
+          {
+            "name": "RNWebViewRef",
+            "type": "RNWebView",
+            "properties": [],
+            "jsdoc": null,
+            "isExported": false
+          },
+          {
+            "name": "WebViewProps",
+            "type": "RNWebViewProps",
+            "properties": [],
+            "jsdoc": null,
+            "xaiDescription": "Properties for WebView component, based on RNWebViewProps.",
+            "isExported": true
+          },
+          {
+            "name": "WebViewRef",
+            "type": "RNWebViewRef",
+            "properties": [],
+            "jsdoc": null,
+            "xaiDescription": "Reference type for WebView, using RNWebViewRef.",
+            "isExported": true
+          },
+          {
+            "name": "UseDebugZeroHeightType",
+            "type": "(dom?: DOMProps) => {\n    debugZeroHeightStyle: WebViewProps['containerStyle'] | undefined;\n    debugOnLayout: ViewProps['onLayout'];\n}",
+            "properties": [],
+            "jsdoc": null,
+            "xaiDescription": "Function for debugging zero-height styles in WebView. Uses DOMProps and WebViewProps.",
+            "isExported": false
+          },
+          {
+            "name": "Props",
+            "type": "interface Props {\n    dom?: DOMProps;\n    filePath: string;\n}",
+            "properties": [
+              {
+                "name": "dom",
+                "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/dom/dom.types\").DOMProps",
+                "optional": true
+              },
+              {
+                "name": "filePath",
+                "type": "string",
+                "optional": false
+              }
+            ],
+            "extends": [],
+            "jsdoc": null,
+            "xaiDescription": "Interface for component properties including optional DOM props and file path.",
+            "isExported": false
+          },
+          {
+            "name": "ExpoGoPackagerOpts",
+            "type": "{\n    hostType?: string;\n    dev?: boolean;\n    strict?: boolean;\n    minify?: boolean;\n    urlType?: string;\n    urlRandomness?: string;\n    lanType?: string;\n    [key: string]: any;\n}",
+            "properties": [
+              {
+                "name": "hostType",
+                "type": "string",
+                "optional": true
+              },
+              {
+                "name": "dev",
+                "type": "boolean",
+                "optional": true
+              },
+              {
+                "name": "strict",
+                "type": "boolean",
+                "optional": true
+              },
+              {
+                "name": "minify",
+                "type": "boolean",
+                "optional": true
+              },
+              {
+                "name": "urlType",
+                "type": "string",
+                "optional": true
+              },
+              {
+                "name": "urlRandomness",
+                "type": "string",
+                "optional": true
+              },
+              {
+                "name": "lanType",
+                "type": "string",
+                "optional": true
+              }
+            ],
+            "jsdoc": null,
+            "xaiDescription": "Options for Expo Go packager configuration.",
+            "isExported": true
+          },
+          {
+            "name": "ExpoGoProjectConfig",
+            "type": "{\n    mainModuleName?: string;\n    debuggerHost?: string;\n    logUrl?: string;\n    developer?: {\n        tool?: string;\n        [key: string]: any;\n    };\n    packagerOpts?: ExpoGoPackagerOpts;\n}",
+            "properties": [
+              {
+                "name": "mainModuleName",
+                "type": "string",
+                "optional": true
+              },
+              {
+                "name": "debuggerHost",
+                "type": "string",
+                "optional": true
+              },
+              {
+                "name": "logUrl",
+                "type": "string",
+                "optional": true
+              },
+              {
+                "name": "developer",
+                "type": "{ [key: string]: any; tool?: string; }",
+                "optional": true
+              },
+              {
+                "name": "packagerOpts",
+                "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/environment/ExpoGo\").ExpoGoPackagerOpts",
+                "optional": true
+              }
+            ],
+            "jsdoc": null,
+            "xaiDescription": "Configuration for Expo Go project settings.",
+            "isExported": false
+          },
+          {
+            "name": "AnyEventListener",
+            "type": "(...args: any[]) => any",
+            "properties": [],
+            "jsdoc": null,
+            "xaiDescription": "Generic function type for event listeners.",
+            "isExported": false
+          },
+          {
+            "name": "InferEventListener",
+            "type": "TEventsMap extends Record<TEventName, infer TEventListener extends AnyEventListener> ? TEventListener : never",
+            "properties": [],
+            "jsdoc": {
+              "description": "Type helper that infers the event listener from the emitter's events map.",
+              "tags": []
+            },
+            "isExported": false
+          },
+          {
+            "name": "InferEventName",
+            "type": "TEventsMap extends Record<infer TEventName extends keyof TEventsMap, AnyEventListener> ? TEventName : never",
+            "properties": [
+              {
+                "name": "toString",
+                "type": "(() => string) | ((radix?: number) => string) | (() => string)",
+                "optional": false
+              },
+              {
+                "name": "valueOf",
+                "type": "(() => string) | (() => number) | (() => symbol)",
+                "optional": false
+              },
+              {
+                "name": "toLocaleString",
+                "type": "(() => string) | { (locales?: string | string[], options?: Intl.NumberFormatOptions): string; (locales?: Intl.LocalesArgument, options?: Intl.NumberFormatOptions): string; }",
+                "optional": false
+              }
+            ],
+            "jsdoc": {
+              "description": "Type helper that infers the event name from the emitter's events map.",
+              "tags": []
+            },
+            "isExported": false
+          },
+          {
+            "name": "InferEventParameter",
+            "type": "TInitialValue extends Parameters<TEventListener>[0] ? Parameters<TEventListener>[0] : Parameters<TEventListener>[0] | TInitialValue | null",
+            "properties": [],
+            "jsdoc": {
+              "description": "Type helper that infers the first parameter of the event listener.",
+              "tags": []
+            },
+            "isExported": false
+          },
+          {
+            "name": "InitialProps",
+            "type": "{\n    exp?: {\n        notification?: any;\n        manifestString?: string;\n        [key: string]: any;\n    };\n    shell?: boolean;\n    shellManifestUrl?: string;\n    [key: string]: any;\n}",
+            "properties": [
+              {
+                "name": "exp",
+                "type": "{ [key: string]: any; notification?: any; manifestString?: string; }",
+                "optional": true
+              },
+              {
+                "name": "shell",
+                "type": "boolean",
+                "optional": true
+              },
+              {
+                "name": "shellManifestUrl",
+                "type": "string",
+                "optional": true
+              }
+            ],
+            "jsdoc": null,
+            "xaiDescription": "Initial properties for application setup including exp and shell options.",
+            "isExported": false
+          },
+          {
+            "name": "ExpoFormDataPart",
+            "type": "{\n    string: string;\n    headers: {\n        [name: string]: string;\n    };\n} | {\n    blob: Blob;\n    headers: {\n        [name: string]: string;\n    };\n    name?: string | undefined;\n    type?: string | undefined;\n} | {\n    uri: string;\n    headers: {\n        [name: string]: string;\n    };\n    name?: string | undefined;\n    type?: string | undefined;\n}",
+            "properties": [
+              {
+                "name": "headers",
+                "type": "{ [name: string]: string; } | { [name: string]: string; } | { [name: string]: string; }",
+                "optional": false
+              }
+            ],
+            "jsdoc": null,
+            "xaiDescription": "Union type for form data parts with string, blob, or URI variants.",
+            "isExported": true
+          },
+          {
+            "name": "ExpoFormDataValue",
+            "type": "string | Blob",
+            "properties": [
+              {
+                "name": "toString",
+                "type": "(() => string) | (() => string)",
+                "optional": false
+              },
+              {
+                "name": "slice",
+                "type": "((start?: number, end?: number) => string) | ((start?: number, end?: number, contentType?: string) => Blob)",
+                "optional": false
+              },
+              {
+                "name": "valueOf",
+                "type": "(() => string) | (() => Object)",
+                "optional": false
+              }
+            ],
+            "jsdoc": null,
+            "xaiDescription": "Type for form data values as strings or blobs.",
+            "isExported": true
+          },
+          {
+            "name": "AbortSubscriptionCleanupFunction",
+            "type": "() => void",
+            "properties": [],
+            "jsdoc": null,
+            "xaiDescription": "Function to clean up subscription aborts.",
+            "isExported": true
+          },
+          {
+            "name": "NativeHeadersType",
+            "type": "[string, string][]",
+            "properties": [
+              {
+                "name": "length",
+                "type": "number",
+                "optional": false
+              },
+              {
+                "name": "toString",
+                "type": "() => string",
+                "optional": false
+              },
+              {
+                "name": "toLocaleString",
+                "type": "{ (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; }",
+                "optional": false
+              },
+              {
+                "name": "pop",
+                "type": "() => [string, string]",
+                "optional": false
+              },
+              {
+                "name": "push",
+                "type": "(...items: [string, string][]) => number",
+                "optional": false
+              },
+              {
+                "name": "concat",
+                "type": "{ (...items: ConcatArray<[string, string]>[]): [string, string][]; (...items: ([string, string] | ConcatArray<[string, string]>)[]): [string, string][]; }",
+                "optional": false
+              },
+              {
+                "name": "join",
+                "type": "(separator?: string) => string",
+                "optional": false
+              },
+              {
+                "name": "reverse",
+                "type": "() => [string, string][]",
+                "optional": false
+              },
+              {
+                "name": "shift",
+                "type": "() => [string, string]",
+                "optional": false
+              },
+              {
+                "name": "slice",
+                "type": "(start?: number, end?: number) => [string, string][]",
+                "optional": false
+              },
+              {
+                "name": "sort",
+                "type": "(compareFn?: (a: [string, string], b: [string, string]) => number) => import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/NativeRequest\").NativeHeadersType",
+                "optional": false
+              },
+              {
+                "name": "splice",
+                "type": "{ (start: number, deleteCount?: number): [string, string][]; (start: number, deleteCount: number, ...items: [string, string][]): [string, string][]; }",
+                "optional": false
+              },
+              {
+                "name": "unshift",
+                "type": "(...items: [string, string][]) => number",
+                "optional": false
+              },
+              {
+                "name": "indexOf",
+                "type": "(searchElement: [string, string], fromIndex?: number) => number",
+                "optional": false
+              },
+              {
+                "name": "lastIndexOf",
+                "type": "(searchElement: [string, string], fromIndex?: number) => number",
+                "optional": false
+              },
+              {
+                "name": "every",
+                "type": "{ <S>(predicate: (value: [string, string], index: number, array: [string, string][]) => value is S, thisArg?: any): this is S[]; (predicate: (value: [string, string], index: number, array: [string, string][]) => unknown, thisArg?: any): boolean; }",
+                "optional": false
+              },
+              {
+                "name": "some",
+                "type": "(predicate: (value: [string, string], index: number, array: [string, string][]) => unknown, thisArg?: any) => boolean",
+                "optional": false
+              },
+              {
+                "name": "forEach",
+                "type": "(callbackfn: (value: [string, string], index: number, array: [string, string][]) => void, thisArg?: any) => void",
+                "optional": false
+              },
+              {
+                "name": "map",
+                "type": "<U>(callbackfn: (value: [string, string], index: number, array: [string, string][]) => U, thisArg?: any) => U[]",
+                "optional": false
+              },
+              {
+                "name": "filter",
+                "type": "{ <S>(predicate: (value: [string, string], index: number, array: [string, string][]) => value is S, thisArg?: any): S[]; (predicate: (value: [string, string], index: number, array: [string, string][]) => unknown, thisArg?: any): [string, string][]; }",
+                "optional": false
+              },
+              {
+                "name": "reduce",
+                "type": "{ (callbackfn: (previousValue: [string, string], currentValue: [string, string], currentIndex: number, array: [string, string][]) => [string, string]): [string, string]; (callbackfn: (previousValue: [string, string], currentValue: [string, string], currentIndex: number, array: [string, string][]) => [string, string], initialValue: [string, string]): [string, string]; <U>(callbackfn: (previousValue: U, currentValue: [string, string], currentIndex: number, array: [string, string][]) => U, initialValue: U): U; }",
+                "optional": false
+              },
+              {
+                "name": "reduceRight",
+                "type": "{ (callbackfn: (previousValue: [string, string], currentValue: [string, string], currentIndex: number, array: [string, string][]) => [string, string]): [string, string]; (callbackfn: (previousValue: [string, string], currentValue: [string, string], currentIndex: number, array: [string, string][]) => [string, string], initialValue: [string, string]): [string, string]; <U>(callbackfn: (previousValue: U, currentValue: [string, string], currentIndex: number, array: [string, string][]) => U, initialValue: U): U; }",
+                "optional": false
+              },
+              {
+                "name": "find",
+                "type": "{ <S>(predicate: (value: [string, string], index: number, obj: [string, string][]) => value is S, thisArg?: any): S; (predicate: (value: [string, string], index: number, obj: [string, string][]) => unknown, thisArg?: any): [string, string]; }",
+                "optional": false
+              },
+              {
+                "name": "findIndex",
+                "type": "(predicate: (value: [string, string], index: number, obj: [string, string][]) => unknown, thisArg?: any) => number",
+                "optional": false
+              },
+              {
+                "name": "fill",
+                "type": "(value: [string, string], start?: number, end?: number) => import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/NativeRequest\").NativeHeadersType",
+                "optional": false
+              },
+              {
+                "name": "copyWithin",
+                "type": "(target: number, start: number, end?: number) => import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/NativeRequest\").NativeHeadersType",
+                "optional": false
+              },
+              {
+                "name": "entries",
+                "type": "() => ArrayIterator<[number, [string, string]]>",
+                "optional": false
+              },
+              {
+                "name": "keys",
+                "type": "() => ArrayIterator<number>",
+                "optional": false
+              },
+              {
+                "name": "values",
+                "type": "() => ArrayIterator<[string, string]>",
+                "optional": false
+              },
+              {
+                "name": "includes",
+                "type": "(searchElement: [string, string], fromIndex?: number) => boolean",
+                "optional": false
+              },
+              {
+                "name": "flatMap",
+                "type": "<U, This>(callback: (this: This, value: [string, string], index: number, array: [string, string][]) => U | readonly U[], thisArg?: This) => U[]",
+                "optional": false
+              },
+              {
+                "name": "flat",
+                "type": "<A, D>(this: A, depth?: D) => FlatArray<A, D>[]",
+                "optional": false
+              },
+              {
+                "name": "__@iterator@45767",
+                "type": "() => ArrayIterator<[string, string]>",
+                "optional": false
+              },
+              {
+                "name": "__@unscopables@45769",
+                "type": "{ [x: number]: boolean; length?: boolean; toString?: boolean; toLocaleString?: boolean; pop?: boolean; push?: boolean; concat?: boolean; join?: boolean; reverse?: boolean; shift?: boolean; slice?: boolean; sort?: boolean; splice?: boolean; unshift?: boolean; indexOf?: boolean; lastIndexOf?: boolean; every?: boolean; some?: boolean; forEach?: boolean; map?: boolean; filter?: boolean; reduce?: boolean; reduceRight?: boolean; find?: boolean; findIndex?: boolean; fill?: boolean; copyWithin?: boolean; entries?: boolean; keys?: boolean; values?: boolean; includes?: boolean; flatMap?: boolean; flat?: boolean; [Symbol.iterator]?: boolean; readonly [Symbol.unscopables]?: boolean; at?: boolean; }",
+                "optional": false
+              },
+              {
+                "name": "at",
+                "type": "(index: number) => [string, string]",
+                "optional": false
+              }
+            ],
+            "jsdoc": null,
+            "xaiDescription": "Array-like type for managing HTTP headers as string pairs.",
+            "isExported": true
+          },
+          {
+            "name": "NativeRequestInit",
+            "type": "export interface NativeRequestInit {\n    credentials?: RequestCredentials;\n    headers?: NativeHeadersType;\n    method?: string;\n}",
+            "properties": [
+              {
+                "name": "credentials",
+                "type": "RequestCredentials",
+                "optional": true
+              },
+              {
+                "name": "headers",
+                "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/NativeRequest\").NativeHeadersType",
+                "optional": true
+              },
+              {
+                "name": "method",
+                "type": "string",
+                "optional": true
+              }
+            ],
+            "extends": [],
+            "jsdoc": null,
+            "xaiDescription": "Configuration options for initializing a native HTTP request.",
+            "isExported": true
+          },
+          {
+            "name": "NativeResponseEvents",
+            "type": "{\n    didReceiveResponseData(data: Uint8Array): void;\n    didComplete(): void;\n    didFailWithError(error: string): void;\n    readyForJSFinalization(): void;\n}",
+            "properties": [
+              {
+                "name": "didReceiveResponseData",
+                "type": "(data: Uint8Array<ArrayBufferLike>) => void",
+                "optional": false
+              },
+              {
+                "name": "didComplete",
+                "type": "() => void",
+                "optional": false
+              },
+              {
+                "name": "didFailWithError",
+                "type": "(error: string) => void",
+                "optional": false
+              },
+              {
+                "name": "readyForJSFinalization",
+                "type": "() => void",
+                "optional": false
+              }
+            ],
+            "jsdoc": null,
+            "xaiDescription": "Event handlers for native response lifecycle events.",
+            "isExported": true
+          },
+          {
+            "name": "FetchRequestInit",
+            "type": "export interface FetchRequestInit {\n    body?: BodyInit;\n    credentials?: RequestCredentials;\n    headers?: HeadersInit;\n    method?: string;\n    signal?: AbortSignal;\n    integrity?: string;\n    keepalive?: boolean;\n    mode?: RequestMode;\n    referrer?: string;\n    window?: any;\n}",
+            "properties": [
+              {
+                "name": "body",
+                "type": "BodyInit",
+                "optional": true
+              },
+              {
+                "name": "credentials",
+                "type": "RequestCredentials",
+                "optional": true
+              },
+              {
+                "name": "headers",
+                "type": "HeadersInit",
+                "optional": true
+              },
+              {
+                "name": "method",
+                "type": "string",
+                "optional": true
+              },
+              {
+                "name": "signal",
+                "type": "AbortSignal",
+                "optional": true
+              },
+              {
+                "name": "integrity",
+                "type": "string",
+                "optional": true
+              },
+              {
+                "name": "keepalive",
+                "type": "boolean",
+                "optional": true
+              },
+              {
+                "name": "mode",
+                "type": "RequestMode",
+                "optional": true
+              },
+              {
+                "name": "referrer",
+                "type": "string",
+                "optional": true
+              },
+              {
+                "name": "window",
+                "type": "any",
+                "optional": true
+              }
+            ],
+            "extends": [],
+            "jsdoc": {
+              "description": "A fetch RequestInit compatible structure.",
+              "tags": []
+            },
+            "isExported": true
+          },
+          {
+            "name": "Console",
+            "type": "interface Console {\n  memory: any;\n  assert(condition?: boolean, message?: string, ...data: any[]): void;\n  clear(): void;\n  count(label?: string): void;\n  debug(message?: any, ...optionalParams: any[]): void;\n  dir(value?: any, ...optionalParams: any[]): void;\n  dirxml(value: any): void;\n  error(message?: any, ...optionalParams: any[]): void;\n  exception(message?: string, ...optionalParams: any[]): void;\n  group(groupTitle?: string, ...optionalParams: any[]): void;\n  groupCollapsed(groupTitle?: string, ...optionalParams: any[]): void;\n  groupEnd(): void;\n  info(message?: any, ...optionalParams: any[]): void;\n  log(message?: any, ...optionalParams: any[]): void;\n  markTimeline(label?: string): void;\n  profile(reportName?: string): void;\n  profileEnd(reportName?: string): void;\n  table(...tabularData: any[]): void;\n  time(label?: string): void;\n  timeEnd(label?: string): void;\n  timeStamp(label?: string): void;\n  timeline(label?: string): void;\n  timelineEnd(label?: string): void;\n  trace(message?: any, ...optionalParams: any[]): void;\n  warn(message?: any, ...optionalParams: any[]): void;\n}",
+            "properties": [
+              {
+                "name": "memory",
+                "type": "any",
+                "optional": false
+              }
+            ],
+            "extends": [],
+            "jsdoc": {
+              "description": "This is a more comprehensive declaration of the Console API that JavaScript VMs include.\n\nThis declaration is from https://github.com/Microsoft/TypeScript/blob/master/lib/lib.dom.d.ts",
+              "tags": []
+            },
+            "isExported": false
+          }
+        ],
+        "classes": [
+          {
+            "name": "DevToolsPluginClient",
+            "constructors": [
+              {
+                "parameters": [
+                  {
+                    "name": "connectionInfo",
+                    "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/devtools.types\").ConnectionInfo",
+                    "optional": false
+                  },
+                  {
+                    "name": "options",
+                    "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/devtools.types\").DevToolsPluginClientOptions",
+                    "optional": true
+                  }
+                ],
+                "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/DevToolsPluginClient\").DevToolsPluginClient"
+              }
+            ],
+            "methods": [
+              {
+                "name": "DevToolsPluginClient.initAsync",
+                "parameters": [],
+                "returnType": "Promise<void>",
+                "jsdoc": {
+                  "description": "Initialize the connection.",
+                  "tags": [
+                    {
+                      "tagName": "hidden",
+                      "name": "",
+                      "text": ""
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "DevToolsPluginClient.closeAsync",
+                "parameters": [],
+                "returnType": "Promise<void>",
+                "jsdoc": {
+                  "description": "Close the connection.",
+                  "tags": []
+                }
+              },
+              {
+                "name": "DevToolsPluginClient.sendMessage",
+                "parameters": [
+                  {
+                    "name": "method",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "params",
+                    "type": "any",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": {
+                  "description": "Send a message to the other end of DevTools.",
+                  "tags": [
+                    {
+                      "tagName": "param",
+                      "name": "method",
+                      "text": "A method name."
+                    },
+                    {
+                      "tagName": "param",
+                      "name": "params",
+                      "text": "any extra payload."
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "DevToolsPluginClient.sendMessageLegacy",
+                "parameters": [
+                  {
+                    "name": "method",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "params",
+                    "type": "any",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": {
+                  "description": "This client is for the Expo DevTools Plugins to communicate between the app and the DevTools webpage hosted in a browser.\nAll the code should be both compatible with browsers and React Native.",
+                  "tags": []
+                }
+              },
+              {
+                "name": "DevToolsPluginClient.addMessageListener",
+                "parameters": [
+                  {
+                    "name": "method",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "listener",
+                    "type": "(params: any) => void",
+                    "optional": false
+                  }
+                ],
+                "returnType": "EventSubscription",
+                "jsdoc": {
+                  "description": "Subscribe to a message from the other end of DevTools.",
+                  "tags": [
+                    {
+                      "tagName": "param",
+                      "name": "method",
+                      "text": "Subscribe to a message with a method name."
+                    },
+                    {
+                      "tagName": "param",
+                      "name": "listener",
+                      "text": "Listener to be called when a message is received."
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "DevToolsPluginClient.addMessageListenerOnce",
+                "parameters": [
+                  {
+                    "name": "method",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "listener",
+                    "type": "(params: any) => void",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": {
+                  "description": "Subscribe to a message from the other end of DevTools just once.",
+                  "tags": [
+                    {
+                      "tagName": "param",
+                      "name": "method",
+                      "text": "Subscribe to a message with a method name."
+                    },
+                    {
+                      "tagName": "param",
+                      "name": "listener",
+                      "text": "Listener to be called when a message is received."
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "DevToolsPluginClient.sendHandshakeMessage",
+                "parameters": [
+                  {
+                    "name": "params",
+                    "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/devtools.types\").HandshakeMessageParams",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": {
+                  "description": "Internal handshake message sender.",
+                  "tags": [
+                    {
+                      "tagName": "hidden",
+                      "name": "",
+                      "text": ""
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "DevToolsPluginClient.addHandskakeMessageListener",
+                "parameters": [
+                  {
+                    "name": "listener",
+                    "type": "(params: import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/devtools.types\").HandshakeMessageParams) => void",
+                    "optional": false
+                  }
+                ],
+                "returnType": "EventSubscription",
+                "jsdoc": {
+                  "description": "Internal handshake message listener.",
+                  "tags": [
+                    {
+                      "tagName": "hidden",
+                      "name": "",
+                      "text": ""
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "DevToolsPluginClient.isConnected",
+                "parameters": [],
+                "returnType": "boolean",
+                "jsdoc": {
+                  "description": "Returns whether the client is connected to the server.",
+                  "tags": []
+                }
+              },
+              {
+                "name": "DevToolsPluginClient.connectAsync",
+                "parameters": [],
+                "returnType": "Promise<WebSocket>",
+                "jsdoc": {
+                  "description": "The method to create the WebSocket connection.",
+                  "tags": []
+                }
+              },
+              {
+                "name": "DevToolsPluginClient.getWebSocketBackingStore",
+                "parameters": [],
+                "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/WebSocketBackingStore\").WebSocketBackingStore",
+                "jsdoc": {
+                  "description": "Get the WebSocket backing store. Exposed for testing.",
+                  "tags": [
+                    {
+                      "tagName": "hidden",
+                      "name": "",
+                      "text": ""
+                    }
+                  ]
+                }
+              }
+            ],
+            "properties": [
+              {
+                "name": "connectionInfo",
+                "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/devtools.types\").ConnectionInfo",
+                "optional": false
+              },
+              {
+                "name": "options",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "eventEmitter",
+                "type": "EventEmitter",
+                "optional": false
+              },
+              {
+                "name": "defaultWSStore",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "wsStore",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "isClosed",
+                "type": "boolean",
+                "optional": false
+              },
+              {
+                "name": "retries",
+                "type": "number",
+                "optional": false
+              },
+              {
+                "name": "messageFramePacker",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "sendMessageImpl",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "handleMessage",
+                "type": "(event: WebSocketMessageEvent) => Promise<void>",
+                "optional": false
+              }
+            ],
+            "implements": [],
+            "jsdoc": {
+              "description": "This client is for the Expo DevTools Plugins to communicate between the app and the DevTools webpage hosted in a browser.\nAll the code should be both compatible with browsers and React Native.",
+              "tags": []
+            },
+            "isExported": true
+          },
+          {
+            "name": "DevToolsPluginClientImplApp",
+            "constructors": [],
+            "methods": [
+              {
+                "name": "DevToolsPluginClientImplApp.initAsync",
+                "parameters": [],
+                "returnType": "Promise<void>",
+                "jsdoc": {
+                  "description": "Initialize the connection.",
+                  "tags": [
+                    {
+                      "tagName": "hidden",
+                      "name": "",
+                      "text": ""
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "DevToolsPluginClientImplApp.sendMessage",
+                "parameters": [
+                  {
+                    "name": "method",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "params",
+                    "type": "any",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": {
+                  "description": "The DevToolsPluginClient for the app -> browser communication.",
+                  "tags": []
+                }
+              }
+            ],
+            "properties": [
+              {
+                "name": "browserClientMap",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "addHandshakeHandler",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "terminateBrowserClient",
+                "type": "any",
+                "optional": false
+              }
+            ],
+            "extends": "DevToolsPluginClient",
+            "implements": [],
+            "jsdoc": {
+              "description": "The DevToolsPluginClient for the app -> browser communication.",
+              "tags": []
+            },
+            "isExported": true
+          },
+          {
+            "name": "DevToolsPluginClientImplBrowser",
+            "constructors": [],
+            "methods": [
+              {
+                "name": "DevToolsPluginClientImplBrowser.initAsync",
+                "parameters": [],
+                "returnType": "Promise<void>",
+                "jsdoc": {
+                  "description": "Initialize the connection.",
+                  "tags": [
+                    {
+                      "tagName": "hidden",
+                      "name": "",
+                      "text": ""
+                    }
+                  ]
+                }
+              }
+            ],
+            "properties": [
+              {
+                "name": "browserClientId",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "startHandshake",
+                "type": "any",
+                "optional": false
+              }
+            ],
+            "extends": "DevToolsPluginClient",
+            "implements": [],
+            "jsdoc": {
+              "description": "The DevToolsPluginClient for the browser -> app communication.",
+              "tags": []
+            },
+            "isExported": true
+          },
+          {
+            "name": "MessageFramePacker",
+            "xaiDescription": "Utility for packing and unpacking message frames with various data types.",
+            "constructors": [],
+            "methods": [
+              {
+                "name": "MessageFramePacker.pack",
+                "parameters": [
+                  {
+                    "name": "{ messageKey, payload }",
+                    "type": "MessageFrame<T>",
+                    "optional": false
+                  },
+                  {
+                    "name": "useLegacyTransport",
+                    "type": "boolean",
+                    "optional": true
+                  }
+                ],
+                "returnType": "string | Uint8Array<ArrayBufferLike> | Promise<Uint8Array<ArrayBufferLike>>",
+                "xaiDescription": "Packs message frame into serialized form using MessageFrame<T>.",
+                "jsdoc": null
+              },
+              {
+                "name": "MessageFramePacker.unpack",
+                "parameters": [
+                  {
+                    "name": "packedData",
+                    "type": "string | ArrayBuffer",
+                    "optional": false
+                  }
+                ],
+                "returnType": "MessageFrame<T>",
+                "xaiDescription": "Unpacks serialized data into MessageFrame<T>.",
+                "jsdoc": null
+              }
+            ],
+            "properties": [
+              {
+                "name": "textEncoder",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "textDecoder",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "isFastPathPayload",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "payloadToUint8Array",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "packImpl",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "deserializePayload",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "getPayloadTypeIndicator",
+                "type": "any",
+                "optional": false
+              }
+            ],
+            "implements": [],
+            "jsdoc": null,
+            "isExported": true
+          },
+          {
+            "name": "WebSocketBackingStore",
+            "constructors": [
+              {
+                "parameters": [
+                  {
+                    "name": "ws",
+                    "type": "WebSocket",
+                    "optional": true
+                  },
+                  {
+                    "name": "refCount",
+                    "type": "number",
+                    "optional": true
+                  }
+                ],
+                "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/WebSocketBackingStore\").WebSocketBackingStore"
+              }
+            ],
+            "methods": [],
+            "properties": [
+              {
+                "name": "ws",
+                "type": "WebSocket",
+                "optional": false
+              },
+              {
+                "name": "refCount",
+                "type": "number",
+                "optional": false
+              }
+            ],
+            "implements": [],
+            "jsdoc": {
+              "description": "The backing store for the WebSocket connection and reference count.\nThis is used for connection multiplexing.",
+              "tags": []
+            },
+            "isExported": true
+          },
+          {
+            "name": "WebSocketWithReconnect",
+            "xaiDescription": "WebSocket with automatic reconnection and event handling.",
+            "constructors": [
+              {
+                "parameters": [
+                  {
+                    "name": "url",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "options",
+                    "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/WebSocketWithReconnect\").Options",
+                    "optional": true
+                  }
+                ],
+                "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/devtools/WebSocketWithReconnect\").WebSocketWithReconnect"
+              }
+            ],
+            "methods": [
+              {
+                "name": "WebSocketWithReconnect.close",
+                "parameters": [
+                  {
+                    "name": "code",
+                    "type": "number",
+                    "optional": true
+                  },
+                  {
+                    "name": "reason",
+                    "type": "string",
+                    "optional": true
+                  }
+                ],
+                "returnType": "void",
+                "xaiDescription": "Closes WebSocket connection with optional code and reason."
+              },
+              {
+                "name": "WebSocketWithReconnect.addEventListener",
+                "parameters": [
+                  {
+                    "name": "event",
+                    "type": "\"message\"",
+                    "optional": false
+                  },
+                  {
+                    "name": "listener",
+                    "type": "(event: WebSocketMessageEvent) => void",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "xaiDescription": "Adds listener for WebSocket message event."
+              },
+              {
+                "name": "WebSocketWithReconnect.addEventListener",
+                "parameters": [
+                  {
+                    "name": "event",
+                    "type": "\"open\"",
+                    "optional": false
+                  },
+                  {
+                    "name": "listener",
+                    "type": "() => void",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "xaiDescription": "Adds listener for WebSocket open event."
+              },
+              {
+                "name": "WebSocketWithReconnect.addEventListener",
+                "parameters": [
+                  {
+                    "name": "event",
+                    "type": "\"error\"",
+                    "optional": false
+                  },
+                  {
+                    "name": "listener",
+                    "type": "(event: WebSocketErrorEvent) => void",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "xaiDescription": "Adds listener for WebSocket error event."
+              },
+              {
+                "name": "WebSocketWithReconnect.addEventListener",
+                "parameters": [
+                  {
+                    "name": "event",
+                    "type": "\"close\"",
+                    "optional": false
+                  },
+                  {
+                    "name": "listener",
+                    "type": "(event: WebSocketCloseEvent) => void",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "xaiDescription": "Adds listener for WebSocket close event."
+              },
+              {
+                "name": "WebSocketWithReconnect.removeEventListener",
+                "parameters": [
+                  {
+                    "name": "_event",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "listener",
+                    "type": "(event: any) => void",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "xaiDescription": "Removes specified event listener from WebSocket."
+              },
+              {
+                "name": "WebSocketWithReconnect.send",
+                "parameters": [
+                  {
+                    "name": "data",
+                    "type": "string | ArrayBufferLike | ArrayBufferView<ArrayBufferLike> | Blob",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "xaiDescription": "Sends data over the WebSocket connection."
+              },
+              {
+                "name": "WebSocketWithReconnect.ping",
+                "parameters": [],
+                "returnType": "void",
+                "xaiDescription": "Sends a ping to maintain WebSocket connection."
+              },
+              {
+                "name": "WebSocketWithReconnect.dispatchEvent",
+                "parameters": [
+                  {
+                    "name": "event",
+                    "type": "Event",
+                    "optional": false
+                  }
+                ],
+                "returnType": "boolean",
+                "xaiDescription": "Dispatches an event on the WebSocket."
+              }
+            ],
+            "properties": [
+              {
+                "name": "url",
+                "type": "string",
+                "optional": false
+              },
+              {
+                "name": "retriesInterval",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "maxRetries",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "connectTimeout",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "onError",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "onReconnect",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "ws",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "retries",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "connectTimeoutHandle",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "isClosed",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "sendQueue",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "lastCloseEvent",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "emitter",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "eventSubscriptions",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "wsBinaryType",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "connect",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "handleOpen",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "handleMessage",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "handleError",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "handleClose",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "handleConnectTimeout",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "clearConnectTimeoutIfNeeded",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "reconnectIfNeeded",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "wsClose",
+                "type": "any",
+                "optional": false
+              },
+              {
+                "name": "CONNECTING",
+                "type": "0",
+                "optional": false
+              },
+              {
+                "name": "OPEN",
+                "type": "1",
+                "optional": false
+              },
+              {
+                "name": "CLOSING",
+                "type": "2",
+                "optional": false
+              },
+              {
+                "name": "CLOSED",
+                "type": "3",
+                "optional": false
+              }
+            ],
+            "implements": [
+              "WebSocket"
+            ],
+            "jsdoc": null,
+            "isExported": true
+          },
+          {
+            "name": "ExpoFormData",
+            "constructors": [
+              {
+                "parameters": [],
+                "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/FormData\").ExpoFormData",
+                "xaiDescription": "Constructs a new ExpoFormData instance for form handling."
+              }
+            ],
+            "methods": [
+              {
+                "name": "ExpoFormData.append",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "value",
+                    "type": "string",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": null,
+                "xaiDescription": "Appends a string value to the specified form data key."
+              },
+              {
+                "name": "ExpoFormData.append",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "value",
+                    "type": "Blob",
+                    "optional": false
+                  },
+                  {
+                    "name": "filename",
+                    "type": "string",
+                    "optional": true
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": null,
+                "xaiDescription": "Appends a Blob value to the form data key, with optional filename."
+              },
+              {
+                "name": "ExpoFormData.delete",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": null,
+                "xaiDescription": "Deletes the value associated with the specified key."
+              },
+              {
+                "name": "ExpoFormData.get",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false
+                  }
+                ],
+                "returnType": "FormDataEntryValue",
+                "jsdoc": null,
+                "xaiDescription": "Retrieves the first value for the specified key."
+              },
+              {
+                "name": "ExpoFormData.getAll",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false
+                  }
+                ],
+                "returnType": "FormDataEntryValue[]",
+                "jsdoc": null,
+                "xaiDescription": "Returns an array of all values for the specified key."
+              },
+              {
+                "name": "ExpoFormData.has",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false
+                  }
+                ],
+                "returnType": "boolean",
+                "jsdoc": null,
+                "xaiDescription": "Checks if the specified key exists in the form data."
+              },
+              {
+                "name": "ExpoFormData.set",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "value",
+                    "type": "string",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": null,
+                "xaiDescription": "Sets a string value for the specified key, overwriting existing."
+              },
+              {
+                "name": "ExpoFormData.set",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "value",
+                    "type": "Blob",
+                    "optional": false
+                  },
+                  {
+                    "name": "filename",
+                    "type": "string",
+                    "optional": true
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": null,
+                "xaiDescription": "Sets a Blob value for the key, with optional filename, overwriting."
+              },
+              {
+                "name": "ExpoFormData.append",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "value",
+                    "type": "{ uri: string; name?: string; type?: string; }",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": null,
+                "xaiDescription": "Appends a URI-based object to the form data key."
+              },
+              {
+                "name": "ExpoFormData.set",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "value",
+                    "type": "{ uri: string; name?: string; type?: string; }",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": null,
+                "xaiDescription": "Sets a URI-based object for the key, overwriting existing."
+              },
+              {
+                "name": "ExpoFormData.forEach",
+                "parameters": [
+                  {
+                    "name": "callback",
+                    "type": "(value: FormDataEntryValue, key: string, iterable: FormData) => void",
+                    "optional": false
+                  },
+                  {
+                    "name": "thisArg",
+                    "type": "unknown",
+                    "optional": true
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": null,
+                "xaiDescription": "Executes a callback for each key-value pair in the form data."
+              },
+              {
+                "name": "ExpoFormData.keys",
+                "parameters": [],
+                "returnType": "IterableIterator<string>",
+                "jsdoc": null,
+                "xaiDescription": "Returns an iterator over the keys in the form data."
+              },
+              {
+                "name": "ExpoFormData.values",
+                "parameters": [],
+                "returnType": "IterableIterator<FormDataEntryValue>",
+                "jsdoc": null,
+                "xaiDescription": "Returns an iterator over the values in the form data."
+              },
+              {
+                "name": "ExpoFormData.entries",
+                "parameters": [],
+                "returnType": "IterableIterator<[string, FormDataEntryValue]>",
+                "jsdoc": null,
+                "xaiDescription": "Returns an iterator over the key-value pairs in the form data."
+              },
+              {
+                "name": "ExpoFormData.[Symbol.iterator]",
+                "parameters": [],
+                "returnType": "IterableIterator<[string, FormDataEntryValue]>",
+                "jsdoc": null,
+                "xaiDescription": "Provides iteration over key-value pairs using Symbol.iterator."
+              }
+            ],
+            "properties": [
+              {
+                "name": "_encoding",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal property for encoding configuration."
+              },
+              {
+                "name": "_ignoreBOM",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal flag to ignore BOM in decoding."
+              },
+              {
+                "name": "_errorMode",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal setting for error handling mode."
+              },
+              {
+                "name": "_BOMseen",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal tracker for BOM detection."
+              },
+              {
+                "name": "_doNotFlush",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal flag to prevent flushing."
+              },
+              {
+                "name": "_decoder",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal decoder object."
+              },
+              {
+                "name": "serializeStream",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal method for serializing streams."
+              }
+            ],
+            "implements": [],
+            "jsdoc": null,
+            "xaiDescription": "Class for managing form data entries in Expo.",
+            "isExported": true
+          },
+          {
+            "name": "TextDecoder",
+            "constructors": [
+              {
+                "parameters": [
+                  {
+                    "name": "label",
+                    "type": "string",
+                    "optional": true
+                  },
+                  {
+                    "name": "options",
+                    "type": "{ fatal?: boolean; ignoreBOM?: boolean; }",
+                    "optional": true
+                  }
+                ],
+                "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/TextDecoder\").TextDecoder",
+                "xaiDescription": "Constructs a TextDecoder instance with optional label and options."
+              }
+            ],
+            "methods": [
+              {
+                "name": "TextDecoder.decode",
+                "parameters": [
+                  {
+                    "name": "input",
+                    "type": "ArrayBuffer | DataView<ArrayBufferLike>",
+                    "optional": true
+                  },
+                  {
+                    "name": "options",
+                    "type": "{ stream?: boolean; }",
+                    "optional": true
+                  }
+                ],
+                "returnType": "string",
+                "jsdoc": null,
+                "xaiDescription": "Decodes the input buffer into a string using specified options."
+              }
+            ],
+            "properties": [
+              {
+                "name": "_encoding",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal property for the encoding used."
+              },
+              {
+                "name": "_ignoreBOM",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal flag for ignoring BOM."
+              },
+              {
+                "name": "_errorMode",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal error handling mode."
+              },
+              {
+                "name": "_BOMseen",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal indicator if BOM was seen."
+              },
+              {
+                "name": "_doNotFlush",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal flag to avoid flushing."
+              },
+              {
+                "name": "_decoder",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal decoder instance."
+              },
+              {
+                "name": "serializeStream",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal serializer for streams."
+              }
+            ],
+            "implements": [],
+            "jsdoc": null,
+            "xaiDescription": "Class for decoding text from buffers.",
+            "isExported": true
+          },
+          {
+            "name": "StubNativeRequest",
+            "constructors": [],
+            "methods": [],
+            "properties": [],
+            "implements": [],
+            "jsdoc": null,
+            "xaiDescription": "Stub class for NativeRequest, used internally.",
+            "isExported": false
+          },
+          {
+            "name": "StubNativeResponse",
+            "constructors": [],
+            "methods": [],
+            "properties": [],
+            "implements": [],
+            "jsdoc": null,
+            "xaiDescription": "Stub class for NativeResponse, used internally.",
+            "isExported": false
+          },
+          {
+            "name": "FetchError",
+            "constructors": [
+              {
+                "parameters": [
+                  {
+                    "name": "message",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "{ cause, stack }",
+                    "type": "{ cause?: unknown; stack?: string; }",
+                    "optional": true
+                  }
+                ],
+                "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/FetchErrors\").FetchError",
+                "xaiDescription": "Constructs a FetchError with message and optional cause or stack."
+              }
+            ],
+            "methods": [
+              {
+                "name": "FetchError.createFromError",
+                "parameters": [
+                  {
+                    "name": "error",
+                    "type": "Error",
+                    "optional": false
+                  }
+                ],
+                "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/FetchErrors\").FetchError",
+                "jsdoc": null,
+                "xaiDescription": "Creates a FetchError from an existing Error object."
+              }
+            ],
+            "properties": [],
+            "implements": [],
+            "jsdoc": null,
+            "xaiDescription": "Error class for fetch operations.",
+            "isExported": true
+          },
+          {
+            "name": "FetchResponse",
+            "constructors": [
+              {
+                "parameters": [
+                  {
+                    "name": "abortCleanupFunction",
+                    "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/FetchResponse\").AbortSubscriptionCleanupFunction",
+                    "optional": false
+                  }
+                ],
+                "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/FetchResponse\").FetchResponse",
+                "xaiDescription": "Constructs a FetchResponse with abort cleanup function."
+              }
+            ],
+            "methods": [
+              {
+                "name": "FetchResponse.blob",
+                "parameters": [],
+                "returnType": "Promise<Blob>",
+                "jsdoc": {
+                  "description": "A response implementation for the `fetch.Response` API.",
+                  "tags": []
+                }
+              },
+              {
+                "name": "FetchResponse.formData",
+                "parameters": [],
+                "returnType": "Promise<FormData>",
+                "jsdoc": {
+                  "description": "A response implementation for the `fetch.Response` API.",
+                  "tags": []
+                }
+              },
+              {
+                "name": "FetchResponse.json",
+                "parameters": [],
+                "returnType": "Promise<any>",
+                "jsdoc": {
+                  "description": "A response implementation for the `fetch.Response` API.",
+                  "tags": []
+                }
+              },
+              {
+                "name": "FetchResponse.toString",
+                "parameters": [],
+                "returnType": "string",
+                "jsdoc": {
+                  "description": "A response implementation for the `fetch.Response` API.",
+                  "tags": []
+                }
+              },
+              {
+                "name": "FetchResponse.toJSON",
+                "parameters": [],
+                "returnType": "object",
+                "jsdoc": {
+                  "description": "A response implementation for the `fetch.Response` API.",
+                  "tags": []
+                }
+              },
+              {
+                "name": "FetchResponse.clone",
+                "parameters": [],
+                "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/FetchResponse\").FetchResponse",
+                "jsdoc": {
+                  "description": "A response implementation for the `fetch.Response` API.",
+                  "tags": []
+                }
+              }
+            ],
+            "properties": [
+              {
+                "name": "abortCleanupFunction",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Function for cleaning up abort operations."
+              },
+              {
+                "name": "streamingState",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal state for streaming data."
+              },
+              {
+                "name": "bodyStream",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Stream for the response body."
+              },
+              {
+                "name": "type",
+                "type": "\"default\"",
+                "optional": false,
+                "xaiDescription": "Type of the response, defaults to 'default'."
+              },
+              {
+                "name": "finalize",
+                "type": "any",
+                "optional": false,
+                "xaiDescription": "Internal finalization method."
+              }
+            ],
+            "extends": "NativeResponse",
+            "implements": [
+              "Response"
+            ],
+            "jsdoc": {
+              "description": "A response implementation for the `fetch.Response` API.",
+              "tags": []
+            },
+            "isExported": true
+          },
+          {
+            "name": "NativeRequest",
+            "constructors": [
+              {
+                "xaiDescription": "Default constructor for NativeRequest."
+              }
+            ],
+            "methods": [
+              {
+                "name": "NativeRequest.start",
+                "parameters": [
+                  {
+                    "name": "url",
+                    "type": "string",
+                    "optional": false
+                  },
+                  {
+                    "name": "requestInit",
+                    "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/NativeRequest\").NativeRequestInit",
+                    "optional": false
+                  },
+                  {
+                    "name": "requestBody",
+                    "type": "Uint8Array<ArrayBufferLike>",
+                    "optional": false
+                  }
+                ],
+                "returnType": "Promise<import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/NativeRequest\").NativeResponse>",
+                "jsdoc": null,
+                "xaiDescription": "Starts a native request with URL, init, and body."
+              },
+              {
+                "name": "NativeRequest.cancel",
+                "parameters": [],
+                "returnType": "void",
+                "jsdoc": null,
+                "xaiDescription": "Cancels the ongoing native request."
+              }
+            ],
+            "properties": [],
+            "extends": "SharedObject",
+            "implements": [],
+            "jsdoc": null,
+            "xaiDescription": "Class for handling native fetch requests.",
+            "isExported": true
+          },
+          {
+            "name": "NativeResponse",
+            "constructors": [
+              {
+                "xaiDescription": "Default constructor for NativeResponse."
+              }
+            ],
+            "methods": [
+              {
+                "name": "NativeResponse.startStreaming",
+                "parameters": [],
+                "returnType": "Promise<Uint8Array<ArrayBufferLike>>",
+                "jsdoc": null,
+                "xaiDescription": "Begins streaming the response body."
+              },
+              {
+                "name": "NativeResponse.cancelStreaming",
+                "parameters": [
+                  {
+                    "name": "reason",
+                    "type": "string",
+                    "optional": false
+                  }
+                ],
+                "returnType": "void",
+                "jsdoc": null,
+                "xaiDescription": "Cancels streaming with a specified reason."
+              },
+              {
+                "name": "NativeResponse.arrayBuffer",
+                "parameters": [],
+                "returnType": "Promise<ArrayBuffer>",
+                "jsdoc": null,
+                "xaiDescription": "Returns the response body as an ArrayBuffer."
+              },
+              {
+                "name": "NativeResponse.text",
+                "parameters": [],
+                "returnType": "Promise<string>",
+                "jsdoc": null,
+                "xaiDescription": "Returns the response body as a string."
+              }
+            ],
+            "properties": [
+              {
+                "name": "bodyUsed",
+                "type": "boolean",
+                "optional": false,
+                "xaiDescription": "Indicates if the response body has been read."
+              },
+              {
+                "name": "_rawHeaders",
+                "type": "import(\"/Users/Thy/TypeDefLib/node_modules/expo/build/winter/fetch/NativeRequest\").NativeHeadersType",
+                "optional": false,
+                "xaiDescription": "Raw headers of the native response."
+              },
+              {
+                "name": "status",
+                "type": "number",
+                "optional": false,
+                "xaiDescription": "HTTP status code of the response."
+              },
+              {
+                "name": "statusText",
+                "type": "string",
+                "optional": false,
+                "xaiDescription": "HTTP status text of the response."
+              },
+              {
+                "name": "url",
+                "type": "string",
+                "optional": false,
+                "xaiDescription": "URL of the response."
+              },
+              {
+                "name": "redirected",
+                "type": "boolean",
+                "optional": false,
+                "xaiDescription": "Indicates if the response was redirected."
+              }
+            ],
+            "extends": "SharedObject",
+            "implements": [],
+            "jsdoc": null,
+            "xaiDescription": "Class for handling native fetch responses.",
+            "isExported": true
+          }
+        ],
         "constants": []
       },
       "jsdoc": null,

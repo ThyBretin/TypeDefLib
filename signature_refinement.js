@@ -26,6 +26,8 @@ async function reassembleChunks(chunkFiles, outputFile) {
     constants: [],
     namespaces: []
   };
+  // Build a chunkMap: chunkId -> merged array
+  const chunkMap = {};
   // For reconstructing objects by name (for sub-chunks)
   const objectMap = {};
   // Group top-level chunks by chunkType
@@ -49,6 +51,8 @@ async function reassembleChunks(chunkFiles, outputFile) {
         if (!chunksByType[chunkData.chunkType]) chunksByType[chunkData.chunkType] = [];
         chunksByType[chunkData.chunkType].push(chunkData.items);
       }
+      // Build chunkMap for all chunked arrays
+      chunkMap[chunkData.chunkType] = (chunkMap[chunkData.chunkType] || []).concat(chunkData.items);
       if (!combined.version && chunkData.version) combined.version = chunkData.version;
     } catch (e) {
       console.error(`Error parsing ${chunkFile}: ${e.message}`);
@@ -63,19 +67,10 @@ async function reassembleChunks(chunkFiles, outputFile) {
   }
   // Special handling for namespaces and other objects with sub-chunks
   if (chunksByType["namespaces"]) {
-    // Reconstruct namespaces, merging in any sub-chunks by name
     const namespaces = chunksByType["namespaces"].flat();
     for (const ns of namespaces) {
-      if (ns && ns.name && objectMap[ns.name]) {
-        // Merge sub-chunked properties into ns.contents
-        for (const prop of Object.keys(objectMap[ns.name])) {
-          if (!ns.contents) ns.contents = {};
-          // Replace stub with actual chunked array
-          if (ns.contents[prop] === "__chunked__" || ns.contents[prop] == null) {
-            ns.contents[prop] = objectMap[ns.name][prop];
-          }
-        }
-      }
+      // Recursively fill all stubbed arrays in contents using chunkMap
+      if (ns.contents) fillChunkStubsWithId(ns.contents, chunkMap);
       combined.namespaces.push(ns);
     }
   }
@@ -83,14 +78,7 @@ async function reassembleChunks(chunkFiles, outputFile) {
   for (const key of ["classes", "types", "enums"]) {
     if (combined[key]) {
       for (const obj of combined[key]) {
-        if (obj && obj.name && objectMap[obj.name]) {
-          for (const prop of Object.keys(objectMap[obj.name])) {
-            // Replace stub with actual chunked array
-            if (obj[prop] === "__chunked__" || obj[prop] == null) {
-              obj[prop] = objectMap[obj.name][prop];
-            }
-          }
-        }
+        fillChunkStubsWithId(obj, chunkMap);
       }
     }
   }
@@ -106,6 +94,19 @@ async function reassembleChunks(chunkFiles, outputFile) {
   await fs.mkdir(path.dirname(outputFile), { recursive: true });
   await fs.writeFile(outputFile, JSON.stringify(combined, null, 2));
   console.log(`Assembled chunks into ${outputFile}`);
+}
+
+function fillChunkStubsWithId(obj, chunkMap) {
+  if (!obj || typeof obj !== 'object') return;
+  for (const key of Object.keys(obj)) {
+    const val = obj[key];
+    // If it's a stub with __chunked__
+    if (val && typeof val === 'object' && val.__chunked__ && chunkMap[val.__chunked__]) {
+      obj[key] = chunkMap[val.__chunked__];
+    } else if (typeof val === 'object' && val !== null) {
+      fillChunkStubsWithId(val, chunkMap);
+    }
+  }
 }
 
 async function refineWithXAI(filePath, apiKey, failedChunks, retries = 2) {
@@ -194,47 +195,48 @@ Return only raw JSON—no text, no Markdown, no \`\`\`.
   return null;
 }
 
-async function moveRefinedFilesToBin(baseName) {
-  const refinedDir = "./libraryDefs/refined";
-  const binDir = "./libraryDefs/bin";
-  await fs.mkdir(binDir, { recursive: true });
-  if (await fs.stat(refinedDir).catch(() => false)) {
-    const files = await fs.readdir(refinedDir);
-    for (const file of files) {
-      if (file.startsWith(baseName)) {
-        const src = path.join(refinedDir, file);
-        const dest = path.join(binDir, file);
-        try {
-          await fs.rename(src, dest);
-          console.log(`Moved refined file ${src} to ${dest}`);
-        } catch (e) {
-          console.error(`Failed to move ${src} to ${dest}: ${e.message}`);
-        }
-      }
-    }
-  }
-}
+// --- PATCH: Disable cleanupIntermediates and moveRefinedFilesToBin for debugging ---
+// async function cleanupIntermediates(baseName) {
+//   const dirs = ["extracted", "chunked", "cleaned", "refined"];
+//   for (const dir of dirs) {
+//     const fullDir = `./libraryDefs/${dir}`;
+//     if (await fs.stat(fullDir).catch(() => false)) {
+//       const files = await fs.readdir(fullDir);
+//       for (const file of files) {
+//         if (file.startsWith(baseName)) {
+//           if (dir === "refined") {
+//             // Move to bin instead of deleting
+//             await moveRefinedFilesToBin(baseName);
+//           } else {
+//             await fs.rm(path.join(fullDir, file), { recursive: true, force: true });
+//             console.log(`Cleaned up ${path.join(fullDir, file)}`);
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
-async function cleanupIntermediates(baseName) {
-  const dirs = ["extracted", "chunked", "cleaned", "refined"];
-  for (const dir of dirs) {
-    const fullDir = `./libraryDefs/${dir}`;
-    if (await fs.stat(fullDir).catch(() => false)) {
-      const files = await fs.readdir(fullDir);
-      for (const file of files) {
-        if (file.startsWith(baseName)) {
-          if (dir === "refined") {
-            // Move to bin instead of deleting
-            await moveRefinedFilesToBin(baseName);
-          } else {
-            await fs.rm(path.join(fullDir, file), { recursive: true, force: true });
-            console.log(`Cleaned up ${path.join(fullDir, file)}`);
-          }
-        }
-      }
-    }
-  }
-}
+// async function moveRefinedFilesToBin(baseName) {
+//   const refinedDir = "./libraryDefs/refined";
+//   const binDir = "./libraryDefs/bin";
+//   await fs.mkdir(binDir, { recursive: true });
+//   if (await fs.stat(refinedDir).catch(() => false)) {
+//     const files = await fs.readdir(refinedDir);
+//     for (const file of files) {
+//       if (file.startsWith(baseName)) {
+//         const src = path.join(refinedDir, file);
+//         const dest = path.join(binDir, file);
+//         try {
+//           await fs.rename(src, dest);
+//           console.log(`Moved refined file ${src} to ${dest}`);
+//         } catch (e) {
+//           console.error(`Failed to move ${src} to ${dest}: ${e.message}`);
+//         }
+//       }
+//     }
+//   }
+// }
 
 async function uploadToR2(outputFile) {
   const fileContent = await fs.readFile(outputFile);
@@ -306,7 +308,7 @@ async function main() {
       await fs.mkdir("./libraryDefs/finalized", { recursive: true });
       await reassembleChunks(refinedFiles, outputFile);
       await uploadToR2(outputFile);
-      await cleanupIntermediates(baseName);
+      // await cleanupIntermediates(baseName);
     } else {
       console.log(`Skipping ${baseName}—exists in R2`);
     }

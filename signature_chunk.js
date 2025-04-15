@@ -75,15 +75,10 @@ async function chunkSignatures(inputFile, outputDir, maxTokens = 3500) {
           await fs.writeFile(chunkFile, JSON.stringify(chunkData, null, 2));
         }
         chunkCount += chunkIndex;
-        // --- PATCH: replace large arrays in parent object with stub ---
+        // PATCH: replace large arrays in parent object with unique stub
         if (wasChunked) {
-          if (typeof obj[key] === 'object' && obj[key] !== null) {
-            if (parentType.endsWith('contents')) {
-              obj[key] = "__chunked__";
-            } else {
-              obj[key] = "__chunked__";
-            }
-          }
+          const chunkId = `${parentType}.${key}`;
+          obj[key] = { "__chunked__": chunkId };
         }
       } else if (typeof value === 'object' && value !== null) {
         // Recurse into nested objects
