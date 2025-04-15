@@ -5,178 +5,148 @@ async function chunkSignatures(inputFile, outputDir, maxTokens = 3500) {
   const output = await fs.readFile(inputFile, "utf-8");
   const data = JSON.parse(output);
   const version = data.version || "unknown";
-  // console.log(`Version set to: ${version}`);
-
   const estimateTokens = (str) => Math.ceil(str.length / 4); // ~4 chars per token
-
   const chunks = [];
   let chunkCount = 0;
 
-  const forceSplitItem = async (item, max, depth = 0) => {
-    const str = JSON.stringify(item);
-    const tokens = estimateTokens(str);
-    if (tokens <= max) return [item];
+  // Helper for writing a chunk with metadata
+  async function writeMetaChunk(chunkType, items, chunkIndex, totalChunks, parentName = null) {
+    const chunkData = {
+      chunkType,
+      chunkIndex,
+      totalChunks,
+      version,
+      parentName,
+      items
+    };
+    const fname = `${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkType}${parentName ? `_${parentName}` : ''}_${chunkIndex}.chunk.json`;
+    await fs.writeFile(fname, JSON.stringify(chunkData, null, 2));
+    chunks.push({ file: fname, chunkType, chunkIndex, totalChunks, parentName });
+  }
 
-    const key = Object.keys(item)[0];
-    const value = item[key];
-
-    // Prevent infinite recursion: if not array or array of length 1, can't split further
-    if (!Array.isArray(value) || value.length <= 1) {
-      console.warn(`Cannot split further at depth ${depth} for key ${key} (tokens: ${tokens})`);
-      return [item];
-    }
-
-    // Optionally, set a very high recursion limit as a safeguard
-    const MAX_RECURSION_DEPTH = 10000;
-    if (depth > MAX_RECURSION_DEPTH) {
-      console.warn(`Max recursion depth (${MAX_RECURSION_DEPTH}) reached at depth ${depth} for key ${key}`);
-      return [item];
-    }
-
-    // console.log(`Force splitting item (depth ${depth}): ${tokens} tokens`);
-    const results = [];
-
-    let current = [];
-    let currentTokens = 0;
-    for (const subItem of value) {
-      const temp = [...current, subItem];
-      const tempTokens = estimateTokens(JSON.stringify({ [key]: temp }));
-      if (tempTokens <= max) {
-        current = temp;
-        currentTokens = tempTokens;
-      } else {
-        if (current.length > 0) {
-          results.push({ [key]: current });
-          // console.log(`Split part: ${current.length} items, ${currentTokens} tokens`);
-        }
-        const subItemTokens = estimateTokens(JSON.stringify(subItem));
-        if (subItemTokens > max) {
-          // Only recurse if subItem is splittable
-          if (typeof subItem === 'object' && subItem !== null && Object.keys(subItem).length > 0) {
-            const splitSubItems = await forceSplitItem({ temp: [subItem] }, max, depth + 1);
-            results.push(...splitSubItems.map(s => ({ [key]: s.temp })));
+  // Recursively chunk any object with array properties
+  async function chunkObjectArrays(obj, parentType, parentName) {
+    for (const [key, value] of Object.entries(obj)) {
+      if (Array.isArray(value) && value.length > 0) {
+        let currentChunk = [];
+        let currentTokens = 0;
+        let chunkIndex = 0;
+        let wasChunked = false;
+        for (const item of value) {
+          const itemStr = JSON.stringify(item);
+          const tokens = estimateTokens(itemStr);
+          const tempChunk = [...currentChunk, item];
+          const tempTokens = estimateTokens(JSON.stringify(tempChunk));
+          if (tempTokens <= maxTokens && tokens <= maxTokens) {
+            currentChunk = tempChunk;
+            currentTokens = tempTokens;
           } else {
-            console.warn(`Subitem at depth ${depth + 1} is not splittable (tokens: ${subItemTokens})`);
-            results.push({ [key]: [subItem] });
+            if (currentChunk.length > 0) {
+              await writeMetaChunk(`${parentType}.${key}`, currentChunk, chunkIndex, null, parentName);
+              chunkIndex++;
+              wasChunked = true;
+            }
+            if (tokens > maxTokens) {
+              // If the item is itself an object with array properties, recurse
+              if (typeof item === 'object' && item !== null) {
+                await chunkObjectArrays(item, `${parentType}.${key}`, item.name || null);
+              }
+              await writeMetaChunk(`${parentType}.${key}`, [item], chunkIndex, null, parentName);
+              chunkIndex++;
+              wasChunked = true;
+            } else {
+              currentChunk = [item];
+              currentTokens = tokens;
+            }
           }
-        } else {
-          current = [subItem];
-          currentTokens = subItemTokens;
         }
+        if (currentChunk.length > 0) {
+          await writeMetaChunk(`${parentType}.${key}`, currentChunk, chunkIndex, null, parentName);
+          chunkIndex++;
+          wasChunked = true;
+        }
+        // Fill in totalChunks for this property
+        for (let i = chunkCount; i < chunkCount + chunkIndex; ++i) {
+          chunks[i].totalChunks = chunkIndex;
+          // Update file with totalChunks
+          const chunkFile = chunks[i].file;
+          const chunkData = JSON.parse(await fs.readFile(chunkFile, "utf-8"));
+          chunkData.totalChunks = chunkIndex;
+          await fs.writeFile(chunkFile, JSON.stringify(chunkData, null, 2));
+        }
+        chunkCount += chunkIndex;
+        // --- PATCH: replace large arrays in parent object with stub ---
+        if (wasChunked) {
+          if (typeof obj[key] === 'object' && obj[key] !== null) {
+            if (parentType.endsWith('contents')) {
+              obj[key] = "__chunked__";
+            } else {
+              obj[key] = "__chunked__";
+            }
+          }
+        }
+      } else if (typeof value === 'object' && value !== null) {
+        // Recurse into nested objects
+        await chunkObjectArrays(value, `${parentType}.${key}`, value.name || null);
       }
     }
-    if (current.length > 0) {
-      results.push({ [key]: current });
-      // console.log(`Split part: ${current.length} items, ${currentTokens} tokens`);
-    }
-    return results;
-  };
+  }
 
-  const processSection = async (section, sectionName) => {
-    if (!section || section.length === 0) {
-      // console.log(`${sectionName} has 0 items`);
-      return;
-    }
-
+  // For each top-level section, split into token-limited chunks and recursively chunk objects
+  for (const [sectionName, section] of Object.entries({
+    functions: data.functions,
+    enums: data.enums,
+    types: data.types,
+    classes: data.classes,
+    constants: data.constants,
+    namespaces: data.namespaces
+  })) {
+    if (!section || section.length === 0) continue;
     const items = Array.isArray(section) ? section : [section];
-    // console.log(`${sectionName} has ${items.length} items`);
-
     let currentChunk = [];
     let currentTokens = 0;
-
+    let chunkIndex = 0;
     for (const item of items) {
       const itemStr = JSON.stringify(item);
       const tokens = estimateTokens(itemStr);
-      // console.log(`Item in ${sectionName}: ${tokens} tokens`);
-
       const tempChunk = [...currentChunk, item];
       const tempTokens = estimateTokens(JSON.stringify(tempChunk));
-
       if (tempTokens <= maxTokens && tokens <= maxTokens) {
         currentChunk = tempChunk;
         currentTokens = tempTokens;
       } else {
-        // Save current chunk if it has items
         if (currentChunk.length > 0) {
-          // console.log(`Preparing chunk ${chunkCount}: ${currentTokens} tokens`);
-          chunks.push({ chunk: currentChunk, chunkId: chunkCount, version });
-          await fs.writeFile(
-            `${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkCount}.chunk.json`,
-            JSON.stringify(currentChunk, null, 2)
-          );
-          // console.log(
-          //   `Chunked ${chunkCount} → ${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkCount}.chunk.json (${currentTokens} tokens)`
-          // );
-          chunkCount++;
+          await writeMetaChunk(sectionName, currentChunk, chunkIndex, null);
+          chunkIndex++;
         }
-
         if (tokens > maxTokens) {
-          // Split oversized item
-          // console.log(`Oversized item in ${sectionName}: ${tokens} tokens—force splitting`);
-          const splitItems = await forceSplitItem(
-            sectionName === "namespaces" ? { [item.name]: item.contents } : item,
-            maxTokens
-          );
-          await fs.appendFile(
-            "./libraryDefs/forced_splits.json",
-            JSON.stringify({
-              file: inputFile,
-              section: sectionName,
-              item: item.name || "anonymous",
-              parts: splitItems.length,
-              tokens
-            }) + "\n"
-          );
-
-          for (const splitItem of splitItems) {
-            const splitTokens = estimateTokens(JSON.stringify(splitItem));
-            // console.log(`Preparing chunk ${chunkCount}: ${splitTokens} tokens`);
-            chunks.push({ chunk: [splitItem], chunkId: chunkCount, version });
-            await fs.writeFile(
-              `${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkCount}.chunk.json`,
-              JSON.stringify([splitItem], null, 2)
-            );
-            // console.log(
-            //   `Chunked ${chunkCount} → ${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkCount}.chunk.json (${splitTokens} tokens)`
-            // );
-            chunkCount++;
+          // Recursively chunk object if possible
+          if (typeof item === 'object' && item !== null) {
+            await chunkObjectArrays(item, sectionName, item.name || null);
           }
+          await writeMetaChunk(sectionName, [item], chunkIndex, null);
+          chunkIndex++;
         } else {
-          // Start new chunk with current item
           currentChunk = [item];
           currentTokens = tokens;
         }
       }
     }
-
-    // Save final chunk if it has items
     if (currentChunk.length > 0) {
-      // console.log(`Preparing chunk ${chunkCount}: ${currentTokens} tokens`);
-      chunks.push({ chunk: currentChunk, chunkId: chunkCount, version });
-      await fs.writeFile(
-        `${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkCount}.chunk.json`,
-        JSON.stringify(currentChunk, null, 2)
-      );
-      // console.log(
-      //   `Chunked ${chunkCount} → ${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkCount}.chunk.json (${currentTokens} tokens)`
-      // );
-      chunkCount++;
+      await writeMetaChunk(sectionName, currentChunk, chunkIndex, null);
+      chunkIndex++;
     }
-  };
-
-  await fs.mkdir(outputDir, { recursive: true });
-  for (const section of [
-    ["functions", data.functions],
-    ["enums", data.enums],
-    ["types", data.types],
-    ["classes", data.classes],
-    ["constants", data.constants],
-    ["namespaces", data.namespaces]
-  ]) {
-    await processSection(section[1], section[0]);
+    // Fill in totalChunks for this section
+    for (let i = chunkCount; i < chunkCount + chunkIndex; ++i) {
+      chunks[i].totalChunks = chunkIndex;
+      // Update file with totalChunks
+      const chunkFile = chunks[i].file;
+      const chunkData = JSON.parse(await fs.readFile(chunkFile, "utf-8"));
+      chunkData.totalChunks = chunkIndex;
+      await fs.writeFile(chunkFile, JSON.stringify(chunkData, null, 2));
+    }
+    chunkCount += chunkIndex;
   }
-
-  // console.log(`Total chunks created: ${chunks.length}`);
   return chunks;
 }
 

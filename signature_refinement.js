@@ -16,6 +16,7 @@ const s3Client = new S3Client({
 // New reassembleChunks function
 async function reassembleChunks(chunkFiles, outputFile) {
   console.log(`Reassembling ${chunkFiles.length} chunks into ${outputFile}`);
+  // Prepare containers for each section
   const combined = {
     version: null,
     functions: [],
@@ -25,64 +26,74 @@ async function reassembleChunks(chunkFiles, outputFile) {
     constants: [],
     namespaces: []
   };
-  const namespaceMap = new Map();
-
+  // For reconstructing objects by name (for sub-chunks)
+  const objectMap = {};
+  // Group top-level chunks by chunkType
+  const chunksByType = {};
   for (const chunkFile of chunkFiles) {
     let chunkData;
     try {
       const fileContent = await fs.readFile(chunkFile, "utf-8");
       chunkData = JSON.parse(fileContent);
-      console.log(`Processing ${chunkFile}: ${fileContent.slice(0, 200)}...`);
+      if (!chunkData.chunkType || !Array.isArray(chunkData.items)) {
+        console.warn(`Chunk file ${chunkFile} missing chunkType/items, skipping.`);
+        continue;
+      }
+      // Attach parentName for sub-chunks
+      if (chunkData.parentName) {
+        if (!objectMap[chunkData.parentName]) objectMap[chunkData.parentName] = {};
+        const prop = chunkData.chunkType.split('.').slice(-1)[0];
+        if (!objectMap[chunkData.parentName][prop]) objectMap[chunkData.parentName][prop] = [];
+        objectMap[chunkData.parentName][prop].push(...chunkData.items);
+      } else {
+        if (!chunksByType[chunkData.chunkType]) chunksByType[chunkData.chunkType] = [];
+        chunksByType[chunkData.chunkType].push(chunkData.items);
+      }
+      if (!combined.version && chunkData.version) combined.version = chunkData.version;
     } catch (e) {
       console.error(`Error parsing ${chunkFile}: ${e.message}`);
       continue;
     }
-
-    // If numeric-keyed object, treat as array
-    if (typeof chunkData === "object" && !Array.isArray(chunkData) && chunkData !== null) {
-      const keys = Object.keys(chunkData);
-      if (keys.every(k => !isNaN(Number(k)))) {
-        chunkData = keys.map(k => chunkData[k]);
-      } else if (keys.length === 1 && typeof chunkData[keys[0]] === "object") {
-        // Unwrap single-key object (e.g., { "0": { ... } })
-        chunkData = [chunkData[keys[0]]];
-      }
+  }
+  // Merge all top-level items by type
+  for (const key of ["functions", "enums", "types", "classes", "constants"]) {
+    if (chunksByType[key]) {
+      combined[key] = chunksByType[key].flat();
     }
-
-    // Now, chunkData is either an array or a single object
-    const items = Array.isArray(chunkData) ? chunkData : [chunkData];
-
-    for (const item of items) {
-      if (!item) continue;
-      // If this is a namespace-like object (has functions/types/etc.), merge into combined
-      let mergedNamespace = false;
-      if (item.functions || item.types || item.enums || item.classes || item.constants) {
-        for (const key of ["functions", "types", "enums", "classes", "constants"]) {
-          if (item[key]) combined[key].push(...item[key]);
-        }
-        if (item.name) {
-          combined.namespaces.push(item);
-          mergedNamespace = true;
+  }
+  // Special handling for namespaces and other objects with sub-chunks
+  if (chunksByType["namespaces"]) {
+    // Reconstruct namespaces, merging in any sub-chunks by name
+    const namespaces = chunksByType["namespaces"].flat();
+    for (const ns of namespaces) {
+      if (ns && ns.name && objectMap[ns.name]) {
+        // Merge sub-chunked properties into ns.contents
+        for (const prop of Object.keys(objectMap[ns.name])) {
+          if (!ns.contents) ns.contents = {};
+          // Replace stub with actual chunked array
+          if (ns.contents[prop] === "__chunked__" || ns.contents[prop] == null) {
+            ns.contents[prop] = objectMap[ns.name][prop];
+          }
         }
       }
-      if (!mergedNamespace) {
-        if (item.name && item.contents) {
-          combined.namespaces.push(item);
-        } else if (item.name && item.type) {
-          combined.types.push(item);
-        } else if (item.name && Array.isArray(item.parameters)) {
-          combined.functions.push(item);
-        } else if (item.name && Array.isArray(item.methods)) {
-          combined.classes.push(item);
-        } else if (item.name && item.value !== undefined) {
-          combined.constants.push(item);
-        } else if (item.name && Array.isArray(item.members)) {
-          combined.enums.push(item);
+      combined.namespaces.push(ns);
+    }
+  }
+  // Also handle sub-chunks for any other object types (e.g., classes, types) if needed
+  for (const key of ["classes", "types", "enums"]) {
+    if (combined[key]) {
+      for (const obj of combined[key]) {
+        if (obj && obj.name && objectMap[obj.name]) {
+          for (const prop of Object.keys(objectMap[obj.name])) {
+            // Replace stub with actual chunked array
+            if (obj[prop] === "__chunked__" || obj[prop] == null) {
+              obj[prop] = objectMap[obj.name][prop];
+            }
+          }
         }
       }
     }
   }
-
   // Remove duplicates in arrays (by name)
   function dedupe(arr) {
     const seen = new Set();
@@ -91,7 +102,6 @@ async function reassembleChunks(chunkFiles, outputFile) {
   for (const key of ["functions", "types", "enums", "classes", "constants", "namespaces"]) {
     combined[key] = dedupe(combined[key]);
   }
-
   console.log(`Combined data: ${JSON.stringify(combined, null, 2).slice(0, 500)}...`);
   await fs.mkdir(path.dirname(outputFile), { recursive: true });
   await fs.writeFile(outputFile, JSON.stringify(combined, null, 2));
