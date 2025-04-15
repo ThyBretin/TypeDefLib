@@ -1,0 +1,9 @@
+Step 5: Refining with xAI...
+Refinement failed unexpectedly: Error: ENOENT: no such file or directory, scandir './libraryDefs/cleaned'
+    at async Object.readdir (node:internal/fs/promises:950:18)
+    at async main (/Users/Thy/TypeDefLib/signature_refinement.js:226:17) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: './libraryDefs/cleaned'
+}

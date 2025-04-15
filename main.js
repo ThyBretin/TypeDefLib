@@ -140,21 +140,21 @@ async function main() {
     return;
   }
 
-  try {
-    console.log("Running chunking...");
-    await execAsync("node signature_chunk.js", { timeout: 300000 });
-  } catch (e) {
-    console.error(`Chunking failed for ${name}-${version}: ${e.message}`);
-    const errorLog = { name, version, error: `Chunking failed: ${e.message}`, stack: e.stack, timestamp: new Date().toISOString() };
+try {
+    console.log("Running refinement and R2 upload...");
+    await execAsync(`node signature_refinement.js > ./libraryDefs/refinement_${name}-${version}.log 2>&1`, { timeout: 300000 });
+} catch (e) {
+    console.error(`Refinement failed for ${name}-${version}: ${e.message}`);
+    const errorLog = { name, version, error: `Refinement failed: ${e.message}`, stack: e.stack, timestamp: new Date().toISOString() };
     await fs.appendFile("./libraryDefs/errors.json", JSON.stringify(errorLog) + "\n");
     packages[name].status = "failed";
     await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
     return;
-  }
+}
 
   try {
     console.log("Running sanitization...");
-    await execAsync("node signature_sanitization.js", { timeout: 300000 });
+    await execAsync("node signature_chunk.js", { timeout: 300000 });
   } catch (e) {
     console.error(`Sanitization failed for ${name}-${version}: ${e.message}`);
     const errorLog = { name, version, error: `Sanitization failed: ${e.message}`, stack: e.stack, timestamp: new Date().toISOString() };

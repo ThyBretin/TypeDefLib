@@ -19,7 +19,6 @@ async function extractSignatures(dtsPaths, libName, version) {
   };
 
   for (const dtsPath of dtsPaths) {
-    console.log(`Processing file: ${dtsPath}`);
     try {
       const fileDefs = {
         functions: extractFunctions(dtsPath),
@@ -29,8 +28,6 @@ async function extractSignatures(dtsPaths, libName, version) {
         constants: extractConstants(dtsPath),
         namespaces: extractNamespaces(dtsPath)
       };
-
-      console.log(`Extracted from ${path.basename(dtsPath)}: Functions=${fileDefs.functions.length}, Types=${fileDefs.types.length}`);
 
       const dedupeByName = (array, key) => {
         const seen = new Set();

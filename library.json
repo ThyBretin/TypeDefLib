@@ -34,7 +34,7 @@
     },
     "react": {
       "version": "19.1.0",
-      "status": "processing"
+      "status": "failed"
     }
   }
 }

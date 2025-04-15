@@ -29,17 +29,57 @@ async function reassembleChunks(chunkFiles, outputFile) {
     namespaces: []
   };
 
+  // Use a Map to merge namespaces by name
+  const namespaceMap = new Map();
+
   for (const chunkFile of chunkFiles) {
     const chunkData = JSON.parse(await fs.readFile(chunkFile, "utf-8"));
+
+    // Set version from the first chunk that has it
     if (chunkData.version && !combined.version) combined.version = chunkData.version;
+
+    // Concatenate top-level arrays (outside namespaces)
     combined.functions.push(...(chunkData.functions || []));
     combined.enums.push(...(chunkData.enums || []));
     combined.types.push(...(chunkData.types || []));
     combined.classes.push(...(chunkData.classes || []));
     combined.constants.push(...(chunkData.constants || []));
-    combined.namespaces.push(...(chunkData.namespaces || []));
+
+    // Merge namespaces
+    if (chunkData.namespaces) {
+      for (const ns of chunkData.namespaces) {
+        const name = ns.name;
+        if (!namespaceMap.has(name)) {
+          // Initialize new namespace entry
+          namespaceMap.set(name, {
+            name: name,
+            contents: {
+              functions: [],
+              enums: [],
+              types: [],
+              classes: [],
+              constants: []
+            },
+            jsdoc: ns.jsdoc, // Preserve JSDoc from the first occurrence
+            isExported: ns.isExported
+          });
+        }
+        // Merge contents into existing namespace
+        const existing = namespaceMap.get(name);
+        existing.contents.functions.push(...(ns.contents.functions || []));
+        existing.contents.enums.push(...(ns.contents.enums || []));
+        existing.contents.types.push(...(ns.contents.types || []));
+        existing.contents.classes.push(...(ns.contents.classes || []));
+        existing.contents.constants.push(...(ns.contents.constants || []));
+      }
+    }
   }
 
+  // Convert merged namespaces to array
+  combined.namespaces = Array.from(namespaceMap.values());
+
+  // Write the final combined JSON
+  await fs.mkdir(path.dirname(outputFile), { recursive: true });
   await fs.writeFile(outputFile, JSON.stringify(combined, null, 2));
   console.log(`Assembled chunks into ${outputFile}`);
 }
