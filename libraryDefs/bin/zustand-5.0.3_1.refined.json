@@ -1,0 +1,393 @@
+{
+  "0": {
+    "name": "Combine",
+    "type": "<T extends object, U extends object, Mps extends [StoreMutatorIdentifier, unknown][] = [], Mcs extends [StoreMutatorIdentifier, unknown][] = []>(initialState: T, additionalStateCreator: StateCreator<T, Mps, Mcs, U>) => StateCreator<Write<T, U>, Mps, Mcs>",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Combines initial state with additional creator for state management."
+  },
+  "1": {
+    "name": "Write",
+    "type": "Omit<T, keyof U> & U",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Merges two types by omitting overlapping keys from the first."
+  },
+  "2": {
+    "name": "Action",
+    "type": "string | {\n    type: string;\n    [x: string | number | symbol]: unknown;\n}",
+    "properties": [
+      {
+        "name": "toString",
+        "type": "(() => string) | (() => string)",
+        "optional": false
+      },
+      {
+        "name": "charAt",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "charCodeAt",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "concat",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "indexOf",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "lastIndexOf",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "localeCompare",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "match",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "replace",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "search",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "slice",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "split",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "substring",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "toLowerCase",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "toLocaleLowerCase",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "toUpperCase",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "toLocaleUpperCase",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "trim",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "length",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "substr",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "valueOf",
+        "type": "(() => string) | (() => Object)",
+        "optional": false
+      },
+      {
+        "name": "codePointAt",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "includes",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "endsWith",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "normalize",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "repeat",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "startsWith",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "anchor",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "big",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "blink",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "bold",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "fixed",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "fontcolor",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "fontsize",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "italics",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "link",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "small",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "strike",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "sub",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "sup",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "padStart",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "padEnd",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "trimEnd",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "trimStart",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "trimLeft",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "trimRight",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "matchAll",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "at",
+        "type": "unknown",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Represents an action as string or object with type property and string methods."
+  },
+  "3": {
+    "name": "Cast",
+    "type": "T extends U ? T : U",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Casts type T to U if T is assignable to U."
+  },
+  "4": {
+    "name": "Config",
+    "type": "Parameters<(Window extends {\n    __REDUX_DEVTOOLS_EXTENSION__?: infer T;\n} ? T : {\n    connect: (param: any) => any;\n})['connect']>[0]",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Configuration parameters for Redux DevTools connection."
+  },
+  "5": {
+    "name": "Devtools",
+    "type": "<T, Mps extends [StoreMutatorIdentifier, unknown][] = [], Mcs extends [StoreMutatorIdentifier, unknown][] = [], U = T>(initializer: StateCreator<T, [...Mps, ['zustand/devtools', never]], Mcs, U>, devtoolsOptions?: DevtoolsOptions) => StateCreator<T, Mps, [['zustand/devtools', never], ...Mcs]>",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Integrates state creator with DevTools for debugging. Uses DevtoolsOptions."
+  },
+  "6": {
+    "name": "DevtoolsOptions",
+    "type": "export interface DevtoolsOptions extends Config {\n    name?: string;\n    enabled?: boolean;\n    anonymousActionType?: string;\n    store?: string;\n}",
+    "properties": [
+      {
+        "name": "name",
+        "type": "string",
+        "optional": true
+      },
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "optional": true
+      },
+      {
+        "name": "anonymousActionType",
+        "type": "string",
+        "optional": true
+      },
+      {
+        "name": "store",
+        "type": "string",
+        "optional": true
+      }
+    ],
+    "extends": [
+      "any"
+    ],
+    "isExported": true,
+    "xaiDescription": "Options for customizing DevTools integration, extending Config."
+  },
+  "7": {
+    "name": "NamedSet",
+    "type": "WithDevtools<StoreApi<T>>['setState']",
+    "properties": [],
+    "isExported": true,
+    "xaiDescription": "Set state function enhanced with DevTools features. Uses StoreApi<T>."
+  },
+  "8": {
+    "name": "StoreDevtools",
+    "type": "S extends {\n    setState: {\n        (...a: infer Sa1): infer Sr1;\n        (...a: infer Sa2): infer Sr2;\n    };\n} ? {\n    setState(...a: [...a: TakeTwo<Sa1>, action?: Action]): Sr1;\n    setState(...a: [...a: TakeTwo<Sa2>, action?: Action]): Sr2;\n} : never",
+    "properties": [
+      {
+        "name": "setState",
+        "type": "{ (a_0?: unknown, a_1?: unknown, action?: Action): unknown; (a_0?: unknown, a_1?: unknown, action?: Action): unknown; }",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Extends store with DevTools-compatible setState method."
+  },
+  "9": {
+    "name": "TakeTwo",
+    "type": "T extends {\n    length: 0;\n} ? [undefined, undefined] : T extends {\n    length: 1;\n} ? [...a0: Cast<T, unknown[]>, a1: undefined] : T extends {\n    length: 0 | 1;\n} ? [...a0: Cast<T, unknown[]>, a1: undefined] : T extends {\n    length: 2;\n} ? T : T extends {\n    length: 1 | 2;\n} ? T : T extends {\n    length: 0 | 1 | 2;\n} ? T : T extends [infer A0, infer A1, ...unknown[]] ? [A0, A1] : T extends [infer A0, (infer A1)?, ...unknown[]] ? [A0, A1?] : T extends [(infer A0)?, (infer A1)?, ...unknown[]] ? [A0?, A1?] : never",
+    "properties": [
+      {
+        "name": "length",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "toString",
+        "type": "(() => string) | (() => string) | (() => string) | (() => string) | (() => string) | (() => string) | (() => string)",
+        "optional": false
+      },
+      {
+        "name": "toLocaleString",
+        "type": "{ (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | (() => string)",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Extracts up to the first two elements from a tuple type."
+  },
+  "10": {
+    "name": "WithDevtools",
+    "type": "Write<S, StoreDevtools<S>>",
+    "properties": [
+      {
+        "name": "setState",
+        "type": "{ (a_0?: unknown, a_1?: unknown, action?: Action): unknown; (a_0?: unknown, a_1?: unknown, action?: Action): unknown; }",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Combines store type with DevTools extensions. Uses StoreDevtools<S>."
+  },
+  "11": {
+    "name": "Write",
+    "type": "Omit<T, keyof U> & U",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Merges two object types by omitting overlapping keys."
+  },
+  "12": {
+    "name": "Immer",
+    "type": "<T, Mps extends [StoreMutatorIdentifier, unknown][] = [], Mcs extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [...Mps, ['zustand/immer', never]], Mcs>) => StateCreator<T, Mps, [['zustand/immer', never], ...Mcs]>",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Enables immutable state updates using Immer middleware."
+  },
+  "13": {
+    "name": "SetStateType",
+    "type": "Exclude<T[0], (...args: any[]) => any>",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Excludes function types from the first element of a tuple."
+  }
+}

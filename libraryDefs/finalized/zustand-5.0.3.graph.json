@@ -1,0 +1,1078 @@
+{
+  "version": null,
+  "functions": [
+    {
+      "name": "useShallow",
+      "parameters": [
+        {
+          "name": "selector",
+          "type": "(state: S) => U",
+          "optional": false
+        }
+      ],
+      "returnType": "(state: S) => U",
+      "isExported": true,
+      "xaiDescription": "Hook for selecting state with shallow equality to optimize re-renders; uses selector (state: S) => U."
+    },
+    {
+      "name": "useStore",
+      "parameters": [
+        {
+          "name": "api",
+          "type": "S",
+          "optional": false
+        }
+      ],
+      "returnType": "import(\"/Users/Thy/TypeDefLib/node_modules/zustand/vanilla\").ExtractState<S>",
+      "isExported": true,
+      "xaiDescription": "Hook to access and subscribe to the state of a store; returns ExtractState<S> type."
+    },
+    {
+      "name": "useStoreWithEqualityFn",
+      "parameters": [
+        {
+          "name": "api",
+          "type": "S",
+          "optional": false
+        }
+      ],
+      "returnType": "ExtractState<S>",
+      "isExported": true,
+      "xaiDescription": "Hook to access store state with custom equality function; returns ExtractState<S> type."
+    }
+  ],
+  "enums": [],
+  "types": [
+    {
+      "name": "Combine",
+      "type": "<T extends object, U extends object, Mps extends [StoreMutatorIdentifier, unknown][] = [], Mcs extends [StoreMutatorIdentifier, unknown][] = []>(initialState: T, additionalStateCreator: StateCreator<T, Mps, Mcs, U>) => StateCreator<Write<T, U>, Mps, Mcs>",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Combines initial state with additional creator for state management."
+    },
+    {
+      "name": "Write",
+      "type": "Omit<T, keyof U> & U",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Merges two types by omitting overlapping keys from the first."
+    },
+    {
+      "name": "Action",
+      "type": "string | {\n    type: string;\n    [x: string | number | symbol]: unknown;\n}",
+      "properties": [
+        {
+          "name": "toString",
+          "type": "(() => string) | (() => string)",
+          "optional": false
+        },
+        {
+          "name": "charAt",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "charCodeAt",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "concat",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "indexOf",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "lastIndexOf",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "localeCompare",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "match",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "replace",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "search",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "slice",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "split",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "substring",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "toLowerCase",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "toLocaleLowerCase",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "toUpperCase",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "toLocaleUpperCase",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "trim",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "length",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "substr",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "valueOf",
+          "type": "(() => string) | (() => Object)",
+          "optional": false
+        },
+        {
+          "name": "codePointAt",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "includes",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "endsWith",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "normalize",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "repeat",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "startsWith",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "anchor",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "big",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "blink",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "bold",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "fixed",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "fontcolor",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "fontsize",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "italics",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "link",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "small",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "strike",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "sub",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "sup",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "padStart",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "padEnd",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "trimEnd",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "trimStart",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "trimLeft",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "trimRight",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "matchAll",
+          "type": "unknown",
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "unknown",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Represents an action as string or object with type property and string methods."
+    },
+    {
+      "name": "Cast",
+      "type": "T extends U ? T : U",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Casts type T to U if T is assignable to U."
+    },
+    {
+      "name": "Config",
+      "type": "Parameters<(Window extends {\n    __REDUX_DEVTOOLS_EXTENSION__?: infer T;\n} ? T : {\n    connect: (param: any) => any;\n})['connect']>[0]",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Configuration parameters for Redux DevTools connection."
+    },
+    {
+      "name": "Devtools",
+      "type": "<T, Mps extends [StoreMutatorIdentifier, unknown][] = [], Mcs extends [StoreMutatorIdentifier, unknown][] = [], U = T>(initializer: StateCreator<T, [...Mps, ['zustand/devtools', never]], Mcs, U>, devtoolsOptions?: DevtoolsOptions) => StateCreator<T, Mps, [['zustand/devtools', never], ...Mcs]>",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Integrates state creator with DevTools for debugging. Uses DevtoolsOptions."
+    },
+    {
+      "name": "DevtoolsOptions",
+      "type": "export interface DevtoolsOptions extends Config {\n    name?: string;\n    enabled?: boolean;\n    anonymousActionType?: string;\n    store?: string;\n}",
+      "properties": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "enabled",
+          "type": "boolean",
+          "optional": true
+        },
+        {
+          "name": "anonymousActionType",
+          "type": "string",
+          "optional": true
+        },
+        {
+          "name": "store",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "extends": [
+        "any"
+      ],
+      "isExported": true,
+      "xaiDescription": "Options for customizing DevTools integration, extending Config."
+    },
+    {
+      "name": "NamedSet",
+      "type": "WithDevtools<StoreApi<T>>['setState']",
+      "properties": [],
+      "isExported": true,
+      "xaiDescription": "Set state function enhanced with DevTools features. Uses StoreApi<T>."
+    },
+    {
+      "name": "StoreDevtools",
+      "type": "S extends {\n    setState: {\n        (...a: infer Sa1): infer Sr1;\n        (...a: infer Sa2): infer Sr2;\n    };\n} ? {\n    setState(...a: [...a: TakeTwo<Sa1>, action?: Action]): Sr1;\n    setState(...a: [...a: TakeTwo<Sa2>, action?: Action]): Sr2;\n} : never",
+      "properties": [
+        {
+          "name": "setState",
+          "type": "{ (a_0?: unknown, a_1?: unknown, action?: Action): unknown; (a_0?: unknown, a_1?: unknown, action?: Action): unknown; }",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Extends store with DevTools-compatible setState method."
+    },
+    {
+      "name": "TakeTwo",
+      "type": "T extends {\n    length: 0;\n} ? [undefined, undefined] : T extends {\n    length: 1;\n} ? [...a0: Cast<T, unknown[]>, a1: undefined] : T extends {\n    length: 0 | 1;\n} ? [...a0: Cast<T, unknown[]>, a1: undefined] : T extends {\n    length: 2;\n} ? T : T extends {\n    length: 1 | 2;\n} ? T : T extends {\n    length: 0 | 1 | 2;\n} ? T : T extends [infer A0, infer A1, ...unknown[]] ? [A0, A1] : T extends [infer A0, (infer A1)?, ...unknown[]] ? [A0, A1?] : T extends [(infer A0)?, (infer A1)?, ...unknown[]] ? [A0?, A1?] : never",
+      "properties": [
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "toString",
+          "type": "(() => string) | (() => string) | (() => string) | (() => string) | (() => string) | (() => string) | (() => string)",
+          "optional": false
+        },
+        {
+          "name": "toLocaleString",
+          "type": "{ (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | (() => string)",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Extracts up to the first two elements from a tuple type."
+    },
+    {
+      "name": "WithDevtools",
+      "type": "Write<S, StoreDevtools<S>>",
+      "properties": [
+        {
+          "name": "setState",
+          "type": "{ (a_0?: unknown, a_1?: unknown, action?: Action): unknown; (a_0?: unknown, a_1?: unknown, action?: Action): unknown; }",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Combines store type with DevTools extensions. Uses StoreDevtools<S>."
+    },
+    {
+      "name": "Immer",
+      "type": "<T, Mps extends [StoreMutatorIdentifier, unknown][] = [], Mcs extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [...Mps, ['zustand/immer', never]], Mcs>) => StateCreator<T, Mps, [['zustand/immer', never], ...Mcs]>",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Enables immutable state updates using Immer middleware."
+    },
+    {
+      "name": "SetStateType",
+      "type": "Exclude<T[0], (...args: any[]) => any>",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Excludes function types from the first element of a tuple."
+    },
+    {
+      "name": "SkipTwo",
+      "type": "T extends {\n    length: 0;\n} ? [] : T extends {\n    length: 1;\n} ? [] : T extends {\n    length: 0 | 1;\n} ? [] : T extends [unknown, unknown, ...infer A] ? A : T extends [unknown, unknown?, ...infer A] ? A : T extends [unknown?, unknown?, ...infer A] ? A : never",
+      "properties": [
+        {
+          "name": "length",
+          "type": "number",
+          "optional": false
+        },
+        {
+          "name": "toString",
+          "type": "(() => string) | (() => string)",
+          "optional": false
+        },
+        {
+          "name": "toLocaleString",
+          "type": "{ (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; } | { (): string; (locales: string | string[], options?: Intl.NumberFormatOptions & Intl.DateTimeFormatOptions): string; }",
+          "optional": false
+        },
+        {
+          "name": "pop",
+          "type": "(() => never) | (() => unknown)",
+          "optional": false
+        },
+        {
+          "name": "push",
+          "type": "((...items: never[]) => number) | ((...items: unknown[]) => number)",
+          "optional": false
+        },
+        {
+          "name": "concat",
+          "type": "{ (...items: ConcatArray<never>[]): never[]; (...items: ConcatArray<never>[]): never[]; } | { (...items: ConcatArray<unknown>[]): unknown[]; (...items: unknown[]): unknown[]; }",
+          "optional": false
+        },
+        {
+          "name": "join",
+          "type": "((separator?: string) => string) | ((separator?: string) => string)",
+          "optional": false
+        },
+        {
+          "name": "reverse",
+          "type": "(() => never[]) | (() => unknown[])",
+          "optional": false
+        },
+        {
+          "name": "shift",
+          "type": "(() => never) | (() => unknown)",
+          "optional": false
+        },
+        {
+          "name": "slice",
+          "type": "((start?: number, end?: number) => never[]) | ((start?: number, end?: number) => unknown[])",
+          "optional": false
+        },
+        {
+          "name": "sort",
+          "type": "((compareFn?: (a: never, b: never) => number) => []) | ((compareFn?: (a: unknown, b: unknown) => number) => unknown[])",
+          "optional": false
+        },
+        {
+          "name": "splice",
+          "type": "{ (start: number, deleteCount?: number): never[]; (start: number, deleteCount: number, ...items: never[]): never[]; } | { (start: number, deleteCount?: number): unknown[]; (start: number, deleteCount: number, ...items: unknown[]): unknown[]; }",
+          "optional": false
+        },
+        {
+          "name": "unshift",
+          "type": "((...items: never[]) => number) | ((...items: unknown[]) => number)",
+          "optional": false
+        },
+        {
+          "name": "indexOf",
+          "type": "((searchElement: never, fromIndex?: number) => number) | ((searchElement: unknown, fromIndex?: number) => number)",
+          "optional": false
+        },
+        {
+          "name": "lastIndexOf",
+          "type": "((searchElement: never, fromIndex?: number) => number) | ((searchElement: unknown, fromIndex?: number) => number)",
+          "optional": false
+        },
+        {
+          "name": "every",
+          "type": "{ <S>(predicate: (value: never, index: number, array: never[]) => value is S, thisArg?: any): this is S[]; (predicate: (value: never, index: number, array: never[]) => unknown, thisArg?: any): boolean; } | { <S>(predicate: (value: unknown, index: number, array: unknown[]) => value is S, thisArg?: any): this is S[]; (predicate: (value: unknown, index: number, array: unknown[]) => unknown, thisArg?: any): boolean; }",
+          "optional": false
+        },
+        {
+          "name": "some",
+          "type": "((predicate: (value: never, index: number, array: never[]) => unknown, thisArg?: any) => boolean) | ((predicate: (value: unknown, index: number, array: unknown[]) => unknown, thisArg?: any) => boolean)",
+          "optional": false
+        },
+        {
+          "name": "forEach",
+          "type": "((callbackfn: (value: never, index: number, array: never[]) => void, thisArg?: any) => void) | ((callbackfn: (value: unknown, index: number, array: unknown[]) => void, thisArg?: any) => void)",
+          "optional": false
+        },
+        {
+          "name": "map",
+          "type": "(<U>(callbackfn: (value: never, index: number, array: never[]) => U, thisArg?: any) => U[]) | (<U>(callbackfn: (value: unknown, index: number, array: unknown[]) => U, thisArg?: any) => U[])",
+          "optional": false
+        },
+        {
+          "name": "filter",
+          "type": "{ <S>(predicate: (value: never, index: number, array: never[]) => value is S, thisArg?: any): S[]; (predicate: (value: never, index: number, array: never[]) => unknown, thisArg?: any): never[]; } | { <S>(predicate: (value: unknown, index: number, array: unknown[]) => value is S, thisArg?: any): S[]; (predicate: (value: unknown, index: number, array: unknown[]) => unknown, thisArg?: any): unknown[]; }",
+          "optional": false
+        },
+        {
+          "name": "reduce",
+          "type": "{ (callbackfn: (previousValue: never, currentValue: never, currentIndex: number, array: never[]) => never): never; (callbackfn: (previousValue: never, currentValue: never, currentIndex: number, array: never[]) => never, initialValue: never): never; <U>(callbackfn: (previousValue: U, currentValue: never, currentIndex: number, array: never[]) => U, initialValue: U): U; } | { (callbackfn: (previousValue: unknown, currentValue: unknown, currentIndex: number, array: unknown[]) => unknown): unknown; (callbackfn: (previousValue: unknown, currentValue: unknown, currentIndex: number, array: unknown[]) => unknown, initialValue: unknown): unknown; <U>(callbackfn: (previousValue: U, currentValue: unknown, currentIndex: number, array: unknown[]) => U, initialValue: U): U; }",
+          "optional": false
+        },
+        {
+          "name": "reduceRight",
+          "type": "{ (callbackfn: (previousValue: never, currentValue: never, currentIndex: number, array: never[]) => never): never; (callbackfn: (previousValue: never, currentValue: never, currentIndex: number, array: never[]) => never, initialValue: never): never; <U>(callbackfn: (previousValue: U, currentValue: never, currentIndex: number, array: never[]) => U, initialValue: U): U; } | { (callbackfn: (previousValue: unknown, currentValue: unknown, currentIndex: number, array: unknown[]) => unknown): unknown; (callbackfn: (previousValue: unknown, currentValue: unknown, currentIndex: number, array: unknown[]) => unknown, initialValue: unknown): unknown; <U>(callbackfn: (previousValue: U, currentValue: unknown, currentIndex: number, array: unknown[]) => U, initialValue: U): U; }",
+          "optional": false
+        },
+        {
+          "name": "find",
+          "type": "{ <S>(predicate: (value: never, index: number, obj: never[]) => value is S, thisArg?: any): S; (predicate: (value: never, index: number, obj: never[]) => unknown, thisArg?: any): never; } | { <S>(predicate: (value: unknown, index: number, obj: unknown[]) => value is S, thisArg?: any): S; (predicate: (value: unknown, index: number, obj: unknown[]) => unknown, thisArg?: any): unknown; }",
+          "optional": false
+        },
+        {
+          "name": "findIndex",
+          "type": "((predicate: (value: never, index: number, obj: never[]) => unknown, thisArg?: any) => number) | ((predicate: (value: unknown, index: number, obj: unknown[]) => unknown, thisArg?: any) => number)",
+          "optional": false
+        },
+        {
+          "name": "fill",
+          "type": "((value: never, start?: number, end?: number) => []) | ((value: unknown, start?: number, end?: number) => unknown[])",
+          "optional": false
+        },
+        {
+          "name": "copyWithin",
+          "type": "((target: number, start: number, end?: number) => []) | ((target: number, start: number, end?: number) => unknown[])",
+          "optional": false
+        },
+        {
+          "name": "entries",
+          "type": "(() => ArrayIterator<[number, never]>) | (() => ArrayIterator<[number, unknown]>)",
+          "optional": false
+        },
+        {
+          "name": "keys",
+          "type": "(() => ArrayIterator<number>) | (() => ArrayIterator<number>)",
+          "optional": false
+        },
+        {
+          "name": "values",
+          "type": "(() => ArrayIterator<never>) | (() => ArrayIterator<unknown>)",
+          "optional": false
+        },
+        {
+          "name": "includes",
+          "type": "((searchElement: never, fromIndex?: number) => boolean) | ((searchElement: unknown, fromIndex?: number) => boolean)",
+          "optional": false
+        },
+        {
+          "name": "flatMap",
+          "type": "(<U, This>(callback: (this: This, value: never, index: number, array: never[]) => U | readonly U[], thisArg?: This) => U[]) | (<U, This>(callback: (this: This, value: unknown, index: number, array: unknown[]) => U | readonly U[], thisArg?: This) => U[])",
+          "optional": false
+        },
+        {
+          "name": "flat",
+          "type": "(<A, D>(this: A, depth?: D) => FlatArray<A, D>[]) | (<A, D>(this: A, depth?: D) => FlatArray<A, D>[])",
+          "optional": false
+        },
+        {
+          "name": "__@iterator@3299",
+          "type": "(() => ArrayIterator<never>) | (() => ArrayIterator<unknown>)",
+          "optional": false
+        },
+        {
+          "name": "__@unscopables@3301",
+          "type": "{ [x: number]: boolean; length?: boolean; toString?: boolean; toLocaleString?: boolean; pop?: boolean; push?: boolean; concat?: boolean; join?: boolean; reverse?: boolean; shift?: boolean; slice?: boolean; sort?: boolean; splice?: boolean; unshift?: boolean; indexOf?: boolean; lastIndexOf?: boolean; every?: boolean; some?: boolean; forEach?: boolean; map?: boolean; filter?: boolean; reduce?: boolean; reduceRight?: boolean; find?: boolean; findIndex?: boolean; fill?: boolean; copyWithin?: boolean; entries?: boolean; keys?: boolean; values?: boolean; includes?: boolean; flatMap?: boolean; flat?: boolean; [Symbol.iterator]?: boolean; readonly [Symbol.unscopables]?: boolean; at?: boolean; } | { [x: number]: boolean; length?: boolean; toString?: boolean; toLocaleString?: boolean; pop?: boolean; push?: boolean; concat?: boolean; join?: boolean; reverse?: boolean; shift?: boolean; slice?: boolean; sort?: boolean; splice?: boolean; unshift?: boolean; indexOf?: boolean; lastIndexOf?: boolean; every?: boolean; some?: boolean; forEach?: boolean; map?: boolean; filter?: boolean; reduce?: boolean; reduceRight?: boolean; find?: boolean; findIndex?: boolean; fill?: boolean; copyWithin?: boolean; entries?: boolean; keys?: boolean; values?: boolean; includes?: boolean; flatMap?: boolean; flat?: boolean; [Symbol.iterator]?: boolean; readonly [Symbol.unscopables]?: boolean; at?: boolean; }",
+          "optional": false
+        },
+        {
+          "name": "at",
+          "type": "((index: number) => never) | ((index: number) => unknown)",
+          "optional": false
+        }
+      ],
+      "xaiDescription": "Utility type to extract array elements after first two. Uses array patterns.",
+      "isExported": false
+    },
+    {
+      "name": "StoreImmer",
+      "type": "S extends {\n    setState: infer SetState;\n} ? SetState extends {\n    (...a: infer A1): infer Sr1;\n    (...a: infer A2): infer Sr2;\n} ? {\n    setState(nextStateOrUpdater: SetStateType<A2> | Partial<SetStateType<A2>> | ((state: Draft<SetStateType<A2>>) => void), shouldReplace?: false, ...a: SkipTwo<A1>): Sr1;\n    setState(nextStateOrUpdater: SetStateType<A2> | ((state: Draft<SetStateType<A2>>) => void), shouldReplace: true, ...a: SkipTwo<A2>): Sr2;\n} : never : never",
+      "properties": [],
+      "xaiDescription": "Enhances setState with Immer for immutable state updates.",
+      "isExported": false
+    },
+    {
+      "name": "WithImmer",
+      "type": "Write<S, StoreImmer<S>>",
+      "properties": [],
+      "xaiDescription": "Applies Immer to store for draft-based state management.",
+      "isExported": false
+    },
+    {
+      "name": "JsonStorageOptions",
+      "type": "{\n    reviver?: (key: string, value: unknown) => unknown;\n    replacer?: (key: string, value: unknown) => unknown;\n}",
+      "properties": [
+        {
+          "name": "reviver",
+          "type": "(key: string, value: unknown) => unknown",
+          "optional": true
+        },
+        {
+          "name": "replacer",
+          "type": "(key: string, value: unknown) => unknown",
+          "optional": true
+        }
+      ],
+      "xaiDescription": "Options for customizing JSON serialization and deserialization.",
+      "isExported": false
+    },
+    {
+      "name": "Persist",
+      "type": "<T, Mps extends [StoreMutatorIdentifier, unknown][] = [], Mcs extends [StoreMutatorIdentifier, unknown][] = [], U = T>(initializer: StateCreator<T, [...Mps, ['zustand/persist', unknown]], Mcs>, options: PersistOptions<T, U>) => StateCreator<T, Mps, [['zustand/persist', U], ...Mcs]>",
+      "properties": [],
+      "xaiDescription": "Adds persistence middleware to Zustand state creator.",
+      "isExported": false
+    },
+    {
+      "name": "PersistListener",
+      "type": "(state: S) => void",
+      "properties": [],
+      "xaiDescription": "Callback function to handle state changes on persist.",
+      "isExported": false
+    },
+    {
+      "name": "PersistOptions",
+      "type": "export interface PersistOptions<S, PersistedState = S> {\n    /** Name of the storage (must be unique) */\n    name: string;\n    /**\n     * Use a custom persist storage.\n     *\n     * Combining `createJSONStorage` helps creating a persist storage\n     * with JSON.parse and JSON.stringify.\n     *\n     * @default createJSONStorage(() => localStorage)\n     */\n    storage?: PersistStorage<PersistedState> | undefined;\n    /**\n     * Filter the persisted value.\n     *\n     * @params state The state's value\n     */\n    partialize?: (state: S) => PersistedState;\n    /**\n     * A function returning another (optional) function.\n     * The main function will be called before the state rehydration.\n     * The returned function will be called after the state rehydration or when an error occurred.\n     */\n    onRehydrateStorage?: (state: S) => ((state?: S, error?: unknown) => void) | void;\n    /**\n     * If the stored state's version mismatch the one specified here, the storage will not be used.\n     * This is useful when adding a breaking change to your store.\n     */\n    version?: number;\n    /**\n     * A function to perform persisted state migration.\n     * This function will be called when persisted state versions mismatch with the one specified here.\n     */\n    migrate?: (persistedState: unknown, version: number) => PersistedState | Promise<PersistedState>;\n    /**\n     * A function to perform custom hydration merges when combining the stored state with the current one.\n     * By default, this function does a shallow merge.\n     */\n    merge?: (persistedState: unknown, currentState: S) => S;\n    /**\n     * An optional boolean that will prevent the persist middleware from triggering hydration on initialization,\n     * This allows you to call `rehydrate()` at a specific point in your apps rendering life-cycle.\n     *\n     * This is useful in SSR application.\n     *\n     * @default false\n     */\n    skipHydration?: boolean;\n}",
+      "properties": [
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false
+        },
+        {
+          "name": "storage",
+          "type": "import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").PersistStorage<PersistedState>",
+          "optional": true
+        },
+        {
+          "name": "partialize",
+          "type": "(state: S) => PersistedState",
+          "optional": true
+        },
+        {
+          "name": "onRehydrateStorage",
+          "type": "(state: S) => void | ((state?: S, error?: unknown) => void)",
+          "optional": true
+        },
+        {
+          "name": "version",
+          "type": "number",
+          "optional": true
+        },
+        {
+          "name": "migrate",
+          "type": "(persistedState: unknown, version: number) => PersistedState | Promise<PersistedState>",
+          "optional": true
+        },
+        {
+          "name": "merge",
+          "type": "(persistedState: unknown, currentState: S) => S",
+          "optional": true
+        },
+        {
+          "name": "skipHydration",
+          "type": "boolean",
+          "optional": true
+        }
+      ],
+      "extends": [],
+      "xaiDescription": "Configuration for persisting Zustand state, including storage and migration options.",
+      "isExported": true
+    },
+    {
+      "name": "PersistStorage",
+      "type": "export interface PersistStorage<S> {\n    getItem: (name: string) => StorageValue<S> | null | Promise<StorageValue<S> | null>;\n    setItem: (name: string, value: StorageValue<S>) => unknown | Promise<unknown>;\n    removeItem: (name: string) => unknown | Promise<unknown>;\n}",
+      "properties": [
+        {
+          "name": "getItem",
+          "type": "(name: string) => import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").StorageValue<S> | Promise<import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").StorageValue<S>>",
+          "optional": false
+        },
+        {
+          "name": "setItem",
+          "type": "(name: string, value: import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").StorageValue<S>) => unknown",
+          "optional": false
+        },
+        {
+          "name": "removeItem",
+          "type": "(name: string) => unknown",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "isExported": true,
+      "xaiDescription": "Interface for persistent storage handling state S with async get, set, and remove operations."
+    },
+    {
+      "name": "StateStorage",
+      "type": "export interface StateStorage {\n    getItem: (name: string) => string | null | Promise<string | null>;\n    setItem: (name: string, value: string) => unknown | Promise<unknown>;\n    removeItem: (name: string) => unknown | Promise<unknown>;\n}",
+      "properties": [
+        {
+          "name": "getItem",
+          "type": "(name: string) => string | Promise<string>",
+          "optional": false
+        },
+        {
+          "name": "setItem",
+          "type": "(name: string, value: string) => unknown",
+          "optional": false
+        },
+        {
+          "name": "removeItem",
+          "type": "(name: string) => unknown",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "isExported": true,
+      "xaiDescription": "Interface for basic storage with string-based get, set, and remove methods."
+    },
+    {
+      "name": "StorageValue",
+      "type": "{\n    state: S;\n    version?: number;\n}",
+      "properties": [
+        {
+          "name": "state",
+          "type": "S",
+          "optional": false
+        },
+        {
+          "name": "version",
+          "type": "number",
+          "optional": true
+        }
+      ],
+      "isExported": true,
+      "xaiDescription": "Type for storing state and optional version number."
+    },
+    {
+      "name": "StorePersist",
+      "type": "{\n    persist: {\n        setOptions: (options: Partial<PersistOptions<S, Ps>>) => void;\n        clearStorage: () => void;\n        rehydrate: () => Promise<void> | void;\n        hasHydrated: () => boolean;\n        onHydrate: (fn: PersistListener<S>) => () => void;\n        onFinishHydration: (fn: PersistListener<S>) => () => void;\n        getOptions: () => Partial<PersistOptions<S, Ps>>;\n    };\n}",
+      "properties": [
+        {
+          "name": "persist",
+          "type": "{ setOptions: (options: Partial<import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").PersistOptions<S, Ps>>) => void; clearStorage: () => void; rehydrate: () => void | Promise<void>; hasHydrated: () => boolean; onHydrate: (fn: PersistListener<S>) => () => void; onFinishHydration: (fn: PersistListener<S>) => () => void; getOptions: () => Partial<import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").PersistOptions<S, Ps>>; }",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Object providing methods for store persistence management, including hydration and options."
+    },
+    {
+      "name": "WithPersist",
+      "type": "S extends {\n    getState: () => infer T;\n} ? Write<S, StorePersist<T, A>> : never",
+      "properties": [
+        {
+          "name": "getState",
+          "type": "S[\"getState\"]",
+          "optional": false
+        },
+        {
+          "name": "persist",
+          "type": "{ setOptions: (options: Partial<import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").PersistOptions<unknown, A>>) => void; clearStorage: () => void; rehydrate: () => void | Promise<void>; hasHydrated: () => boolean; onHydrate: (fn: PersistListener<unknown>) => () => void; onFinishHydration: (fn: PersistListener<unknown>) => () => void; getOptions: () => Partial<import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").PersistOptions<unknown, A>>; }",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Type that extends store with persistence features using StorePersist."
+    },
+    {
+      "name": "Redux",
+      "type": "<T, A extends Action, Cms extends [StoreMutatorIdentifier, unknown][] = []>(reducer: (state: T, action: A) => T, initialState: T) => StateCreator<Write<T, ReduxState<A>>, Cms, [['zustand/redux', A]]>",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Function to create a Redux-like state creator with action handling."
+    },
+    {
+      "name": "ReduxState",
+      "type": "{\n    dispatch: StoreRedux<A>['dispatch'];\n}",
+      "properties": [
+        {
+          "name": "dispatch",
+          "type": "(a: A) => A",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Type for Redux state with dispatch method."
+    },
+    {
+      "name": "StoreRedux",
+      "type": "{\n    dispatch: (a: A) => A;\n    dispatchFromDevtools: true;\n}",
+      "properties": [
+        {
+          "name": "dispatch",
+          "type": "(a: A) => A",
+          "optional": false
+        },
+        {
+          "name": "dispatchFromDevtools",
+          "type": "true",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Type for Redux store with dispatch and devtools support."
+    },
+    {
+      "name": "WithRedux",
+      "type": "Write<S, StoreRedux<A>>",
+      "properties": [
+        {
+          "name": "dispatch",
+          "type": "(a: A) => A",
+          "optional": false
+        },
+        {
+          "name": "dispatchFromDevtools",
+          "type": "true",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Type that adds Redux capabilities to a store using StoreRedux."
+    },
+    {
+      "name": "StoreSubscribeWithSelector",
+      "type": "{\n    subscribe: {\n        (listener: (selectedState: T, previousSelectedState: T) => void): () => void;\n        <U>(selector: (state: T) => U, listener: (selectedState: U, previousSelectedState: U) => void, options?: {\n            equalityFn?: (a: U, b: U) => boolean;\n            fireImmediately?: boolean;\n        }): () => void;\n    };\n}",
+      "properties": [
+        {
+          "name": "subscribe",
+          "type": "{ (listener: (selectedState: T, previousSelectedState: T) => void): () => void; <U>(selector: (state: T) => U, listener: (selectedState: U, previousSelectedState: U) => void, options?: { equalityFn?: (a: U, b: U) => boolean; fireImmediately?: boolean; }): () => void; }",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Enhanced subscribe method with state selectors and options."
+    },
+    {
+      "name": "SubscribeWithSelector",
+      "type": "<T, Mps extends [StoreMutatorIdentifier, unknown][] = [], Mcs extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [\n    ...Mps,\n    ['zustand/subscribeWithSelector', never]\n], Mcs>) => StateCreator<T, Mps, [['zustand/subscribeWithSelector', never], ...Mcs]>",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Function to add selector-based subscription to state creators."
+    },
+    {
+      "name": "WithSelectorSubscribe",
+      "type": "S extends {\n    getState: () => infer T;\n} ? Write<S, StoreSubscribeWithSelector<T>> : never",
+      "properties": [
+        {
+          "name": "getState",
+          "type": "S[\"getState\"]",
+          "optional": false
+        },
+        {
+          "name": "subscribe",
+          "type": "{ (listener: (selectedState: unknown, previousSelectedState: unknown) => void): () => void; <U>(selector: (state: unknown) => U, listener: (selectedState: U, previousSelectedState: U) => void, options?: { equalityFn?: (a: U, b: U) => boolean; fireImmediately?: boolean; }): () => void; }",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Type that extends store with selector subscription capabilities."
+    },
+    {
+      "name": "Create",
+      "type": "{\n    <T, Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>): UseBoundStore<Mutate<StoreApi<T>, Mos>>;\n    <T>(): <Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>) => UseBoundStore<Mutate<StoreApi<T>, Mos>>;\n}",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Function to create a bound store from a state initializer."
+    },
+    {
+      "name": "ReadonlyStoreApi",
+      "type": "Pick<StoreApi<T>, 'getState' | 'getInitialState' | 'subscribe'>",
+      "properties": [
+        {
+          "name": "getState",
+          "type": "() => T",
+          "optional": false
+        },
+        {
+          "name": "getInitialState",
+          "type": "() => T",
+          "optional": false
+        },
+        {
+          "name": "subscribe",
+          "type": "(listener: (state: T, prevState: T) => void) => () => void",
+          "optional": false
+        }
+      ],
+      "isExported": false,
+      "xaiDescription": "Subset of StoreApi with read-only methods."
+    },
+    {
+      "name": "UseBoundStore",
+      "type": "{\n    (): ExtractState<S>;\n    <U>(selector: (state: ExtractState<S>) => U): U;\n} & S",
+      "properties": [
+        {
+          "name": "getState",
+          "type": "() => unknown",
+          "optional": false
+        },
+        {
+          "name": "getInitialState",
+          "type": "() => unknown",
+          "optional": false
+        },
+        {
+          "name": "subscribe",
+          "type": "(listener: (state: unknown, prevState: unknown) => void) => () => void",
+          "optional": false
+        }
+      ],
+      "isExported": true,
+      "xaiDescription": "Type for using a bound store with state extraction and methods."
+    },
+    {
+      "name": "CreateWithEqualityFn",
+      "type": "{\n    <T, Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>, defaultEqualityFn?: <U>(a: U, b: U) => boolean): UseBoundStoreWithEqualityFn<Mutate<StoreApi<T>, Mos>>;\n    <T>(): <Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>, defaultEqualityFn?: <U>(a: U, b: U) => boolean) => UseBoundStoreWithEqualityFn<Mutate<StoreApi<T>, Mos>>;\n}",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Function to create a store with custom equality function for comparisons."
+    },
+    {
+      "name": "ExtractState",
+      "type": "S extends {\n    getState: () => infer T;\n} ? T : never",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Utility type to extract state type from a store."
+    },
+    {
+      "name": "UseBoundStoreWithEqualityFn",
+      "type": "{\n    (): ExtractState<S>;\n    <U>(selector: (state: ExtractState<S>) => U, equalityFn?: (a: U, b: U) => boolean): U;\n} & S",
+      "properties": [
+        {
+          "name": "getState",
+          "type": "() => unknown",
+          "optional": false
+        },
+        {
+          "name": "getInitialState",
+          "type": "() => unknown",
+          "optional": false
+        },
+        {
+          "name": "subscribe",
+          "type": "(listener: (state: unknown, prevState: unknown) => void) => () => void",
+          "optional": false
+        }
+      ],
+      "isExported": true,
+      "xaiDescription": "Bound store type with optional equality function for state checks."
+    },
+    {
+      "name": "CreateStore",
+      "type": "{\n    <T, Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>): Mutate<StoreApi<T>, Mos>;\n    <T>(): <Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>) => Mutate<StoreApi<T>, Mos>;\n}",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Function to create a mutable store from an initializer."
+    },
+    {
+      "name": "Get",
+      "type": "K extends keyof T ? T[K] : F",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Type to safely get a property from T or fallback to F."
+    },
+    {
+      "name": "Mutate",
+      "type": "number extends Ms['length' & keyof Ms] ? S : Ms extends [] ? S : Ms extends [[infer Mi, infer Ma], ...infer Mrs] ? Mutate<StoreMutators<S, Ma>[Mi & StoreMutatorIdentifier], Mrs> : never",
+      "properties": [],
+      "isExported": true,
+      "xaiDescription": "Type for applying mutators to a store sequentially."
+    },
+    {
+      "name": "SetStateInternal",
+      "type": "{\n    _(partial: T | Partial<T> | {\n        _(state: T): T | Partial<T>;\n    }['_'], replace?: false): void;\n    _(state: T | {\n        _(state: T): T;\n    }['_'], replace: true): void;\n}['_']",
+      "properties": [],
+      "isExported": false,
+      "xaiDescription": "Internal function for setting state with partial updates or replacements."
+    },
+    {
+      "name": "StateCreator",
+      "type": "((setState: Get<Mutate<StoreApi<T>, Mis>, 'setState', never>, getState: Get<Mutate<StoreApi<T>, Mis>, 'getState', never>, store: Mutate<StoreApi<T>, Mis>) => U) & {\n    $$storeMutators?: Mos;\n}",
+      "properties": [
+        {
+          "name": "$$storeMutators",
+          "type": "Mos",
+          "optional": true
+        }
+      ],
+      "isExported": true,
+      "xaiDescription": "Function to create state with set and get methods, plus optional mutators."
+    },
+    {
+      "name": "StoreApi",
+      "type": "export interface StoreApi<T> {\n    setState: SetStateInternal<T>;\n    getState: () => T;\n    getInitialState: () => T;\n    subscribe: (listener: (state: T, prevState: T) => void) => () => void;\n}",
+      "properties": [
+        {
+          "name": "setState",
+          "type": "{ (partial: T | Partial<T> | ((state: T) => T | Partial<T>), replace?: false): void; (state: T | ((state: T) => T), replace: true): void; }",
+          "optional": false
+        },
+        {
+          "name": "getState",
+          "type": "() => T",
+          "optional": false
+        },
+        {
+          "name": "getInitialState",
+          "type": "() => T",
+          "optional": false
+        },
+        {
+          "name": "subscribe",
+          "type": "(listener: (state: T, prevState: T) => void) => () => void",
+          "optional": false
+        }
+      ],
+      "extends": [],
+      "isExported": true,
+      "xaiDescription": "Core interface for store API with state management methods."
+    },
+    {
+      "name": "StoreMutatorIdentifier",
+      "type": "keyof StoreMutators<unknown, unknown>",
+      "properties": [],
+      "isExported": true,
+      "xaiDescription": "Type for keys of store mutators."
+    },
+    {
+      "name": "StoreMutators",
+      "type": "export interface StoreMutators<S, A> {\n}",
+      "properties": [],
+      "extends": [],
+      "isExported": true,
+      "xaiDescription": "Interface for defining store mutators."
+    }
+  ],
+  "classes": [],
+  "constants": [],
+  "namespaces": []
+}

@@ -1,47 +1,6 @@
 Step 5: Refining with xAI...
-Found 10 files in ./libraryDefs/cleaned: [
-  'zustand-5.0.3_0.sanitized.json',
-  'zustand-5.0.3_0.sanitized.json.raw',
-  'zustand-5.0.3_1.sanitized.json',
-  'zustand-5.0.3_1.sanitized.json.raw',
-  'zustand-5.0.3_2.sanitized.json',
-  'zustand-5.0.3_2.sanitized.json.raw',
-  'zustand-5.0.3_3.sanitized.json',
-  'zustand-5.0.3_3.sanitized.json.raw',
-  'zustand-5.0.3_4.sanitized.json',
-  'zustand-5.0.3_4.sanitized.json.raw'
-]
-Processing ./libraryDefs/cleaned/zustand-5.0.3_0.sanitized.json
-Skipping ./libraryDefs/cleaned/zustand-5.0.3_0.sanitized.json—already refined
-Refinement result for ./libraryDefs/cleaned/zustand-5.0.3_0.sanitized.json: ./libraryDefs/refined/zustand-5.0.3_0.refined.json
-Processing ./libraryDefs/cleaned/zustand-5.0.3_1.sanitized.json
-Skipping ./libraryDefs/cleaned/zustand-5.0.3_1.sanitized.json—already refined
-Refinement result for ./libraryDefs/cleaned/zustand-5.0.3_1.sanitized.json: ./libraryDefs/refined/zustand-5.0.3_1.refined.json
-Processing ./libraryDefs/cleaned/zustand-5.0.3_2.sanitized.json
-Skipping ./libraryDefs/cleaned/zustand-5.0.3_2.sanitized.json—already refined
-Refinement result for ./libraryDefs/cleaned/zustand-5.0.3_2.sanitized.json: ./libraryDefs/refined/zustand-5.0.3_2.refined.json
-Processing ./libraryDefs/cleaned/zustand-5.0.3_3.sanitized.json
-Skipping ./libraryDefs/cleaned/zustand-5.0.3_3.sanitized.json—already refined
-Refinement result for ./libraryDefs/cleaned/zustand-5.0.3_3.sanitized.json: ./libraryDefs/refined/zustand-5.0.3_3.refined.json
-Processing ./libraryDefs/cleaned/zustand-5.0.3_4.sanitized.json
-Skipping ./libraryDefs/cleaned/zustand-5.0.3_4.sanitized.json—already refined
-Refinement result for ./libraryDefs/cleaned/zustand-5.0.3_4.sanitized.json: ./libraryDefs/refined/zustand-5.0.3_4.refined.json
-Refined files before finalization: [
-  './libraryDefs/refined/zustand-5.0.3_0.refined.json',
-  './libraryDefs/refined/zustand-5.0.3_1.refined.json',
-  './libraryDefs/refined/zustand-5.0.3_2.refined.json',
-  './libraryDefs/refined/zustand-5.0.3_3.refined.json',
-  './libraryDefs/refined/zustand-5.0.3_4.refined.json'
-]
-Checking R2 for key: zustand-5.0.3.graph.json, Bucket: library-defs
-Reassembling 5 chunks into ./libraryDefs/finalized/zustand-5.0.3.graph.json
-Refinement failed unexpectedly: Error: ENOENT: no such file or directory, open './libraryDefs/finalized/zustand-5.0.3.graph.json'
-    at async open (node:internal/fs/promises:634:25)
-    at async Object.readFile (node:internal/fs/promises:1238:14)
-    at async uploadToR2 (/Users/Thy/TypeDefLib/signature_refinement.js:258:23)
-    at async main (/Users/Thy/TypeDefLib/signature_refinement.js:326:7) {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: './libraryDefs/finalized/zustand-5.0.3.graph.json'
-}
+Found 0 files in ./libraryDefs/cleaned: []
+Refined files before finalization: []
+No refined files to finalize—check failed chunks or refinement step.
+
+All chunks refined successfully!

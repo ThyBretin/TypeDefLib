@@ -13,9 +13,6 @@ const s3Client = new S3Client({
   }
 });
 
-// Remove incorrect import since reassembleChunks isn't in signature_chunk.js
-// const { reassembleChunks } = require("./signature_chunk");
-
 // New reassembleChunks function
 async function reassembleChunks(chunkFiles, outputFile) {
   console.log(`Reassembling ${chunkFiles.length} chunks into ${outputFile}`);
@@ -28,20 +25,50 @@ async function reassembleChunks(chunkFiles, outputFile) {
     constants: [],
     namespaces: []
   };
-
-  // Use a Map to merge namespaces by name
   const namespaceMap = new Map();
 
   for (const chunkFile of chunkFiles) {
-    const chunkData = JSON.parse(await fs.readFile(chunkFile, "utf-8"));
+    let chunkData;
+    try {
+      const fileContent = await fs.readFile(chunkFile, "utf-8");
+      chunkData = JSON.parse(fileContent);
+      console.log(`Processing ${chunkFile}: ${fileContent.slice(0, 200)}...`);
+    } catch (e) {
+      console.error(`Error parsing ${chunkFile}: ${e.message}`);
+      continue;
+    }
 
-    // Set version from the first chunk that has it
-    if (chunkData.version && !combined.version) combined.version = chunkData.version;
+    // If numeric-keyed object, treat as array
+    if (typeof chunkData === "object" && !Array.isArray(chunkData) && chunkData !== null) {
+      const keys = Object.keys(chunkData);
+      if (keys.every(k => !isNaN(Number(k)))) {
+        chunkData = keys.map(k => chunkData[k]);
+      } else if (keys.length === 1 && typeof chunkData[keys[0]] === "object") {
+        // Unwrap single-key object (e.g., { "0": { ... } })
+        chunkData = [chunkData[keys[0]]];
+      }
+    }
 
-    if (Array.isArray(chunkData)) {
-      for (const item of chunkData) {
-        // Guess type by keys present in item
-        if (item.name && item.type && Array.isArray(item.properties)) {
+    // Now, chunkData is either an array or a single object
+    const items = Array.isArray(chunkData) ? chunkData : [chunkData];
+
+    for (const item of items) {
+      if (!item) continue;
+      // If this is a namespace-like object (has functions/types/etc.), merge into combined
+      let mergedNamespace = false;
+      if (item.functions || item.types || item.enums || item.classes || item.constants) {
+        for (const key of ["functions", "types", "enums", "classes", "constants"]) {
+          if (item[key]) combined[key].push(...item[key]);
+        }
+        if (item.name) {
+          combined.namespaces.push(item);
+          mergedNamespace = true;
+        }
+      }
+      if (!mergedNamespace) {
+        if (item.name && item.contents) {
+          combined.namespaces.push(item);
+        } else if (item.name && item.type) {
           combined.types.push(item);
         } else if (item.name && Array.isArray(item.parameters)) {
           combined.functions.push(item);
@@ -51,105 +78,24 @@ async function reassembleChunks(chunkFiles, outputFile) {
           combined.constants.push(item);
         } else if (item.name && Array.isArray(item.members)) {
           combined.enums.push(item);
-        } else if (item.name && item.contents) {
-          // Namespace-like
-          if (!namespaceMap.has(item.name)) {
-            namespaceMap.set(item.name, item);
-          } else {
-            // Merge contents if duplicate namespace
-            const existing = namespaceMap.get(item.name);
-            for (const key of ['functions','enums','types','classes','constants']) {
-              if (item.contents[key]) {
-                existing.contents[key] = (existing.contents[key] || []).concat(item.contents[key]);
-              }
-            }
-          }
         }
       }
-    } else if (
-      typeof chunkData === 'object' &&
-      chunkData !== null &&
-      !Array.isArray(chunkData)
-    ) {
-      // Check if all keys are numeric (flattened chunk)
-      const keys = Object.keys(chunkData);
-      if (keys.length > 0 && keys.every(k => !isNaN(Number(k)))) {
-        // Convert to array and process as above
-        const arr = keys.map(k => chunkData[k]);
-        for (const item of arr) {
-          if (item.name && item.type && Array.isArray(item.properties)) {
-            combined.types.push(item);
-          } else if (item.name && Array.isArray(item.parameters)) {
-            combined.functions.push(item);
-          } else if (item.name && Array.isArray(item.methods)) {
-            combined.classes.push(item);
-          } else if (item.name && item.value !== undefined) {
-            combined.constants.push(item);
-          } else if (item.name && Array.isArray(item.members)) {
-            combined.enums.push(item);
-          } else if (item.name && item.contents) {
-            if (!namespaceMap.has(item.name)) {
-              namespaceMap.set(item.name, item);
-            } else {
-              const existing = namespaceMap.get(item.name);
-              for (const key of ['functions','enums','types','classes','constants']) {
-                if (item.contents[key]) {
-                  existing.contents[key] = (existing.contents[key] || []).concat(item.contents[key]);
-                }
-              }
-            }
-          }
-        }
-        continue; // skip further processing for this chunk
-      }
-      // Otherwise, treat as keyed object (original logic)
-      combined.functions.push(...(chunkData.functions || []));
-      combined.enums.push(...(chunkData.enums || []));
-      combined.types.push(...(chunkData.types || []));
-      combined.classes.push(...(chunkData.classes || []));
-      combined.constants.push(...(chunkData.constants || []));
-
-      // Merge namespaces
-      if (chunkData.namespaces) {
-        for (const ns of chunkData.namespaces) {
-          const name = ns.name;
-          if (!namespaceMap.has(name)) {
-            // Initialize new namespace entry
-            namespaceMap.set(name, {
-              name: name,
-              contents: {
-                functions: [],
-                enums: [],
-                types: [],
-                classes: [],
-                constants: []
-              },
-              jsdoc: ns.jsdoc, // Preserve JSDoc from the first occurrence
-              isExported: ns.isExported
-            });
-          }
-          // Merge contents into existing namespace
-          const existing = namespaceMap.get(name);
-          existing.contents.functions.push(...(ns.contents.functions || []));
-          existing.contents.enums.push(...(ns.contents.enums || []));
-          existing.contents.types.push(...(ns.contents.types || []));
-          existing.contents.classes.push(...(ns.contents.classes || []));
-          existing.contents.constants.push(...(ns.contents.constants || []));
-        }
-      }
-    }
-
-    // Convert merged namespaces to array
-    combined.namespaces = Array.from(namespaceMap.values());
-    try {
-      await fs.mkdir(path.dirname(outputFile), { recursive: true });
-      await fs.writeFile(outputFile, JSON.stringify(combined, null, 2));
-      console.log(`Assembled chunks into ${outputFile}`);
-    } catch (err) {
-      console.error(`Failed to write finalized file ${outputFile}:`, err);
-      throw err; // Prevent further steps if writing failed
     }
   }
+
+  // Remove duplicates in arrays (by name)
+  function dedupe(arr) {
+    const seen = new Set();
+    return arr.filter(x => x && x.name && !seen.has(x.name) && seen.add(x.name));
+  }
+  for (const key of ["functions", "types", "enums", "classes", "constants", "namespaces"]) {
+    combined[key] = dedupe(combined[key]);
+  }
+
+  console.log(`Combined data: ${JSON.stringify(combined, null, 2).slice(0, 500)}...`);
+  await fs.mkdir(path.dirname(outputFile), { recursive: true });
+  await fs.writeFile(outputFile, JSON.stringify(combined, null, 2));
+  console.log(`Assembled chunks into ${outputFile}`);
 }
 
 async function refineWithXAI(filePath, apiKey, failedChunks, retries = 2) {
@@ -238,6 +184,27 @@ Return only raw JSON—no text, no Markdown, no \`\`\`.
   return null;
 }
 
+async function moveRefinedFilesToBin(baseName) {
+  const refinedDir = "./libraryDefs/refined";
+  const binDir = "./libraryDefs/bin";
+  await fs.mkdir(binDir, { recursive: true });
+  if (await fs.stat(refinedDir).catch(() => false)) {
+    const files = await fs.readdir(refinedDir);
+    for (const file of files) {
+      if (file.startsWith(baseName)) {
+        const src = path.join(refinedDir, file);
+        const dest = path.join(binDir, file);
+        try {
+          await fs.rename(src, dest);
+          console.log(`Moved refined file ${src} to ${dest}`);
+        } catch (e) {
+          console.error(`Failed to move ${src} to ${dest}: ${e.message}`);
+        }
+      }
+    }
+  }
+}
+
 async function cleanupIntermediates(baseName) {
   const dirs = ["extracted", "chunked", "cleaned", "refined"];
   for (const dir of dirs) {
@@ -246,8 +213,13 @@ async function cleanupIntermediates(baseName) {
       const files = await fs.readdir(fullDir);
       for (const file of files) {
         if (file.startsWith(baseName)) {
-          await fs.rm(path.join(fullDir, file), { recursive: true, force: true });
-          console.log(`Cleaned up ${path.join(fullDir, file)}`);
+          if (dir === "refined") {
+            // Move to bin instead of deleting
+            await moveRefinedFilesToBin(baseName);
+          } else {
+            await fs.rm(path.join(fullDir, file), { recursive: true, force: true });
+            console.log(`Cleaned up ${path.join(fullDir, file)}`);
+          }
         }
       }
     }

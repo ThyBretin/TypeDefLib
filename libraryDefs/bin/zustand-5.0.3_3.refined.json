@@ -1,0 +1,432 @@
+{
+  "0": {
+    "name": "PersistStorage",
+    "type": "export interface PersistStorage<S> {\n    getItem: (name: string) => StorageValue<S> | null | Promise<StorageValue<S> | null>;\n    setItem: (name: string, value: StorageValue<S>) => unknown | Promise<unknown>;\n    removeItem: (name: string) => unknown | Promise<unknown>;\n}",
+    "properties": [
+      {
+        "name": "getItem",
+        "type": "(name: string) => import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").StorageValue<S> | Promise<import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").StorageValue<S>>",
+        "optional": false
+      },
+      {
+        "name": "setItem",
+        "type": "(name: string, value: import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").StorageValue<S>) => unknown",
+        "optional": false
+      },
+      {
+        "name": "removeItem",
+        "type": "(name: string) => unknown",
+        "optional": false
+      }
+    ],
+    "extends": [],
+    "isExported": true,
+    "xaiDescription": "Interface for persistent storage handling state S with async get, set, and remove operations."
+  },
+  "1": {
+    "name": "StateStorage",
+    "type": "export interface StateStorage {\n    getItem: (name: string) => string | null | Promise<string | null>;\n    setItem: (name: string, value: string) => unknown | Promise<unknown>;\n    removeItem: (name: string) => unknown | Promise<unknown>;\n}",
+    "properties": [
+      {
+        "name": "getItem",
+        "type": "(name: string) => string | Promise<string>",
+        "optional": false
+      },
+      {
+        "name": "setItem",
+        "type": "(name: string, value: string) => unknown",
+        "optional": false
+      },
+      {
+        "name": "removeItem",
+        "type": "(name: string) => unknown",
+        "optional": false
+      }
+    ],
+    "extends": [],
+    "isExported": true,
+    "xaiDescription": "Interface for basic storage with string-based get, set, and remove methods."
+  },
+  "2": {
+    "name": "StorageValue",
+    "type": "{\n    state: S;\n    version?: number;\n}",
+    "properties": [
+      {
+        "name": "state",
+        "type": "S",
+        "optional": false
+      },
+      {
+        "name": "version",
+        "type": "number",
+        "optional": true
+      }
+    ],
+    "isExported": true,
+    "xaiDescription": "Type for storing state and optional version number."
+  },
+  "3": {
+    "name": "StorePersist",
+    "type": "{\n    persist: {\n        setOptions: (options: Partial<PersistOptions<S, Ps>>) => void;\n        clearStorage: () => void;\n        rehydrate: () => Promise<void> | void;\n        hasHydrated: () => boolean;\n        onHydrate: (fn: PersistListener<S>) => () => void;\n        onFinishHydration: (fn: PersistListener<S>) => () => void;\n        getOptions: () => Partial<PersistOptions<S, Ps>>;\n    };\n}",
+    "properties": [
+      {
+        "name": "persist",
+        "type": "{ setOptions: (options: Partial<import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").PersistOptions<S, Ps>>) => void; clearStorage: () => void; rehydrate: () => void | Promise<void>; hasHydrated: () => boolean; onHydrate: (fn: PersistListener<S>) => () => void; onFinishHydration: (fn: PersistListener<S>) => () => void; getOptions: () => Partial<import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").PersistOptions<S, Ps>>; }",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Object providing methods for store persistence management, including hydration and options."
+  },
+  "4": {
+    "name": "WithPersist",
+    "type": "S extends {\n    getState: () => infer T;\n} ? Write<S, StorePersist<T, A>> : never",
+    "properties": [
+      {
+        "name": "getState",
+        "type": "S[\"getState\"]",
+        "optional": false
+      },
+      {
+        "name": "persist",
+        "type": "{ setOptions: (options: Partial<import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").PersistOptions<unknown, A>>) => void; clearStorage: () => void; rehydrate: () => void | Promise<void>; hasHydrated: () => boolean; onHydrate: (fn: PersistListener<unknown>) => () => void; onFinishHydration: (fn: PersistListener<unknown>) => () => void; getOptions: () => Partial<import(\"/Users/Thy/TypeDefLib/node_modules/zustand/middleware/persist\").PersistOptions<unknown, A>>; }",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Type that extends store with persistence features using StorePersist."
+  },
+  "5": {
+    "name": "Write",
+    "type": "Omit<T, keyof U> & U",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Utility type to merge U into T by omitting overlapping keys."
+  },
+  "6": {
+    "name": "Action",
+    "type": "{\n    type: string;\n}",
+    "properties": [
+      {
+        "name": "type",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Basic action type with a string identifier."
+  },
+  "7": {
+    "name": "Redux",
+    "type": "<T, A extends Action, Cms extends [StoreMutatorIdentifier, unknown][] = []>(reducer: (state: T, action: A) => T, initialState: T) => StateCreator<Write<T, ReduxState<A>>, Cms, [['zustand/redux', A]]>",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Function to create a Redux-like state creator with action handling."
+  },
+  "8": {
+    "name": "ReduxState",
+    "type": "{\n    dispatch: StoreRedux<A>['dispatch'];\n}",
+    "properties": [
+      {
+        "name": "dispatch",
+        "type": "(a: A) => A",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Type for Redux state with dispatch method."
+  },
+  "9": {
+    "name": "StoreRedux",
+    "type": "{\n    dispatch: (a: A) => A;\n    dispatchFromDevtools: true;\n}",
+    "properties": [
+      {
+        "name": "dispatch",
+        "type": "(a: A) => A",
+        "optional": false
+      },
+      {
+        "name": "dispatchFromDevtools",
+        "type": "true",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Type for Redux store with dispatch and devtools support."
+  },
+  "10": {
+    "name": "WithRedux",
+    "type": "Write<S, StoreRedux<A>>",
+    "properties": [
+      {
+        "name": "dispatch",
+        "type": "(a: A) => A",
+        "optional": false
+      },
+      {
+        "name": "dispatchFromDevtools",
+        "type": "true",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Type that adds Redux capabilities to a store using StoreRedux."
+  },
+  "11": {
+    "name": "Write",
+    "type": "Omit<T, keyof U> & U",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Utility type to merge U into T by omitting overlapping keys."
+  },
+  "12": {
+    "name": "StoreSubscribeWithSelector",
+    "type": "{\n    subscribe: {\n        (listener: (selectedState: T, previousSelectedState: T) => void): () => void;\n        <U>(selector: (state: T) => U, listener: (selectedState: U, previousSelectedState: U) => void, options?: {\n            equalityFn?: (a: U, b: U) => boolean;\n            fireImmediately?: boolean;\n        }): () => void;\n    };\n}",
+    "properties": [
+      {
+        "name": "subscribe",
+        "type": "{ (listener: (selectedState: T, previousSelectedState: T) => void): () => void; <U>(selector: (state: T) => U, listener: (selectedState: U, previousSelectedState: U) => void, options?: { equalityFn?: (a: U, b: U) => boolean; fireImmediately?: boolean; }): () => void; }",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Enhanced subscribe method with state selectors and options."
+  },
+  "13": {
+    "name": "SubscribeWithSelector",
+    "type": "<T, Mps extends [StoreMutatorIdentifier, unknown][] = [], Mcs extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [\n    ...Mps,\n    ['zustand/subscribeWithSelector', never]\n], Mcs>) => StateCreator<T, Mps, [['zustand/subscribeWithSelector', never], ...Mcs]>",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Function to add selector-based subscription to state creators."
+  },
+  "14": {
+    "name": "WithSelectorSubscribe",
+    "type": "S extends {\n    getState: () => infer T;\n} ? Write<S, StoreSubscribeWithSelector<T>> : never",
+    "properties": [
+      {
+        "name": "getState",
+        "type": "S[\"getState\"]",
+        "optional": false
+      },
+      {
+        "name": "subscribe",
+        "type": "{ (listener: (selectedState: unknown, previousSelectedState: unknown) => void): () => void; <U>(selector: (state: unknown) => U, listener: (selectedState: U, previousSelectedState: U) => void, options?: { equalityFn?: (a: U, b: U) => boolean; fireImmediately?: boolean; }): () => void; }",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Type that extends store with selector subscription capabilities."
+  },
+  "15": {
+    "name": "Write",
+    "type": "Omit<T, keyof U> & U",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Utility type to merge U into T by omitting overlapping keys."
+  },
+  "16": {
+    "name": "Create",
+    "type": "{\n    <T, Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>): UseBoundStore<Mutate<StoreApi<T>, Mos>>;\n    <T>(): <Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>) => UseBoundStore<Mutate<StoreApi<T>, Mos>>;\n}",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Function to create a bound store from a state initializer."
+  },
+  "17": {
+    "name": "ReadonlyStoreApi",
+    "type": "Pick<StoreApi<T>, 'getState' | 'getInitialState' | 'subscribe'>",
+    "properties": [
+      {
+        "name": "getState",
+        "type": "() => T",
+        "optional": false
+      },
+      {
+        "name": "getInitialState",
+        "type": "() => T",
+        "optional": false
+      },
+      {
+        "name": "subscribe",
+        "type": "(listener: (state: T, prevState: T) => void) => () => void",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Subset of StoreApi with read-only methods."
+  },
+  "18": {
+    "name": "UseBoundStore",
+    "type": "{\n    (): ExtractState<S>;\n    <U>(selector: (state: ExtractState<S>) => U): U;\n} & S",
+    "properties": [
+      {
+        "name": "getState",
+        "type": "() => unknown",
+        "optional": false
+      },
+      {
+        "name": "getInitialState",
+        "type": "() => unknown",
+        "optional": false
+      },
+      {
+        "name": "subscribe",
+        "type": "(listener: (state: unknown, prevState: unknown) => void) => () => void",
+        "optional": false
+      }
+    ],
+    "isExported": true,
+    "xaiDescription": "Type for using a bound store with state extraction and methods."
+  },
+  "19": {
+    "name": "CreateWithEqualityFn",
+    "type": "{\n    <T, Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>, defaultEqualityFn?: <U>(a: U, b: U) => boolean): UseBoundStoreWithEqualityFn<Mutate<StoreApi<T>, Mos>>;\n    <T>(): <Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>, defaultEqualityFn?: <U>(a: U, b: U) => boolean) => UseBoundStoreWithEqualityFn<Mutate<StoreApi<T>, Mos>>;\n}",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Function to create a store with custom equality function for comparisons."
+  },
+  "20": {
+    "name": "ExtractState",
+    "type": "S extends {\n    getState: () => infer T;\n} ? T : never",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Utility type to extract state type from a store."
+  },
+  "21": {
+    "name": "ReadonlyStoreApi",
+    "type": "Pick<StoreApi<T>, 'getState' | 'getInitialState' | 'subscribe'>",
+    "properties": [
+      {
+        "name": "getState",
+        "type": "() => T",
+        "optional": false
+      },
+      {
+        "name": "getInitialState",
+        "type": "() => T",
+        "optional": false
+      },
+      {
+        "name": "subscribe",
+        "type": "(listener: (state: T, prevState: T) => void) => () => void",
+        "optional": false
+      }
+    ],
+    "isExported": false,
+    "xaiDescription": "Subset of StoreApi with read-only methods."
+  },
+  "22": {
+    "name": "UseBoundStoreWithEqualityFn",
+    "type": "{\n    (): ExtractState<S>;\n    <U>(selector: (state: ExtractState<S>) => U, equalityFn?: (a: U, b: U) => boolean): U;\n} & S",
+    "properties": [
+      {
+        "name": "getState",
+        "type": "() => unknown",
+        "optional": false
+      },
+      {
+        "name": "getInitialState",
+        "type": "() => unknown",
+        "optional": false
+      },
+      {
+        "name": "subscribe",
+        "type": "(listener: (state: unknown, prevState: unknown) => void) => () => void",
+        "optional": false
+      }
+    ],
+    "isExported": true,
+    "xaiDescription": "Bound store type with optional equality function for state checks."
+  },
+  "23": {
+    "name": "CreateStore",
+    "type": "{\n    <T, Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>): Mutate<StoreApi<T>, Mos>;\n    <T>(): <Mos extends [StoreMutatorIdentifier, unknown][] = []>(initializer: StateCreator<T, [], Mos>) => Mutate<StoreApi<T>, Mos>;\n}",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Function to create a mutable store from an initializer."
+  },
+  "24": {
+    "name": "ExtractState",
+    "type": "S extends {\n    getState: () => infer T;\n} ? T : never",
+    "properties": [],
+    "isExported": true,
+    "xaiDescription": "Utility type to extract state type from a store."
+  },
+  "25": {
+    "name": "Get",
+    "type": "K extends keyof T ? T[K] : F",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Type to safely get a property from T or fallback to F."
+  },
+  "26": {
+    "name": "Mutate",
+    "type": "number extends Ms['length' & keyof Ms] ? S : Ms extends [] ? S : Ms extends [[infer Mi, infer Ma], ...infer Mrs] ? Mutate<StoreMutators<S, Ma>[Mi & StoreMutatorIdentifier], Mrs> : never",
+    "properties": [],
+    "isExported": true,
+    "xaiDescription": "Type for applying mutators to a store sequentially."
+  },
+  "27": {
+    "name": "SetStateInternal",
+    "type": "{\n    _(partial: T | Partial<T> | {\n        _(state: T): T | Partial<T>;\n    }['_'], replace?: false): void;\n    _(state: T | {\n        _(state: T): T;\n    }['_'], replace: true): void;\n}['_']",
+    "properties": [],
+    "isExported": false,
+    "xaiDescription": "Internal function for setting state with partial updates or replacements."
+  },
+  "28": {
+    "name": "StateCreator",
+    "type": "((setState: Get<Mutate<StoreApi<T>, Mis>, 'setState', never>, getState: Get<Mutate<StoreApi<T>, Mis>, 'getState', never>, store: Mutate<StoreApi<T>, Mis>) => U) & {\n    $$storeMutators?: Mos;\n}",
+    "properties": [
+      {
+        "name": "$$storeMutators",
+        "type": "Mos",
+        "optional": true
+      }
+    ],
+    "isExported": true,
+    "xaiDescription": "Function to create state with set and get methods, plus optional mutators."
+  },
+  "29": {
+    "name": "StoreApi",
+    "type": "export interface StoreApi<T> {\n    setState: SetStateInternal<T>;\n    getState: () => T;\n    getInitialState: () => T;\n    subscribe: (listener: (state: T, prevState: T) => void) => () => void;\n}",
+    "properties": [
+      {
+        "name": "setState",
+        "type": "{ (partial: T | Partial<T> | ((state: T) => T | Partial<T>), replace?: false): void; (state: T | ((state: T) => T), replace: true): void; }",
+        "optional": false
+      },
+      {
+        "name": "getState",
+        "type": "() => T",
+        "optional": false
+      },
+      {
+        "name": "getInitialState",
+        "type": "() => T",
+        "optional": false
+      },
+      {
+        "name": "subscribe",
+        "type": "(listener: (state: T, prevState: T) => void) => () => void",
+        "optional": false
+      }
+    ],
+    "extends": [],
+    "isExported": true,
+    "xaiDescription": "Core interface for store API with state management methods."
+  },
+  "30": {
+    "name": "StoreMutatorIdentifier",
+    "type": "keyof StoreMutators<unknown, unknown>",
+    "properties": [],
+    "isExported": true,
+    "xaiDescription": "Type for keys of store mutators."
+  },
+  "31": {
+    "name": "StoreMutators",
+    "type": "export interface StoreMutators<S, A> {\n}",
+    "properties": [],
+    "extends": [],
+    "isExported": true,
+    "xaiDescription": "Interface for defining store mutators."
+  }
+}
