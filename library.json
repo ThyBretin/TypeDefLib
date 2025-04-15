@@ -14,7 +14,7 @@
     },
     "expo": {
       "version": "52.0.44",
-      "status": "processing"
+      "status": "done"
     },
     "jest": {
       "version": "29.7.0",
@@ -22,7 +22,7 @@
     },
     "lodash": {
       "version": "4.17.16",
-      "status": "processing"
+      "status": "done"
     },
     "moment": {
       "version": "2.30.1",
@@ -31,6 +31,10 @@
     "dayjs": {
       "version": "1.11.13",
       "status": "done"
+    },
+    "react": {
+      "version": "19.1.0",
+      "status": "processing"
     }
   }
 }

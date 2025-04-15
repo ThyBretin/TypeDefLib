@@ -12,7 +12,6 @@ async function crawlDtsFiles(packageName, version) {
     let dtsFiles = [];
     let mainDtsPath;
 
-    // Check for native .d.ts in package
     if (await fs.stat(pkgJsonPath).catch(() => false)) {
       const pkgJson = JSON.parse(await fs.readFile(pkgJsonPath, "utf-8"));
       mainDtsPath = pkgJson.types || pkgJson.typings || "index.d.ts";
@@ -23,28 +22,38 @@ async function crawlDtsFiles(packageName, version) {
       }
     }
 
-    // Fallback to @types/ if no native .d.ts
     if (dtsFiles.length === 0 && (await fs.stat(typesPkgPath).catch(() => false))) {
       mainDtsPath = path.resolve(typesPkgPath, "index.d.ts");
       if (await fs.stat(mainDtsPath).catch(() => false)) {
         dtsFiles.push(mainDtsPath);
         logs.push(`Found main .d.ts in @types: ${mainDtsPath}`);
       }
-      // Crawl all subfiles in @types/
       const allDtsFiles = await crawlDir(typesPkgPath, ".d.ts");
       dtsFiles = [...new Set([mainDtsPath, ...allDtsFiles.filter(f => f !== mainDtsPath)])];
       logs.push(`Crawled ${allDtsFiles.length} additional .d.ts files in @types/${packageName}`);
     } else if (dtsFiles.length > 0) {
-      // Crawl additional files in package if main .d.ts exists
       const allDtsFiles = await crawlDir(pkgPath, ".d.ts");
       dtsFiles = [...new Set([mainDtsPath, ...allDtsFiles.filter(f => f !== mainDtsPath)])];
       logs.push(`Crawled ${allDtsFiles.length} additional .d.ts files in ${packageName}`);
     }
 
-    logs.push(`Total found ${dtsFiles.length} .d.ts files: ${dtsFiles.join(", ")}`);
+    if (dtsFiles.length === 0) {
+      const jsFiles = await crawlDir(pkgPath, ".js");
+      if (jsFiles.length > 0) {
+        logs.push(`No .d.ts found, using ${jsFiles.length} .js files for ${packageName}`);
+        dtsFiles = jsFiles;
+      }
+    }
+
+    if (dtsFiles.length > 100) {
+      logs.push(`Large library detected: ${packageName} with ${dtsFiles.length} files`);
+      console.log(`Processing large library: ${packageName} (${dtsFiles.length} files)`);
+    }
+
+    logs.push(`Total found ${dtsFiles.length} files: ${dtsFiles.join(", ")}`);
     await fs.mkdir("./libraryDefs/dts_store", { recursive: true });
     await fs.writeFile(outputPath, JSON.stringify({ files: dtsFiles }, null, 2));
-    console.log(`Stored .d.ts files for ${packageName}-${version} to ${outputPath}`);
+    console.log(`Stored files for ${packageName}-${version} to ${outputPath}`);
     return { dtsFiles, logs };
   } catch (e) {
     logs.push(`Error crawling ${packageName}: ${e.message}`);

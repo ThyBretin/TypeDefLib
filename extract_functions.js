@@ -1,51 +1,67 @@
-const ts = require("typescript");
+const { Project, SyntaxKind } = require("ts-morph");
 const { extractJSDoc } = require("./extract_jsdoc");
 
-function extractFunctions(checker, symbol, file, baseName = "", seenFunctions = new Set()) {
-  const decl = symbol.valueDeclaration || symbol.declarations?.[0];
-  if (!decl) return [];
-
-  const type = checker.getTypeOfSymbolAtLocation(symbol, decl);
-  const signatures = type.getCallSignatures();
+function extractFunctions(filePath) {
+  const project = new Project({ addFilesFromTsConfig: false });
+  const sourceFile = project.addSourceFileAtPath(filePath);
   const functions = [];
 
-  signatures.forEach(sig => {
-    const name = baseName ? `${baseName}.${symbol.name}` : symbol.name;
-    if (!seenFunctions.has(name)) {
-      seenFunctions.add(name);
-      functions.push({
-        name,
-        parameters: sig.parameters.map(p => ({
-          name: p.name,
-          type: checker.typeToString(checker.getTypeOfSymbolAtLocation(p, file)),
-          optional: !!p.valueDeclaration?.questionToken
-        })),
-        returnType: checker.typeToString(sig.getReturnType()),
-        jsdoc: extractJSDoc(decl)
-      });
-    }
-  });
+  if (filePath.endsWith(".js")) {
+    return sourceFile.getFunctions().map(fn => ({
+      name: fn.getName() || "anonymous",
+      parameters: fn.getJsDocs().flatMap(doc => doc.getTags().filter(t => t.getTagName() === "param")).map(p => ({
+        name: p.getCommentText() || "unknown",
+        type: "any",
+        optional: false
+      })),
+      returnType: fn.getJsDocs().find(doc => doc.getTags().some(t => t.getTagName() === "returns"))?.getCommentText() || "any",
+      jsdoc: extractJSDoc(fn)
+    }));
+  }
 
-  const props = type.getProperties();
-  props.forEach(prop => {
-    console.log(`  Property: ${baseName ? `${baseName}.` : ""}${prop.name}`);
-    const propType = checker.getTypeOfSymbolAtLocation(prop, file);
-    propType.getCallSignatures().forEach(sig => {
-      const name = baseName ? `${baseName}.${prop.name}` : prop.name;
-      if (!seenFunctions.has(name)) {
-        seenFunctions.add(name);
+  sourceFile.forEachDescendant(node => {
+    let fn;
+    let name = "anonymous";
+
+    if (node.getKind() === SyntaxKind.FunctionDeclaration) {
+      fn = node;
+      name = fn.getName() || "anonymous";
+    } else if (node.getKind() === SyntaxKind.FunctionType) {
+      fn = node;
+      const parent = node.getParent();
+      if (parent && parent.getKind() === SyntaxKind.TypeAliasDeclaration) {
+        name = parent.getName() || "anonymous";
+      }
+    } else if (node.getKind() === SyntaxKind.TypeAliasDeclaration) {
+      const typeNode = node.getTypeNode();
+      if (typeNode && typeNode.getKind() === SyntaxKind.FunctionType) {
+        fn = typeNode;
+        name = node.getName() || "anonymous";
+      }
+    }
+
+    if (fn) {
+      const jsdoc = extractJSDoc(fn);
+      if (
+        name !== "Destructor" &&
+        (jsdoc?.description?.toLowerCase().includes("react") ||
+          name.startsWith("use") ||
+          ["createElement", "render", "memo", "forwardRef", "cloneElement"].includes(name))
+      ) {
         functions.push({
           name,
-          parameters: sig.parameters.map(p => ({
-            name: p.name,
-            type: checker.typeToString(checker.getTypeOfSymbolAtLocation(p, file)),
-            optional: !!p.valueDeclaration?.questionToken
+          parameters: fn.getParameters().map(p => ({
+            name: p.getName() || "arg",
+            type: p.getType().getText() || "any",
+            optional: p.hasQuestionToken() || false
           })),
-          returnType: checker.typeToString(sig.getReturnType()),
-          jsdoc: extractJSDoc(prop.valueDeclaration)
+          returnType: fn.getReturnType?.().getText() || "any",
+          jsdoc,
+          isExported: fn.isExported?.() || node.isExported?.() || false
         });
       }
-    });
+      console.log("Function:", name, jsdoc);
+    }
   });
 
   return functions;

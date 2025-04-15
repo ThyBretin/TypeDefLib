@@ -1,157 +1,208 @@
 const fs = require("fs").promises;
-const fsSync = require("fs");
 const path = require("path");
-const { encoding_for_model } = require("tiktoken");
-const StreamObject = require("stream-json/streamers/StreamObject");
-const { Writable } = require("stream");
-const { splitLargeItemByTokens } = require("./signature_split");
 
-const tokenizer = encoding_for_model("gpt-3.5-turbo");
-const sections = ["functions", "enums", "types", "classes", "constants", "namespaces"];
+async function chunkSignatures(inputFile, outputDir, maxTokens = 3500) {
+  const output = await fs.readFile(inputFile, "utf-8");
+  const data = JSON.parse(output);
+  const version = data.version || "unknown";
+  console.log(`Version set to: ${version}`);
 
-async function chunkSignatures(inputFile, outputDir, maxTokens = 6000) {
-  console.log(`Processing input file: ${inputFile}`);
-  if (!fsSync.existsSync(inputFile)) {
-    console.error(`Input file ${inputFile} does not exist`);
-    return [];
-  }
+  const estimateTokens = (str) => Math.ceil(str.length / 4); // ~4 chars per token
 
-  // Extract version from filename
-  const baseName = path.basename(inputFile, ".signatures.json");
-  const versionMatch = baseName.match(/-(\d+\.\d+\.\d+)$/);
-  const fallbackVersion = versionMatch ? versionMatch[1] : "unknown";
+  const chunks = [];
+  let chunkCount = 0;
+
+  const forceSplitItem = async (item, max, depth = 0) => {
+    const str = JSON.stringify(item);
+    const tokens = estimateTokens(str);
+    if (tokens <= max) return [item];
+
+    console.log(`Force splitting item (depth ${depth}): ${tokens} tokens`);
+    const results = [];
+    const key = Object.keys(item)[0];
+    const value = item[key];
+
+    if (Array.isArray(value)) {
+      let current = [];
+      let currentTokens = 0;
+      for (const subItem of value) {
+        const temp = [...current, subItem];
+        const tempTokens = estimateTokens(JSON.stringify({ [key]: temp }));
+        if (tempTokens <= max) {
+          current = temp;
+          currentTokens = tempTokens;
+        } else {
+          if (current.length > 0) {
+            results.push({ [key]: current });
+            console.log(`Split part: ${current.length} items, ${currentTokens} tokens`);
+          }
+          const subItemTokens = estimateTokens(JSON.stringify(subItem));
+          if (subItemTokens > max) {
+            const splitSubItems = await forceSplitItem({ temp: [subItem] }, max, depth + 1);
+            results.push(...splitSubItems.map(s => ({ [key]: s.temp })));
+          } else {
+            current = [subItem];
+            currentTokens = subItemTokens;
+          }
+        }
+      }
+      if (current.length > 0) {
+        results.push({ [key]: current });
+        console.log(`Split part: ${current.length} items, ${currentTokens} tokens`);
+      }
+    } else if (typeof value === "object" && value !== null) {
+      let current = {};
+      let currentTokens = 0;
+      const subKeys = Object.keys(value);
+      for (const subKey of subKeys) {
+        const subItem = { [subKey]: value[subKey] };
+        const temp = { ...current, ...subItem };
+        const tempTokens = estimateTokens(JSON.stringify({ [key]: temp }));
+        if (tempTokens <= max) {
+          current = temp;
+          currentTokens = tempTokens;
+        } else {
+          if (Object.keys(current).length > 0) {
+            results.push({ [key]: current });
+            console.log(`Split part: ${Object.keys(current).length} keys, ${currentTokens} tokens`);
+          }
+          const subItemTokens = estimateTokens(JSON.stringify(subItem));
+          if (subItemTokens > max) {
+            const splitSubItems = await forceSplitItem(subItem, max, depth + 1);
+            results.push(...splitSubItems);
+          } else {
+            current = subItem;
+            currentTokens = subItemTokens;
+          }
+        }
+      }
+      if (Object.keys(current).length > 0) {
+        results.push({ [key]: current });
+        console.log(`Split part: ${Object.keys(current).length} keys, ${currentTokens} tokens`);
+      }
+    } else {
+      console.warn(`Cannot split primitive: ${key} (${tokens} tokens)`);
+      results.push(item);
+    }
+
+    console.log(`Split into ${results.length} parts (depth ${depth})`);
+    return results.filter(item => {
+      try {
+        JSON.parse(JSON.stringify(item));
+        return true;
+      } catch (e) {
+        console.error(`Invalid JSON in split: ${e.message}`);
+        return false;
+      }
+    });
+  };
+
+  const processSection = async (section, sectionName) => {
+    if (!section || section.length === 0) {
+      console.log(`${sectionName} has 0 items`);
+      return;
+    }
+
+    const items = Array.isArray(section) ? section : [section];
+    console.log(`${sectionName} has ${items.length} items`);
+
+    let currentChunk = [];
+    let currentTokens = 0;
+
+    for (const item of items) {
+      const itemStr = JSON.stringify(item);
+      const tokens = estimateTokens(itemStr);
+      console.log(`Item in ${sectionName}: ${tokens} tokens`);
+
+      const tempChunk = [...currentChunk, item];
+      const tempTokens = estimateTokens(JSON.stringify(tempChunk));
+
+      if (tempTokens <= maxTokens && tokens <= maxTokens) {
+        currentChunk = tempChunk;
+        currentTokens = tempTokens;
+      } else {
+        // Save current chunk if it has items
+        if (currentChunk.length > 0) {
+          console.log(`Preparing chunk ${chunkCount}: ${currentTokens} tokens`);
+          chunks.push({ chunk: currentChunk, chunkId: chunkCount, version });
+          await fs.writeFile(
+            `${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkCount}.chunk.json`,
+            JSON.stringify(currentChunk, null, 2)
+          );
+          console.log(
+            `Chunked ${chunkCount} → ${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkCount}.chunk.json (${currentTokens} tokens)`
+          );
+          chunkCount++;
+        }
+
+        if (tokens > maxTokens) {
+          // Split oversized item
+          console.log(`Oversized item in ${sectionName}: ${tokens} tokens—force splitting`);
+          const splitItems = await forceSplitItem(
+            sectionName === "namespaces" ? { [item.name]: item.contents } : item,
+            maxTokens
+          );
+          await fs.appendFile(
+            "./libraryDefs/forced_splits.json",
+            JSON.stringify({
+              file: inputFile,
+              section: sectionName,
+              item: item.name || "anonymous",
+              parts: splitItems.length,
+              tokens
+            }) + "\n"
+          );
+
+          for (const splitItem of splitItems) {
+            const splitTokens = estimateTokens(JSON.stringify(splitItem));
+            console.log(`Preparing chunk ${chunkCount}: ${splitTokens} tokens`);
+            chunks.push({ chunk: [splitItem], chunkId: chunkCount, version });
+            await fs.writeFile(
+              `${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkCount}.chunk.json`,
+              JSON.stringify([splitItem], null, 2)
+            );
+            console.log(
+              `Chunked ${chunkCount} → ${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkCount}.chunk.json (${splitTokens} tokens)`
+            );
+            chunkCount++;
+          }
+        } else {
+          // Start new chunk with current item
+          currentChunk = [item];
+          currentTokens = tokens;
+        }
+      }
+    }
+
+    // Save final chunk if it has items
+    if (currentChunk.length > 0) {
+      console.log(`Preparing chunk ${chunkCount}: ${currentTokens} tokens`);
+      chunks.push({ chunk: currentChunk, chunkId: chunkCount, version });
+      await fs.writeFile(
+        `${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkCount}.chunk.json`,
+        JSON.stringify(currentChunk, null, 2)
+      );
+      console.log(
+        `Chunked ${chunkCount} → ${outputDir}/${path.basename(inputFile, ".signatures.json")}_${chunkCount}.chunk.json (${currentTokens} tokens)`
+      );
+      chunkCount++;
+    }
+  };
 
   await fs.mkdir(outputDir, { recursive: true });
-  const chunks = [];
-  let chunkIndex = 0;
-  let version = null;
-  let currentChunk = { functions: [], enums: [], types: [], classes: [], constants: [], namespaces: [] };
-  let currentTokens = 0;
+  for (const section of [
+    ["functions", data.functions],
+    ["enums", data.enums],
+    ["types", data.types],
+    ["classes", data.classes],
+    ["constants", data.constants],
+    ["namespaces", data.namespaces]
+  ]) {
+    await processSection(section[1], section[0]);
+  }
 
-  const hasContent = (chunk) => {
-    return chunk.version || sections.some(section => chunk[section].length > 0);
-  };
-
-  const writeChunk = async () => {
-    if (currentTokens > 0 && hasContent(currentChunk)) {
-      if (!currentChunk.version) currentChunk.version = version || fallbackVersion;
-      const chunkStr = (() => {
-        try {
-          return JSON.stringify(currentChunk);
-        } catch (e) {
-          console.error(`Failed to serialize chunk ${chunkIndex}: ${e.message}`);
-          return null;
-        }
-      })();
-      if (!chunkStr) return;
-
-      const finalTokens = tokenizer.encode(chunkStr).length;
-      console.log(`Writing chunk ${chunkIndex}: ${finalTokens} tokens`);
-      if (finalTokens > maxTokens) {
-        console.warn(`Chunk ${chunkIndex} exceeds ${maxTokens}: ${finalTokens} tokens—re-splitting`);
-        const splitChunks = await splitLargeItemByTokens(currentChunk, maxTokens);
-        for (const splitChunk of splitChunks) {
-          if (hasContent(splitChunk)) {
-            const splitChunkStr = (() => {
-              try {
-                return JSON.stringify(splitChunk, null, 2);
-              } catch (e) {
-                console.error(`Invalid split chunk ${chunkIndex}: ${e.message}`);
-                return null;
-              }
-            })();
-            if (!splitChunkStr) continue;
-
-            const splitFile = `${outputDir}/${baseName}_${chunkIndex}.chunk.json`;
-            const splitTokens = tokenizer.encode(splitChunkStr).length;
-            if (splitTokens > maxTokens) {
-              console.warn(`Split chunk ${splitFile} still exceeds ${maxTokens}: ${splitTokens} tokens`);
-              continue;
-            }
-            await fs.writeFile(splitFile, splitChunkStr);
-            console.log(`Chunk ${splitFile} head: ${splitChunkStr.slice(0, 100)}`);
-            chunks.push(splitFile);
-            console.log(`Chunked ${chunkIndex} → ${splitFile} (${splitTokens} tokens)`);
-            chunkIndex++;
-          } else {
-            console.log(`Skipping empty split chunk ${chunkIndex}`);
-          }
-        }
-      } else {
-        try {
-          JSON.parse(chunkStr);
-        } catch (e) {
-          console.error(`Invalid JSON for chunk ${chunkIndex}: ${e.message}`);
-          return;
-        }
-        const chunkFile = `${outputDir}/${baseName}_${chunkIndex}.chunk.json`;
-        await fs.writeFile(chunkFile, chunkStr);
-        console.log(`Chunk ${chunkFile} head: ${chunkStr.slice(0, 100)}`);
-        chunks.push(chunkFile);
-        console.log(`Chunked ${chunkIndex} → ${chunkFile} (${finalTokens} tokens)`);
-        chunkIndex++;
-      }
-      currentChunk = { functions: [], enums: [], types: [], classes: [], constants: [], namespaces: [] };
-      currentTokens = 0;
-    } else {
-      console.log(`Skipping chunk ${chunkIndex} - no content`);
-    }
-  };
-
-  const processItem = async (section, item) => {
-    const itemStr = JSON.stringify(item);
-    const tokens = tokenizer.encode(itemStr).length;
-    console.log(`Item in ${section}: ${tokens} tokens`);
-
-    if (tokens > maxTokens) {
-      console.warn(`Single ${section} item exceeds ${maxTokens}: ${tokens}`);
-      const splitItems = await splitLargeItemByTokens(item, maxTokens);
-      console.log(`Split into ${splitItems.length} parts`);
-      for (const splitItem of splitItems) {
-        const splitTokens = tokenizer.encode(JSON.stringify(splitItem)).length;
-        if (currentTokens + splitTokens > maxTokens) await writeChunk();
-        currentChunk[section].push(splitItem);
-        currentTokens += splitTokens;
-      }
-    } else {
-      if (currentTokens + tokens > maxTokens) await writeChunk();
-      currentChunk[section].push(item);
-      currentTokens += tokens;
-    }
-  };
-
-  return new Promise((resolve, reject) => {
-    const jsonStream = fsSync.createReadStream(inputFile).pipe(StreamObject.withParser());
-    jsonStream.pipe(new Writable({
-      objectMode: true,
-      async write({ key, value }, _, done) {
-        if (key === "version" && !version) {
-          version = value;
-          console.log(`Version set to: ${version}`);
-        } else if (sections.includes(key) && Array.isArray(value)) {
-          console.log(`${key} has ${value.length} items`);
-          for (const item of value) {
-            await processItem(key, item);
-          }
-        } else if (key === "contents" && typeof value === "object") {
-          for (const [subKey, subValue] of Object.entries(value)) {
-            if (sections.includes(subKey) && Array.isArray(subValue)) {
-              console.log(`Nested ${subKey} has ${subValue.length} items`);
-              for (const item of subValue) {
-                await processItem(subKey, item);
-              }
-            }
-          }
-        }
-        done();
-      },
-      async final(done) {
-        await writeChunk();
-        resolve(chunks);
-        done();
-      }
-    })).on("error", reject);
-  });
+  console.log(`Total chunks created: ${chunks.length}`);
+  return chunks;
 }
 
 async function main() {
@@ -166,15 +217,18 @@ async function main() {
   for (const file of files) {
     if (file.endsWith(".signatures.json")) {
       const inputFile = `${extractedDir}/${file}`;
+      const stats = await fs.stat(inputFile);
+      console.log(`Processing ${file} (${stats.size} bytes)`);
       const chunks = await chunkSignatures(inputFile, outputDir);
       console.log(`Chunked ${file} into ${chunks.length} parts`);
       allChunks = allChunks.concat(chunks);
     }
   }
+  console.log(`Total chunks created: ${allChunks.length}`);
 }
 
-if (require.main === module) main().catch(error => {
-  console.error("Chunking failed:", error);
+main().catch(e => {
+  console.error("Chunking failed:", e);
   process.exit(1);
 });
 

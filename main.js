@@ -109,30 +109,72 @@ async function main() {
     console.error(`No .d.ts files found for ${name}-${version}`);
     packages[name].status = "failed";
     await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
+    const errorLog = { name, version, error: "No .d.ts or .js files found", timestamp: new Date().toISOString() };
+    await fs.appendFile("./libraryDefs/errors.json", JSON.stringify(errorLog) + "\n");
     return;
   }
 
   console.log(`Extracting signatures from ${dtsFiles.length} .d.ts files`);
   let mergedDefs;
   try {
-    mergedDefs = extractSignatures(dtsFiles, name, version); // Pass all files at once
+    mergedDefs = await extractSignatures(dtsFiles, name, version); // Make async
   } catch (e) {
-    console.error(`Failed to extract signatures:`, e);
+    console.error(`Failed to extract signatures for ${name}-${version}: ${e.message}`);
+    const errorLog = { name, version, error: e.message, stack: e.stack, timestamp: new Date().toISOString() };
+    await fs.appendFile("./libraryDefs/errors.json", JSON.stringify(errorLog) + "\n");
     packages[name].status = "failed";
     await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
     return;
   }
 
-  await fs.mkdir("./libraryDefs/extracted", { recursive: true });
-  await fs.writeFile(outputFile, JSON.stringify(mergedDefs, null, 2));
-  console.log(`Signatures extracted to ${outputFile}`);
+  try {
+    await fs.mkdir("./libraryDefs/extracted", { recursive: true });
+    await fs.writeFile(outputFile, JSON.stringify(mergedDefs, null, 2));
+    console.log(`Signatures extracted to ${outputFile}`);
+  } catch (e) {
+    console.error(`Failed to write signatures to ${outputFile}: ${e.message}`);
+    const errorLog = { name, version, error: `Write failed: ${e.message}`, stack: e.stack, timestamp: new Date().toISOString() };
+    await fs.appendFile("./libraryDefs/errors.json", JSON.stringify(errorLog) + "\n");
+    packages[name].status = "failed";
+    await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
+    return;
+  }
 
-  console.log("Running chunking...");
-  await execAsync("node signature_chunk.js", { timeout: 300000 });
-  console.log("Running sanitization...");
-  await execAsync("node signature_sanitization.js", { timeout: 300000 });
-  console.log("Running refinement and R2 upload...");
-  await execAsync("node signature_refinement.js");
+  try {
+    console.log("Running chunking...");
+    await execAsync("node signature_chunk.js", { timeout: 300000 });
+  } catch (e) {
+    console.error(`Chunking failed for ${name}-${version}: ${e.message}`);
+    const errorLog = { name, version, error: `Chunking failed: ${e.message}`, stack: e.stack, timestamp: new Date().toISOString() };
+    await fs.appendFile("./libraryDefs/errors.json", JSON.stringify(errorLog) + "\n");
+    packages[name].status = "failed";
+    await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
+    return;
+  }
+
+  try {
+    console.log("Running sanitization...");
+    await execAsync("node signature_sanitization.js", { timeout: 300000 });
+  } catch (e) {
+    console.error(`Sanitization failed for ${name}-${version}: ${e.message}`);
+    const errorLog = { name, version, error: `Sanitization failed: ${e.message}`, stack: e.stack, timestamp: new Date().toISOString() };
+    await fs.appendFile("./libraryDefs/errors.json", JSON.stringify(errorLog) + "\n");
+    packages[name].status = "failed";
+    await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
+    return;
+  }
+
+  try {
+    console.log("Running refinement and R2 upload...");
+    await execAsync("node signature_refinement.js");
+  } catch (e) {
+    console.error(`Refinement failed for ${name}-${version}: ${e.message}`);
+    const errorLog = { name, version, error: `Refinement failed: ${e.message}`, stack: e.stack, timestamp: new Date().toISOString() };
+    await fs.appendFile("./libraryDefs/errors.json", JSON.stringify(errorLog) + "\n");
+    packages[name].status = "failed";
+    await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
+    return;
+  }
 
   packages[name].status = "done";
   await fs.writeFile("./library.json", JSON.stringify(libraryData, null, 2));
@@ -141,5 +183,7 @@ async function main() {
 
 if (require.main === module) main().catch(error => {
   console.error("Process failed:", error);
+  const errorLog = { error: error.message, stack: error.stack, timestamp: new Date().toISOString() };
+  fs.appendFile("./libraryDefs/errors.json", JSON.stringify(errorLog) + "\n").catch(() => {});
   process.exit(1);
 });

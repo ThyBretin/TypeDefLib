@@ -1,19 +1,33 @@
-const ts = require("typescript");
+const { SyntaxKind } = require("ts-morph");
 
 function extractJSDoc(node) {
-  const jsDoc = node?.jsDoc?.[0];
-  if (!jsDoc) return null;
-  const description = typeof jsDoc.comment === "string" ? jsDoc.comment : jsDoc.comment?.map(c => c.text).join(" ") || "";
+  // Find the closest node with JSDoc (parent or self)
+  let jsDocNode = node;
+  while (jsDocNode && !jsDocNode.getJsDocs?.().length) {
+    jsDocNode = jsDocNode.getParent?.();
+    if (!jsDocNode || jsDocNode.getKind?.() === SyntaxKind.SourceFile) {
+      return null;
+    }
+  }
+
+  const jsDocs = jsDocNode?.getJsDocs?.();
+  if (!jsDocs || jsDocs.length === 0) {
+    return null;
+  }
+
+  // Take the last JSDoc comment (closest to declaration)
+  const jsDoc = jsDocs[jsDocs.length - 1];
+  const description = jsDoc.getDescription()?.trim() || "";
+  const tags = jsDoc.getTags().map(tag => ({
+    tagName: tag.getTagName(),
+    name: tag.getName?.() || "",
+    text: tag.getCommentText()?.trim() || ""
+  }));
+  console.log("Node JSDoc:", jsDocNode?.getJsDocs()?.map(doc => doc.getText()));
+
   return {
     description,
-    params: jsDoc.tags?.filter(t => t.tagName.text === "param").map(t => ({
-      name: t.name?.text,
-      description: typeof t.comment === "string" ? t.comment : t.comment?.map(c => c.text).join(" ")
-    })),
-    returns: typeof jsDoc.tags?.find(t => t.tagName.text === "returns")?.comment === "string" 
-      ? jsDoc.tags?.find(t => t.tagName.text === "returns")?.comment 
-      : jsDoc.tags?.find(t => t.tagName.text === "returns")?.comment?.map(c => c.text).join(" "),
-    deprecated: !!jsDoc.tags?.find(t => t.tagName.text === "deprecated")
+    tags
   };
 }
 

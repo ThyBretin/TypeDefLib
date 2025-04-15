@@ -1,55 +1,52 @@
-const ts = require("typescript");
+const { Project } = require("ts-morph");
 const { extractJSDoc } = require("./extract_jsdoc");
 
-function extractTypes(checker, node, visitedTypes = new Set()) {
-  const symbol = checker.getSymbolAtLocation(node.name);
-  if (!symbol) return null;
-  const kind = ts.isTypeAliasDeclaration(node) ? "Type" : "Interface";
-  console.log(`${kind}: ${symbol.name}`);
-  if (visitedTypes.has(symbol.name)) return null;
-  visitedTypes.add(symbol.name);
+function extractTypes(filePath) {
+  const project = new Project({ addFilesFromTsConfig: false });
+  const sourceFile = project.addSourceFileAtPath(filePath);
+  const types = [];
 
-  const type = checker.getTypeAtLocation(node);
-  let resolvedType = checker.typeToString(type, undefined, ts.TypeFormatFlags.NoTruncation);
-  const properties = type.getProperties().map(prop => ({
-    name: prop.name,
-    type: checker.typeToString(checker.getTypeOfSymbolAtLocation(prop, node)),
-    optional: !!(prop.flags & ts.SymbolFlags.Optional)
-  }));
-  let extendsTypes = [];
-  if (ts.isInterfaceDeclaration(node) && node.heritageClauses) {
-    extendsTypes = node.heritageClauses
-      .filter(h => h.token === ts.SyntaxKind.ExtendsKeyword)
-      .flatMap(h => h.types.map(t => t.getText()));
-  }
-  if (type.aliasSymbol) {
-    const aliasType = checker.getDeclaredTypeOfSymbol(type.aliasSymbol);
-    const typeArgs = type.aliasTypeArguments;
-    if (typeArgs?.length) {
-      const baseName = type.aliasSymbol.name;
-      resolvedType = `${baseName}<${typeArgs.map(t => checker.typeToString(t)).join(", ")}>`;
-    } else {
-      const constraint = type.getConstraint();
-      if (constraint) {
-        resolvedType = checker.typeToString(constraint, undefined, ts.TypeFormatFlags.NoTruncation);
-      } else if (aliasType !== type) {
-        resolvedType = checker.typeToString(aliasType, undefined, ts.TypeFormatFlags.NoTruncation);
-      }
-      if (symbol.name === "List" || resolvedType === "List") {
-        resolvedType = "T[] | null | undefined"; // Force Lodash List
-      }
-    }
-  } else if (type.isUnionOrIntersection()) {
-    resolvedType = checker.typeToString(type, undefined, ts.TypeFormatFlags.NoTruncation);
-  }
-  return {
-    name: symbol.name,
-    type: resolvedType,
-    properties,
-    extends: extendsTypes,
-    jsdoc: extractJSDoc(node),
-    isExported: !!(symbol?.flags & ts.SymbolFlags.Export)
-  };
+  sourceFile.getTypeAliases().forEach(ta => {
+    const typeProps = ta.getType().getProperties();
+    types.push({
+      name: ta.getName(),
+      type: ta.getTypeNode()?.getText() || "any",
+      properties: typeProps.map(p => {
+        const decls = p.getDeclarations();
+        const isOptional = decls.length > 0 ? decls.some(d => d.hasQuestionToken?.() || d.getType().isOptional?.()) : false;
+        return {
+          name: p.getName(),
+          type: p.getTypeAtLocation(sourceFile).getText(),
+          optional: isOptional
+        };
+      }),
+      jsdoc: extractJSDoc(ta),
+      isExported: ta.isExported()
+    });
+  });
+
+  sourceFile.getInterfaces().forEach(intf => {
+    types.push({
+      name: intf.getName(),
+      type: intf.getText(),
+      properties: intf.getProperties().map(p => ({
+        name: p.getName(),
+        type: p.getType().getText(),
+        optional: p.hasQuestionToken()
+      })),
+      extends: intf.getBaseTypes().map(bt => bt.getText()),
+      jsdoc: extractJSDoc(intf),
+      isExported: intf.isExported()
+    });
+  });
+
+  return types.sort((a, b) => {
+    const aIsReact = a.name.includes("React") || a.name.includes("JSX") || a.jsdoc?.description?.toLowerCase().includes("react");
+    const bIsReact = b.name.includes("React") || b.name.includes("JSX") || b.jsdoc?.description?.toLowerCase().includes("react");
+    if (aIsReact && !bIsReact) return -1;
+    if (!aIsReact && bIsReact) return 1;
+    return a.name.localeCompare(b.name);
+  });
 }
 
 module.exports = { extractTypes };

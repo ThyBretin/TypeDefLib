@@ -1,19 +1,18 @@
-const ts = require("typescript");
+const { Project } = require("ts-morph");
 const { extractJSDoc } = require("./extract_jsdoc");
 
-function extractEnums(checker, node) {
-  const symbol = checker.getSymbolAtLocation(node.name);
-  if (!symbol) return null;
-  console.log(`Enum: ${symbol.name}`);
-  return {
-    name: symbol.name,
-    members: node.members.map(m => ({
-      name: m.name.getText(),
-      value: m.initializer ? m.initializer.getText() : undefined
+function extractEnums(filePath) {
+  const project = new Project({ addFilesFromTsConfig: false });
+  const sourceFile = project.addSourceFileAtPath(filePath);
+  return sourceFile.getEnums().map(enumDecl => ({
+    name: enumDecl.getName(),
+    members: enumDecl.getMembers().map(m => ({
+      name: m.getName(),
+      value: m.getInitializer()?.getText()
     })),
-    jsdoc: extractJSDoc(node),
-    isExported: !!(symbol?.flags & ts.SymbolFlags.Export)
-  };
+    jsdoc: extractJSDoc(enumDecl),
+    isExported: enumDecl.isExported()
+  }));
 }
 
 module.exports = { extractEnums };

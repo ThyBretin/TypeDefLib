@@ -1,49 +1,21 @@
-const ts = require("typescript");
+const { Project, SyntaxKind } = require("ts-morph");
+const { extractJSDoc } = require("./extract_jsdoc");
 
-function extractConstants(sourceFile, typeChecker) {
+function extractConstants(filePath) {
+  const project = new Project({ addFilesFromTsConfig: false });
+  const sourceFile = project.addSourceFileAtPath(filePath);
   const constants = [];
-
-  function visit(node) {
-    if (ts.isVariableStatement(node)) {
-      node.declarationList.declarations.forEach(decl => {
-        if (decl.initializer && ts.isModifierLike(decl.modifiers?.find(mod => mod.kind === ts.SyntaxKind.ConstKeyword))) {
-          const symbol = typeChecker.getSymbolAtLocation(decl.name);
-          if (symbol) {
-            const baseSymbol = symbol.declarations[0].parent.symbol || symbol;
-            const fullName = baseSymbol.name === "_" ? `_.${symbol.name}` : `${baseSymbol.name}.${symbol.name}`;
-            constants.push({
-              name: fullName,
-              value: decl.initializer.getText(),
-              jsdoc: extractJsdoc(symbol)
-            });
-          }
-        }
-      });
-    } else if (ts.isPropertyDeclaration(node) || ts.isPropertySignature(node)) {
-      const symbol = typeChecker.getSymbolAtLocation(node.name);
-      if (symbol && !node.initializer) return;
-      const propType = typeChecker.getTypeAtLocation(node);
-      const value = node.initializer?.getText();
-      const isConstantLike = value || propType.isStringLiteral() || propType.isNumberLiteral() || symbol.name.toLowerCase() === "version";
-      if (isConstantLike) {
-        const baseSymbol = symbol.declarations[0].parent.symbol || symbol;
-        const fullName = baseSymbol.name === "_" ? `_.${symbol.name}` : `${baseSymbol.name}.${symbol.name}`;
+  sourceFile.getVariableStatements().forEach(stmt => {
+    if (stmt.getKind() === SyntaxKind.VariableStatement && stmt.hasModifier("const")) {
+      stmt.getDeclarations().forEach(decl => {
         constants.push({
-          name: fullName,
-          value: value || typeChecker.typeToString(propType),
-          jsdoc: extractJsdoc(symbol)
+          name: decl.getName(),
+          value: decl.getInitializer()?.getText(),
+          jsdoc: extractJSDoc(decl)
         });
-      }
+      });
     }
-    ts.forEachChild(node, visit);
-  }
-
-  function extractJsdoc(symbol) {
-    const jsdoc = symbol?.getJsDocTags() || [];
-    return jsdoc.length > 0 ? { description: jsdoc.map(tag => tag.text).join(" ") } : undefined;
-  }
-
-  visit(sourceFile);
+  });
   return constants;
 }
 
